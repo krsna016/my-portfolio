@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificates | Anurag Pareek</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="background-glow"></div>
+    <canvas id="particle-canvas"></canvas>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">AP.</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="resume.html">Resume</a></li>
+            <li><a href="certificates.html" class="active">Certificates</a></li>
+            <li><a href="games.html">Fun</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </nav>
+
+    <section class="section certificates-page">
+        <div class="container">
+            <div class="pinned-section-wrapper">
+                <div class="pinned-heading">
+                    <h2 class="section-title">Certifications</h2>
+                </div>
+                <div class="section-content">
+                    <p class="games-intro">A collection of my professional certifications and achievements.</p>
+
+                    <div class="certificates-grid" id="certificates-grid">
+                        <!-- Certificates will be injected here by certificates.js -->
+                        <div class="loader">Loading Certificates...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-socials">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=anurag020416@gmail.com" target="_blank"
+                aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/anuragpareek016" target="_blank" aria-label="LinkedIn"><i
+                    class="fa-brands fa-linkedin"></i></a>
+            <a href="https://github.com/krsna016" target="_blank" aria-label="GitHub"><i
+                    class="fa-brands fa-github"></i></a>
+        </div>
+        <p>&copy; 2025 Anurag Pareek. All rights reserved.</p>
+    </footer>
+
+    <!-- PDF Modal -->
+    <div id="pdf-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h3 id="modal-title">Certificate Title</h3>
+                <a id="modal-download" href="#" target="_blank" class="btn primary small">Download <i
+                        class="fa-solid fa-download"></i></a>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe id="pdf-frame" src="" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    </script>
+    <script src="certificates.js"></script>
+    <script src="script.js"></script>
+    <script src="particles.js"></script>
+</body>
+
+</html>
