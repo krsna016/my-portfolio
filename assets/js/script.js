@@ -200,28 +200,41 @@ document.addEventListener('DOMContentLoaded', () => {
             window.open(whatsappURL, '_blank');
         });
     }
+
+    // Render Skills
+    const skillsContainer = document.getElementById('skills-container');
+    if (skillsContainer && typeof skillsData !== 'undefined') {
+        skillsContainer.innerHTML = '';
+        skillsData.forEach(skill => {
+            const span = document.createElement('span');
+            span.className = 'skill-tag';
+            span.textContent = skill.name;
+            span.setAttribute('data-desc', skill.desc);
+            skillsContainer.appendChild(span);
+        });
+    }
 });
 
-    // Progress Bar Logic
-    const progressBar = document.getElementById("myBar");
+// Progress Bar Logic
+const progressBar = document.getElementById("myBar");
 
-    function updateProgressBar() {
-        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        if (progressBar) {
-            progressBar.style.width = scrolled + "%";
-        }
+function updateProgressBar() {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    if (progressBar) {
+        progressBar.style.width = scrolled + "%";
     }
+}
 
-    window.addEventListener('scroll', updateProgressBar);
+window.addEventListener('scroll', updateProgressBar);
 
-    // Programmatic Control
-    window.setLoadProgress = function(percent) {
-        if (progressBar) {
-            progressBar.style.width = percent + "%";
-        }
-    };
+// Programmatic Control
+window.setLoadProgress = function (percent) {
+    if (progressBar) {
+        progressBar.style.width = percent + "%";
+    }
+};
 
 // Loader Logic
 const loader = document.querySelector(".loader-container");

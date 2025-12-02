@@ -207,6 +207,11 @@
 <body>
     <div class="background-glow"></div>
 
+    <!-- Loader -->
+    <div class="loader-container">
+        <div class="glowing-orb"></div>
+    </div>
+
     <nav class="navbar">
         <a href="index.html" class="logo">AP. Admin</a>
         <ul class="nav-links">
@@ -218,23 +223,42 @@
     <div class="admin-container">
         <div class="admin-header">
             <div>
-                <h2 class="section-title" style="margin-bottom: 1.5rem; text-align: left;">Certificate Manager</h2>
-                <p style="color: #aaa; font-size: 0.9rem; margin-top: 5px;">
-                    <i class="fa-solid fa-circle-info"></i>
-                    <strong>How to add:</strong> 1. Put PDF in <code>Certificates/</code> folder. 2. Add details here.
-                    3. Download & Replace <code>certificates_data.js</code>.
-                </p>
+                <h2 class="section-title" style="margin-bottom: 1.5rem; text-align: left;">Content Manager</h2>
+                <div class="tab-buttons" style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                    <button class="btn primary tab-btn active" data-tab="certificates">Certificates</button>
+                    <button class="btn secondary tab-btn" data-tab="skills">Technical Skills</button>
+                </div>
             </div>
-            <div style="display: flex; gap: 1rem;">
+            <div>
                 <button id="load-json-btn" class="btn secondary">Reset / Reload</button>
-                <button id="save-json-btn" class="btn primary">Download Config</button>
             </div>
         </div>
 
-        <div class="admin-grid">
+        <!-- INSTRUCTIONS BOX -->
+        <div
+            style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+            <h4 style="margin-bottom: 0.5rem; color: var(--primary-color);"><i class="fa-solid fa-circle-info"></i> How
+                to Update Your Site</h4>
+            <ol style="margin-left: 1.5rem; color: #ccc; line-height: 1.6;">
+                <li>Make your changes in the editor below (Add, Edit, Delete).</li>
+                <li>Click the <strong>"Download Config"</strong> button in the respective tab.</li>
+                <li>A file (<code>certificates_data.js</code> or <code>skills_data.js</code>) will download.</li>
+                <li><strong>Replace</strong> the existing file in your project folder: <code>assets/js/</code> with this
+                    new one.</li>
+                <li>Refresh your portfolio website to see the changes!</li>
+            </ol>
+        </div>
+
+        <!-- CERTIFICATES TAB -->
+        <div id="tab-certificates" class="admin-grid tab-content">
             <!-- Editor Panel -->
             <div class="editor-panel">
-                <h3 style="margin-bottom: 1.5rem;">Add / Edit Certificate</h3>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <h3 style="margin: 0;">Add / Edit Certificate</h3>
+                    <button id="save-certs-btn" class="btn primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">
+                        <i class="fa-solid fa-download"></i> Download Config
+                    </button>
+                </div>
                 <form id="cert-form">
                     <input type="hidden" id="edit-index" value="-1">
 
@@ -282,6 +306,48 @@
                 </div>
             </div>
         </div>
+
+        <!-- SKILLS TAB -->
+        <div id="tab-skills" class="admin-grid tab-content" style="display: none;">
+            <!-- Editor Panel -->
+            <div class="editor-panel">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <h3 style="margin: 0;">Add / Edit Skill</h3>
+                    <button id="save-skills-btn" class="btn primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">
+                        <i class="fa-solid fa-download"></i> Download Config
+                    </button>
+                </div>
+                <form id="skill-form">
+                    <input type="hidden" id="skill-edit-index" value="-1">
+
+                    <div class="form-group">
+                        <label>Skill Name</label>
+                        <input type="text" id="skill-name" required placeholder="e.g. Python">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="skill-desc" rows="3" required
+                            placeholder="e.g. Primary language for Data Analysis..."
+                            style="width: 100%; padding: 0.8rem; background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; color: #fff; font-family: var(--font-main);"></textarea>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                        <button type="submit" class="btn primary" style="flex: 1;">Save to List</button>
+                        <button type="button" id="clear-skill-form" class="btn secondary">Clear</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- List Panel -->
+            <div class="preview-panel">
+                <h3 style="margin-bottom: 1.5rem;">Current Skills</h3>
+                <div class="cert-list" id="skill-list">
+                    <!-- List items injected by JS -->
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- Login Overlay -->
@@ -298,7 +364,9 @@
         </div>
     </div>
 
+    <script src="assets/js/skills_data.js"></script>
     <script src="assets/js/certificates_data.js"></script>
+    <script src="assets/js/script.js"></script>
     <script src="assets/js/admin.js"></script>
 </body>
 

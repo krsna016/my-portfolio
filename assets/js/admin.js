@@ -1,226 +1,385 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const certForm = document.getElementById('cert-form');
-    const certList = document.getElementById('cert-list');
-    const iconGrid = document.getElementById('icon-grid');
-    const iconSearch = document.getElementById('icon-search');
-    const selectedIconInput = document.getElementById('selected-icon');
-    const editIndexInput = document.getElementById('edit-index');
-    const saveJsonBtn = document.getElementById('save-json-btn');
-    const loadJsonBtn = document.getElementById('load-json-btn');
-    const clearFormBtn = document.getElementById('clear-form');
-
-    // Login Logic
+    // --- Authentication Logic ---
     const loginOverlay = document.getElementById('login-overlay');
     const loginForm = document.getElementById('login-form');
     const passwordInput = document.getElementById('admin-password');
     const loginError = document.getElementById('login-error');
+    const logoutBtn = document.getElementById('logout-btn');
 
-    // SHA-256 Hash for "admin"
-    const ADMIN_HASH = "a0e4d7873db2ddefc7b598ae177c814f330a35e9ac7d0e70b3e7e9f7e17656cc";
-
-    // Check if already logged in (session storage)
-    if (sessionStorage.getItem('admin_logged_in') === 'true') {
+    // Check if already logged in
+    if (sessionStorage.getItem('adminLoggedIn') === 'true') {
         loginOverlay.style.display = 'none';
     }
 
-    async function hashPassword(password) {
-        const encoder = new TextEncoder();
-        const data = encoder.encode(password);
-        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-        const hashArray = Array.from(new Uint8Array(hashBuffer));
-        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-        return hashHex;
-    }
-
-    loginForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const inputHash = await hashPassword(passwordInput.value);
-
-        if (inputHash === ADMIN_HASH) {
-            sessionStorage.setItem('admin_logged_in', 'true');
-            loginOverlay.style.display = 'none';
-        } else {
-            loginError.style.display = 'block';
-            passwordInput.value = '';
-        }
-    });
-
-    // Logout Logic
-    const logoutBtn = document.getElementById('logout-btn');
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', (e) => {
+    // Login Form Submit
+    if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            sessionStorage.removeItem('admin_logged_in');
-            location.reload();
-        });
-    }
+            const password = passwordInput.value;
 
-    let certificates = [];
-
-    // Curated FontAwesome Icons
-    const icons = [
-        'fa-solid fa-certificate', 'fa-solid fa-graduation-cap', 'fa-solid fa-award', 'fa-solid fa-medal',
-        'fa-solid fa-briefcase', 'fa-solid fa-laptop-code', 'fa-solid fa-code', 'fa-solid fa-terminal',
-        'fa-solid fa-database', 'fa-solid fa-server', 'fa-solid fa-cloud', 'fa-solid fa-network-wired',
-        'fa-solid fa-robot', 'fa-solid fa-brain', 'fa-solid fa-microchip', 'fa-solid fa-chart-line',
-        'fa-solid fa-chart-pie', 'fa-solid fa-chart-bar', 'fa-solid fa-file-code', 'fa-solid fa-folder-open',
-        'fa-solid fa-shield-halved', 'fa-solid fa-lock', 'fa-solid fa-key', 'fa-solid fa-bug',
-        'fa-solid fa-puzzle-piece', 'fa-solid fa-layer-group', 'fa-solid fa-cube', 'fa-solid fa-cubes',
-        'fa-solid fa-rocket', 'fa-solid fa-plane-departure', 'fa-solid fa-globe', 'fa-solid fa-earth-americas',
-        'fa-brands fa-python', 'fa-brands fa-java', 'fa-brands fa-js', 'fa-brands fa-react',
-        'fa-brands fa-html5', 'fa-brands fa-css3-alt', 'fa-brands fa-node', 'fa-brands fa-docker',
-        'fa-brands fa-aws', 'fa-brands fa-google', 'fa-brands fa-microsoft', 'fa-brands fa-apple',
-        'fa-brands fa-linux', 'fa-brands fa-github', 'fa-brands fa-gitlab', 'fa-brands fa-bitbucket',
-        'fa-brands fa-stack-overflow', 'fa-brands fa-dev', 'fa-brands fa-space-awesome'
-    ];
-
-    // Initialize
-    renderIcons();
-    loadCertificates();
-
-    // Render Icons
-    function renderIcons(filter = '') {
-        iconGrid.innerHTML = '';
-        icons.forEach(iconClass => {
-            if (iconClass.toLowerCase().includes(filter.toLowerCase())) {
-                const div = document.createElement('div');
-                div.className = 'icon-option';
-                if (selectedIconInput.value === iconClass) div.classList.add('selected');
-                div.innerHTML = `<i class="${iconClass}"></i>`;
-                div.onclick = () => selectIcon(iconClass);
-                iconGrid.appendChild(div);
+            // HARDCODED PASSWORD - Change this if needed
+            if (password === 'admin123') {
+                sessionStorage.setItem('adminLoggedIn', 'true');
+                loginOverlay.style.display = 'none';
+                loginError.style.display = 'none';
+                passwordInput.value = '';
+            } else {
+                loginError.style.display = 'block';
+                passwordInput.classList.add('shake');
+                setTimeout(() => passwordInput.classList.remove('shake'), 500);
             }
         });
     }
 
-    function selectIcon(iconClass) {
-        selectedIconInput.value = iconClass;
-        renderIcons(iconSearch.value); // Re-render to update selection state
+    // Logout
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            sessionStorage.removeItem('adminLoggedIn');
+            window.location.reload();
+        });
     }
 
-    iconSearch.addEventListener('input', (e) => {
-        renderIcons(e.target.value);
+    // --- Tab Switching Logic ---
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active class from all buttons
+            tabBtns.forEach(b => {
+                b.classList.remove('active');
+                b.classList.remove('primary');
+                b.classList.add('secondary');
+            });
+            // Add active class to clicked button
+            btn.classList.add('active');
+            btn.classList.remove('secondary');
+            btn.classList.add('primary');
+
+            // Hide all contents
+            tabContents.forEach(content => content.style.display = 'none');
+            // Show target content
+            document.getElementById(`tab-${btn.dataset.tab}`).style.display = 'grid';
+        });
     });
 
-    // Load Certificates
-    function loadCertificates() {
-        if (typeof certificatesData !== 'undefined') {
-            certificates = [...certificatesData]; // Create a copy
-            renderCertList();
-        } else {
-            console.error('certificatesData is not defined');
-            alert('Could not load certificates data. Starting with empty list.');
-            certificates = [];
-            renderCertList();
-        }
+    // --- Certificate Management Logic ---
+
+    // Global state for certificates (loaded from certificates_data.js)
+    let currentCertificates = typeof certificatesData !== 'undefined' ? [...certificatesData] : [];
+
+    const certList = document.getElementById('cert-list');
+    const certForm = document.getElementById('cert-form');
+    const editIndexInput = document.getElementById('edit-index');
+    const clearFormBtn = document.getElementById('clear-form');
+
+    // Icon Selection Logic
+    const iconGrid = document.getElementById('icon-grid');
+    const iconSearch = document.getElementById('icon-search');
+    const selectedIconInput = document.getElementById('selected-icon');
+
+    // Common FontAwesome Icons for Certs
+    const commonIcons = [
+        'fa-solid fa-certificate', 'fa-solid fa-graduation-cap', 'fa-solid fa-award',
+        'fa-solid fa-medal', 'fa-solid fa-trophy', 'fa-solid fa-scroll',
+        'fa-solid fa-file-pdf', 'fa-solid fa-code', 'fa-solid fa-laptop-code',
+        'fa-brands fa-python', 'fa-brands fa-js', 'fa-brands fa-java',
+        'fa-brands fa-html5', 'fa-brands fa-css3-alt', 'fa-brands fa-react',
+        'fa-brands fa-node', 'fa-brands fa-angular', 'fa-brands fa-vuejs',
+        'fa-brands fa-aws', 'fa-brands fa-docker', 'fa-brands fa-git-alt',
+        'fa-brands fa-github', 'fa-brands fa-linux', 'fa-solid fa-database',
+        'fa-solid fa-server', 'fa-solid fa-cloud', 'fa-solid fa-shield-halved',
+        'fa-solid fa-robot', 'fa-solid fa-brain', 'fa-solid fa-chart-line',
+        'fa-solid fa-briefcase', 'fa-solid fa-user-graduate'
+    ];
+
+    // Render Icons
+    function renderIcons(filter = '') {
+        iconGrid.innerHTML = '';
+        commonIcons.forEach(iconClass => {
+            if (iconClass.includes(filter.toLowerCase())) {
+                const iconDiv = document.createElement('div');
+                iconDiv.className = `icon-option ${selectedIconInput.value === iconClass ? 'selected' : ''}`;
+                iconDiv.innerHTML = `<i class="${iconClass}"></i>`;
+                iconDiv.onclick = () => selectIcon(iconClass, iconDiv);
+                iconGrid.appendChild(iconDiv);
+            }
+        });
     }
 
-    // Render List
+    function selectIcon(iconClass, element) {
+        selectedIconInput.value = iconClass;
+        document.querySelectorAll('.icon-option').forEach(el => el.classList.remove('selected'));
+        element.classList.add('selected');
+    }
+
+    if (iconSearch) {
+        iconSearch.addEventListener('input', (e) => renderIcons(e.target.value));
+    }
+
+    // Initial Render
+    renderIcons();
+
+
+    // Render Certificate List
     function renderCertList() {
         certList.innerHTML = '';
-        certificates.forEach((cert, index) => {
+        currentCertificates.forEach((cert, index) => {
             const item = document.createElement('div');
             item.className = 'cert-item';
             item.innerHTML = `
                 <div class="cert-item-info">
-                    <i class="${cert.icon}" style="color: ${cert.color || '#fff'}; font-size: 1.5rem;"></i>
+                    <div style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.1); border-radius: 50%;">
+                        <i class="${cert.icon}" style="color: ${cert.color || '#fff'}"></i>
+                    </div>
                     <div>
-                        <div style="font-weight: 600;">${cert.title}</div>
-                        <div style="font-size: 0.8rem; color: #aaa;">${cert.file}</div>
+                        <h4 style="margin: 0;">${cert.title}</h4>
+                        <small style="color: #888;">${cert.file}</small>
                     </div>
                 </div>
                 <div class="cert-item-actions">
-                    <button class="btn-icon btn-up" onclick="moveCert(${index}, -1)" ${index === 0 ? 'disabled' : ''}><i class="fa-solid fa-arrow-up"></i></button>
-                    <button class="btn-icon btn-down" onclick="moveCert(${index}, 1)" ${index === certificates.length - 1 ? 'disabled' : ''}><i class="fa-solid fa-arrow-down"></i></button>
-                    <button class="btn-icon btn-edit" onclick="editCert(${index})"><i class="fa-solid fa-pen"></i></button>
-                    <button class="btn-icon btn-delete" onclick="deleteCert(${index})"><i class="fa-solid fa-trash"></i></button>
+                    <button class="btn-icon btn-up" onclick="moveCert(${index}, -1)" ${index === 0 ? 'disabled style="opacity:0.3"' : ''}>
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </button>
+                    <button class="btn-icon btn-down" onclick="moveCert(${index}, 1)" ${index === currentCertificates.length - 1 ? 'disabled style="opacity:0.3"' : ''}>
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </button>
+                    <button class="btn-icon btn-edit" onclick="editCert(${index})">
+                        <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button class="btn-icon btn-delete" onclick="deleteCert(${index})">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
                 </div>
             `;
             certList.appendChild(item);
         });
     }
 
-    // Form Submit
-    certForm.addEventListener('submit', (e) => {
-        e.preventDefault();
+    // Form Submit (Add/Update)
+    if (certForm) {
+        certForm.addEventListener('submit', (e) => {
+            e.preventDefault();
 
-        const newCert = {
-            title: document.getElementById('cert-title').value,
-            file: document.getElementById('cert-file').value,
-            color: document.getElementById('cert-color').value,
-            icon: document.getElementById('selected-icon').value
-        };
+            const title = document.getElementById('cert-title').value;
+            const file = document.getElementById('cert-file').value;
+            const color = document.getElementById('cert-color').value;
+            const icon = document.getElementById('selected-icon').value;
+            const index = parseInt(editIndexInput.value);
 
-        if (!newCert.icon) {
-            alert('Please select an icon.');
-            return;
-        }
+            if (!icon) {
+                alert('Please select an icon');
+                return;
+            }
 
-        const index = parseInt(editIndexInput.value);
-        if (index >= 0) {
-            certificates[index] = newCert;
-        } else {
-            certificates.push(newCert);
-        }
+            const newCert = { file, title, icon, color };
 
-        renderCertList();
-        resetForm();
-    });
+            if (index >= 0) {
+                // Update
+                currentCertificates[index] = newCert;
+            } else {
+                // Add
+                currentCertificates.push(newCert);
+            }
 
-    // Actions
-    window.editCert = (index) => {
-        const cert = certificates[index];
-        document.getElementById('cert-title').value = cert.title;
-        document.getElementById('cert-file').value = cert.file;
-        document.getElementById('cert-color').value = cert.color || '#6c63ff';
-        selectIcon(cert.icon);
-        editIndexInput.value = index;
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-
-    window.deleteCert = (index) => {
-        if (confirm('Are you sure you want to delete this certificate?')) {
-            certificates.splice(index, 1);
             renderCertList();
-        }
-    };
+            resetForm();
+        });
+    }
 
-    window.moveCert = (index, direction) => {
-        const newIndex = index + direction;
-        if (newIndex >= 0 && newIndex < certificates.length) {
-            [certificates[index], certificates[newIndex]] = [certificates[newIndex], certificates[index]];
-            renderCertList();
-        }
-    };
-
-    // Reset
     function resetForm() {
         certForm.reset();
         editIndexInput.value = '-1';
+        document.getElementById('cert-color').value = '#6c63ff';
         selectedIconInput.value = '';
-        renderIcons();
+        renderIcons(); // Clear selection visual
+        document.querySelector('#tab-certificates .editor-panel h3').textContent = 'Add / Edit Certificate';
     }
 
-    clearFormBtn.addEventListener('click', resetForm);
-    loadJsonBtn.addEventListener('click', () => {
-        if (confirm('Reloading will lose unsaved changes. Continue?')) {
-            location.reload();
+    if (clearFormBtn) {
+        clearFormBtn.addEventListener('click', resetForm);
+    }
+
+    // Expose functions to global scope for onclick handlers
+    window.editCert = function (index) {
+        const cert = currentCertificates[index];
+        document.getElementById('cert-title').value = cert.title;
+        document.getElementById('cert-file').value = cert.file;
+        document.getElementById('cert-color').value = cert.color || '#6c63ff';
+        document.getElementById('selected-icon').value = cert.icon;
+        editIndexInput.value = index;
+
+        // Update icon selection visual
+        renderIcons();
+        // Manually highlight the selected icon if it's in the current view
+        const iconDivs = document.querySelectorAll('.icon-option');
+        iconDivs.forEach(div => {
+            if (div.innerHTML.includes(cert.icon)) {
+                div.classList.add('selected');
+            }
+        });
+
+        document.querySelector('#tab-certificates .editor-panel h3').textContent = 'Edit Certificate';
+
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    window.deleteCert = function (index) {
+        if (confirm('Are you sure you want to delete this certificate?')) {
+            currentCertificates.splice(index, 1);
+            renderCertList();
         }
-    });
+    };
 
-    // Save / Download
-    saveJsonBtn.addEventListener('click', () => {
-        const jsonStr = JSON.stringify(certificates, null, 4);
-        const jsContent = `const certificatesData = ${jsonStr};`;
-        const dataUri = 'data:text/javascript;charset=utf-8,' + encodeURIComponent(jsContent);
+    window.moveCert = function (index, direction) {
+        const newIndex = index + direction;
+        if (newIndex >= 0 && newIndex < currentCertificates.length) {
+            [currentCertificates[index], currentCertificates[newIndex]] = [currentCertificates[newIndex], currentCertificates[index]];
+            renderCertList();
+        }
+    };
 
-        const exportFileDefaultName = 'certificates_data.js';
 
-        const linkElement = document.createElement('a');
-        linkElement.setAttribute('href', dataUri);
-        linkElement.setAttribute('download', exportFileDefaultName);
-        linkElement.click();
+    // --- Skills Management Logic ---
 
-        alert('Configuration downloaded! Please replace the "assets/js/certificates_data.js" file in your project folder with this new file.');
-    });
+    let currentSkills = typeof skillsData !== 'undefined' ? [...skillsData] : [];
+    const skillList = document.getElementById('skill-list');
+    const skillForm = document.getElementById('skill-form');
+    const skillEditIndexInput = document.getElementById('skill-edit-index');
+    const clearSkillFormBtn = document.getElementById('clear-skill-form');
+
+    function renderSkillList() {
+        skillList.innerHTML = '';
+        currentSkills.forEach((skill, index) => {
+            const item = document.createElement('div');
+            item.className = 'cert-item';
+            item.innerHTML = `
+                <div class="cert-item-info">
+                    <div>
+                        <h4 style="margin: 0;">${skill.name}</h4>
+                        <small style="color: #888;">${skill.desc}</small>
+                    </div>
+                </div>
+                <div class="cert-item-actions">
+                    <button class="btn-icon btn-up" onclick="moveSkill(${index}, -1)" ${index === 0 ? 'disabled style="opacity:0.3"' : ''}>
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </button>
+                    <button class="btn-icon btn-down" onclick="moveSkill(${index}, 1)" ${index === currentSkills.length - 1 ? 'disabled style="opacity:0.3"' : ''}>
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </button>
+                    <button class="btn-icon btn-edit" onclick="editSkill(${index})">
+                        <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button class="btn-icon btn-delete" onclick="deleteSkill(${index})">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            `;
+            skillList.appendChild(item);
+        });
+    }
+
+    if (skillForm) {
+        skillForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('skill-name').value;
+            const desc = document.getElementById('skill-desc').value;
+            const index = parseInt(skillEditIndexInput.value);
+
+            const newSkill = { name, desc };
+
+            if (index >= 0) {
+                currentSkills[index] = newSkill;
+            } else {
+                currentSkills.push(newSkill);
+            }
+
+            renderSkillList();
+            resetSkillForm();
+        });
+    }
+
+    function resetSkillForm() {
+        skillForm.reset();
+        skillEditIndexInput.value = '-1';
+        document.querySelector('#tab-skills .editor-panel h3').textContent = 'Add / Edit Skill';
+    }
+
+    if (clearSkillFormBtn) {
+        clearSkillFormBtn.addEventListener('click', resetSkillForm);
+    }
+
+    window.editSkill = function (index) {
+        const skill = currentSkills[index];
+        document.getElementById('skill-name').value = skill.name;
+        document.getElementById('skill-desc').value = skill.desc;
+        skillEditIndexInput.value = index;
+        document.querySelector('#tab-skills .editor-panel h3').textContent = 'Edit Skill';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    window.deleteSkill = function (index) {
+        if (confirm('Are you sure you want to delete this skill?')) {
+            currentSkills.splice(index, 1);
+            renderSkillList();
+        }
+    };
+
+    window.moveSkill = function (index, direction) {
+        const newIndex = index + direction;
+        if (newIndex >= 0 && newIndex < currentSkills.length) {
+            [currentSkills[index], currentSkills[newIndex]] = [currentSkills[newIndex], currentSkills[index]];
+            renderSkillList();
+        }
+    };
+
+    // Initial Render for Skills
+    renderSkillList();
+
+
+    // Download Config Logic (Updated for separate buttons)
+
+    // Download Certificates
+    const saveCertsBtn = document.getElementById('save-certs-btn');
+    if (saveCertsBtn) {
+        saveCertsBtn.addEventListener('click', () => {
+            downloadFile("const certificatesData = " + JSON.stringify(currentCertificates, null, 4) + ";", "certificates_data.js");
+        });
+    }
+
+    // Download Skills
+    const saveSkillsBtn = document.getElementById('save-skills-btn');
+    if (saveSkillsBtn) {
+        saveSkillsBtn.addEventListener('click', () => {
+            downloadFile("const skillsData = " + JSON.stringify(currentSkills, null, 4) + ";", "skills_data.js");
+        });
+    }
+
+    function downloadFile(content, filename) {
+        const blob = new Blob([content], { type: "text/javascript" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+
+    // Reload Button
+    const loadBtn = document.getElementById('load-json-btn');
+    if (loadBtn) {
+        loadBtn.addEventListener('click', () => {
+            if (confirm('Reloading will discard unsaved changes. Continue?')) {
+                window.location.reload();
+            }
+        });
+    }
+
+    // Initial Render
+    renderCertList();
 });

@@ -195,11 +195,35 @@ textarea {
     margin: 1rem 0;
     background: linear-gradient(to right, #fff, #a5a5a5);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     line-height: 1.2;
     min-height: 1.2em;
-    display: block;
-    /* Ensure it behaves as a block */
+    width: fit-content;
+    /* Restrict hover area to text width */
+    transition: all 0.3s ease;
+    /* Smooth transition for hover effect */
+}
+
+.hero-content h1:hover {
+    background: transparent;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 2px var(--secondary-color);
+    /* Neon Cyan stroke */
+    filter: drop-shadow(0 0 10px var(--secondary-color));
+    /* Glow effect */
+    transform: scale(1.05);
+    /* Subtle zoom */
+    cursor: default;
+}
+
+.hero-content h1:hover .typing-cursor::after {
+    content: '.';
+    animation: none;
+    /* Stop blinking on hover for a cleaner look */
+    opacity: 1;
+    color: var(--secondary-color);
+    /* Match the neon stroke */
 }
 
 .subtitle {
@@ -1591,6 +1615,7 @@ footer {
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
 }
+
 /* Progress Bar */
 .progress-container {
     position: fixed;
@@ -1610,6 +1635,7 @@ footer {
     transition: width 0.1s ease-out;
     border-radius: 0 2px 2px 0;
 }
+
 /* Loader */
 .loader-container {
     position: fixed;
