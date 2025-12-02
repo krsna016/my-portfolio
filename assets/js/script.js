@@ -201,3 +201,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+    // Progress Bar Logic
+    const progressBar = document.getElementById("myBar");
+
+    function updateProgressBar() {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        if (progressBar) {
+            progressBar.style.width = scrolled + "%";
+        }
+    }
+
+    window.addEventListener('scroll', updateProgressBar);
+
+    // Programmatic Control
+    window.setLoadProgress = function(percent) {
+        if (progressBar) {
+            progressBar.style.width = percent + "%";
+        }
+    };
+
+// Loader Logic
+const loader = document.querySelector(".loader-container");
+
+window.addEventListener("load", () => {
+    if (loader) {
+        loader.classList.add("loader-hidden");
+        loader.addEventListener("transitionend", () => {
+            // Optional: remove it from DOM if you want, or just keep hidden
+            // loader.remove(); 
+        });
+    }
+});
