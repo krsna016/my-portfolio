@@ -2,55 +2,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const certificatesGrid = document.getElementById('certificates-grid');
     const certificatesPath = 'Certificates/';
 
-    const certificates = [
-        {
-            file: 'InternshipCertificate.pdf',
-            title: 'Internship Certificate'
-        },
-        {
-            file: 'The_Ultimate_Job_Ready_Data_Science_Course_Certificate.pdf',
-            title: 'Data Science Course'
-        },
-        {
-            file: 'introduction_to_data_sciecne_certificate.pdf',
-            title: 'Intro to Data Science'
-        },
-        {
-            file: 'postma_api_fundamentals_student_expert_badge.pdf',
-            title: 'Postman API Badge'
-        },
-        {
-            file: 'postma_api_fundamentals_student_expert_certificate.pdf',
-            title: 'Postman API Expert'
-        },
-        {
-            file: 'problem_solving_basic certificate.pdf',
-            title: 'Problem Solving (Basic)'
-        },
-        {
-            file: 'python_basic certificate.pdf',
-            title: 'Python (Basic)'
-        },
-        {
-            file: 'tcs_britishairways_virtual_internship_certificate.pdf',
-            title: 'TCS British Airways Internship'
-        },
-        {
-            file: 'tcs_cybersecurity_virtual_internship_certificate.pdf',
-            title: 'TCS Cybersecurity Internship'
-        },
-        {
-            file: 'upskill-campus-internship-completion-certificate.pdf',
-            title: 'Upskill Campus Internship'
-        }
-    ];
-
-    // Clear loader
-    certificatesGrid.innerHTML = '';
-
-    certificates.forEach((cert, index) => {
-        createCertificateCard(cert, index);
-    });
+    // Use global variable from certificates_data.js
+    if (typeof certificatesData !== 'undefined') {
+        certificatesGrid.innerHTML = '';
+        certificatesData.forEach((cert, index) => {
+            createCertificateCard(cert, index);
+        });
+    } else {
+        console.error('certificatesData is not defined');
+        certificatesGrid.innerHTML = '<div class="loader">Error loading certificates data.</div>';
+    }
 
     // Modal Elements
     const modal = document.getElementById('pdf-modal');
@@ -79,16 +40,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    async function createCertificateCard(cert, index) {
+    function createCertificateCard(cert, index) {
         const card = document.createElement('div');
         card.className = `certificate-card glass fade-in-up`;
         card.style.animationDelay = `${index * 0.1}s`;
 
-        const canvasContainer = document.createElement('div');
-        canvasContainer.className = 'cert-canvas-container';
+        const iconContainer = document.createElement('div');
+        iconContainer.className = 'cert-icon-container';
 
-        const canvas = document.createElement('canvas');
-        canvasContainer.appendChild(canvas);
+        const icon = document.createElement('i');
+        icon.className = cert.icon;
+        if (cert.color) {
+            icon.style.color = cert.color;
+            icon.style.textShadow = `0 0 20px ${cert.color}40`; // Add glow
+        }
+
+        iconContainer.appendChild(icon);
 
         const info = document.createElement('div');
         info.className = 'cert-info';
@@ -118,29 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
         info.appendChild(title);
         info.appendChild(link);
 
-        card.appendChild(canvasContainer);
+        card.appendChild(iconContainer);
         card.appendChild(info);
         certificatesGrid.appendChild(card);
-
-        // Render PDF Thumbnail
-        try {
-            const loadingTask = pdfjsLib.getDocument(certificatesPath + cert.file);
-            const pdf = await loadingTask.promise;
-            const page = await pdf.getPage(1);
-
-            const viewport = page.getViewport({ scale: 0.5 }); // Scale down for thumbnail
-            const context = canvas.getContext('2d');
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
-
-            const renderContext = {
-                canvasContext: context,
-                viewport: viewport
-            };
-            await page.render(renderContext).promise;
-        } catch (error) {
-            console.error('Error rendering PDF:', error);
-            canvasContainer.innerHTML = '<div class="pdf-error"><i class="fa-solid fa-file-pdf"></i><br>PDF Preview Unavailable</div>';
-        }
     }
 });
