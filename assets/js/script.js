@@ -213,6 +213,28 @@ document.addEventListener('DOMContentLoaded', () => {
             skillsContainer.appendChild(span);
         });
     }
+
+    // Render Projects
+    const projectsContainer = document.getElementById('projects-container');
+    if (projectsContainer && typeof projectsData !== 'undefined') {
+        projectsContainer.innerHTML = '';
+        projectsData.forEach((project, index) => {
+            const card = document.createElement('div');
+            card.className = `about-card glass scroll-reveal delay-${(index % 3) * 100}`;
+            card.innerHTML = `
+                <h3>${project.title}</h3>
+                <p>${project.desc}</p>
+            `;
+            projectsContainer.appendChild(card);
+        });
+
+        // Re-trigger scroll reveal observer for new elements
+        if (typeof observer !== 'undefined') {
+            document.querySelectorAll('#projects-container .scroll-reveal').forEach(el => {
+                observer.observe(el);
+            });
+        }
+    }
 });
 
 // Progress Bar Logic

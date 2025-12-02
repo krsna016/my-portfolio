@@ -335,6 +335,103 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // --- Projects Management Logic ---
+
+    let currentProjects = typeof projectsData !== 'undefined' ? [...projectsData] : [];
+    const projectList = document.getElementById('project-list');
+    const projectForm = document.getElementById('project-form');
+    const projectEditIndexInput = document.getElementById('project-edit-index');
+    const clearProjectFormBtn = document.getElementById('clear-project-form');
+
+    function renderProjectList() {
+        projectList.innerHTML = '';
+        currentProjects.forEach((project, index) => {
+            const item = document.createElement('div');
+            item.className = 'cert-item';
+            item.innerHTML = `
+                <div class="cert-item-info">
+                    <div>
+                        <h4 style="margin: 0;">${project.title}</h4>
+                        <small style="color: #888;">${project.desc}</small>
+                    </div>
+                </div>
+                <div class="cert-item-actions">
+                    <button class="btn-icon btn-up" onclick="moveProject(${index}, -1)" ${index === 0 ? 'disabled style="opacity:0.3"' : ''}>
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </button>
+                    <button class="btn-icon btn-down" onclick="moveProject(${index}, 1)" ${index === currentProjects.length - 1 ? 'disabled style="opacity:0.3"' : ''}>
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </button>
+                    <button class="btn-icon btn-edit" onclick="editProject(${index})">
+                        <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button class="btn-icon btn-delete" onclick="deleteProject(${index})">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            `;
+            projectList.appendChild(item);
+        });
+    }
+
+    if (projectForm) {
+        projectForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = document.getElementById('project-title').value;
+            const desc = document.getElementById('project-desc').value;
+            const index = parseInt(projectEditIndexInput.value);
+
+            const newProject = { title, desc };
+
+            if (index >= 0) {
+                currentProjects[index] = newProject;
+            } else {
+                currentProjects.push(newProject);
+            }
+
+            renderProjectList();
+            resetProjectForm();
+        });
+    }
+
+    function resetProjectForm() {
+        projectForm.reset();
+        projectEditIndexInput.value = '-1';
+        document.querySelector('#tab-projects .editor-panel h3').textContent = 'Add / Edit Project';
+    }
+
+    if (clearProjectFormBtn) {
+        clearProjectFormBtn.addEventListener('click', resetProjectForm);
+    }
+
+    window.editProject = function (index) {
+        const project = currentProjects[index];
+        document.getElementById('project-title').value = project.title;
+        document.getElementById('project-desc').value = project.desc;
+        projectEditIndexInput.value = index;
+        document.querySelector('#tab-projects .editor-panel h3').textContent = 'Edit Project';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    window.deleteProject = function (index) {
+        if (confirm('Are you sure you want to delete this project?')) {
+            currentProjects.splice(index, 1);
+            renderProjectList();
+        }
+    };
+
+    window.moveProject = function (index, direction) {
+        const newIndex = index + direction;
+        if (newIndex >= 0 && newIndex < currentProjects.length) {
+            [currentProjects[index], currentProjects[newIndex]] = [currentProjects[newIndex], currentProjects[index]];
+            renderProjectList();
+        }
+    };
+
+    // Initial Render for Projects
+    renderProjectList();
+
+
     // Initial Render for Skills
     renderSkillList();
 
@@ -354,6 +451,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (saveSkillsBtn) {
         saveSkillsBtn.addEventListener('click', () => {
             downloadFile("const skillsData = " + JSON.stringify(currentSkills, null, 4) + ";", "skills_data.js");
+        });
+    }
+
+    // Download Projects
+    const saveProjectsBtn = document.getElementById('save-projects-btn');
+    if (saveProjectsBtn) {
+        saveProjectsBtn.addEventListener('click', () => {
+            downloadFile("const projectsData = " + JSON.stringify(currentProjects, null, 4) + ";", "projects_data.js");
         });
     }
 

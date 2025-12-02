@@ -1451,8 +1451,8 @@ footer {
 }
 
 .certificate-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    /* transform: translateY(-10px); */
+    /* box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); */
 }
 
 .cert-icon-container {
@@ -1467,9 +1467,9 @@ footer {
     transition: background 0.3s;
 }
 
-.certificate-card:hover .cert-icon-container {
+/* .certificate-card:hover .cert-icon-container {
     background: rgba(255, 255, 255, 0.05);
-}
+} */
 
 .cert-icon-container i {
     font-size: 5rem;
