@@ -9,6 +9,52 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadJsonBtn = document.getElementById('load-json-btn');
     const clearFormBtn = document.getElementById('clear-form');
 
+    // Login Logic
+    const loginOverlay = document.getElementById('login-overlay');
+    const loginForm = document.getElementById('login-form');
+    const passwordInput = document.getElementById('admin-password');
+    const loginError = document.getElementById('login-error');
+
+    // SHA-256 Hash for "admin"
+    const ADMIN_HASH = "a0e4d7873db2ddefc7b598ae177c814f330a35e9ac7d0e70b3e7e9f7e17656cc";
+
+    // Check if already logged in (session storage)
+    if (sessionStorage.getItem('admin_logged_in') === 'true') {
+        loginOverlay.style.display = 'none';
+    }
+
+    async function hashPassword(password) {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(password);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        return hashHex;
+    }
+
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const inputHash = await hashPassword(passwordInput.value);
+
+        if (inputHash === ADMIN_HASH) {
+            sessionStorage.setItem('admin_logged_in', 'true');
+            loginOverlay.style.display = 'none';
+        } else {
+            loginError.style.display = 'block';
+            passwordInput.value = '';
+        }
+    });
+
+    // Logout Logic
+    const logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            sessionStorage.removeItem('admin_logged_in');
+            location.reload();
+        });
+    }
+
     let certificates = [];
 
     // Curated FontAwesome Icons
@@ -175,6 +221,6 @@ document.addEventListener('DOMContentLoaded', () => {
         linkElement.setAttribute('download', exportFileDefaultName);
         linkElement.click();
 
-        alert('Configuration downloaded! Please replace the "certificates_data.js" file in your project folder with this new file.');
+        alert('Configuration downloaded! Please replace the "assets/js/certificates_data.js" file in your project folder with this new file.');
     });
 });

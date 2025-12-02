@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <!-- Placeholder for FontAwesome -->
     <!-- Using a CDN for icons since I can't guarantee local setup -->
@@ -39,7 +39,7 @@
     <header id="home" class="hero">
         <div class="hero-content fade-in-up">
             <span class="greeting">Hello, I'm</span>
-            <h1>Anurag Pareek</h1>
+            <h1 id="typing-text">&nbsp;</h1>
             <h2 class="subtitle">Aspiring <span class="highlight">Data Scientist</span></h2>
             <p class="hero-text">Data-Driven Problem Solver. I transform complex datasets into actionable insights. With
                 a track record of boosting model accuracy by 20% and automating workflows, I build AI solutions that
@@ -52,7 +52,7 @@
         <div class="hero-visual fade-in-up delay-200">
             <!-- Abstract geometric visual or placeholder for profile image -->
             <div class="profile-image-container">
-                <img src="profile.jpg" alt="Anurag Pareek" class="profile-img">
+                <img src="assets/images/profile.jpg" alt="Anurag Pareek" class="profile-img">
 
                 <!-- Idea Bubbles (Icons Only) -->
                 <div class="idea-bubble bubble-1">
@@ -126,7 +126,7 @@
                 <div class="section-content">
                     <div class="timeline">
                         <div class="timeline-item scroll-reveal">
-                            <div class="timeline-content glass">
+                            <div class="timeline-content glass" data-year="2024">
                                 <span class="date">AI/ML Intern</span>
                                 <h3>Coding Blocks</h3>
                                 <p>Improved ML model accuracy by 15% using feature engineering and hyperparameter
@@ -135,7 +135,7 @@
                             </div>
                         </div>
                         <div class="timeline-item scroll-reveal">
-                            <div class="timeline-content glass">
+                            <div class="timeline-content glass" data-year="2024">
                                 <span class="date">Data Science Intern</span>
                                 <h3>Vinayak Logistics</h3>
                                 <p>Built a predictive model reducing fuel costs by 15% and transit time by 10%.
@@ -144,7 +144,7 @@
                             </div>
                         </div>
                         <div class="timeline-item scroll-reveal">
-                            <div class="timeline-content glass">
+                            <div class="timeline-content glass" data-year="2023">
                                 <span class="date">Data Analytics Intern</span>
                                 <h3>Codsoft</h3>
                                 <p>Created SQL and Tableau dashboards boosting operational efficiency by 25%. Cleaned
@@ -153,7 +153,7 @@
                             </div>
                         </div>
                         <div class="timeline-item scroll-reveal">
-                            <div class="timeline-content glass">
+                            <div class="timeline-content glass" data-year="2023">
                                 <span class="date">Python Dev Intern</span>
                                 <h3>Upskill Campus</h3>
                                 <p>Optimized Python code, reducing application errors by 15%. Conducted 30+ code
@@ -250,8 +250,8 @@
         <p>&copy; 2025 Anurag Pareek. All rights reserved.</p>
     </footer>
 
-    <script src="script.js"></script>
-    <script src="particles.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/particles.js"></script>
 </body>
 
 </html>

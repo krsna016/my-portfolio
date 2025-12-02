@@ -149,13 +149,48 @@ class Particle {
 
 function init() {
     particlesArray = [];
-    // Density: 1 particle per 4000 pixels roughly
-    const numberOfParticles = (canvas.width * canvas.height) / 4000;
 
-    for (let i = 0; i < numberOfParticles; i++) {
-        particlesArray.push(new Particle());
+    // Check for saved state
+    const savedParticles = sessionStorage.getItem('particlesData');
+    if (savedParticles) {
+        const parsedParticles = JSON.parse(savedParticles);
+        parsedParticles.forEach(p => {
+            const particle = new Particle(p.x, p.y);
+            // Restore properties
+            particle.size = p.size;
+            particle.baseSize = p.baseSize;
+            particle.speedX = p.speedX;
+            particle.speedY = p.speedY;
+            particle.color = p.color;
+            particle.opacity = p.opacity;
+            particle.fadingIn = p.fadingIn;
+            particlesArray.push(particle);
+        });
+    } else {
+        // Density: 1 particle per 4000 pixels roughly
+        const numberOfParticles = (canvas.width * canvas.height) / 4000;
+
+        for (let i = 0; i < numberOfParticles; i++) {
+            particlesArray.push(new Particle());
+        }
     }
 }
+
+// Save state before unload
+window.addEventListener('beforeunload', () => {
+    const particlesData = particlesArray.map(p => ({
+        x: p.x,
+        y: p.y,
+        size: p.size,
+        baseSize: p.baseSize,
+        speedX: p.speedX,
+        speedY: p.speedY,
+        color: p.color,
+        opacity: p.opacity,
+        fadingIn: p.fadingIn
+    }));
+    sessionStorage.setItem('particlesData', JSON.stringify(particlesData));
+});
 
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);

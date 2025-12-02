@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const certificatesGrid = document.getElementById('certificates-grid');
-    const certificatesPath = 'Certificates/';
+    const certificatesPath = 'assets/docs/Certificates/';
 
     // Use global variable from certificates_data.js
     if (typeof certificatesData !== 'undefined') {

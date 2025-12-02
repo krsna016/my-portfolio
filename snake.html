@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Inline styles for game specific elements to keep style.css clean */
@@ -22,8 +22,9 @@
         }
 
         #game-board {
-            background: rgba(0, 0, 0, 0.5);
-            border: 2px solid var(--primary-color);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: none;
             border-radius: 8px;
             box-shadow: 0 0 20px rgba(108, 99, 255, 0.3);
             margin-bottom: 1rem;
@@ -71,12 +72,15 @@
         }
 
         .modal-content {
-            background: #1a1a1a;
-            padding: 2rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
             border-radius: 16px;
             text-align: center;
-            border: 1px solid var(--primary-color);
-            box-shadow: 0 0 30px rgba(108, 99, 255, 0.4);
+            border: none;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%;
         }
 
         .modal-content h2 {
@@ -118,9 +122,11 @@
 
         <div class="game-controls">
             <button id="start-btn" class="btn primary">Start Game</button>
+            <button id="pause-btn" class="btn secondary" style="display: none;">Pause</button>
         </div>
 
-        <p class="game-instructions">Use <strong>Arrow Keys</strong> to move. Eat the red food to grow. Don't hit the
+        <p class="game-instructions">Use <strong>Arrow Keys</strong> to move. Press <strong>Spacebar</strong> to pause.
+            Eat the red food to grow. Don't hit the
             walls or yourself!</p>
     </div>
 
@@ -146,9 +152,9 @@
         <p>&copy; 2025 Anurag Pareek. All rights reserved.</p>
     </footer>
 
-    <script src="script.js"></script>
-    <script src="particles.js"></script>
-    <script src="snake.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/particles.js"></script>
+    <script src="assets/js/snake.js"></script>
 </body>
 
 </html>

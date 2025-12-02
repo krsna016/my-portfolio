@@ -17,6 +17,28 @@ document.addEventListener('selectstart', (e) => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Typing Animation
+    const text = "Anurag Pareek";
+    const typingElement = document.getElementById('typing-text');
+    let index = 0;
+
+    function typeWriter() {
+        if (index < text.length) {
+            typingElement.innerHTML = text.substring(0, index + 1) + '<span class="typing-cursor"></span>';
+            index++;
+            setTimeout(typeWriter, 100); // Speed: 100ms
+        } else {
+            // Keep cursor blinking after typing finishes
+            typingElement.innerHTML = text + '<span class="typing-cursor"></span>';
+        }
+    }
+
+    // Start typing after a small delay
+    if (typingElement) {
+        setTimeout(typeWriter, 500);
+    }
+
+    // Navigation and other scripts
     // Scroll Reveal Animation
     const observerOptions = {
         threshold: 0.1,
@@ -156,4 +178,26 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('touchmove', onDrag, { passive: false });
         document.addEventListener('touchend', stopDrag);
     });
+    // WhatsApp Form Redirect
+    const whatsappForm = document.getElementById('whatsapp-form');
+    if (whatsappForm) {
+        whatsappForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            // Format the message
+            const formattedMessage = `Hello Anurag, I would like to get in touch.%0A%0A*Name:* ${name}%0A*Email:* ${email}%0A*Message:* ${message}`;
+
+            // WhatsApp API URL
+            // REPLACE '91XXXXXXXXXX' with your actual phone number (including country code, no +)
+            const phoneNumber = '916900438634';
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${formattedMessage}`;
+
+            // Open in new tab
+            window.open(whatsappURL, '_blank');
+        });
+    }
 });
