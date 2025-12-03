@@ -58,19 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    // Mobile Menu Toggle (Simple implementation)
-    // Note: For a full production site, would add a proper slide-out menu
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
-
-    if (hamburger) {
-        hamburger.addEventListener('click', () => {
-            // Toggle logic would go here for mobile menu
-            // For now, just a simple alert or console log as placeholder
-            // or a simple toggle class if we added styles for it
-            console.log('Mobile menu clicked');
-        });
-    }
+    // Mobile Menu Toggle logic moved to end of DOMContentLoaded to ensure elements exist
 
     // Smooth Scroll for Anchor Links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -214,6 +202,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Render Experience
+    const experienceContainer = document.getElementById('experience-container');
+    if (experienceContainer && typeof experienceData !== 'undefined') {
+        experienceContainer.innerHTML = '';
+        experienceData.forEach((exp, index) => {
+            const item = document.createElement('div');
+            item.className = 'timeline-item scroll-reveal';
+            item.innerHTML = `
+                <div class="timeline-content glass" data-year="${exp.year}">
+                    <span class="date">${exp.role}</span>
+                    <h3>${exp.company}</h3>
+                    <p>${exp.desc}</p>
+                </div>
+            `;
+            experienceContainer.appendChild(item);
+        });
+    }
+
     // Render Projects
     const projectsContainer = document.getElementById('projects-container');
     if (projectsContainer && typeof projectsData !== 'undefined') {
@@ -227,13 +233,32 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             projectsContainer.appendChild(card);
         });
+    }
 
-        // Re-trigger scroll reveal observer for new elements
-        if (typeof observer !== 'undefined') {
-            document.querySelectorAll('#projects-container .scroll-reveal').forEach(el => {
-                observer.observe(el);
+    // Re-trigger scroll reveal observer for new elements
+    if (typeof observer !== 'undefined') {
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+    }
+
+    // Mobile Menu Toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
             });
-        }
+        });
     }
 });
 
