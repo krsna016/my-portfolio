@@ -15,10 +15,7 @@
 <body>
     <div class="background-glow"></div>
 
-    <!-- Loader -->
-    <div class="loader-container">
-        <div class="glowing-orb"></div>
-    </div>
+
     <canvas id="particle-canvas"></canvas>
 
     <nav class="navbar">
@@ -91,13 +88,13 @@
         <p>&copy; 2025 Anurag Pareek. All rights reserved.</p>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
     <script>
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
     </script>
-    <script src="assets/js/resume_data.js"></script>
-    <script src="assets/js/resume.js"></script>
-    <script src="assets/js/loader.js"></script>
+    <script src="assets/js/resume_data.js" defer></script>
+    <script src="assets/js/resume.js" defer></script>
+
     <script src="assets/js/script.js"></script>
     <script src="assets/js/particles.js"></script>
 </body>
