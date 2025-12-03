@@ -51,8 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const icon = document.createElement('i');
         icon.className = cert.icon;
         if (cert.color) {
-            icon.style.color = cert.color;
-            icon.style.textShadow = `0 0 20px ${cert.color}40`; // Add glow
+            icon.style.setProperty('--cert-color', cert.color);
+            icon.style.color = 'var(--cert-color)';
+            // Shadow handled in CSS
         }
 
         iconContainer.appendChild(icon);

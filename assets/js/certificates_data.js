@@ -45,7 +45,7 @@ const certificatesData = [
         "file": "tcs_britishairways_virtual_internship_certificate.pdf",
         "title": "TCS British Airways Internship",
         "icon": "fa-solid fa-plane-departure",
-        "color": "#330867"
+        "color": "#933515"
     },
     {
         "file": "tcs_cybersecurity_virtual_internship_certificate.pdf",

@@ -1947,3 +1947,16 @@ footer {
         height: 200px;
     }
 }
+
+/* Certificate Icon Glow */
+.cert-icon-container i {
+    transition: text-shadow 0.3s ease, transform 0.3s ease;
+    /* Default subtle glow or none */
+    text-shadow: 0 0 3px var(--cert-color);
+}
+
+.certificate-card:hover .cert-icon-container i {
+    /* Intense glow on hover */
+    text-shadow: 0 0 5px var(--cert-color), 0 0 0px var(--cert-color);
+    transform: scale(1.5);
+}
