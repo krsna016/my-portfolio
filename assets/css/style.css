@@ -1693,8 +1693,11 @@ footer {
     position: fixed;
     top: 0;
     left: 0;
+    /* transform: translateX(-50%); Removed centering */
     width: 100%;
-    height: 4px;
+    /* Full width */
+    height: 1px;
+    /* Thinner */
     z-index: 9999;
     background: rgba(255, 255, 255, 0.05);
 }
@@ -1705,6 +1708,8 @@ footer {
     background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
     box-shadow: 0 0 10px var(--secondary-color), 0 0 20px var(--primary-color);
     transition: width 0.1s ease-out;
+    opacity: 0.8;
+    /* Make it a little opaque */
     border-radius: 0 2px 2px 0;
 }
 
