@@ -14,15 +14,13 @@
     <!-- Placeholder for FontAwesome -->
     <!-- Using a CDN for icons since I can't guarantee local setup -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preload" as="image" href="assets/images/profile.jpg">
 </head>
 
 <body>
     <div class="background-glow"></div>
 
-    <!-- Loader -->
-    <div class="loader-container">
-        <div class="glowing-orb"></div>
-    </div>
+
 
     <!-- Progress Bar -->
     <div class="progress-container">
@@ -32,12 +30,18 @@
     <canvas id="particle-canvas"></canvas>
 
     <nav class="navbar">
-        <a href="index.html" class="logo">AP.</a>
+        <div class="logo-container">
+            <a href="index.html" class="logo">AP.</a>
+            <div id="welcome-card" class="glass">
+                <span class="welcome-text"></span>
+            </div>
+        </div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="resume.html">Resume</a></li>
             <li><a href="certificates.html">Certificates</a></li>
-            <li><a href="games.html">Fun</a></li>
+            <li><a href="games.html">Arcade</a></li>
+            <li><a href="articles.html">Articles & Books</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
         <div class="hamburger">
@@ -189,11 +193,13 @@
         <p>&copy; 2025 Anurag Pareek. All rights reserved.</p>
     </footer>
 
-    <script src="assets/js/experience_data.js"></script>
-    <script src="assets/js/projects_data.js"></script>
-    <script src="assets/js/skills_data.js"></script>
-    <script src="assets/js/script.js"></script>
-    <script src="assets/js/particles.js"></script>
+    <script src="assets/js/experience_data.js" defer></script>
+    <script src="assets/js/projects_data.js" defer></script>
+    <script src="assets/js/skills_data.js" defer></script>
+
+    <script src="assets/js/script.js" defer></script>
+    <script src="assets/js/logo_effect.js" defer></script>
+    <script src="assets/js/particles.js" defer></script>
 </body>
 
 </html>

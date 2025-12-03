@@ -79,16 +79,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.querySelector('.navbar');
     let lastScrollY = window.scrollY;
 
-    window.addEventListener('scroll', () => {
-        const currentScrollY = window.scrollY;
+    if (navbar) {
+        console.log('Navbar found, initializing scroll effect');
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            // console.log('Scroll Y:', currentScrollY); // Commented out to reduce noise
 
-        // Show navbar only when near the top (e.g., within 50px)
-        if (currentScrollY > 50) {
-            navbar.classList.add('hidden');
-        } else {
-            navbar.classList.remove('hidden');
-        }
-    });
+            if (currentScrollY > lastScrollY && currentScrollY > 0) {
+                // Scrolling DOWN and not at top -> Hide
+                if (!navbar.classList.contains('hidden')) {
+                    console.log('Hiding navbar');
+                    navbar.classList.add('hidden');
+                }
+            } else {
+                // Scrolling UP or at top -> Show
+                if (navbar.classList.contains('hidden')) {
+                    console.log('Showing navbar');
+                    navbar.classList.remove('hidden');
+                }
+            }
+
+            lastScrollY = currentScrollY;
+        });
+    } else {
+        console.error('Navbar not found!');
+    }
 
     // Draggable Icons Logic
     const bubbles = document.querySelectorAll('.idea-bubble');
@@ -322,15 +337,4 @@ window.setLoadProgress = function (percent) {
     }
 };
 
-// Loader Logic
-const loader = document.querySelector(".loader-container");
 
-window.addEventListener("load", () => {
-    if (loader) {
-        loader.classList.add("loader-hidden");
-        loader.addEventListener("transitionend", () => {
-            // Optional: remove it from DOM if you want, or just keep hidden
-            // loader.remove(); 
-        });
-    }
-});

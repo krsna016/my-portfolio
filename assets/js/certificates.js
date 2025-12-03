@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Modal Elements
     const modal = document.getElementById('pdf-modal');
     const modalTitle = document.getElementById('modal-title');
-    const modalDownload = document.getElementById('modal-download');
+
     const pdfFrame = document.getElementById('pdf-frame');
     const closeModal = document.querySelector('.close-modal');
 
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             modalTitle.textContent = cert.title;
-            modalDownload.href = certificatesPath + cert.file;
+
             pdfFrame.src = certificatesPath + cert.file;
 
             modal.style.display = 'flex';

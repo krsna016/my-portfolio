@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles & Books | Anurag Pareek</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="background-glow"></div>
+
+    <!-- Loader -->
+    <div class="loader-container">
+        <div class="glowing-orb"></div>
+    </div>
+
+    <canvas id="particle-canvas"></canvas>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">AP.</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="resume.html">Resume</a></li>
+            <li><a href="certificates.html">Certificates</a></li>
+            <li><a href="games.html">Arcade</a></li>
+            <li><a href="articles.html" class="active">Articles & Books</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </nav>
+
+    <section class="section blog-page">
+        <div class="container">
+            <!-- Tab Navigation -->
+            <div class="tab-buttons" style="display: flex; gap: 1rem; margin-bottom: 2rem; justify-content: center;">
+                <button class="btn primary tab-btn active" data-tab="articles">Articles</button>
+                <button class="btn secondary tab-btn" data-tab="books">Books</button>
+            </div>
+
+            <!-- Articles Tab -->
+            <div id="tab-articles" class="tab-content">
+                <div class="pinned-section-wrapper">
+                    <div class="pinned-heading">
+                        <h2 class="section-title">Articles</h2>
+                    </div>
+                    <div class="section-content">
+                        <p class="games-intro">Thoughts, tutorials, and updates.</p>
+
+                        <div class="about-grid">
+                            <!-- Skeleton / Placeholder for Articles -->
+                            <div class="about-card glass fade-in-up">
+                                <div class="game-icon"
+                                    style="font-size: 2rem; margin-bottom: 1rem; color: var(--primary-color);">
+                                    <i class="fa-solid fa-pen-nib"></i>
+                                </div>
+                                <h3>Coming Soon</h3>
+                                <p>Stay tuned for insightful articles on Data Science, AI, and Web Development.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Books Tab -->
+            <div id="tab-books" class="tab-content" style="display: none;">
+                <div class="pinned-section-wrapper">
+                    <div class="pinned-heading">
+                        <h2 class="section-title">Books</h2>
+                    </div>
+                    <div class="section-content">
+                        <p class="games-intro">Recommended reads and PDF resources.</p>
+
+                        <div class="about-grid">
+                            <!-- Skeleton / Placeholder for Books -->
+                            <div class="about-card glass fade-in-up">
+                                <div class="game-icon"
+                                    style="font-size: 2rem; margin-bottom: 1rem; color: var(--secondary-color);">
+                                    <i class="fa-solid fa-book-open"></i>
+                                </div>
+                                <h3>Library Opening Soon</h3>
+                                <p>A curated collection of books and papers I find valuable.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-socials">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=anurag020416@gmail.com" target="_blank"
+                aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/anuragpareek016" target="_blank" aria-label="LinkedIn"><i
+                    class="fa-brands fa-linkedin"></i></a>
+            <a href="https://github.com/krsna016" target="_blank" aria-label="GitHub"><i
+                    class="fa-brands fa-github"></i></a>
+        </div>
+        <p>&copy; 2025 Anurag Pareek. All rights reserved.</p>
+    </footer>
+
+    <script src="assets/js/loader.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/particles.js"></script>
+    <script>
+        // Tab Switching Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    tabBtns.forEach(b => {
+                        b.classList.remove('active');
+                        b.classList.remove('primary');
+                        b.classList.add('secondary');
+                    });
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+                    btn.classList.remove('secondary');
+                    btn.classList.add('primary');
+
+                    // Hide all contents
+                    tabContents.forEach(content => content.style.display = 'none');
+                    // Show target content
+                    const targetId = `tab-${btn.dataset.tab}`;
+                    document.getElementById(targetId).style.display = 'block';
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

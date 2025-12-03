@@ -437,11 +437,6 @@ textarea {
     outline: none !important;
 }
 
-.chat-send-btn:hover {
-    transform: none !important;
-    /* Override .btn.primary:hover */
-}
-
 .chat-send-btn:hover i {
     text-shadow: 0 0 10px #00d4ff;
     /* Subtle glow on hover */
@@ -2231,56 +2226,4 @@ input[type="range"]::-webkit-slider-thumb:hover {
 /* Ensure wrapper handles absolute positioning */
 .pdf-page-wrapper {
     position: relative;
-}
-
-/* Resume Skeleton Loader */
-.resume-skeleton {
-    width: 100%;
-    max-width: 800px;
-    /* Match typical resume width */
-    aspect-ratio: 1 / 1.414;
-    /* A4 Aspect Ratio */
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--glass-border);
-    border-radius: 8px;
-    margin: 0 auto;
-    position: relative;
-    overflow: hidden;
-    display: none;
-    /* Hidden by default, shown via JS */
-}
-
-.resume-skeleton.visible {
-    display: block;
-}
-
-.skeleton-shimmer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg,
-            transparent 0%,
-            rgba(108, 99, 255, 0.1) 50%,
-            /* Neon tint */
-            transparent 100%);
-    transform: skewX(-20deg);
-    animation: shimmer 1.5s infinite linear;
-}
-
-@keyframes shimmer {
-    0% {
-        transform: translateX(-150%) skewX(-20deg);
-    }
-
-    100% {
-        transform: translateX(150%) skewX(-20deg);
-    }
-}
-
-/* Fade out transition */
-.resume-skeleton.fade-out {
-    opacity: 0;
-    transition: opacity 0.5s ease-out;
 }

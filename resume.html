@@ -31,7 +31,8 @@
                         class="fa-solid fa-download"></i></a>
             </li>
             <li><a href="certificates.html">Certificates</a></li>
-            <li><a href="games.html">Fun</a></li>
+            <li><a href="games.html">Arcade</a></li>
+            <li><a href="articles.html">Articles & Books</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
         <div class="hamburger">
@@ -41,12 +42,42 @@
         </div>
     </nav>
 
-    <section class="section resume-page">
-        <h2 class="section-title">My Resume</h2>
-        <div id="ambient-container">
-            <!-- Canvas elements will be injected here by resume.js -->
-        </div>
-    </section>
+    <main>
+        <section class="section resume-page">
+            <h2 class="section-title">My Resume</h2>
+
+            <!-- Drawing Controls -->
+            <!-- Drawing Controls -->
+            <div class="drawing-controls">
+                <div class="control-group">
+                    <button id="toggle-pen" class="btn secondary"><i class="fa-solid fa-pen"></i> Pen</button>
+                    <button id="toggle-highlighter" class="btn secondary"><i class="fa-solid fa-highlighter"></i>
+                        Highlighter</button>
+                </div>
+
+                <div class="control-group properties">
+                    <div class="color-picker-wrapper">
+                        <input type="color" id="color-picker" value="#ff0000" title="Choose Color">
+                    </div>
+                    <div class="range-wrapper">
+                        <i class="fa-solid fa-circle-dot" style="font-size: 0.8rem;"></i>
+                        <input type="range" id="line-width" min="1" max="20" value="5" title="Adjust Thickness">
+                        <i class="fa-solid fa-circle" style="font-size: 1.2rem;"></i>
+                    </div>
+                </div>
+
+                <button id="clear-drawing" class="btn secondary"><i class="fa-solid fa-eraser"></i> Clear</button>
+            </div>
+
+            <div id="resume-skeleton" class="resume-skeleton">
+                <div class="skeleton-shimmer"></div>
+            </div>
+            <div id="ambient-container">
+                <!-- Canvas elements will be injected here by resume.js -->
+            </div>
+        </section>
+
+    </main>
 
     <footer>
         <div class="footer-socials">
@@ -66,6 +97,7 @@
     </script>
     <script src="assets/js/resume_data.js"></script>
     <script src="assets/js/resume.js"></script>
+    <script src="assets/js/loader.js"></script>
     <script src="assets/js/script.js"></script>
     <script src="assets/js/particles.js"></script>
 </body>
