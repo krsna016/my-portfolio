@@ -260,6 +260,45 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // 3D Parallax Effect
+    const heroSection = document.querySelector('.hero');
+    const profileContainer = document.querySelector('.profile-image-container');
+
+    if (heroSection && profileContainer) {
+        heroSection.addEventListener('mousemove', (e) => {
+            const { offsetWidth: width, offsetHeight: height } = heroSection;
+            const { clientX: x, clientY: y } = e;
+
+            // Calculate center of the section
+            const centerX = width / 2;
+            const centerY = height / 2;
+
+            // Calculate distance from center (normalized -1 to 1)
+            // We want the movement to be relative to the center of the screen/section
+            // But specifically around the profile image would be better, 
+            // however, tilting the whole section based on mouse position in section is standard.
+
+            // Let's use the mouse position relative to the center of the window for a more natural feel
+            // or relative to the hero section.
+
+            const xPos = (x - width / 2) / width;
+            const yPos = (y - height / 2) / height;
+
+            // Limit tilt to stronger degrees (approx 12-15 deg)
+            const tiltX = yPos * 25; // Increased from 14
+            const tiltY = xPos * -25; // Increased from -14
+
+            // Apply transform
+            // We use requestAnimationFrame for smoother performance if needed, 
+            // but CSS transition handles the smoothing here.
+            profileContainer.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+        });
+
+        heroSection.addEventListener('mouseleave', () => {
+            profileContainer.style.transform = `rotateX(0deg) rotateY(0deg)`;
+        });
+    }
 });
 
 // Progress Bar Logic
