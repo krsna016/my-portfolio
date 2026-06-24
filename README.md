@@ -1,79 +1,92 @@
-# My Portfolio: Engineering & Computer Science Reference
+# Legacy Vanilla HTML5 Portfolio Architecture
 
-[![Maintenance: Archived/Educational](https://img.shields.io/badge/Maintenance-Educational-blue.svg?style=flat-square)]()
-[![Code Quality: Staff-Level](https://img.shields.io/badge/Code_Quality-Standardized-3ECF8E?style=flat-square)]()
+[![Language: Web](https://img.shields.io/badge/Language-HTML5_/_Vanilla_JS-E34F26?logo=html5&style=flat-square)]()
+[![Architecture](https://img.shields.io/badge/Architecture-Static_MPA-0052CC?style=flat-square)]()
+[![Maintenance: Archived/Educational](https://img.shields.io/badge/Maintenance-Legacy_Archive-blue.svg?style=flat-square)]()
 
 ## Overview
-This repository serves as a localized reference library for fundamental computer science algorithms, data structures, and automation utilities. It has been strictly audited and standardized to maintain high-quality engineering conventions.
+This repository serves as a legacy, pre-framework vanilla HTML5/CSS3 portfolio. Before migrating to the advanced Gatsby React SSG architecture, this project functioned as a raw Multi-Page Application (MPA), explicitly demonstrating mastery over core browser-native DOM structures without relying on React or Node.js overhead.
 
 ## Problem Statement
-Software engineers often lose track of fundamental algorithm implementations or foundational language syntaxes as they transition into specialized senior roles. This repository solves that by acting as a hardened, standardized, and easily searchable reference index for core computer science concepts and utility automation.
+When relying exclusively on heavy Single Page Application (SPA) frameworks like React or Next.js, engineers often lose the ability to write pure, un-abstracted semantic HTML. This repository was constructed to solve that, acting as a proving ground to build a high-fidelity, multi-route static site using zero external build tools, zero npm packages, and zero dependency bloat.
 
 ## Key Features
-- **Algorithmic Correctness:** Core implementations of critical data structures and algorithms.
-- **Strict Standardization:** Enforces uniform directory structures and markdown formatting across all scripts.
-- **Reference Architecture:** Serves as a historical and educational baseline for future architectural designs.
+- **Zero-Dependency Architecture:** A pure vanilla technology stack. No Webpack, no Babel, no npm modules. 
+- **Semantic Multi-Page Routing:** Hard-linked `.html` files (`index.html`, `articles.html`, `contact.html`) demonstrating traditional browser routing and request mechanics.
+- **Embedded Game Logic:** Includes isolated logic circuits for browser-based games (`snake.html`, `trex.html`) built natively on the HTML5 `<canvas>` API.
+- **Responsive Fluid Grids:** Utilizes native CSS media queries to scale elements dynamically across viewports.
 
 ## Architecture
 
 ```mermaid
 graph TD
-    Root[Repository Root] --> Logic[Core Implementation Files]
-    Root --> Tests[Automated Testing Suites]
-    Logic --> Execution[Runtime Environment]
-    Tests --> CI[Continuous Integration Baseline]
+    User[Web Browser] -->|HTTP GET /| Index[index.html]
+    User -->|HTTP GET /articles| Articles[articles.html]
+    User -->|HTTP GET /snake| Snake[snake.html HTML5 Canvas]
+    
+    Index --> Assets[(/assets: CSS/JS/Images)]
+    Articles --> Assets
+    Snake --> Assets
 ```
 
 ## Technology Stack
-- **Language:** Primary syntax (Python, Java, C, or JavaScript) dependent on module.
-- **Testing:** Native unit testing frameworks.
-- **Documentation:** GitHub Flavored Markdown (GFM).
+- **Structure:** HTML5
+- **Styling:** Vanilla CSS3
+- **Logic:** Vanilla JavaScript (ES6)
+- **Testing:** `pytest` (HTML Parser)
+- **Documentation:** GitHub Flavored Markdown (GFM)
 
 ## Project Structure
 ```text
 my-portfolio/
-├── src/ / main/             # Core logic and algorithm definitions
-├── tests/                   # Baseline integrity tests
+├── assets/                  # Centralized CSS, JS, and graphical payloads
+├── index.html               # Primary landing controller
+├── articles.html            # Static content aggregation
+├── snake.html               # Canvas game logic implementation
+├── tests/                   # Automated Pytest HTML Linters
 └── README.md                # System documentation
 ```
 
 ## Installation
-Clone the repository to review the architectural patterns:
+Because this is a pure static MPA, no server installation or dependency downloading is required.
 ```bash
 git clone https://github.com/krsna016/my-portfolio.git
 cd my-portfolio
 ```
 
 ## Usage
-Navigate to the specific module or script and execute using the native compiler or interpreter.
+Open `index.html` directly in any modern browser (Chrome, Firefox, Safari).
 
 ## Examples
-*Executing a standard reference script:*
-```bash
-# Example for Python environments
-python3 main.py
+*Example of native `<canvas>` game rendering context initialization:*
+```javascript
+const canvas = document.getElementById("gameBoard");
+const ctx = canvas.getContext("2d");
+// Render loop executes directly on the browser's RequestAnimationFrame
 ```
 
 ## Screenshots
 > [!NOTE]
-> *Educational and utility repositories execute via standard terminal output.*
+> *Legacy portfolio layouts execute via standard browser rendering.*
 
 ## Visual Demonstrations
 > [!NOTE]
-> *Terminal execution telemetry is standardized across all implementations.*
+> *Browser layout telemetry is standardized across all implementations.*
 
 ## Testing
-Baseline structural integrity tests are enforced to ensure that the repository logic can compile and execute without environment configuration errors.
+We utilize a custom Python `HTMLParser` within the `pytest` framework to recursively scan the entire repository. This mathematically proves that zero unclosed tags, void element violations, or structural DOM mismatches exist across the archive.
+```bash
+pytest tests/
+```
 
 ## Performance Notes
-- **Algorithmic Time Complexity:** Scripts and data structures within this repository are optimized for O(n) or O(log n) performance baselines where applicable.
+- **Time to Interactive (TTI):** By abandoning heavy JavaScript framework bundles, the Time to Interactive (TTI) is virtually instantaneous, bounded only by network payload size.
 
 ## Future Improvements
-- **Containerization:** Wrap reference scripts in isolated Docker containers for immediate cross-platform execution.
-- **CI/CD:** Implement GitHub Actions to run the structural test suites continuously.
+- **Archival Complete:** This repository has been officially superseded by the `portfolio-site-gatsby` project, which utilizes React and GraphQL for scalable SSG. No further improvements are planned.
 
 ## Contributing
-This repository is primarily for personal reference and educational archival. Pull Requests fixing Big-O time complexity inefficiencies are welcome.
+This repository is frozen for personal reference and legacy archival.
 
 ## License
 Licensed under the MIT License.
