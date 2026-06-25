@@ -29,7 +29,7 @@ if (!fs.existsSync(BLOGS_DIR)) {
 // Serve static files with HTML extensions (pretty URLs) AND aggressive caching
 const cacheOptions = {
     extensions: ['html'],
-    maxAge: '1d', // Cache files for 1 day in the browser
+    maxAge: 0, // Prevent aggressive caching during active development
     etag: true
 };
 app.use(express.static(__dirname, cacheOptions));
