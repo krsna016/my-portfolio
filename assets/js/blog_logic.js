@@ -53,10 +53,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             if(adminControls) adminControls.style.display = 'block';
             if(showLoginBtn) showLoginBtn.style.display = 'none';
             if(logoutBtn) logoutBtn.style.display = 'inline-block';
+            if(loginModal) loginModal.style.display = 'none'; // Auto-hide if already logged in
         } else if (adminControls) {
             if(adminControls) adminControls.style.display = 'none';
             if(showLoginBtn) showLoginBtn.style.display = 'inline-block';
             if(logoutBtn) logoutBtn.style.display = 'none';
+            
+            // Auto-show login if on admin page
+            if(window.location.pathname.includes('blog-admin') && loginModal) {
+                loginModal.style.display = 'flex';
+            }
         }
         renderPosts();
     }
