@@ -21,8 +21,8 @@ if (!fs.existsSync(BLOGS_DIR)) {
     fs.mkdirSync(BLOGS_DIR);
 }
 
-// Serve static files
-app.use(express.static(__dirname));
+// Serve static files with HTML extensions (pretty URLs)
+app.use(express.static(__dirname, { extensions: ['html'] }));
 
 // --- Auth Middleware ---
 function authenticateToken(req, res, next) {
