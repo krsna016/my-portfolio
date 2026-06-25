@@ -26,6 +26,21 @@ if (!fs.existsSync(BLOGS_DIR)) {
     fs.mkdirSync(BLOGS_DIR);
 }
 
+// --- In-Memory API Cache ---
+let blogDataCache = { posts: [], categories: [] };
+function loadBlogDataCache() {
+    if (fs.existsSync(DATA_FILE)) {
+        try {
+            blogDataCache = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+            console.log("Blog data loaded into memory cache.");
+        } catch (e) {
+            console.error("Error loading blog data cache:", e);
+        }
+    }
+}
+// Load initially
+loadBlogDataCache();
+
 // Smart Caching Strategy for Maximum Performance
 app.use((req, res, next) => {
     // Prevent caching for HTML pages and API routes to ensure fresh content
@@ -78,14 +93,9 @@ app.get('/api/check-auth', authenticateToken, (req, res) => {
     res.json({ authenticated: true });
 });
 
-// Get all posts (Public)
+// Get all posts (Public) - Microsecond Response via RAM Cache
 app.get('/api/data', (req, res) => {
-    fs.readFile(DATA_FILE, 'utf8', (err, data) => {
-        if (err) {
-            return res.status(500).send("Error reading data");
-        }
-        res.json(JSON.parse(data));
-    });
+    res.json(blogDataCache);
 });
 
 // Create or update a post (Protected)
@@ -100,11 +110,8 @@ app.post('/api/posts', authenticateToken, (req, res) => {
     const mdFilePath = path.join(BLOGS_DIR, `${id}.md`);
     fs.writeFileSync(mdFilePath, content, 'utf8');
 
-    // Update blog_data.json
-    let dataObj = { posts: [], categories: [] };
-    if (fs.existsSync(DATA_FILE)) {
-        dataObj = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
-    }
+    // Update in-memory cache
+    let dataObj = blogDataCache;
 
     const existingIndex = dataObj.posts.findIndex(p => p.id === id);
     const postMeta = {
@@ -140,11 +147,11 @@ app.delete('/api/posts/:id', authenticateToken, (req, res) => {
         fs.unlinkSync(mdFilePath);
     }
 
-    if (fs.existsSync(DATA_FILE)) {
-        const dataObj = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
-        dataObj.posts = dataObj.posts.filter(p => p.id !== id);
-        fs.writeFileSync(DATA_FILE, JSON.stringify(dataObj, null, 4), 'utf8');
-    }
+    // Update memory cache
+    blogDataCache.posts = blogDataCache.posts.filter(p => p.id !== id);
+    
+    // Write to disk
+    fs.writeFileSync(DATA_FILE, JSON.stringify(blogDataCache, null, 4), 'utf8');
 
     res.send("Deleted");
 });
