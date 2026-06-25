@@ -26,11 +26,20 @@ if (!fs.existsSync(BLOGS_DIR)) {
     fs.mkdirSync(BLOGS_DIR);
 }
 
-// Serve static files with HTML extensions (pretty URLs) AND aggressive caching
+// Force NO caching anywhere (to break through Cloudflare/Railway CDN edge caching)
+app.use((req, res, next) => {
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+    res.setHeader('Surrogate-Control', 'no-store');
+    next();
+});
+
+// Serve static files with HTML extensions (pretty URLs) AND aggressive caching disabled
 const cacheOptions = {
     extensions: ['html'],
-    maxAge: 0, // Prevent aggressive caching during active development
-    etag: true
+    maxAge: 0,
+    etag: false
 };
 app.use(express.static(__dirname, cacheOptions));
 
