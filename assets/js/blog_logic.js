@@ -235,7 +235,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             
             currentFilteredPosts = currentCategory === 'All' 
                 ? blogPosts 
-                : blogPosts.filter(post => post.category === currentCategory);
+                : blogPosts.filter(post => post && post.category === currentCategory);
 
             if (!currentFilteredPosts || currentFilteredPosts.length === 0) {
                 postsList.innerHTML = '<p style="color: #aaa;">No posts found in this category.</p>';
@@ -246,16 +246,20 @@ document.addEventListener('DOMContentLoaded', async () => {
             setupObserver();
         } catch (e) {
             console.error("Error rendering posts:", e);
-            postsList.innerHTML = '<p style="color: #e74c3c;">Error rendering posts.</p>';
+            postsList.innerHTML = `<p style="color: #e74c3c;">Error rendering posts: ${e.message || e}</p>`;
         }
     }
 
     function renderPage() {
+        if (!currentFilteredPosts || !Array.isArray(currentFilteredPosts)) return;
+
         const start = (currentPage - 1) * postsPerPage;
         const end = start + postsPerPage;
         const postsToRender = currentFilteredPosts.slice(start, end);
 
         postsToRender.forEach(post => {
+            if (!post) return;
+
             const card = document.createElement('div');
             card.className = 'blog-card glass fade-in-up';
             card.style.cursor = 'pointer';
@@ -271,17 +275,18 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             let iconClass = "fa-newspaper";
-            if(post.category.toLowerCase().includes("code") || post.category.toLowerCase().includes("dev")) iconClass = "fa-code";
-            if(post.category.toLowerCase().includes("dsa") || post.category.toLowerCase().includes("algo")) iconClass = "fa-laptop-code";
-            if(post.category.toLowerCase().includes("design")) iconClass = "fa-pen-ruler";
+            const cat = post.category ? String(post.category).toLowerCase() : "";
+            if(cat.includes("code") || cat.includes("dev")) iconClass = "fa-code";
+            if(cat.includes("dsa") || cat.includes("algo")) iconClass = "fa-laptop-code";
+            if(cat.includes("design")) iconClass = "fa-pen-ruler";
 
             card.innerHTML = `
                 <div class="blog-card-content">
                     <div class="blog-meta">
-                        <span class="blog-category">${post.category}</span>
-                        <span class="blog-date">${post.date}</span>
+                        <span class="blog-category">${post.category || "Uncategorized"}</span>
+                        <span class="blog-date">${post.date || ""}</span>
                     </div>
-                    <h3 class="blog-title">${post.title}</h3>
+                    <h3 class="blog-title">${post.title || "Untitled Post"}</h3>
                     <p class="blog-summary">${post.summary || "Read more about this topic..."}</p>
                     <div class="blog-footer">
                         <span class="read-more">Read Article <i class="fa-solid fa-arrow-right"></i></span>
