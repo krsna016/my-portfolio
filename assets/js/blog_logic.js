@@ -50,26 +50,26 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     function updateAdminUI() {
         if (isAdmin && adminControls) {
-            adminControls.style.display = 'block';
-            showLoginBtn.style.display = 'none';
-            logoutBtn.style.display = 'inline-block';
+            if(adminControls) adminControls.style.display = 'block';
+            if(showLoginBtn) showLoginBtn.style.display = 'none';
+            if(logoutBtn) logoutBtn.style.display = 'inline-block';
         } else if (adminControls) {
-            adminControls.style.display = 'none';
-            showLoginBtn.style.display = 'inline-block';
-            logoutBtn.style.display = 'none';
+            if(adminControls) adminControls.style.display = 'none';
+            if(showLoginBtn) showLoginBtn.style.display = 'inline-block';
+            if(logoutBtn) logoutBtn.style.display = 'none';
         }
         renderPosts();
     }
 
     // Login logic
     if (showLoginBtn) {
-        showLoginBtn.addEventListener('click', () => {
-            loginModal.style.display = 'flex';
+        if(showLoginBtn) showLoginBtn.addEventListener('click', () => {
+            if(loginModal) loginModal.style.display = 'flex';
         });
     }
 
     if (logoutBtn) {
-        logoutBtn.addEventListener('click', () => {
+        if(logoutBtn) logoutBtn.addEventListener('click', () => {
             localStorage.removeItem('adminToken');
             isAdmin = false;
             updateAdminUI();
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     document.getElementById('close-login-btn')?.addEventListener('click', () => {
-        loginModal.style.display = 'none';
+        if(loginModal) loginModal.style.display = 'none';
     });
 
     document.getElementById('submit-login-btn')?.addEventListener('click', async () => {
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const data = await res.json();
                 localStorage.setItem('adminToken', data.token);
                 isAdmin = true;
-                loginModal.style.display = 'none';
+                if(loginModal) loginModal.style.display = 'none';
                 document.getElementById('login-password').value = '';
                 updateAdminUI();
             } else {
@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const saveBtn = document.getElementById('save-post-btn');
 
     if(newPostBtn) {
-        newPostBtn.addEventListener('click', () => {
+        if(newPostBtn) newPostBtn.addEventListener('click', () => {
             modal.style.display = 'flex';
             document.getElementById('admin-form').reset();
             document.getElementById('admin-id').readOnly = false;
