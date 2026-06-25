@@ -1,0 +1,21 @@
+{
+    "name": "Anurag Pareek Portfolio",
+    "short_name": "AP Portfolio",
+    "description": "Portfolio of Anurag Pareek, Data Analyst and Developer.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0f0c29",
+    "theme_color": "#0f0c29",
+    "icons": [
+        {
+            "src": "/assets/images/profile.jpg",
+            "sizes": "192x192",
+            "type": "image/jpeg"
+        },
+        {
+            "src": "/assets/images/profile.jpg",
+            "sizes": "512x512",
+            "type": "image/jpeg"
+        }
+    ]
+}
