@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anurag Pareek | Blog</title>
+    <meta name="description" content="Blog of Anurag Pareek">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <!-- DOMPurify for sanitizing HTML -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
+
+    <!-- Highlight.js for Code Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        .blog-container {
+            max-width: 1200px;
+            margin: 120px auto 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 40px;
+        }
+
+        .blog-sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .category-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .category-list li {
+            margin-bottom: 10px;
+            cursor: pointer;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            color: var(--text-color);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .category-list li:hover, .category-list li.active {
+            background: var(--primary-color);
+            color: var(--background-color);
+            font-weight: 600;
+        }
+
+        .blog-main {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .post-card {
+            padding: 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .post-meta {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-bottom: 10px;
+            display: flex;
+            gap: 15px;
+        }
+        
+        .post-category {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Post Reader styling */
+        #post-reader {
+            display: none;
+        }
+        
+        #back-button {
+            margin-bottom: 20px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: opacity 0.3s;
+        }
+        
+        #back-button:hover {
+            opacity: 0.8;
+        }
+
+        .markdown-body {
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .markdown-body h1, .markdown-body h2, .markdown-body h3 {
+            color: var(--primary-color);
+            margin-top: 2em;
+            margin-bottom: 1em;
+        }
+        
+        .markdown-body h1 { font-size: 2.5rem; }
+        .markdown-body h2 { font-size: 2rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;}
+        
+        .markdown-body p {
+            margin-bottom: 1.5em;
+        }
+
+        .markdown-body pre {
+            background: #1e1e1e;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1.5em;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .markdown-body code {
+            font-family: 'Fira Code', monospace;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        
+        .markdown-body pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .markdown-body blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 15px;
+            margin-left: 0;
+            color: #aaa;
+            font-style: italic;
+        }
+        
+        .markdown-body ul, .markdown-body ol {
+            margin-bottom: 1.5em;
+            padding-left: 20px;
+        }
+        
+        .markdown-body li {
+            margin-bottom: 0.5em;
+        }
+
+        @media (max-width: 768px) {
+            .blog-container {
+                grid-template-columns: 1fr;
+            }
+            .blog-sidebar {
+                position: relative;
+                top: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-glow"></div>
+
+    <nav class="navbar">
+        <div class="logo-container">
+            <a class='logo' href='index.html'>AP.</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href='/resume'>Resume</a></li>
+            <li><a href='/certificates'>Certificates</a></li>
+            <li><a href='/games'>Arcade</a></li>
+            <li><a href='blog.html' class="active">Blog</a></li>
+            <li><a href='/articles'>Articles & Books</a></li>
+            <li><a href='/contact'>Contact</a></li>
+        </ul>
+        <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </nav>
+
+    <div class="blog-container">
+        <!-- Admin Login Control -->
+        <div style="grid-column: 1 / -1; margin-bottom: 20px; display: flex; justify-content: flex-end;">
+            <button id="show-login-btn" class="btn secondary" style="font-size: 0.8rem; padding: 5px 10px;"><i class="fa-solid fa-lock"></i> Admin Login</button>
+            <button id="logout-btn" class="btn secondary" style="display: none; font-size: 0.8rem; padding: 5px 10px; background: #e74c3c; color: white;"><i class="fa-solid fa-sign-out-alt"></i> Logout</button>
+        </div>
+
+        <!-- Admin Controls (Hidden by default, shown after login) -->
+        <div id="admin-controls" style="display: none; grid-column: 1 / -1; margin-bottom: 20px; background: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; border: 1px dashed var(--primary-color);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="color: var(--primary-color);"><i class="fa-solid fa-unlock"></i> Live Admin Panel</h3>
+                <button id="new-post-btn" class="btn primary" style="padding: 8px 15px; font-size: 0.9rem;">+ New Post</button>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="blog-sidebar">
+            <h3 style="margin-bottom: 20px; font-size: 1.5rem;">Categories</h3>
+            <ul class="category-list" id="category-list">
+                <li class="active" data-category="All">All Posts</li>
+                <!-- Categories injected by JS -->
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="blog-main">
+            <!-- List View -->
+            <div id="posts-list">
+                <!-- Posts injected by JS -->
+            </div>
+
+            <!-- Reader View -->
+            <div id="post-reader">
+                <div id="back-button"><i class="fa-solid fa-arrow-left"></i> Back to Posts</div>
+                <div id="reader-content" class="markdown-body"></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(5px);">
+        <div style="background: var(--background-color); padding: 30px; border-radius: 12px; width: 90%; max-width: 400px; border: 1px solid rgba(255,255,255,0.1);">
+            <h2 style="margin-bottom: 20px; color: var(--primary-color);">Admin Login</h2>
+            <form id="login-form" style="display: flex; flex-direction: column; gap: 15px;">
+                <input type="password" id="login-password" placeholder="Admin Password" style="padding: 10px; border-radius: 5px; background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.2);">
+                <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px;">
+                    <button type="button" id="close-login-btn" class="btn secondary">Cancel</button>
+                    <button type="button" id="submit-login-btn" class="btn primary">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Editor Modal -->
+    <div id="admin-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(5px);">
+        <div style="background: var(--background-color); padding: 30px; border-radius: 12px; width: 90%; max-width: 800px; max-height: 90vh; overflow-y: auto; border: 1px solid rgba(255,255,255,0.1);">
+            <h2 id="modal-title" style="margin-bottom: 20px; color: var(--primary-color);">New Post</h2>
+            <form id="admin-form" style="display: flex; flex-direction: column; gap: 15px;">
+                <input type="text" id="admin-id" placeholder="Slug / ID (e.g. my-new-post)" style="padding: 10px; border-radius: 5px; background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.2);">
+                <input type="text" id="admin-title" placeholder="Post Title" style="padding: 10px; border-radius: 5px; background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.2);">
+                <input type="text" id="admin-category" placeholder="Category (e.g. DSA)" style="padding: 10px; border-radius: 5px; background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.2);">
+                <textarea id="admin-summary" placeholder="Short Summary" rows="3" style="padding: 10px; border-radius: 5px; background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.2); font-family: inherit;"></textarea>
+                <textarea id="admin-content" placeholder="Markdown Content..." rows="15" style="padding: 10px; border-radius: 5px; background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.2); font-family: 'Fira Code', monospace;"></textarea>
+                <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px;">
+                    <button type="button" id="close-modal" class="btn secondary">Cancel</button>
+                    <button type="button" id="save-post-btn" class="btn primary">Save Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-socials">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=anurag020416@gmail.com" target="_blank"
+                aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/anuragpareek016" target="_blank" aria-label="LinkedIn"><i
+                    class="fa-brands fa-linkedin"></i></a>
+            <a href="https://github.com/krsna016" target="_blank" aria-label="GitHub"><i
+                    class="fa-brands fa-github"></i></a>
+        </div>
+        <p>&copy; 2025 Anurag Pareek. All rights reserved.</p>
+    </footer>
+
+    <!-- Script to Handle Blog Logic -->
+    <script src="assets/js/blog_data.js"></script>
+    <script src="assets/js/blog_logic.js"></script>
+</body>
+
+</html>

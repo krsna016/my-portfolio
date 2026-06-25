@@ -1,0 +1,18 @@
+{
+    "posts": [
+        {
+            "id": "blog-1",
+            "title": "Container With Most Water",
+            "category": "DSA",
+            "date": "2026-06-25",
+            "summary": "",
+            "file": "blogs/blog-1.md"
+        }
+    ],
+    "categories": [
+        "DSA",
+        "Algorithms",
+        "System Design",
+        "Web Dev"
+    ]
+}
