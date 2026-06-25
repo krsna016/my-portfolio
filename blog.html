@@ -69,107 +69,206 @@
             gap: 20px;
         }
 
+        /* Blog Main Cards */
         .post-card {
-            padding: 20px;
-            border-radius: 12px;
+            padding: 25px;
+            border-radius: 16px;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .post-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--primary-color);
+            box-shadow: 0 15px 40px rgba(108, 92, 231, 0.2);
         }
 
         .post-meta {
-            font-size: 0.9rem;
-            color: #aaa;
-            margin-bottom: 10px;
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 12px;
             display: flex;
+            align-items: center;
             gap: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .post-category {
-            color: var(--primary-color);
-            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(135deg, var(--primary-color), #a29bfe);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.75rem;
+        }
+
+        /* Admin Controls */
+        #admin-controls {
+            background: linear-gradient(145deg, rgba(108, 92, 231, 0.1), rgba(0, 0, 0, 0.2));
+            border: 1px solid rgba(108, 92, 231, 0.3) !important;
+            box-shadow: 0 8px 32px rgba(108, 92, 231, 0.1);
+            backdrop-filter: blur(8px);
         }
 
         /* Post Reader styling */
         #post-reader {
             display: none;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
         }
         
         #back-button {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            color: var(--primary-color);
+            gap: 10px;
+            color: #a29bfe;
             font-weight: 600;
-            font-size: 1.1rem;
-            transition: opacity 0.3s;
+            font-size: 1.05rem;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            background: rgba(108, 92, 231, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(108, 92, 231, 0.2);
         }
         
         #back-button:hover {
-            opacity: 0.8;
+            background: rgba(108, 92, 231, 0.2);
+            transform: translateX(-5px);
         }
 
+        /* Aesthetic Markdown Body */
         .markdown-body {
-            color: var(--text-color);
-            line-height: 1.6;
-            font-size: 1.1rem;
+            color: #dcdde1;
+            line-height: 1.8;
+            font-size: 1.15rem;
+            font-weight: 300;
         }
 
         .markdown-body h1, .markdown-body h2, .markdown-body h3 {
-            color: var(--primary-color);
-            margin-top: 2em;
+            margin-top: 2.5em;
             margin-bottom: 1em;
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
         
-        .markdown-body h1 { font-size: 2.5rem; }
-        .markdown-body h2 { font-size: 2rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;}
-        
-        .markdown-body p {
-            margin-bottom: 1.5em;
+        .markdown-body h1 { 
+            font-size: 2.8rem; 
+            background: linear-gradient(135deg, #fff, #a29bfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-top: 0;
+            line-height: 1.2;
         }
 
+        .markdown-body h2 { 
+            font-size: 2.2rem; 
+            color: #fff;
+            border-bottom: 2px solid rgba(108, 92, 231, 0.2); 
+            padding-bottom: 10px;
+        }
+
+        .markdown-body h3 {
+            font-size: 1.6rem;
+            color: var(--primary-color);
+        }
+        
+        .markdown-body p {
+            margin-bottom: 1.8em;
+            letter-spacing: 0.2px;
+        }
+
+        /* Mac-like Code Blocks */
         .markdown-body pre {
-            background: #1e1e1e;
-            padding: 15px;
-            border-radius: 8px;
+            background: #1e1e24;
+            padding: 40px 20px 20px 20px; /* space for mac buttons */
+            border-radius: 12px;
             overflow-x: auto;
-            margin-bottom: 1.5em;
-            border: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 2em;
+            border: 1px solid rgba(255,255,255,0.08);
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        /* Mac window dots */
+        .markdown-body pre::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ff5f56;
+            box-shadow: 20px 0 0 #ffbd2e, 40px 0 0 #27c93f;
         }
         
         .markdown-body code {
-            font-family: 'Fira Code', monospace;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2px 5px;
-            border-radius: 4px;
+            font-family: 'Fira Code', 'Courier New', Courier, monospace;
+            background: rgba(108, 92, 231, 0.15);
+            color: #a29bfe;
+            padding: 3px 6px;
+            border-radius: 6px;
             font-size: 0.9em;
+            font-weight: 500;
         }
         
         .markdown-body pre code {
             background: none;
+            color: inherit;
             padding: 0;
+            font-weight: 400;
+            font-size: 0.95em;
+            line-height: 1.5;
         }
 
+        /* Beautiful Blockquotes */
         .markdown-body blockquote {
+            position: relative;
+            background: linear-gradient(to right, rgba(108, 92, 231, 0.1), transparent);
             border-left: 4px solid var(--primary-color);
-            padding-left: 15px;
-            margin-left: 0;
-            color: #aaa;
+            padding: 20px 20px 20px 45px;
+            margin: 2em 0;
+            border-radius: 0 12px 12px 0;
+            color: #b2bec3;
             font-style: italic;
+            font-size: 1.2rem;
+        }
+
+        .markdown-body blockquote::before {
+            content: '"';
+            position: absolute;
+            left: 10px;
+            top: 5px;
+            font-size: 4rem;
+            color: rgba(108, 92, 231, 0.2);
+            font-family: serif;
+            line-height: 1;
         }
         
         .markdown-body ul, .markdown-body ol {
-            margin-bottom: 1.5em;
-            padding-left: 20px;
+            margin-bottom: 2em;
+            padding-left: 25px;
         }
         
         .markdown-body li {
-            margin-bottom: 0.5em;
+            margin-bottom: 0.8em;
+            position: relative;
+        }
+
+        /* Custom Bullet Points */
+        .markdown-body ul li::marker {
+            color: var(--primary-color);
         }
 
         @media (max-width: 768px) {
@@ -179,6 +278,9 @@
             .blog-sidebar {
                 position: relative;
                 top: 0;
+            }
+            #post-reader {
+                padding: 20px;
             }
         }
     </style>
