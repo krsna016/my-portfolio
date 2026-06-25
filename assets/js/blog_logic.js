@@ -10,7 +10,69 @@ document.addEventListener('DOMContentLoaded', async () => {
     const showLoginBtn = document.getElementById('show-login-btn');
     const logoutBtn = document.getElementById('logout-btn');
     const loginModal = document.getElementById('login-modal');
+    
+    // Modal elements
+    const newPostBtn = document.getElementById('new-post-btn');
+    const modal = document.getElementById('admin-modal');
+    const closeBtn = document.getElementById('close-modal');
+    const saveBtn = document.getElementById('save-post-btn');
     let isAdmin = false;
+
+    // Attach Modal Listeners immediately to guarantee they work even if fetch fails
+    if(newPostBtn && modal) {
+        newPostBtn.addEventListener('click', () => {
+            modal.style.display = 'flex';
+            document.getElementById('admin-form').reset();
+            document.getElementById('admin-id').readOnly = false;
+            document.getElementById('modal-title').textContent = "New Post";
+        });
+    }
+
+    if(closeBtn && modal) {
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+    }
+
+    if(saveBtn) {
+        saveBtn.addEventListener('click', async () => {
+            const id = document.getElementById('admin-id').value;
+            const title = document.getElementById('admin-title').value;
+            const category = document.getElementById('admin-category').value;
+            const summary = document.getElementById('admin-summary').value;
+            const content = document.getElementById('admin-content').value;
+
+            if(!id || !title || !category || !content) {
+                alert("Please fill in all required fields.");
+                return;
+            }
+
+            const token = localStorage.getItem('adminToken');
+            const payload = { id, title, category, summary, content };
+
+            try {
+                const res = await fetch('/api/posts', {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(payload)
+                });
+                
+                if(res.ok) {
+                    alert("Post saved successfully!");
+                    location.reload();
+                } else {
+                    alert("Failed to save. Your session may have expired.");
+                    isAdmin = false; updateAdminUI();
+                }
+            } catch(e) {
+                console.error(e);
+            }
+        });
+    }
+
     
     let currentCategory = 'All';
     let blogPosts = [];
@@ -317,62 +379,4 @@ document.addEventListener('DOMContentLoaded', async () => {
         showListView();
     });
 
-    const newPostBtn = document.getElementById('new-post-btn');
-    const modal = document.getElementById('admin-modal');
-    const closeBtn = document.getElementById('close-modal');
-    const saveBtn = document.getElementById('save-post-btn');
-
-    if(newPostBtn) {
-        if(newPostBtn) newPostBtn.addEventListener('click', () => {
-            modal.style.display = 'flex';
-            document.getElementById('admin-form').reset();
-            document.getElementById('admin-id').readOnly = false;
-            document.getElementById('modal-title').textContent = "New Post";
-        });
-    }
-
-    if(closeBtn) {
-        closeBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
-    }
-
-    if(saveBtn) {
-        saveBtn.addEventListener('click', async () => {
-            const id = document.getElementById('admin-id').value;
-            const title = document.getElementById('admin-title').value;
-            const category = document.getElementById('admin-category').value;
-            const summary = document.getElementById('admin-summary').value;
-            const content = document.getElementById('admin-content').value;
-
-            if(!id || !title || !category || !content) {
-                alert("Please fill in all required fields.");
-                return;
-            }
-
-            const token = localStorage.getItem('adminToken');
-            const payload = { id, title, category, summary, content };
-
-            try {
-                const res = await fetch('/api/posts', {
-                    method: 'POST',
-                    headers: { 
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
-                    body: JSON.stringify(payload)
-                });
-                
-                if(res.ok) {
-                    alert("Post saved successfully!");
-                    location.reload();
-                } else {
-                    alert("Failed to save. Your session may have expired.");
-                    isAdmin = false; updateAdminUI();
-                }
-            } catch(e) {
-                console.error(e);
-            }
-        });
-    }
 });
