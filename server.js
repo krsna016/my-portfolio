@@ -26,20 +26,23 @@ if (!fs.existsSync(BLOGS_DIR)) {
     fs.mkdirSync(BLOGS_DIR);
 }
 
-// Force NO caching anywhere (to break through Cloudflare/Railway CDN edge caching)
+// Smart Caching Strategy for Maximum Performance
 app.use((req, res, next) => {
-    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-    res.setHeader('Pragma', 'no-cache');
-    res.setHeader('Expires', '0');
-    res.setHeader('Surrogate-Control', 'no-store');
+    // Prevent caching for HTML pages and API routes to ensure fresh content
+    if (req.path.endsWith('.html') || req.path === '/' || req.path.startsWith('/api/')) {
+        res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+        res.setHeader('Pragma', 'no-cache');
+        res.setHeader('Expires', '0');
+        res.setHeader('Surrogate-Control', 'no-store');
+    }
     next();
 });
 
-// Serve static files with HTML extensions (pretty URLs) AND aggressive caching disabled
+// Serve static files with HTML extensions (pretty URLs) AND 1 year caching for CSS/JS/Images
 const cacheOptions = {
     extensions: ['html'],
-    maxAge: 0,
-    etag: false
+    maxAge: '1y', // Heavily cache static assets (super fast load times)
+    etag: true
 };
 app.use(express.static(__dirname, cacheOptions));
 
