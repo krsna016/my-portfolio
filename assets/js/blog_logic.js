@@ -149,19 +149,34 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
+    let currentPage = 1;
+    const postsPerPage = 6;
+    let currentFilteredPosts = [];
+    let observer = null;
+
     function renderPosts() {
         postsList.innerHTML = '';
+        currentPage = 1;
         
-        const filteredPosts = currentCategory === 'All' 
+        currentFilteredPosts = currentCategory === 'All' 
             ? blogPosts 
             : blogPosts.filter(post => post.category === currentCategory);
 
-        if (filteredPosts.length === 0) {
+        if (currentFilteredPosts.length === 0) {
             postsList.innerHTML = '<p style="color: #aaa;">No posts found in this category.</p>';
             return;
         }
 
-        filteredPosts.forEach(post => {
+        renderPage();
+        setupObserver();
+    }
+
+    function renderPage() {
+        const start = (currentPage - 1) * postsPerPage;
+        const end = start + postsPerPage;
+        const postsToRender = currentFilteredPosts.slice(start, end);
+
+        postsToRender.forEach(post => {
             const card = document.createElement('div');
             card.className = 'blog-card glass fade-in-up';
             card.style.cursor = 'pointer';
@@ -198,6 +213,34 @@ document.addEventListener('DOMContentLoaded', async () => {
             card.addEventListener('click', () => loadPost(post));
             postsList.appendChild(card);
         });
+        currentPage++;
+    }
+
+    function setupObserver() {
+        if (observer) observer.disconnect();
+        
+        const oldSentinel = document.getElementById('scroll-sentinel');
+        if (oldSentinel) oldSentinel.remove();
+
+        if ((currentPage - 1) * postsPerPage >= currentFilteredPosts.length) return;
+
+        const sentinel = document.createElement('div');
+        sentinel.id = 'scroll-sentinel';
+        sentinel.style.height = '20px';
+        sentinel.style.width = '100%';
+        postsList.appendChild(sentinel);
+
+        observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                renderPage();
+                postsList.appendChild(sentinel);
+                if ((currentPage - 1) * postsPerPage >= currentFilteredPosts.length) {
+                    observer.disconnect();
+                    sentinel.remove();
+                }
+            }
+        });
+        observer.observe(sentinel);
     }
 
     window.deletePost = async function(id) {

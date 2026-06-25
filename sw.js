@@ -15,7 +15,7 @@ const ASSETS_TO_CACHE = [
     '/assets/js/experience_data.js',
     '/assets/js/projects_data.js',
     '/assets/js/skills_data.js',
-    '/assets/images/profile.jpg',
+    '/assets/images/profile.webp',
     '/manifest.json'
 ];
 

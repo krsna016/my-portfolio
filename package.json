@@ -11,9 +11,13 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "clean-css": "^5.3.3",
     "compression": "^1.8.1",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "jsonwebtoken": "^9.0.3"
+    "html-minifier": "^4.0.0",
+    "jsonwebtoken": "^9.0.3",
+    "sharp": "^0.35.2",
+    "uglify-js": "^3.19.3"
   }
 }

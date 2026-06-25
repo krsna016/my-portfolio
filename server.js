@@ -4,6 +4,9 @@ const fs = require('fs');
 const path = require('path');
 const jwt = require('jsonwebtoken');
 const compression = require('compression');
+const minifyHTML = require('html-minifier').minify;
+const CleanCSS = require('clean-css');
+const uglifyJS = require('uglify-js');
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -41,7 +44,7 @@ function loadBlogDataCache() {
 // Load initially
 loadBlogDataCache();
 
-// Smart Caching Strategy for Maximum Performance
+// Smart Caching Strategy for Maximum Performance (Must be before send)
 app.use((req, res, next) => {
     // Prevent caching for HTML pages and API routes to ensure fresh content
     if (req.path.endsWith('.html') || req.path === '/' || req.path.startsWith('/api/')) {
@@ -49,8 +52,73 @@ app.use((req, res, next) => {
         res.setHeader('Pragma', 'no-cache');
         res.setHeader('Expires', '0');
         res.setHeader('Surrogate-Control', 'no-store');
+    } else {
+        // Cache static assets for 1 year
+        res.setHeader('Cache-Control', 'public, max-age=31536000');
     }
     next();
+});
+
+// --- In-Memory Asset Cache for Minification ---
+const assetCache = {};
+
+// On-The-Fly Minification Middleware
+app.use((req, res, next) => {
+    let filePath = path.join(__dirname, req.path === '/' ? 'index.html' : req.path);
+    
+    // If it's a directory request, try to serve index.html
+    if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
+        filePath = path.join(filePath, 'index.html');
+    }
+
+    // Only process .html, .css, .js
+    const ext = path.extname(filePath);
+    if (!['.html', '.css', '.js'].includes(ext)) {
+        return next();
+    }
+
+    if (!fs.existsSync(filePath)) {
+        // Fallback for extensionless URLs like /articles
+        filePath += '.html';
+        if (!fs.existsSync(filePath)) {
+            return next();
+        }
+    }
+
+    // Serve from cache if available
+    if (assetCache[filePath]) {
+        res.setHeader('Content-Type', ext === '.css' ? 'text/css' : ext === '.js' ? 'application/javascript' : 'text/html');
+        // Let it fall through to cache control headers
+        return res.send(assetCache[filePath]);
+    }
+
+    try {
+        let content = fs.readFileSync(filePath, 'utf8');
+        let minified = content;
+
+        if (ext === '.html') {
+            minified = minifyHTML(content, {
+                collapseWhitespace: true,
+                removeComments: true,
+                minifyCSS: true,
+                minifyJS: true
+            });
+        } else if (ext === '.css') {
+            minified = new CleanCSS({}).minify(content).styles;
+        } else if (ext === '.js') {
+            const result = uglifyJS.minify(content);
+            if (!result.error) minified = result.code;
+        }
+
+        // Cache the minified version in RAM
+        assetCache[filePath] = minified;
+        
+        res.setHeader('Content-Type', ext === '.css' ? 'text/css' : ext === '.js' ? 'application/javascript' : 'text/html');
+        return res.send(minified);
+    } catch (e) {
+        console.error('Minification error:', e);
+        next();
+    }
 });
 
 // Serve static files with HTML extensions (pretty URLs) AND 1 year caching for CSS/JS/Images
