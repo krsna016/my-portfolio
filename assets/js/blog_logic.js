@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         filteredPosts.forEach(post => {
             const card = document.createElement('div');
-            card.className = 'game-card glass fade-in-up';
+            card.className = 'blog-card glass fade-in-up';
             card.style.cursor = 'pointer';
             
             let adminHTML = '';
@@ -182,13 +182,17 @@ document.addEventListener('DOMContentLoaded', async () => {
             if(post.category.toLowerCase().includes("design")) iconClass = "fa-pen-ruler";
 
             card.innerHTML = `
-                <div class="game-icon">
-                    <i class="fa-solid ${iconClass}"></i>
+                <div class="blog-card-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">${post.category}</span>
+                        <span class="blog-date">${post.date}</span>
+                    </div>
+                    <h3 class="blog-title">${post.title}</h3>
+                    <p class="blog-summary">${post.summary || "Read more about this topic..."}</p>
+                    <div class="blog-footer">
+                        <span class="read-more">Read Article <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
                 </div>
-                <h3>${post.title}</h3>
-                <p style="margin-bottom: 0.5rem; font-size: 0.8rem; color: var(--primary-color);">${post.category} • ${post.date}</p>
-                <p>${post.summary}</p>
-                <span class="play-btn" style="margin-bottom: ${isAdmin ? '10px' : '0'};">Read Post <i class="fa-solid fa-arrow-right"></i></span>
                 ${adminHTML}
             `;
             card.addEventListener('click', () => loadPost(post));
@@ -251,8 +255,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     function showListView() {
         postReader.style.display = 'none';
-        postsList.style.display = 'flex';
-        postsList.style.flexDirection = 'column';
+        postsList.style.display = 'grid'; // Restore grid
+        // Do not force flex column so that cards form a beautiful grid
     }
 
     function showReaderView() {
