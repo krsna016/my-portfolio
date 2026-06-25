@@ -695,6 +695,9 @@ textarea {
 /* Sections */
 .section {
     padding: 6rem 10%;
+    /* Performance optimization for offscreen rendering */
+    content-visibility: auto;
+    contain-intrinsic-size: 800px;
 }
 
 .section-title {
