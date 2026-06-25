@@ -25,25 +25,41 @@
         .category-list {
             list-style: none;
             padding: 0;
-            margin: 0;
+            margin: 0 0 30px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: flex-start;
         }
 
         /* Categories styling */
         .category-list li {
             margin-bottom: 10px;
             cursor: pointer;
-            padding: 12px 20px;
-            border-radius: 15px; /* Matches .glass */
-            transition: 0.3s;
-            color: var(--text-color);
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 24px;
+            border-radius: 30px; /* Pill shape */
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            letter-spacing: 0.5px;
         }
 
-        .category-list li:hover, .category-list li.active {
-            background: rgba(255, 255, 255, 0.1);
+        .category-list li:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        
+        .category-list li.active {
+            background: rgba(108, 92, 231, 0.15);
             color: var(--primary-color);
-            border-color: var(--primary-color);
+            border: 1px solid rgba(108, 92, 231, 0.3);
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.1);
         }
 
         /* Admin Controls */
@@ -261,8 +277,8 @@
                         </div>
 
                         <!-- Categories (Horizontal pills) -->
-                        <ul class="category-list" id="category-list" style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; justify-content: center;">
-                            <li class="active glass" data-category="All" style="padding: 8px 16px; border-radius: 20px; font-size: 0.9rem;">All Posts</li>
+                        <ul class="category-list" id="category-list">
+                            <li class="active" data-category="All">All Posts</li>
                             <!-- Categories injected by JS -->
                         </ul>
 
