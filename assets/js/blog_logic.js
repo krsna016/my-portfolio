@@ -193,19 +193,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     updateAdminUI();
 
     // Populate Categories
-    blogCategories.forEach(category => {
-        const li = document.createElement('li');
-        li.textContent = category;
-        li.dataset.category = category;
-        li.addEventListener('click', () => {
-            document.querySelectorAll('.category-list li').forEach(el => el.classList.remove('active'));
-            li.classList.add('active');
-            currentCategory = category;
-            renderPosts();
-            showListView();
-        });
-        categoryList.appendChild(li);
-    });
+    try {
+        if(blogCategories && Array.isArray(blogCategories)) {
+            blogCategories.forEach(category => {
+                const li = document.createElement('li');
+                li.textContent = category;
+                li.dataset.category = category;
+                li.addEventListener('click', () => {
+                    document.querySelectorAll('.category-list li').forEach(el => el.classList.remove('active'));
+                    li.classList.add('active');
+                    currentCategory = category;
+                    renderPosts();
+                    showListView();
+                });
+                categoryList.appendChild(li);
+            });
+        }
+    } catch (e) {
+        console.error("Error populating categories:", e);
+    }
 
     if(categoryList.firstElementChild) {
         categoryList.firstElementChild.addEventListener('click', (e) => {
@@ -223,20 +229,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     let observer = null;
 
     function renderPosts() {
-        postsList.innerHTML = '';
-        currentPage = 1;
-        
-        currentFilteredPosts = currentCategory === 'All' 
-            ? blogPosts 
-            : blogPosts.filter(post => post.category === currentCategory);
+        try {
+            postsList.innerHTML = '';
+            currentPage = 1;
+            
+            currentFilteredPosts = currentCategory === 'All' 
+                ? blogPosts 
+                : blogPosts.filter(post => post.category === currentCategory);
 
-        if (currentFilteredPosts.length === 0) {
-            postsList.innerHTML = '<p style="color: #aaa;">No posts found in this category.</p>';
-            return;
+            if (!currentFilteredPosts || currentFilteredPosts.length === 0) {
+                postsList.innerHTML = '<p style="color: #aaa;">No posts found in this category.</p>';
+                return;
+            }
+
+            renderPage();
+            setupObserver();
+        } catch (e) {
+            console.error("Error rendering posts:", e);
+            postsList.innerHTML = '<p style="color: #e74c3c;">Error rendering posts.</p>';
         }
-
-        renderPage();
-        setupObserver();
     }
 
     function renderPage() {
