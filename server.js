@@ -3,11 +3,16 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const jwt = require('jsonwebtoken');
+const compression = require('compression');
 
 const app = express();
 const PORT = process.env.PORT || 8000;
 const JWT_SECRET = process.env.JWT_SECRET || 'super-secret-key-change-this-in-production';
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
+
+// --- Optimizations ---
+// Compress all HTTP responses (Gzip/Brotli)
+app.use(compression());
 
 // Middleware to parse JSON bodies
 app.use(express.json({ limit: '10mb' }));
@@ -21,8 +26,13 @@ if (!fs.existsSync(BLOGS_DIR)) {
     fs.mkdirSync(BLOGS_DIR);
 }
 
-// Serve static files with HTML extensions (pretty URLs)
-app.use(express.static(__dirname, { extensions: ['html'] }));
+// Serve static files with HTML extensions (pretty URLs) AND aggressive caching
+const cacheOptions = {
+    extensions: ['html'],
+    maxAge: '1d', // Cache files for 1 day in the browser
+    etag: true
+};
+app.use(express.static(__dirname, cacheOptions));
 
 // --- Auth Middleware ---
 function authenticateToken(req, res, next) {
