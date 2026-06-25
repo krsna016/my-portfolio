@@ -73,10 +73,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    
     let currentCategory = 'All';
     let blogPosts = [];
     let blogCategories = [];
+    let currentPage = 1;
+    const postsPerPage = 6;
+    let currentFilteredPosts = [];
+    let observer = null;
 
     // Initialize Marked options
     if (typeof marked !== 'undefined') {
@@ -223,10 +226,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    let currentPage = 1;
-    const postsPerPage = 6;
-    let currentFilteredPosts = [];
-    let observer = null;
 
     function renderPosts() {
         try {
