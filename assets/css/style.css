@@ -1546,7 +1546,7 @@ footer {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     max-width: 1000px;
-    margin: 0 auto;
+    margin: 0;
 }
 
 .game-card {
