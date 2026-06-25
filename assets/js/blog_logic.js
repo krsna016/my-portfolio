@@ -264,7 +264,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             card.style.cursor = 'pointer';
             
             let adminHTML = '';
-            if (isAdmin) {
+            // Only render admin buttons if user is admin AND currently on the admin page
+            if (isAdmin && window.location.pathname.includes('blog-admin')) {
                 adminHTML = `
                 <div class="post-admin-actions" style="margin-top: 15px; width: 100%; display: flex; justify-content: center; gap: 10px;">
                     <button class="btn secondary" onclick="event.stopPropagation(); deletePost('${post.id}')" style="padding: 5px 10px; font-size: 0.8rem; background: #e74c3c; color: white; border-radius: 20px;">Delete</button>
