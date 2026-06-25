@@ -163,25 +163,32 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         filteredPosts.forEach(post => {
             const card = document.createElement('div');
-            card.className = 'post-card glass';
+            card.className = 'game-card glass fade-in-up';
+            card.style.cursor = 'pointer';
             
             let adminHTML = '';
             if (isAdmin) {
                 adminHTML = `
-                <div class="post-admin-actions" style="margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px;">
-                    <button class="btn secondary" onclick="event.stopPropagation(); deletePost('${post.id}')" style="padding: 5px 10px; font-size: 0.8rem; background: #e74c3c; color: white;">Delete</button>
-                    <button class="btn secondary" onclick="event.stopPropagation(); editPost('${post.id}')" style="padding: 5px 10px; font-size: 0.8rem;">Edit Content</button>
+                <div class="post-admin-actions" style="margin-top: 15px; width: 100%; display: flex; justify-content: center; gap: 10px;">
+                    <button class="btn secondary" onclick="event.stopPropagation(); deletePost('${post.id}')" style="padding: 5px 10px; font-size: 0.8rem; background: #e74c3c; color: white; border-radius: 20px;">Delete</button>
+                    <button class="btn secondary" onclick="event.stopPropagation(); editPost('${post.id}')" style="padding: 5px 10px; font-size: 0.8rem; border-radius: 20px;">Edit</button>
                 </div>
                 `;
             }
 
+            let iconClass = "fa-newspaper";
+            if(post.category.toLowerCase().includes("code") || post.category.toLowerCase().includes("dev")) iconClass = "fa-code";
+            if(post.category.toLowerCase().includes("dsa") || post.category.toLowerCase().includes("algo")) iconClass = "fa-laptop-code";
+            if(post.category.toLowerCase().includes("design")) iconClass = "fa-pen-ruler";
+
             card.innerHTML = `
-                <div class="post-meta">
-                    <span class="post-category">${post.category}</span>
-                    <span>${post.date}</span>
+                <div class="game-icon">
+                    <i class="fa-solid ${iconClass}"></i>
                 </div>
                 <h3>${post.title}</h3>
-                <p style="margin-top: 10px; color: #ccc;">${post.summary}</p>
+                <p style="margin-bottom: 0.5rem; font-size: 0.8rem; color: var(--primary-color);">${post.category} • ${post.date}</p>
+                <p>${post.summary}</p>
+                <span class="play-btn" style="margin-bottom: ${isAdmin ? '10px' : '0'};">Read Post <i class="fa-solid fa-arrow-right"></i></span>
                 ${adminHTML}
             `;
             card.addEventListener('click', () => loadPost(post));

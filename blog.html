@@ -299,44 +299,49 @@
         </div>
     </nav>
 
-    <div class="blog-container">
-        <!-- Admin Login Control -->
-        <div style="grid-column: 1 / -1; margin-bottom: 20px; display: flex; justify-content: flex-end;">
-            <button id="show-login-btn" class="btn secondary" style="font-size: 0.8rem; padding: 5px 10px;"><i class="fa-solid fa-lock"></i> Admin Login</button>
-            <button id="logout-btn" class="btn secondary" style="display: none; font-size: 0.8rem; padding: 5px 10px; background: #e74c3c; color: white;"><i class="fa-solid fa-sign-out-alt"></i> Logout</button>
-        </div>
+    <section class="section games-page">
+        <div class="container">
+            <div class="pinned-section-wrapper">
+                <div class="pinned-heading">
+                    <h2 class="section-title">Blog</h2>
+                </div>
+                <div class="section-content">
+                    <p class="games-intro">Read my latest articles, tutorials, and technical notes.</p>
+                    
+                    <!-- Admin Login Control -->
+                    <div style="margin-bottom: 20px; display: flex; justify-content: flex-end;">
+                        <button id="show-login-btn" class="btn secondary" style="font-size: 0.8rem; padding: 5px 10px;"><i class="fa-solid fa-lock"></i> Admin</button>
+                        <button id="logout-btn" class="btn secondary" style="display: none; font-size: 0.8rem; padding: 5px 10px; background: #e74c3c; color: white;"><i class="fa-solid fa-sign-out-alt"></i> Logout</button>
+                    </div>
 
-        <!-- Admin Controls (Hidden by default, shown after login) -->
-        <div id="admin-controls" style="display: none; grid-column: 1 / -1; margin-bottom: 20px; background: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; border: 1px dashed var(--primary-color);">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <h3 style="color: var(--primary-color);"><i class="fa-solid fa-unlock"></i> Live Admin Panel</h3>
-                <button id="new-post-btn" class="btn primary" style="padding: 8px 15px; font-size: 0.9rem;">+ New Post</button>
+                    <!-- Admin Controls (Hidden by default, shown after login) -->
+                    <div id="admin-controls" style="display: none; margin-bottom: 20px; background: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; border: 1px dashed var(--primary-color);">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <h3 style="color: var(--primary-color);"><i class="fa-solid fa-unlock"></i> Live Admin Panel</h3>
+                            <button id="new-post-btn" class="btn primary" style="padding: 8px 15px; font-size: 0.9rem;">+ New Post</button>
+                        </div>
+                    </div>
+
+                    <!-- Categories (Horizontal pills instead of sidebar) -->
+                    <ul class="category-list" id="category-list" style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; justify-content: center;">
+                        <li class="active glass" data-category="All" style="padding: 8px 16px; border-radius: 20px; font-size: 0.9rem;">All Posts</li>
+                        <!-- Categories injected by JS -->
+                    </ul>
+
+                    <!-- List View (Grid exactly like Arcade) -->
+                    <div id="posts-list" class="games-grid">
+                        <!-- Posts injected by JS -->
+                    </div>
+
+                    <!-- Reader View -->
+                    <div id="post-reader">
+                        <div id="back-button"><i class="fa-solid fa-arrow-left"></i> Back to Posts</div>
+                        <div id="reader-content" class="markdown-body"></div>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <!-- Sidebar -->
-        <aside class="blog-sidebar">
-            <h3 style="margin-bottom: 20px; font-size: 1.5rem;">Categories</h3>
-            <ul class="category-list" id="category-list">
-                <li class="active" data-category="All">All Posts</li>
-                <!-- Categories injected by JS -->
-            </ul>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="blog-main">
-            <!-- List View -->
-            <div id="posts-list">
-                <!-- Posts injected by JS -->
-            </div>
-
-            <!-- Reader View -->
-            <div id="post-reader">
-                <div id="back-button"><i class="fa-solid fa-arrow-left"></i> Back to Posts</div>
-                <div id="reader-content" class="markdown-body"></div>
-            </div>
-        </main>
-    </div>
+    </section>
 
     <!-- Login Modal -->
     <div id="login-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(5px);">
