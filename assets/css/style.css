@@ -2523,3 +2523,94 @@ input[type="range"]::-webkit-slider-thumb:hover {
         padding: 4px 4px;
     }
 }
+
+/* --- Intense Article Metadata Badge --- */
+.intense-meta-badge {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.meta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #c8d6e5;
+    transition: all 0.3s ease;
+}
+
+.meta-pill:hover {
+    background: rgba(108, 92, 231, 0.2);
+    border-color: rgba(108, 92, 231, 0.5);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.meta-pill.category {
+    background: rgba(108, 92, 231, 0.25);
+    border-color: var(--primary-color);
+    color: #fff;
+}
+
+/* --- Cyberpunk Scroll Progress Bar --- */
+.neon-scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #ff007a, #6c5ce7, #00d2ff, #2ed573);
+    background-size: 300% 300%;
+    animation: neonFlow 3s ease infinite;
+    z-index: 999999;
+    width: 0%;
+    opacity: 0;
+    transition: width 0.08s ease-out, opacity 0.3s ease;
+    box-shadow: 0 0 15px rgba(108, 92, 231, 0.9), 0 0 5px rgba(0, 210, 255, 0.8);
+}
+
+@keyframes neonFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- Code Block Copy Button --- */
+.markdown-body pre {
+    position: relative;
+}
+
+.copy-code-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #dcdde1;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    backdrop-filter: blur(5px);
+    z-index: 10;
+}
+
+.copy-code-btn:hover {
+    background: rgba(108, 92, 231, 0.45);
+    border-color: var(--primary-color);
+    color: #fff;
+    transform: scale(1.03);
+}
