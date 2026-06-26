@@ -11,33 +11,39 @@ window.CyberSound = (function() {
         if (!audioCtx && (window.AudioContext || window.webkitAudioContext)) {
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         }
+        if (audioCtx && audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
     }
 
-    function playTone(freq, type, duration, vol=0.05) {
+    function playTone(freq, type, duration, vol=0.04) {
         if (!enabled) return;
         initCtx();
         if (!audioCtx) return;
 
         try {
+            const now = audioCtx.currentTime;
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
             osc.type = type;
-            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            osc.frequency.setValueAtTime(freq, now);
             
-            gain.gain.setValueAtTime(vol, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+            gain.gain.setValueAtTime(0.0001, now);
+            gain.gain.linearRampToValueAtTime(vol, now + 0.005);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
 
             osc.connect(gain);
             gain.connect(audioCtx.destination);
 
-            osc.start();
-            osc.stop(audioCtx.currentTime + duration);
+            osc.start(now);
+            osc.stop(now + duration);
         } catch(e) {}
     }
 
     return {
         toggle: function() {
             enabled = !enabled;
+            initCtx();
             const pill = document.getElementById('hud-audio-toggle');
             if (pill) {
                 pill.className = `hud-audio-pill ${enabled ? 'enabled' : ''}`;
