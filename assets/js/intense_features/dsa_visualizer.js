@@ -3,7 +3,7 @@
    Sleek glassmorphism card on homepage demonstrating live complexity sorting
    ========================================================================== */
 
-document.addEventListener('DOMContentLoaded', () => {
+function initDSAEngine() {
     const aboutSec = document.getElementById('about');
     if (!aboutSec || document.getElementById('dsa-engine-sec')) return;
 
@@ -94,4 +94,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     shuffleBtn.onclick = () => { if (!isSorting) initBars(); };
     sortBtn.onclick = bubbleSort;
-});
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initDSAEngine); else initDSAEngine();

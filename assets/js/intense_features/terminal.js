@@ -3,7 +3,7 @@
    Triggered by pressing `~` (backtick) or clicking footer trigger
    ========================================================================== */
 
-document.addEventListener('DOMContentLoaded', () => {
+function initQuakeTerm() {
     if (document.getElementById('quake-terminal')) return;
 
     const termHUD = document.createElement('div');
@@ -137,4 +137,5 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-});
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initQuakeTerm); else initQuakeTerm();

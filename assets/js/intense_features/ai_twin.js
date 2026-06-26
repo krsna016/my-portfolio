@@ -3,7 +3,7 @@
    Floating cyberpunk chat widget programmed with Anurag's resume knowledge
    ========================================================================== */
 
-document.addEventListener('DOMContentLoaded', () => {
+function initAITwin() {
     if (document.getElementById('ai-twin-sidecar')) return;
 
     const sidecar = document.createElement('div');
@@ -87,4 +87,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     send.onclick = handleSend;
     input.onkeydown = (e) => { if (e.key === 'Enter') handleSend(); };
-});
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initAITwin); else initAITwin();
