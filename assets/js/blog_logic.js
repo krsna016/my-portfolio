@@ -5,6 +5,103 @@ document.addEventListener('DOMContentLoaded', async () => {
     const readerContent = document.getElementById('reader-content');
     const backButton = document.getElementById('back-button');
     
+    // --- Setup Reading Font Size Bar ---
+    function setupFontSizeBar() {
+        if (!postReader || !readerContent) return;
+        if (document.getElementById('blog-font-bar')) return;
+
+        const fontBar = document.createElement('div');
+        fontBar.id = 'blog-font-bar';
+        fontBar.className = 'blog-font-bar';
+        fontBar.setAttribute('role', 'toolbar');
+        fontBar.setAttribute('aria-label', 'Blog reading preferences');
+        fontBar.innerHTML = `
+            <div class="font-bar-left">
+                <i class="fa-solid fa-book-open-reader" aria-hidden="true"></i>
+                <span>Reading Preferences</span>
+            </div>
+            <div class="font-bar-controls">
+                <button id="font-dec-btn" class="font-ctrl-btn" aria-label="Decrease font size" title="Decrease size (Ctrl/Cmd + -)">A−</button>
+                <span id="font-size-display" class="font-size-display" role="button" tabindex="0" aria-label="Current font size 100%, click to reset" title="Click to reset (Ctrl/Cmd + 0)">100%</span>
+                <button id="font-inc-btn" class="font-ctrl-btn" aria-label="Increase font size" title="Increase size (Ctrl/Cmd + +)">A+</button>
+            </div>
+        `;
+        postReader.insertBefore(fontBar, readerContent);
+
+        let toast = document.getElementById('font-size-toast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'font-size-toast';
+            toast.className = 'font-size-toast';
+            toast.setAttribute('role', 'status');
+            toast.setAttribute('aria-live', 'polite');
+            document.body.appendChild(toast);
+        }
+
+        let currentSize = 100;
+        const savedSize = localStorage.getItem('blogFontSize');
+        if (savedSize && !isNaN(savedSize)) {
+            currentSize = Math.min(150, Math.max(80, parseInt(savedSize, 10)));
+        }
+
+        const decBtn = fontBar.querySelector('#font-dec-btn');
+        const incBtn = fontBar.querySelector('#font-inc-btn');
+        const display = fontBar.querySelector('#font-size-display');
+
+        let toastTimer = null;
+        function showToast(size) {
+            toast.innerHTML = `<i class="fa-solid fa-text-height"></i> Reading Size: ${size}%`;
+            toast.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 1800);
+        }
+
+        function updateFontSize(newSize, notify = true) {
+            currentSize = Math.min(150, Math.max(80, newSize));
+            localStorage.setItem('blogFontSize', currentSize);
+            display.textContent = `${currentSize}%`;
+            display.setAttribute('aria-label', `Current font size ${currentSize}%, click to reset`);
+            
+            readerContent.style.setProperty('--blog-scale', currentSize / 100);
+            
+            decBtn.disabled = currentSize <= 80;
+            incBtn.disabled = currentSize >= 150;
+
+            if (notify) showToast(currentSize);
+        }
+
+        decBtn.addEventListener('click', () => updateFontSize(currentSize - 5));
+        incBtn.addEventListener('click', () => updateFontSize(currentSize + 5));
+        display.addEventListener('click', () => updateFontSize(100));
+        display.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                updateFontSize(100);
+            }
+        });
+
+        updateFontSize(currentSize, false);
+
+        window.addEventListener('keydown', (e) => {
+            if (postReader.style.display !== 'block') return;
+            if (e.ctrlKey || e.metaKey) {
+                if (e.key === '=' || e.key === '+') {
+                    e.preventDefault();
+                    if (currentSize < 150) updateFontSize(currentSize + 5);
+                } else if (e.key === '-') {
+                    e.preventDefault();
+                    if (currentSize > 80) updateFontSize(currentSize - 5);
+                } else if (e.key === '0') {
+                    e.preventDefault();
+                    updateFontSize(100);
+                }
+            }
+        });
+    }
+    setupFontSizeBar();
+
     // Admin elements
     const adminControls = document.getElementById('admin-controls');
     const showLoginBtn = document.getElementById('show-login-btn');
