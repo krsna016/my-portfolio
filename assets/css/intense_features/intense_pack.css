@@ -173,9 +173,6 @@
 }
 
 /* --- 3. Live Git Commit Ticker HUD --- */
-.hero {
-    padding-top: 130px !important;
-}
 
 .git-ticker-hud {
     background: rgba(15, 12, 41, 0.98);
