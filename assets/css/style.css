@@ -2381,44 +2381,42 @@ input[type="range"]::-webkit-slider-thumb:hover {
 /* --- Blog Reading Preferences Toolbar --- */
 .blog-font-bar {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 14px 24px;
-    margin-bottom: 35px;
-    background: rgba(15, 15, 19, 0.75);
+    gap: 12px;
+    padding: 6px 10px 6px 14px;
+    margin-bottom: 0;
+    background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 14px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(12px);
-    position: sticky;
-    top: 90px;
-    z-index: 50;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    position: static; /* Compact, sits alongside Back button */
+    transition: border-color 0.3s ease, background 0.3s ease;
 }
 
 .blog-font-bar:hover {
     border-color: rgba(108, 92, 231, 0.35);
-    box-shadow: 0 10px 35px rgba(108, 92, 231, 0.15);
+    background: rgba(255, 255, 255, 0.06);
 }
 
 .font-bar-left {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     color: var(--primary-color);
     font-weight: 600;
-    font-size: 1.05rem;
-    letter-spacing: 0.3px;
+    font-size: 0.92rem;
+    letter-spacing: 0.2px;
 }
 
 .font-bar-controls {
     display: flex;
     align-items: center;
-    gap: 8px;
-    background: rgba(0, 0, 0, 0.35);
-    padding: 5px;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    gap: 4px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 3px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .font-ctrl-btn {
@@ -2426,15 +2424,15 @@ input[type="range"]::-webkit-slider-thumb:hover {
     border: none;
     color: #e1e1e6;
     font-weight: 600;
-    font-size: 1rem;
-    padding: 6px 14px;
-    border-radius: 8px;
+    font-size: 0.9rem;
+    padding: 4px 10px;
+    border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 40px;
+    min-width: 32px;
 }
 
 .font-ctrl-btn:hover:not(:disabled) {
@@ -2459,11 +2457,11 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .font-size-display {
     color: #fff;
     font-weight: 600;
-    font-size: 0.95rem;
-    min-width: 56px;
+    font-size: 0.88rem;
+    min-width: 44px;
     text-align: center;
     cursor: pointer;
-    padding: 6px 10px;
+    padding: 4px 6px;
     border-radius: 6px;
     transition: background 0.2s ease, color 0.2s ease;
     user-select: none;
@@ -2482,11 +2480,11 @@ input[type="range"]::-webkit-slider-thumb:hover {
     background: #1e1e24;
     color: #fff;
     border: 1px solid var(--primary-color);
-    padding: 12px 24px;
+    padding: 10px 20px;
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     z-index: 10000;
     opacity: 0;
     transform: translateY(20px);
@@ -2509,21 +2507,19 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
 @media (max-width: 600px) {
     .blog-font-bar {
-        padding: 12px 16px;
-        top: 75px;
-        margin-bottom: 25px;
+        padding: 4px 8px;
     }
     .font-bar-left span {
-        font-size: 0.95rem;
+        display: none; /* Hide 'Size' label on tiny mobile screens to save space */
     }
     .font-ctrl-btn {
-        padding: 6px 10px;
-        min-width: 34px;
-        font-size: 0.9rem;
+        padding: 4px 8px;
+        min-width: 28px;
+        font-size: 0.85rem;
     }
     .font-size-display {
-        min-width: 48px;
-        font-size: 0.85rem;
-        padding: 6px 6px;
+        min-width: 40px;
+        font-size: 0.8rem;
+        padding: 4px 4px;
     }
 }

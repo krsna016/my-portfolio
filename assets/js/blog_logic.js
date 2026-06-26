@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         fontBar.setAttribute('aria-label', 'Blog reading preferences');
         fontBar.innerHTML = `
             <div class="font-bar-left">
-                <i class="fa-solid fa-book-open-reader" aria-hidden="true"></i>
-                <span>Reading Preferences</span>
+                <i class="fa-solid fa-text-height" aria-hidden="true"></i>
+                <span>Size</span>
             </div>
             <div class="font-bar-controls">
                 <button id="font-dec-btn" class="font-ctrl-btn" aria-label="Decrease font size" title="Decrease size (Ctrl/Cmd + -)">A−</button>
@@ -26,7 +26,24 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <button id="font-inc-btn" class="font-ctrl-btn" aria-label="Increase font size" title="Increase size (Ctrl/Cmd + +)">A+</button>
             </div>
         `;
-        postReader.insertBefore(fontBar, readerContent);
+
+        const topBar = document.createElement('div');
+        topBar.className = 'post-reader-top-bar';
+        topBar.style.display = 'flex';
+        topBar.style.justifyContent = 'space-between';
+        topBar.style.alignItems = 'center';
+        topBar.style.marginBottom = '30px';
+        topBar.style.flexWrap = 'wrap';
+        topBar.style.gap = '15px';
+
+        if (backButton && backButton.parentNode === postReader) {
+            postReader.insertBefore(topBar, backButton);
+            topBar.appendChild(backButton);
+            backButton.style.marginBottom = '0';
+        } else {
+            postReader.insertBefore(topBar, readerContent);
+        }
+        topBar.appendChild(fontBar);
 
         let toast = document.getElementById('font-size-toast');
         if (!toast) {
