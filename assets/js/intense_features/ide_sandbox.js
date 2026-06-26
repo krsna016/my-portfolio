@@ -3,7 +3,7 @@
    Visitors can edit Anurag's profile object and execute to update hero UI
    ========================================================================== */
 
-document.addEventListener('DOMContentLoaded', () => {
+function initIDESandbox() {
     const heroVisual = document.querySelector('.hero-visual .floating-wrapper');
     if (!heroVisual || document.getElementById('ide-hero-sandbox')) return;
 
@@ -58,4 +58,5 @@ document.addEventListener('DOMContentLoaded', () => {
             statusMsg.innerHTML = `<span style="color:#e74c3c;">SyntaxError: check string quotes</span>`;
         }
     };
-});
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initIDESandbox); else initIDESandbox();

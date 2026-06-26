@@ -3,7 +3,7 @@
    Live scrolling tape under navbar showing Anurag's daily code activity
    ========================================================================== */
 
-document.addEventListener('DOMContentLoaded', async () => {
+async function initGitTicker() {
     const navbar = document.querySelector('.navbar');
     if (!navbar || document.getElementById('git-ticker-hud')) return;
 
@@ -44,4 +44,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     `;
 
     navbar.parentNode.insertBefore(ticker, navbar.nextSibling);
-});
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initGitTicker); else initGitTicker();

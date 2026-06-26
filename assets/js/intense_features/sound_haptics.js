@@ -59,8 +59,7 @@ window.CyberSound = (function() {
     };
 })();
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Inject floating audio toggle pill
+function initAudioHUD() {
     if (!document.getElementById('hud-audio-toggle')) {
         const pill = document.createElement('button');
         pill.id = 'hud-audio-toggle';
@@ -71,10 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(pill);
     }
 
-    // Attach global click sound to interactive buttons
     document.addEventListener('click', (e) => {
         if (e.target.closest('a, button, .btn, .glass, .dsa-bar, .ide-tab')) {
             window.CyberSound.playClick();
         }
     });
-});
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initAudioHUD); else initAudioHUD();
