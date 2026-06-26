@@ -116,6 +116,16 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
             }
         });
+
+        // --- INTENSE Cyberpunk Scroll Progress Bar Listener ---
+        window.addEventListener('scroll', () => {
+            const scrollBar = document.getElementById('neon-scroll-progress');
+            if (!scrollBar || postReader.style.display !== 'block') return;
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+            scrollBar.style.width = Math.min(100, Math.max(0, progress)) + '%';
+        });
     }
     setupFontSizeBar();
 
@@ -487,6 +497,85 @@ document.addEventListener('DOMContentLoaded', async () => {
             readerContent.innerHTML = safeHtml;
             showReaderView();
             window.scrollTo(0, 0);
+
+            // --- INTENSE METADATA & READING HACKS ---
+            const words = markdownContent.trim().split(/\s+/).length;
+            const readTime = Math.max(1, Math.ceil(words / 225));
+
+            // 1. Dynamic SEO & JSON-LD Schema Injection
+            document.title = `${post.title || 'Article'} | Anurag Pareek`;
+            let metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) metaDesc.setAttribute('content', post.summary || '');
+            
+            let jsonLd = document.getElementById('article-json-ld');
+            if (!jsonLd) {
+                jsonLd = document.createElement('script');
+                jsonLd.id = 'article-json-ld';
+                jsonLd.type = 'application/ld+json';
+                document.head.appendChild(jsonLd);
+            }
+            jsonLd.textContent = JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "TechArticle",
+                "headline": post.title || "Tech Blog",
+                "description": post.summary || "",
+                "author": {
+                    "@type": "Person",
+                    "name": "Anurag Pareek",
+                    "url": "https://anuragpareek016.engineer"
+                },
+                "datePublished": post.date || new Date().toISOString(),
+                "wordCount": words,
+                "keywords": post.category || "Software Engineering"
+            });
+
+            // 2. Intense Metadata Badge
+            let metaBadge = document.getElementById('intense-meta-badge');
+            if (!metaBadge) {
+                metaBadge = document.createElement('div');
+                metaBadge.id = 'intense-meta-badge';
+                metaBadge.className = 'intense-meta-badge fade-in-up';
+                readerContent.parentNode.insertBefore(metaBadge, readerContent);
+            }
+            metaBadge.innerHTML = `
+                <span class="meta-pill"><i class="fa-regular fa-clock"></i> ${readTime} min read</span>
+                <span class="meta-pill"><i class="fa-solid fa-align-left"></i> ${words} words</span>
+                <span class="meta-pill category"><i class="fa-solid fa-tag"></i> ${post.category || 'Engineering'}</span>
+                ${post.date ? `<span class="meta-pill"><i class="fa-regular fa-calendar"></i> ${post.date}</span>` : ''}
+            `;
+            metaBadge.style.display = 'flex';
+
+            // 3. Cyberpunk Top Scroll Progress Bar
+            let scrollBar = document.getElementById('neon-scroll-progress');
+            if (!scrollBar) {
+                scrollBar = document.createElement('div');
+                scrollBar.id = 'neon-scroll-progress';
+                scrollBar.className = 'neon-scroll-progress';
+                document.body.appendChild(scrollBar);
+            }
+            scrollBar.style.width = '0%';
+            scrollBar.style.opacity = '1';
+
+            // 4. One-Click Copy Superpower on Code Blocks
+            readerContent.querySelectorAll('pre').forEach(pre => {
+                if (pre.querySelector('.copy-code-btn')) return;
+                const btn = document.createElement('button');
+                btn.className = 'copy-code-btn';
+                btn.innerHTML = `<i class="fa-regular fa-copy"></i> Copy`;
+                btn.title = "Copy code to clipboard";
+                btn.addEventListener('click', async () => {
+                    const codeText = pre.querySelector('code')?.innerText || pre.innerText;
+                    try {
+                        await navigator.clipboard.writeText(codeText);
+                        btn.innerHTML = `<i class="fa-solid fa-check" style="color: #2ed573;"></i> Copied!`;
+                        setTimeout(() => btn.innerHTML = `<i class="fa-regular fa-copy"></i> Copy`, 2000);
+                    } catch (err) {
+                        console.error(err);
+                    }
+                });
+                pre.appendChild(btn);
+            });
+
         } catch (error) {
             console.error('Error loading markdown file:', error);
             readerContent.innerHTML = '<p>Error loading content.</p>';
@@ -497,7 +586,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     function showListView() {
         postReader.style.display = 'none';
         postsList.style.display = 'grid'; // Restore grid
-        // Do not force flex column so that cards form a beautiful grid
+        document.title = "Articles & Blog | Anurag Pareek";
+        const scrollBar = document.getElementById('neon-scroll-progress');
+        if (scrollBar) scrollBar.style.opacity = '0';
     }
 
     function showReaderView() {
