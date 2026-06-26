@@ -4,12 +4,15 @@
    ========================================================================== */
 
 function initIDESandbox() {
-    const heroVisual = document.querySelector('.hero-visual .floating-wrapper');
-    if (!heroVisual || document.getElementById('ide-hero-sandbox')) return;
+    const heroContent = document.querySelector('.hero-content');
+    const ctaBtns = document.querySelector('.hero-content .cta-buttons');
+    if (!heroContent || document.getElementById('ide-hero-sandbox')) return;
 
     const ideCard = document.createElement('div');
     ideCard.id = 'ide-hero-sandbox';
     ideCard.className = 'ide-hero-card fade-in-up delay-300';
+    ideCard.style.margin = "20px 0 25px 0";
+    ideCard.style.maxWidth = "540px";
     ideCard.innerHTML = `
         <div class="ide-topbar">
             <div class="ide-tabs">
@@ -30,8 +33,11 @@ function initIDESandbox() {
         </div>
     `;
 
-    // Append below profile image container or replace idea bubbles
-    heroVisual.appendChild(ideCard);
+    if (ctaBtns) {
+        heroContent.insertBefore(ideCard, ctaBtns);
+    } else {
+        heroContent.appendChild(ideCard);
+    }
 
     const runBtn = document.getElementById('ide-run-btn');
     const editor = document.getElementById('ide-code-editor');

@@ -173,16 +173,22 @@
 }
 
 /* --- 3. Live Git Commit Ticker HUD --- */
+.hero {
+    padding-top: 130px !important;
+}
+
 .git-ticker-hud {
-    background: rgba(15, 12, 41, 0.95);
-    border-top: 1px solid rgba(108, 92, 231, 0.4);
-    border-bottom: 1px solid rgba(108, 92, 231, 0.4);
+    background: rgba(15, 12, 41, 0.98);
+    border-bottom: 1px solid rgba(108, 92, 231, 0.5);
     padding: 8px 0;
     overflow: hidden;
     white-space: nowrap;
-    position: relative;
-    z-index: 50;
-    box-shadow: 0 0 20px rgba(108, 92, 231, 0.2);
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.6);
 }
 
 .git-ticker-content {
@@ -373,36 +379,38 @@
 /* --- 6. Tactile Cyber-Sound HUD Toggle --- */
 .hud-audio-pill {
     position: fixed;
-    top: 20px;
-    right: 90px;
-    background: rgba(15, 15, 20, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    bottom: 25px;
+    left: 25px;
+    background: rgba(15, 15, 22, 0.9);
+    border: 1px solid rgba(0, 210, 255, 0.3);
     color: #c8d6e5;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.8rem;
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
-    z-index: 100000;
+    z-index: 99999;
     display: flex;
     align-items: center;
-    gap: 6px;
-    backdrop-filter: blur(10px);
+    gap: 8px;
+    backdrop-filter: blur(15px);
     transition: all 0.2s;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
 }
 
 .hud-audio-pill:hover {
     border-color: #00d2ff;
     color: #fff;
+    transform: scale(1.05);
 }
 
 .hud-audio-pill.enabled {
     border-color: #2ed573;
     color: #2ed573;
-    box-shadow: 0 0 10px rgba(46, 213, 115, 0.3);
+    box-shadow: 0 0 15px rgba(46, 213, 115, 0.35);
 }
 
 @media (max-width: 768px) {
-    .hud-audio-pill { top: 15px; right: 65px; padding: 4px 10px; font-size: 0.75rem; }
+    .hud-audio-pill { bottom: 15px; left: 15px; padding: 6px 12px; font-size: 0.75rem; }
     .ai-twin-window { width: 300px; height: 400px; bottom: 70px; right: -10px; }
 }
