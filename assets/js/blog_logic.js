@@ -576,82 +576,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 pre.appendChild(btn);
             });
 
-            // 5. Native AI Speech Synthesis (Audio Narrator Button)
-            let audioBtn = document.getElementById('intense-audio-btn');
-            if (!audioBtn) {
-                audioBtn = document.createElement('button');
-                audioBtn.id = 'intense-audio-btn';
-                audioBtn.className = 'intense-audio-btn';
-                audioBtn.title = "Listen to AI audio narration of this article";
-                const fontControls = document.querySelector('.font-bar-controls');
-                if (fontControls) fontControls.parentNode.insertBefore(audioBtn, fontControls);
-            }
-            audioBtn.innerHTML = `<i class="fa-solid fa-volume-high"></i> Listen`;
-            if (window.speechSynthesis) window.speechSynthesis.cancel();
-            
-            audioBtn.onclick = () => {
-                if (!window.speechSynthesis) return alert('Speech synthesis not supported.');
-                if (window.speechSynthesis.speaking) {
-                    window.speechSynthesis.cancel();
-                    audioBtn.innerHTML = `<i class="fa-solid fa-volume-high"></i> Listen`;
-                    audioBtn.classList.remove('active');
-                    return;
-                }
-                const cleanSpeechText = readerContent.innerText.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, '');
-                const utterance = new SpeechSynthesisUtterance(cleanSpeechText);
-                utterance.rate = 1.05;
-                utterance.onend = () => {
-                    audioBtn.innerHTML = `<i class="fa-solid fa-volume-high"></i> Listen`;
-                    audioBtn.classList.remove('active');
-                };
-                audioBtn.innerHTML = `<i class="fa-solid fa-stop"></i> Stop`;
-                audioBtn.classList.add('active');
-                window.speechSynthesis.speak(utterance);
-            };
-
-            // 6. AI Executive TL;DR Briefing Card
-            let aiBrief = document.getElementById('ai-tldr-brief');
-            if (!aiBrief) {
-                aiBrief = document.createElement('div');
-                aiBrief.id = 'ai-tldr-brief';
-                aiBrief.className = 'ai-tldr-brief glass fade-in-up';
-                metaBadge.parentNode.insertBefore(aiBrief, metaBadge.nextSibling);
-            }
-            const cleanText = readerContent.innerText.replace(/\n+/g, ' ').trim();
-            const sentences = cleanText.match(/[^.!?]+[.!?]+/g) || [cleanText.slice(0, 180) + '...'];
-            const tldr = sentences.slice(0, 2).join(' ');
-            aiBrief.innerHTML = `
-                <div class="ai-brief-header">
-                    <span class="ai-glow-dot"></span>
-                    <i class="fa-solid fa-wand-magic-sparkles"></i> <strong>AI Executive Summary</strong>
-                </div>
-                <p class="ai-brief-text">"${tldr}"</p>
-            `;
-
-            // 7. Interactive Kudos Counter Button
-            let kudosContainer = document.getElementById('article-kudos-container');
-            if (!kudosContainer) {
-                kudosContainer = document.createElement('div');
-                kudosContainer.id = 'article-kudos-container';
-                kudosContainer.className = 'article-kudos-container';
-                readerContent.parentNode.insertBefore(kudosContainer, readerContent.nextSibling);
-            }
-            const kudosKey = `kudos_${post.id || post.title}`;
-            let currentKudos = parseInt(localStorage.getItem(kudosKey) || '12');
-            kudosContainer.innerHTML = `
-                <button id="give-kudos-btn" class="give-kudos-btn">
-                    <i class="fa-solid fa-hands-clapping"></i> Give Kudos <span id="kudos-count">(${currentKudos})</span>
-                </button>
-            `;
-            const kudosBtn = document.getElementById('give-kudos-btn');
-            kudosBtn.onclick = () => {
-                currentKudos += Math.floor(Math.random() * 3) + 1;
-                localStorage.setItem(kudosKey, currentKudos);
-                document.getElementById('kudos-count').textContent = `(${currentKudos})`;
-                kudosBtn.classList.add('pulse-animation');
-                setTimeout(() => kudosBtn.classList.remove('pulse-animation'), 300);
-            };
-
         } catch (error) {
             console.error('Error loading markdown file:', error);
             readerContent.innerHTML = '<p>Error loading content.</p>';
@@ -665,7 +589,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.title = "Articles & Blog | Anurag Pareek";
         const scrollBar = document.getElementById('neon-scroll-progress');
         if (scrollBar) scrollBar.style.opacity = '0';
-        if (window.speechSynthesis) window.speechSynthesis.cancel();
     }
 
     function showReaderView() {
