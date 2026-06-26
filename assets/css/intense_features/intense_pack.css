@@ -1,0 +1,408 @@
+/* ==========================================================================
+   HYPER-INTENSE AGENTIC ENGINEERING PACK STYLING
+   Modular Obsidian HUD, Cybermorphism & Terminal Aesthetics
+   ========================================================================== */
+
+/* --- 1. Dropdown Quake Hacker Terminal HUD --- */
+.quake-terminal-hud {
+    position: fixed;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 450px;
+    max-height: 75vh;
+    background: rgba(10, 10, 14, 0.96);
+    border-bottom: 2px solid #00d2ff;
+    box-shadow: 0 15px 50px rgba(0, 210, 255, 0.35);
+    z-index: 1000000;
+    transition: top 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    font-family: 'Courier New', Courier, monospace;
+    color: #00ff66;
+    backdrop-filter: blur(20px);
+}
+
+.quake-terminal-hud.open {
+    top: 0;
+}
+
+.term-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.85rem;
+    color: #e1e1e6;
+}
+
+.term-header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.term-traffic-lights {
+    display: flex;
+    gap: 6px;
+}
+
+.term-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.term-dot.red { background: #ff5f56; }
+.term-dot.yellow { background: #ffbd2e; }
+.term-dot.green { background: #27c93f; }
+
+.term-body {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.term-output {
+    margin-bottom: 15px;
+}
+
+.term-input-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.term-prompt {
+    color: #00d2ff;
+    font-weight: bold;
+}
+
+.term-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-family: inherit;
+    font-size: inherit;
+    outline: none;
+}
+
+/* --- 2. Live VS Code Sandbox Hero Editor --- */
+.ide-hero-card {
+    background: #1e1e24;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    margin-top: 25px;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: left;
+}
+
+.ide-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #18181c;
+    padding: 8px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ide-tabs {
+    display: flex;
+    gap: 2px;
+}
+
+.ide-tab {
+    padding: 6px 14px;
+    background: #1e1e24;
+    color: #00d2ff;
+    font-size: 0.8rem;
+    border-top: 2px solid #00d2ff;
+    border-radius: 4px 4px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ide-run-btn {
+    background: linear-gradient(135deg, #2ed573, #1e90ff);
+    border: none;
+    color: #fff;
+    padding: 5px 14px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ide-run-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(46, 213, 115, 0.6);
+}
+
+.ide-code-area {
+    padding: 16px;
+    background: #1e1e24;
+    color: #e1e1e6;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.ide-textarea {
+    width: 100%;
+    height: 110px;
+    background: #151518;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #00ff66;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 12px;
+    resize: none;
+    outline: none;
+}
+
+/* --- 3. Live Git Commit Ticker HUD --- */
+.git-ticker-hud {
+    background: rgba(15, 12, 41, 0.95);
+    border-top: 1px solid rgba(108, 92, 231, 0.4);
+    border-bottom: 1px solid rgba(108, 92, 231, 0.4);
+    padding: 8px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    z-index: 50;
+    box-shadow: 0 0 20px rgba(108, 92, 231, 0.2);
+}
+
+.git-ticker-content {
+    display: inline-block;
+    animation: tickerScroll 25s linear infinite;
+    font-size: 0.88rem;
+    color: #c8d6e5;
+}
+
+.git-ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 40px;
+}
+
+.git-badge {
+    background: rgba(0, 210, 255, 0.2);
+    color: #00d2ff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.78rem;
+}
+
+@keyframes tickerScroll {
+    0% { transform: translateX(100vw); }
+    100% { transform: translateX(-100%); }
+}
+
+/* --- 4. Grill My AI Twin Recruiter Bot --- */
+.ai-twin-sidecar {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 99999;
+}
+
+.ai-twin-fab {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6c5ce7, #ff007a);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(255, 0, 122, 0.5);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.ai-twin-fab:hover {
+    transform: scale(1.15) rotate(5deg);
+}
+
+.ai-twin-window {
+    position: absolute;
+    bottom: 75px;
+    right: 0;
+    width: 340px;
+    height: 440px;
+    background: rgba(15, 15, 22, 0.96);
+    border: 1px solid #6c5ce7;
+    border-radius: 16px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.8);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+}
+
+.ai-twin-window.open {
+    display: flex;
+    animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes scaleUp {
+    from { opacity: 0; transform: scale(0.8) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.ai-win-header {
+    background: linear-gradient(90deg, #6c5ce7, #a29bfe);
+    padding: 14px 18px;
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ai-win-body {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.ai-msg {
+    max-width: 85%;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.ai-msg.bot {
+    align-self: flex-start;
+    background: rgba(255, 255, 255, 0.08);
+    color: #e1e1e6;
+    border-bottom-left-radius: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ai-msg.user {
+    align-self: flex-end;
+    background: #6c5ce7;
+    color: #fff;
+    border-bottom-right-radius: 2px;
+}
+
+.ai-win-input {
+    display: flex;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ai-input-field {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #fff;
+    padding: 8px 12px;
+    outline: none;
+    font-size: 0.9rem;
+}
+
+/* --- 5. Interactive DSA Visualizer Card --- */
+.dsa-engine-section {
+    margin: 60px 0;
+}
+
+.dsa-visualizer-box {
+    background: rgba(15, 15, 20, 0.85);
+    border: 1px solid rgba(0, 210, 255, 0.25);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.dsa-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.dsa-bars-container {
+    height: 180px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.dsa-bar {
+    flex: 1;
+    max-width: 25px;
+    background: #00d2ff;
+    border-radius: 4px 4px 0 0;
+    transition: height 0.15s ease, background 0.15s ease;
+}
+
+.dsa-bar.active { background: #ff007a; }
+.dsa-bar.sorted { background: #2ed573; }
+
+/* --- 6. Tactile Cyber-Sound HUD Toggle --- */
+.hud-audio-pill {
+    position: fixed;
+    top: 20px;
+    right: 90px;
+    background: rgba(15, 15, 20, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #c8d6e5;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    backdrop-filter: blur(10px);
+    transition: all 0.2s;
+}
+
+.hud-audio-pill:hover {
+    border-color: #00d2ff;
+    color: #fff;
+}
+
+.hud-audio-pill.enabled {
+    border-color: #2ed573;
+    color: #2ed573;
+    box-shadow: 0 0 10px rgba(46, 213, 115, 0.3);
+}
+
+@media (max-width: 768px) {
+    .hud-audio-pill { top: 15px; right: 65px; padding: 4px 10px; font-size: 0.75rem; }
+    .ai-twin-window { width: 300px; height: 400px; bottom: 70px; right: -10px; }
+}
