@@ -8,6 +8,11 @@ let currentColor = '#ff0000';
 let currentLineWidth = 5;
 
 async function renderResume() {
+    // Ensure worker is set correctly
+    if (typeof pdfjsLib !== 'undefined') {
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+
     if (!resumeBase64) {
         console.error('Resume data not found');
         return;
