@@ -624,7 +624,17 @@
     transform: translateY(-2px);
 }
 
-/* --- 7. Minimalistic Luxury Glow & Shadow Overrides --- */
-.profile-img, .floating-wrapper, .tool-btn.active, .btn:hover, .exec-tag {
+/* --- 7. Minimalistic Circular Photo Shadow & Luxury Overrides --- */
+.profile-image-container, .profile-img {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
+    border-radius: 50% !important;
+}
+
+.floating-wrapper {
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+.tool-btn.active, .btn:hover, .exec-tag {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45) !important;
 }
