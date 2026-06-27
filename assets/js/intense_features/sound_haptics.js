@@ -53,8 +53,11 @@ window.CyberSound = (function() {
             return enabled;
         },
         isEnabled: () => enabled,
-        playHover: function() { playTone(440, 'sine', 0.05, 0.02); },
-        playClick: function() { playTone(880, 'triangle', 0.08, 0.04); },
+        playHover: function() { playTone(440, 'sine', 0.04, 0.02); },
+        playClick: function() { 
+            playTone(900, 'triangle', 0.04, 0.05);
+            setTimeout(() => playTone(300, 'sine', 0.05, 0.02), 15);
+        },
         playBlip: function() { playTone(1200, 'sine', 0.1, 0.05); },
         playSuccess: function() {
             if (!enabled) return;
@@ -77,7 +80,7 @@ function initAudioHUD() {
     }
 
     document.addEventListener('click', (e) => {
-        if (e.target.closest('a, button, .btn, .glass, .dsa-bar, .ide-tab')) {
+        if (window.CyberSound.isEnabled() && e.target.id !== 'hud-audio-toggle' && !e.target.closest('#hud-audio-toggle')) {
             window.CyberSound.playClick();
         }
     });

@@ -67,7 +67,7 @@ function initQuakeTerm() {
         const trig = document.createElement('a');
         trig.href = 'javascript:void(0)';
         trig.title = 'Launch Hacker CLI (Press ~)';
-        trig.innerHTML = `<i class="fa-solid fa-terminal"></i>`;
+        trig.innerHTML = `<i class="fa-solid fa-code" style="color: #00d2ff; filter: drop-shadow(0 0 5px rgba(0, 210, 255, 0.6));"></i>`;
         trig.onclick = toggleTerm;
         footer.appendChild(trig);
     }
