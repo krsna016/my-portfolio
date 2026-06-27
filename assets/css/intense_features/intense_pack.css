@@ -452,17 +452,17 @@
     display: none !important; /* Remove old broken dots/mirror years */
 }
 
-/* Glowing dot attached to vertical line */
+/* Glowing dot attached to vertical line (pure glow orb, no black border) */
 .timeline-dot-connector {
     position: absolute;
-    left: -31px;
+    left: -30px;
     top: 28px;
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     background: #00d2ff;
-    border: 3px solid #0f0c29;
+    border: none !important;
     border-radius: 50%;
-    box-shadow: 0 0 12px #00d2ff, 0 0 25px #6c5ce7;
+    box-shadow: 0 0 15px #00d2ff, 0 0 30px #00d2ff, 0 0 45px #6c5ce7;
     z-index: 10;
     transition: all 0.3s ease;
 }
@@ -471,27 +471,30 @@
 .timeline-dot-connector::after {
     content: '';
     position: absolute;
-    top: 4px;
-    left: 13px;
+    top: 6px;
+    left: 12px;
     width: 20px;
     height: 2px;
     background: linear-gradient(90deg, #00d2ff, rgba(108, 92, 231, 0.4));
 }
 
+/* Remove solid borders from all cards across the site, keeping only ambient cyberpunk glow */
+.glass, .exec-card, .project-card, .about-card, .timeline-content, .card {
+    border: none !important;
+}
+
 .exec-card {
     background: rgba(18, 18, 28, 0.88) !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
     border-radius: 14px !important;
     padding: 1.6rem 2rem !important;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 210, 255, 0.08) !important;
 }
 
 .exec-card:hover {
     transform: translateX(8px) !important;
-    border-color: rgba(0, 210, 255, 0.4) !important;
     background: rgba(24, 24, 38, 0.95) !important;
-    box-shadow: 0 15px 40px rgba(0, 210, 255, 0.15) !important;
+    box-shadow: 0 15px 40px rgba(0, 210, 255, 0.22), 0 0 30px rgba(108, 92, 231, 0.25) !important;
 }
 
 .exec-card:hover + .timeline-dot-connector,
