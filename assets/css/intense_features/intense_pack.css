@@ -757,11 +757,13 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
 }
 
 /* Active Page Pill Indicator Notch */
+.nav-links a.active,
 .nav-links a.active-dock-link {
     color: #ffffff !important;
     background: rgba(255, 255, 255, 0.12) !important;
 }
 
+.nav-links a.active::before,
 .nav-links a.active-dock-link::before {
     content: '';
     position: absolute;
