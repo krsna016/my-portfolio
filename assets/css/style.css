@@ -133,10 +133,9 @@ textarea {
     position: absolute;
     left: auto;
     right: 100%;
-    /* Start right before the logo on left */
     top: 50%;
-    transform: translateY(-50%) translateX(-10px);
-    /* Center vertically, offset horizontally to left */
+    margin-right: 18px;
+    transform: translateY(-50%) translateX(12px);
     padding: 0.6rem 1.2rem;
     opacity: 0;
     transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -151,8 +150,7 @@ textarea {
 
 #welcome-card.visible {
     opacity: 1;
-    transform: translateY(-50%) translateX(-18px);
-    /* Slide out slightly to left */
+    transform: translateY(-50%) translateX(0px);
 }
 
 .welcome-text {
