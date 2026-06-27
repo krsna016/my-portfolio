@@ -200,6 +200,7 @@ async function renderResume() {
 
     } catch (error) {
         console.error('Error rendering resume:', error);
+        alert('Resume Render Error: ' + error.message);
         if (skeleton) skeleton.classList.remove('visible');
     }
 }
