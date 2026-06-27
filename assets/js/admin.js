@@ -595,7 +595,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 category,
                 date: new Date().toISOString().split('T')[0],
                 summary,
-                file: \`blogs/\${id}.md\`,
+                file: `blogs/${id}.md`,
                 _mdContent: content // temporarily stored for markdown download
             };
 
@@ -698,7 +698,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = \`\${id}.md\`;
+            a.download = `${id}.md`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
