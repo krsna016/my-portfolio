@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordPress › Log In</title>
+    <style>
+        body {
+            background-color: #0f0c29;
+            color: #2ed573;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            flex-direction: column;
+            text-align: center;
+        }
+        #terminal {
+            width: 80%;
+            max-width: 800px;
+            text-align: left;
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+        .red { color: #ff0055; font-weight: bold; }
+        .blink { animation: blink 1s step-end infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+    </style>
+</head>
+<body>
+    <div id="terminal"></div>
+    <script>
+        const terminal = document.getElementById('terminal');
+        const messages = [
+            "Initializing secure connection...",
+            "Analyzing incoming request...",
+            "<span class='red'>WARNING: UNAUTHORIZED ACCESS DETECTED</span>",
+            "Targeting origin IP...",
+            "Tracing connection through 7 proxies...",
+            "Proxy 1: Bypassed.",
+            "Proxy 2: Bypassed.",
+            "Proxy 3: Bypassed.",
+            "<span class='red'>Locking on target...</span>",
+            "Counter-measures armed.",
+            "...",
+            "Just kidding.",
+            "I take security seriously.",
+            "You won't find any WordPress vulnerabilities here.",
+            "<br><a href='/' style='color:#00d2ff; text-decoration:none;'>[ Return to Homepage ]</a>"
+        ];
+        
+        let i = 0;
+        function printMsg() {
+            if (i < messages.length) {
+                terminal.innerHTML += messages[i] + "<br>";
+                i++;
+                setTimeout(printMsg, Math.random() * 800 + 200);
+            } else {
+                terminal.innerHTML += "<span class='blink'>_</span>";
+            }
+        }
+        setTimeout(printMsg, 500);
+    </script>
+</body>
+</html>

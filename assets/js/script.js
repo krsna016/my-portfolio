@@ -503,3 +503,61 @@ END:VCARD`;
     script.text = JSON.stringify(schema);
     document.head.appendChild(script);
 })();
+
+
+// ==========================================
+// 🛡️ INTENSE SECURITY HACKS
+// ==========================================
+
+// 1. Advanced Email Cryptography (Anti-Scraping)
+document.addEventListener('DOMContentLoaded', () => {
+    const secureLinks = document.querySelectorAll('.secure-contact');
+    secureLinks.forEach(link => {
+        link.addEventListener('mouseover', function() {
+            if (this.getAttribute('href') === '#') {
+                const decoded = atob(this.getAttribute('data-contact'));
+                this.setAttribute('href', 'https://mail.google.com/mail/?view=cm&fs=1&to=' + decoded);
+                // console.log("Email unlocked securely.");
+            }
+        });
+    });
+});
+
+// 2. Anti-Tamper DOM Mutation Observer (Self-Healing DOM)
+(function() {
+    // Only strictly allow known domains
+    const allowedDomains = [
+        window.location.origin,
+        'https://fonts.googleapis.com',
+        'https://fonts.gstatic.com',
+        'https://cdnjs.cloudflare.com'
+    ];
+
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            mutation.addedNodes.forEach((node) => {
+                if (node.tagName === 'SCRIPT' || node.tagName === 'IFRAME') {
+                    const src = node.src || node.href;
+                    if (src) {
+                        const isAllowed = allowedDomains.some(domain => src.startsWith(domain));
+                        if (!isAllowed) {
+                            node.parentNode.removeChild(node);
+                            console.warn("%c[SECURITY SHIELD] Blocked unauthorized DOM injection:", "color: #ff0055; font-weight: bold;", src);
+                        }
+                    } else if (node.tagName === 'SCRIPT' && !node.innerHTML.includes('Intense Security Hacks')) {
+                        // Some inline scripts might be okay, but we watch for suspicious ones
+                        if (node.innerHTML.includes('eval(') || node.innerHTML.includes('document.write')) {
+                            node.parentNode.removeChild(node);
+                            console.warn("%c[SECURITY SHIELD] Blocked suspicious inline script.", "color: #ff0055; font-weight: bold;");
+                        }
+                    }
+                }
+            });
+        });
+    });
+
+    observer.observe(document.documentElement, {
+        childList: true,
+        subtree: true
+    });
+})();
