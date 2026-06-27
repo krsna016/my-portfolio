@@ -688,10 +688,23 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    window.deleteBlog = function (index) {
+    window.deleteBlog = async function (index) {
         if (confirm('Are you sure you want to delete this blog post?')) {
+            const post = currentBlogPosts[index];
             currentBlogPosts.splice(index, 1);
             renderBlogList();
+
+            const token = sessionStorage.getItem('adminToken');
+            if (token) {
+                try {
+                    await fetch(`/api/posts/${post.id}`, {
+                        method: 'DELETE',
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                } catch(e) {
+                    console.log("Failed to delete from live server.");
+                }
+            }
         }
     };
 
