@@ -131,7 +131,7 @@
 }
 
 .ide-run-btn {
-    background: linear-gradient(135deg, #2ed573, #1e90ff);
+    background: linear-gradient(135deg, #00d2ff, #6c5ce7);
     border: none;
     color: #fff;
     padding: 5px 14px;
@@ -139,15 +139,17 @@
     font-size: 0.8rem;
     font-weight: bold;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.2s ease;
     display: flex;
     align-items: center;
     gap: 6px;
+    box-shadow: 0 0 12px rgba(0, 210, 255, 0.35);
 }
 
 .ide-run-btn:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(46, 213, 115, 0.6);
+    background: linear-gradient(135deg, #6c5ce7, #ff007f);
+    box-shadow: 0 0 18px rgba(255, 0, 127, 0.6);
 }
 
 .ide-code-area {
