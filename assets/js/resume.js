@@ -204,9 +204,28 @@ function initDrawingControls() {
     console.log('Initializing drawing controls...');
     const togglePenBtn = document.getElementById('toggle-pen');
     const toggleHighlighterBtn = document.getElementById('toggle-highlighter');
+    const toggleThemeBtn = document.getElementById('toggle-theme');
     const colorPicker = document.getElementById('color-picker');
     const lineWidthSlider = document.getElementById('line-width');
     const clearBtn = document.getElementById('clear-drawing');
+
+    let isResumeDarkMode = true;
+    if (toggleThemeBtn) {
+        toggleThemeBtn.addEventListener('click', () => {
+            isResumeDarkMode = !isResumeDarkMode;
+            const ambientCont = document.getElementById('ambient-container');
+            if (ambientCont) {
+                ambientCont.classList.toggle('resume-dark-mode', isResumeDarkMode);
+            }
+            if (isResumeDarkMode) {
+                toggleThemeBtn.innerHTML = '<i class="fa-solid fa-sun"></i> Light Mode';
+                toggleThemeBtn.classList.add('active-tool');
+            } else {
+                toggleThemeBtn.innerHTML = '<i class="fa-solid fa-moon"></i> Dark Mode';
+                toggleThemeBtn.classList.remove('active-tool');
+            }
+        });
+    }
 
     function updateToolUI() {
         if (togglePenBtn) togglePenBtn.classList.toggle('active-tool', isPenEnabled && currentTool === 'pen');
