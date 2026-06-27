@@ -234,12 +234,24 @@ document.addEventListener('DOMContentLoaded', () => {
         experienceContainer.innerHTML = '';
         experienceData.forEach((exp, index) => {
             const item = document.createElement('div');
-            item.className = 'timeline-item scroll-reveal';
+            item.className = `timeline-item scroll-reveal delay-${index * 100}`;
             item.innerHTML = `
-                <div class="timeline-content glass" data-year="${exp.year}">
-                    <span class="date">${exp.role}</span>
-                    <h3>${exp.company}</h3>
-                    <p>${exp.desc}</p>
+                <div class="timeline-dot-connector"></div>
+                <div class="timeline-content exec-card glass">
+                    <div class="exec-card-header">
+                        <div class="exec-role-group">
+                            <div class="exec-icon"><i class="${exp.icon || 'fa-solid fa-briefcase'}"></i></div>
+                            <div>
+                                <span class="exec-badge">${exp.role}</span>
+                                <h3 class="exec-company">${exp.company}</h3>
+                            </div>
+                        </div>
+                        <span class="exec-year"><i class="fa-regular fa-calendar" style="color:#00d2ff;"></i> ${exp.year}</span>
+                    </div>
+                    <p class="exec-desc">${exp.desc}</p>
+                    <div class="exec-tags">
+                        ${(exp.tags || []).map(t => `<span class="exec-tag">#${t}</span>`).join('')}
+                    </div>
                 </div>
             `;
             experienceContainer.appendChild(item);

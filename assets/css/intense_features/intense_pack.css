@@ -411,3 +411,180 @@
     .hud-audio-pill { bottom: 15px; left: 15px; padding: 6px 12px; font-size: 0.75rem; }
     .ai-twin-window { width: 300px; height: 400px; bottom: 70px; right: -10px; }
 }
+
+/* ==========================================================================
+   EXECUTIVE 1-SIDED TIMELINE OVERHAUL (INTERNSHIP EXPERIENCE)
+   ========================================================================== */
+
+#experience .timeline {
+    position: relative;
+    padding-left: 35px !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+}
+
+/* Pinned neon vertical track down the left side */
+#experience .timeline::before {
+    left: 11px !important;
+    width: 3px !important;
+    background: linear-gradient(180deg, #00d2ff, #6c5ce7, #ff007f, #00d2ff) !important;
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.6) !important;
+    transform: none !important;
+}
+
+#experience .timeline-item {
+    position: relative;
+    margin-bottom: 2.2rem !important;
+    width: 100% !important;
+}
+
+/* Cancel alternating odd/even floats */
+#experience .timeline-item:nth-child(odd) .timeline-content,
+#experience .timeline-item:nth-child(even) .timeline-content {
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+#experience .timeline-content::before,
+#experience .timeline-content::after {
+    display: none !important; /* Remove old broken dots/mirror years */
+}
+
+/* Glowing dot attached to vertical line */
+.timeline-dot-connector {
+    position: absolute;
+    left: -31px;
+    top: 28px;
+    width: 16px;
+    height: 16px;
+    background: #00d2ff;
+    border: 3px solid #0f0c29;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #00d2ff, 0 0 25px #6c5ce7;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+/* Horizontal trace connecting dot to card */
+.timeline-dot-connector::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 13px;
+    width: 20px;
+    height: 2px;
+    background: linear-gradient(90deg, #00d2ff, rgba(108, 92, 231, 0.4));
+}
+
+.exec-card {
+    background: rgba(18, 18, 28, 0.88) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 14px !important;
+    padding: 1.6rem 2rem !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+}
+
+.exec-card:hover {
+    transform: translateX(8px) !important;
+    border-color: rgba(0, 210, 255, 0.4) !important;
+    background: rgba(24, 24, 38, 0.95) !important;
+    box-shadow: 0 15px 40px rgba(0, 210, 255, 0.15) !important;
+}
+
+.exec-card:hover + .timeline-dot-connector,
+.timeline-item:hover .timeline-dot-connector {
+    background: #ff007f;
+    box-shadow: 0 0 18px #ff007f, 0 0 35px #ff007f;
+    transform: scale(1.25);
+}
+
+.exec-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.1rem;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.exec-role-group {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.exec-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(0, 210, 255, 0.1);
+    border: 1px solid rgba(0, 210, 255, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    color: #00d2ff;
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.15);
+}
+
+.exec-badge {
+    display: inline-block;
+    background: linear-gradient(90deg, rgba(108, 92, 231, 0.35), rgba(0, 210, 255, 0.25));
+    border: 1px solid rgba(108, 92, 231, 0.6);
+    color: #a29bfe;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 3px 12px;
+    border-radius: 20px;
+    margin-bottom: 5px;
+}
+
+.exec-company {
+    font-size: 1.35rem !important;
+    color: #fff !important;
+    margin: 0 !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.3px;
+}
+
+.exec-year {
+    font-size: 0.85rem;
+    color: #a4b0be;
+    font-family: monospace;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 5px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.exec-desc {
+    color: #dcdde1 !important;
+    font-size: 0.98rem !important;
+    line-height: 1.65 !important;
+    margin-bottom: 1.4rem !important;
+}
+
+.exec-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.exec-tag {
+    font-size: 0.78rem;
+    color: #00d2ff;
+    background: rgba(0, 210, 255, 0.06);
+    border: 1px solid rgba(0, 210, 255, 0.18);
+    padding: 4px 11px;
+    border-radius: 6px;
+    font-family: monospace;
+    transition: all 0.2s ease;
+}
+
+.exec-tag:hover {
+    background: rgba(0, 210, 255, 0.15);
+    transform: translateY(-2px);
+}
