@@ -7,6 +7,12 @@ window.CyberSound = (function() {
     let audioCtx = null;
     let enabled = false;
 
+    try {
+        if (localStorage.getItem('hud_audio_enabled') === 'true') {
+            enabled = true;
+        }
+    } catch(e) {}
+
     function initCtx() {
         if (!audioCtx && (window.AudioContext || window.webkitAudioContext)) {
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -43,11 +49,12 @@ window.CyberSound = (function() {
     return {
         toggle: function() {
             enabled = !enabled;
+            try { localStorage.setItem('hud_audio_enabled', enabled); } catch(e) {}
             initCtx();
             const pill = document.getElementById('hud-audio-toggle');
             if (pill) {
                 pill.className = `hud-audio-pill ${enabled ? 'enabled' : ''}`;
-                pill.innerHTML = enabled ? `<i class="fa-solid fa-volume-high"></i> HUD Audio: ON` : `<i class="fa-solid fa-volume-xmark"></i> HUD Audio: OFF`;
+                pill.innerHTML = enabled ? `<i class="fa-solid fa-volume-high" style="color:#2ed573;"></i> HUD Audio: ON` : `<i class="fa-solid fa-volume-xmark"></i> HUD Audio: OFF`;
             }
             if (enabled) this.playBlip();
             return enabled;
@@ -69,7 +76,6 @@ window.CyberSound = (function() {
             } else if (e.key === ' ') {
                 playTone(320, 'sine', 0.04, 0.04);
             } else if (e.key && e.key.length === 1) {
-                // Organic thock pitch variation for letter/digit keys
                 playTone(650 + Math.random() * 140, 'triangle', 0.02, 0.03);
             }
         },
@@ -83,11 +89,12 @@ window.CyberSound = (function() {
 })();
 
 function initAudioHUD() {
+    const isEn = window.CyberSound.isEnabled();
     if (!document.getElementById('hud-audio-toggle')) {
         const pill = document.createElement('button');
         pill.id = 'hud-audio-toggle';
-        pill.className = 'hud-audio-pill';
-        pill.innerHTML = `<i class="fa-solid fa-volume-xmark"></i> HUD Audio: OFF`;
+        pill.className = `hud-audio-pill ${isEn ? 'enabled' : ''}`;
+        pill.innerHTML = isEn ? `<i class="fa-solid fa-volume-high" style="color:#2ed573;"></i> HUD Audio: ON` : `<i class="fa-solid fa-volume-xmark"></i> HUD Audio: OFF`;
         pill.title = "Toggle sci-fi tactile UI sound design";
         pill.onclick = () => window.CyberSound.toggle();
         document.body.appendChild(pill);

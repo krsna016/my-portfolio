@@ -61,16 +61,13 @@ function initQuakeTerm() {
         }
     });
 
-    // Add floating fixed HUD trigger pill to bottom right
-    if (!document.getElementById('hud-terminal-toggle')) {
-        const trig = document.createElement('button');
-        trig.id = 'hud-terminal-toggle';
-        trig.className = 'hud-terminal-pill';
-        trig.title = 'Launch Quake Root CLI (Press ~)';
-        trig.innerHTML = `<i class="fa-solid fa-terminal" style="color: #00d2ff;"></i> CLI: ~`;
-        trig.onclick = toggleTerm;
-        document.body.appendChild(trig);
-    }
+    window.toggleTerm = toggleTerm;
+
+    // Attach trigger to Hero CTA button or footer trigger if present
+    const heroBtn = document.getElementById('hero-cli-trigger');
+    if (heroBtn) heroBtn.onclick = toggleTerm;
+    const footerBtn = document.getElementById('terminal-trigger');
+    if (footerBtn) footerBtn.onclick = toggleTerm;
 
     function printOut(html) {
         const out = document.createElement('div');
