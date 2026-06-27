@@ -825,7 +825,8 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
     padding: 1.4rem 1.2rem !important;
     min-height: 240px !important;
     border-radius: 16px !important;
-    background: linear-gradient(145deg, rgba(24, 24, 38, 0.9), rgba(12, 12, 20, 0.96)) !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+    backdrop-filter: blur(12px) !important;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
     border: none !important;
     display: flex !important;
@@ -881,7 +882,7 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
 .games-page .play-btn {
     margin-top: auto !important;
     padding: 0.55rem 1rem !important;
-    background: rgba(255, 255, 255, 0.07) !important;
+    background: transparent !important;
     color: #fff !important;
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
     border-radius: 8px !important;
@@ -920,7 +921,8 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
     padding: 1.4rem 1.2rem !important;
     min-height: 240px !important;
     border-radius: 16px !important;
-    background: linear-gradient(145deg, rgba(24, 24, 38, 0.9), rgba(12, 12, 20, 0.96)) !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+    backdrop-filter: blur(12px) !important;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
     border: none !important;
     display: flex !important;
@@ -984,7 +986,7 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
 .certificates-page .cert-link {
     margin-top: auto !important;
     padding: 0.55rem 1rem !important;
-    background: rgba(255, 255, 255, 0.07) !important;
+    background: transparent !important;
     color: #fff !important;
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
     border-radius: 8px !important;
@@ -1009,4 +1011,38 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
     color: #fff !important;
     transform: none !important;
     box-shadow: none !important;
+}
+
+/* Strictly remove all solid backgrounds from buttons, cards, etc. globally */
+.btn,
+.play-btn,
+.cert-link,
+.read-more,
+button,
+.tab-btn {
+    background: transparent !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+.btn:hover,
+.play-btn:hover,
+.cert-link:hover,
+.read-more:hover,
+button:hover,
+.tab-btn.active,
+.tab-btn:hover,
+.category-list li.active,
+.category-list li:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.game-card,
+.certificate-card,
+.blog-card,
+.project-card,
+.about-card,
+.timeline-content,
+.card {
+    background: rgba(255, 255, 255, 0.02) !important;
+    backdrop-filter: blur(12px) !important;
 }
