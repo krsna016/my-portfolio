@@ -481,7 +481,7 @@
     background: #00d2ff;
     border: none !important;
     border-radius: 50%;
-    box-shadow: 0 0 15px #00d2ff, 0 0 30px #00d2ff, 0 0 45px #6c5ce7;
+    box-shadow: 0 0 6px rgba(0, 210, 255, 0.4) !important;
     z-index: 10;
     transition: all 0.3s ease;
 }
@@ -522,8 +522,8 @@
 .exec-card:hover + .timeline-dot-connector,
 .timeline-item:hover .timeline-dot-connector {
     background: #00d2ff;
-    box-shadow: 0 0 18px #00d2ff, 0 0 35px #00d2ff;
-    transform: scale(1.25);
+    box-shadow: 0 0 8px rgba(0, 210, 255, 0.5) !important;
+    transform: scale(1.15);
 }
 
 .exec-card-header {
@@ -545,14 +545,14 @@
     width: 48px;
     height: 48px;
     border-radius: 12px;
-    background: rgba(0, 210, 255, 0.1);
-    border: 1px solid rgba(0, 210, 255, 0.25);
+    background: rgba(0, 210, 255, 0.08);
+    border: 1px solid rgba(0, 210, 255, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.4rem;
     color: #00d2ff;
-    box-shadow: 0 0 15px rgba(0, 210, 255, 0.15);
+    box-shadow: none !important;
 }
 
 .exec-badge {
@@ -575,14 +575,14 @@
     margin: 0 !important;
     font-weight: 800 !important;
     letter-spacing: 0.4px;
-    text-shadow: 0 0 10px rgba(0, 210, 255, 0.65), 0 0 22px rgba(0, 210, 255, 0.35), 0 0 35px rgba(108, 92, 231, 0.25) !important;
+    text-shadow: none !important;
     transition: all 0.3s ease !important;
 }
 
 .exec-card:hover .exec-company,
 .timeline-item:hover .exec-company {
-    color: #00ffff !important;
-    text-shadow: 0 0 15px #00ffff, 0 0 30px #00d2ff, 0 0 50px #6c5ce7, 0 0 75px #ff007f !important;
+    color: #00d2ff !important;
+    text-shadow: 0 0 6px rgba(0, 210, 255, 0.3) !important;
 }
 
 .exec-year {
@@ -636,5 +636,34 @@
 }
 
 .tool-btn.active, .btn:hover, .exec-tag {
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45) !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* ==========================================================================
+   8. MASTER ULTRA-MINIMALISTIC LUXURY PROFESSIONAL OVERRIDE
+   Strips all heavy neon laser beams and diffuse cyber-glows site-wide
+   ========================================================================== */
+
+/* Standardize all typography and headings to clean zero text-shadow */
+h1, h2, h3, h4, .section-title, .pinned-heading h2 {
+    text-shadow: none !important;
+}
+
+/* Vertical timeline track and dot connectors */
+#experience .timeline::before,
+.timeline::before {
+    box-shadow: 0 0 3px rgba(0, 210, 255, 0.2) !important;
+}
+
+.timeline-dot-connector {
+    box-shadow: 0 0 4px rgba(0, 210, 255, 0.3) !important;
+}
+
+/* Subtle luxury hover on buttons, cards, tags, and pills */
+.btn:hover, .btn.primary:hover, .btn.secondary:hover,
+.tool-btn:hover, .tool-btn.active,
+.footer-socials a:hover,
+.exec-tag:hover,
+.hud-audio-pill:hover, #hero-cli-trigger:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45) !important;
 }
