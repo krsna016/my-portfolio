@@ -812,35 +812,3 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
 #welcome-card.visible {
     transform: translateY(-50%) translateX(0px) !important;
 }
-
-/* Standalone Pages Full-Width Executive Layout Polish (Certifications, Arcade, Blog) */
-.certificates-page .pinned-section-wrapper,
-.games-page .pinned-section-wrapper {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 1.5rem !important;
-    align-items: flex-start !important;
-    width: 100% !important;
-}
-
-.certificates-page .pinned-heading,
-.games-page .pinned-heading {
-    flex: none !important;
-    position: static !important;
-    width: 100% !important;
-    text-align: left !important;
-    padding: 0 !important;
-    margin-bottom: 0.5rem !important;
-}
-
-.certificates-page .section-content,
-.games-page .section-content {
-    width: 100% !important;
-}
-
-.certificates-grid, .games-grid {
-    width: 100% !important;
-    display: grid !important;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
-    gap: 1.8rem !important;
-}
