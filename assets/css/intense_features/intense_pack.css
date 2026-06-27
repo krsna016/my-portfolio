@@ -146,25 +146,25 @@
 }
 
 .ide-run-btn {
-    background: #00d2ff;
-    border: none;
-    color: #0f0c29;
-    padding: 5px 14px;
-    border-radius: 6px;
-    font-size: 0.8rem;
-    font-weight: 800;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    box-shadow: none !important;
+    background: #2ed573 !important;
+    border: none !important;
+    color: #000 !important;
+    padding: 5px 14px !important;
+    border-radius: 6px !important;
+    font-size: 0.85rem !important;
+    font-weight: 800 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    box-shadow: 0 0 10px rgba(46, 213, 115, 0.3) !important;
 }
 
 .ide-run-btn:hover {
-    transform: scale(1.02);
-    background: #1ae0ff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+    transform: scale(1.05) !important;
+    background: #26b160 !important;
+    box-shadow: 0 4px 15px rgba(46, 213, 115, 0.5) !important;
 }
 
 .ide-code-area {
