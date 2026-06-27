@@ -420,12 +420,21 @@
 
     <!-- Login Overlay -->
     <div id="login-overlay">
-        <div class="login-box">
+        <div class="login-box" id="auth-box">
             <h2 style="margin-bottom: 1rem;">Admin Access</h2>
-            <p style="color: #aaa; font-size: 0.9rem;">Enter password to continue</p>
+            <p style="color: #aaa; font-size: 0.9rem; margin-bottom: 1.5rem;">Hardware Authentication Required</p>
+            
+            <button type="button" class="btn primary" id="biometric-btn" style="width: 100%; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                <i class="fa-solid fa-fingerprint" style="font-size: 1.2rem;"></i> Authenticate with TouchID / FaceID
+            </button>
+
+            <div style="margin: 1.5rem 0; color: #555; display: flex; align-items: center;">
+                <hr style="flex:1; border-color: #333;"><span style="padding: 0 10px; font-size: 0.8rem;">OR</span><hr style="flex:1; border-color: #333;">
+            </div>
+
             <form id="login-form">
-                <input type="password" id="admin-password" placeholder="Password" required>
-                <button type="submit" class="btn primary" style="width: 100%;">Login</button>
+                <input type="password" id="admin-password" placeholder="Fallback Password" required>
+                <button type="submit" class="btn secondary" style="width: 100%;">Login</button>
             </form>
             <p id="login-error" style="color: #ff6b6b; font-size: 0.8rem; margin-top: 10px; display: none;">Incorrect
                 password</p>
@@ -438,6 +447,7 @@
     <script src="assets/js/script.js"></script>
     <script src="assets/js/admin.js"></script>
 
+    <script src="assets/js/intense_features/konami_gravity.js" defer></script>
 </body>
 
 </html>
