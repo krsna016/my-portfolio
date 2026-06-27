@@ -145,7 +145,7 @@
                 const height = el.offsetHeight;
                 el.style.left = (body.position.x - width / 2) + 'px';
                 el.style.top = (body.position.y - height / 2) + 'px';
-                el.style.transform = \`rotate(\${body.angle}rad)\`;
+                el.style.transform = `rotate(${body.angle}rad)`;
             });
             requestAnimationFrame(updateDOM);
         })();
