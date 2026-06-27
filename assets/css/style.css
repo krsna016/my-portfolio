@@ -134,8 +134,8 @@ textarea {
     left: auto;
     right: 100%;
     top: 50%;
-    margin-right: 18px;
-    transform: translateY(-50%) translateX(12px);
+    margin: 0;
+    transform: translateY(-50%) translateX(-25px);
     padding: 0.6rem 1.2rem;
     opacity: 0;
     transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -150,7 +150,7 @@ textarea {
 
 #welcome-card.visible {
     opacity: 1;
-    transform: translateY(-50%) translateX(0px);
+    transform: translateY(-50%) translateX(-45px);
 }
 
 .welcome-text {
