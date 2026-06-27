@@ -793,13 +793,54 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
     }
 }
 
-/* Guarantee logo hover typing card appears on left side of logo */
+/* Guarantee logo hover typing card appears cleanly to left of logo container without overlapping AP. */
+.logo-container {
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+}
+
 #welcome-card {
+    position: absolute !important;
     left: auto !important;
     right: 100% !important;
-    transform: translateY(-50%) translateX(-10px) !important;
+    top: 50% !important;
+    margin-right: 18px !important;
+    transform: translateY(-50%) translateX(12px) !important;
 }
 
 #welcome-card.visible {
-    transform: translateY(-50%) translateX(-18px) !important;
+    transform: translateY(-50%) translateX(0px) !important;
+}
+
+/* Standalone Pages Full-Width Executive Layout Polish (Certifications, Arcade, Blog) */
+.certificates-page .pinned-section-wrapper,
+.games-page .pinned-section-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+}
+
+.certificates-page .pinned-heading,
+.games-page .pinned-heading {
+    flex: none !important;
+    position: static !important;
+    width: 100% !important;
+    text-align: left !important;
+    padding: 0 !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.certificates-page .section-content,
+.games-page .section-content {
+    width: 100% !important;
+}
+
+.certificates-grid, .games-grid {
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+    gap: 1.8rem !important;
 }
