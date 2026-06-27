@@ -488,7 +488,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     async function loadPost(post) {
         try {
-            const response = await fetch(post.file + "?t=" + new Date().getTime());
+            const response = await fetch(post.file);
             if (!response.ok) throw new Error('Network response was not ok');
             const markdownContent = await response.text();
             const rawHtml = marked.parse(markdownContent);
