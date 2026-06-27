@@ -968,14 +968,3 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
     color: #000 !important;
     box-shadow: 0 0 12px rgba(0, 210, 255, 0.6) !important;
 }
-
-/* Remove solid borders and vertical section bar */
-.games-page .pinned-heading,
-.certificates-page .pinned-heading {
-    border: none !important;
-}
-
-.games-page .pinned-heading .section-title::after,
-.certificates-page .pinned-heading .section-title::after {
-    display: none !important;
-}
