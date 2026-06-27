@@ -767,14 +767,14 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
 .nav-links a.active-dock-link::before {
     content: '';
     position: absolute;
-    top: -6px;
+    top: -17px;
     left: 50%;
     transform: translateX(-50%);
     width: 6px;
     height: 6px;
-    background: #00d2ff;
+    background: #ff1744 !important;
     border-radius: 50%;
-    box-shadow: 0 0 6px #00d2ff;
+    box-shadow: 0 0 8px #ff1744, 0 0 16px rgba(255, 23, 68, 0.6) !important;
     display: block !important;
 }
 
