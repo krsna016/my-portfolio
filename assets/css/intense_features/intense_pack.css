@@ -812,3 +812,120 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
 #welcome-card.visible {
     transform: translateY(-50%) translateX(-45px) !important;
 }
+
+/* Standalone Page Compact Executive Header & Card Overrides */
+.games-page .pinned-section-wrapper, .certificates-page .pinned-section-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 0.5rem !important;
+}
+
+.games-page .pinned-heading, .certificates-page .pinned-heading {
+    position: static !important;
+    width: auto !important;
+    flex: none !important;
+    text-align: center !important;
+    padding: 0 !important;
+    align-items: center !important;
+}
+
+.games-page .pinned-heading .section-title::after, .certificates-page .pinned-heading .section-title::after {
+    display: none !important;
+}
+
+.games-page .section-content, .certificates-page .section-content {
+    width: 100% !important;
+    max-width: 1000px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+}
+
+.games-page .games-intro, .certificates-page .games-intro {
+    font-size: 1.05rem !important;
+    color: #ccc !important;
+    margin-bottom: 2.2rem !important;
+    text-align: center !important;
+}
+
+/* Compact Executive Arcade Game Cards */
+.games-grid {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 2rem !important;
+    width: 100% !important;
+}
+
+.game-card {
+    width: 280px !important;
+    min-height: 290px !important;
+    padding: 1.8rem 1.4rem !important;
+    border-radius: 18px !important;
+    background: linear-gradient(145deg, rgba(24, 24, 38, 0.9), rgba(12, 12, 20, 0.96)) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    text-align: center !important;
+}
+
+.game-card:hover {
+    transform: translateY(-8px) scale(1.02) !important;
+    box-shadow: 0 18px 40px rgba(0, 210, 255, 0.22) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.game-card .game-icon {
+    font-size: 2.8rem !important;
+    margin-bottom: 1rem !important;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.game-card:hover .game-icon {
+    transform: scale(1.15) rotate(8deg) !important;
+}
+
+.game-card h3 {
+    font-size: 1.35rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 0.6rem !important;
+    color: #fff !important;
+}
+
+.game-card p {
+    font-size: 0.88rem !important;
+    color: #aaa !important;
+    line-height: 1.45 !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.play-btn {
+    margin-top: auto !important;
+    padding: 0.5rem 1.4rem !important;
+    background: rgba(0, 210, 255, 0.12) !important;
+    color: var(--primary-color) !important;
+    border: 1px solid rgba(0, 210, 255, 0.35) !important;
+    border-radius: 50px !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    transition: all 0.3s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+}
+
+.game-card:hover .play-btn {
+    background: var(--primary-color) !important;
+    color: #000 !important;
+    box-shadow: 0 0 18px rgba(0, 210, 255, 0.65) !important;
+}
