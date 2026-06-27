@@ -19,6 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const password = passwordInput.value;
             if (password === 'admin123') {
                 sessionStorage.setItem('adminLoggedIn', 'true');
+                fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password })
+                }).then(res => res.ok ? res.json() : null)
+                  .then(data => { if(data && data.token) sessionStorage.setItem('adminToken', data.token); })
+                  .catch(err => console.log('No backend API found, running in static mode.'));
+
                 loginOverlay.style.display = 'none';
                 loginError.style.display = 'none';
                 passwordInput.value = '';
@@ -59,6 +67,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (credential) {
                     sessionStorage.setItem('adminLoggedIn', 'true');
+                    fetch('/api/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ password: 'admin123' }) // Assuming default backend password for biometric success
+                    }).then(res => res.ok ? res.json() : null)
+                      .then(data => { if(data && data.token) sessionStorage.setItem('adminToken', data.token); })
+                      .catch(err => console.log('No backend API found.'));
+
                     loginOverlay.style.display = 'none';
                     loginError.style.display = 'none';
                 }
@@ -580,7 +596,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (blogForm) {
-        blogForm.addEventListener('submit', (e) => {
+        blogForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const id = document.getElementById('blog-id').value.trim();
             const title = document.getElementById('blog-title').value.trim();
@@ -614,8 +630,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
             renderBlogList();
             
-            // Do not clear the form immediately, so they can click "Download Markdown"!
-            alert("Saved to list! Make sure to click BOTH download buttons now.");
+            // Try to hit API if it exists (Railway), otherwise fallback to download
+            const token = sessionStorage.getItem('adminToken');
+            if (token) {
+                try {
+                    const res = await fetch('/api/posts', {
+                        method: 'POST',
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify({ id, title, category, summary, content })
+                    });
+                    if (res.ok) {
+                        alert("Saved to live server! You can still download files if you want.");
+                    } else {
+                        alert("Failed to save to live server! Please click BOTH download buttons to save manually.");
+                    }
+                } catch(err) {
+                    alert("Live server unreachable. Please click BOTH download buttons to save manually.");
+                }
+            } else {
+                alert("Saved to list locally! Make sure to click BOTH download buttons now to update files.");
+            }
         });
     }
 
