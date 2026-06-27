@@ -131,40 +131,36 @@ textarea {
 /* Floating Welcome Card */
 #welcome-card {
     position: absolute;
-    left: 100%;
-    /* Start right after the logo */
+    left: auto;
+    right: 100%;
+    /* Start right before the logo on left */
     top: 50%;
-    transform: translateY(-50%) translateX(10px);
-    /* Center vertically, offset horizontally */
-    padding: 0.8rem 1.5rem;
-    /* Increased padding */
+    transform: translateY(-50%) translateX(-10px);
+    /* Center vertically, offset horizontally to left */
+    padding: 0.6rem 1.2rem;
     opacity: 0;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     pointer-events: none;
     z-index: 100;
-    border: 1px solid var(--glass-border);
-    background: rgba(10, 10, 10, 0.9);
-    /* Darker glass */
-    box-shadow: 0 0 20px rgba(108, 99, 255, 0.2);
+    border: none !important;
+    background: rgba(18, 18, 26, 0.95);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
     white-space: nowrap;
-    /* Prevent wrapping */
-    border-radius: 12px;
-    /* Increased radius */
+    border-radius: 20px;
 }
 
 #welcome-card.visible {
     opacity: 1;
-    transform: translateY(-50%) translateX(20px);
-    /* Slide out slightly */
+    transform: translateY(-50%) translateX(-18px);
+    /* Slide out slightly to left */
 }
 
 .welcome-text {
     font-family: 'Courier New', Courier, monospace;
-    font-size: 1.3rem;
-    /* Increased size */
-    color: var(--secondary-color);
+    font-size: 1.1rem;
+    color: #00d2ff;
     font-weight: 600;
-    text-shadow: 0 0 5px var(--secondary-color);
+    text-shadow: none;
 }
 
 /* Cursor for welcome card */
