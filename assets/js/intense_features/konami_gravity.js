@@ -3,21 +3,21 @@
 // ==========================================
 
 (function() {
-    // Up, Up, Down, Down, Left, Right, Left, Right, B, A
-    const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    // Simply type "gravity" to trigger
+    const gravityCode = ['g', 'r', 'a', 'v', 'i', 't', 'y'];
     let keysPressed = [];
     let activated = false;
-    const konamiString = konamiCode.join('').toLowerCase();
+    const triggerString = gravityCode.join('').toLowerCase();
 
     document.addEventListener('keydown', (e) => {
         if (activated) return;
         
         keysPressed.push(e.key.toLowerCase());
-        if (keysPressed.length > konamiCode.length) {
+        if (keysPressed.length > gravityCode.length) {
             keysPressed.shift();
         }
         
-        if (keysPressed.join('') === konamiString) {
+        if (keysPressed.join('') === triggerString) {
             activateGravityEngine();
             activated = true;
         }
