@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ap-portfolio-v7-god-mode';
+const CACHE_NAME = 'ap-portfolio-v8-god-mode';
 
 const PRECACHE_ASSETS = [
     '/',
@@ -15,7 +15,6 @@ const PRECACHE_ASSETS = [
     '/assets/js/particles.js',
     '/assets/js/intense_features/terminal.js',
     '/assets/js/intense_features/sound_haptics.js',
-    '/assets/js/intense_features/konami_gravity.js',
     '/assets/js/resume.js',
     '/assets/js/resume_data.js',
     '/manifest.json'
