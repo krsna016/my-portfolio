@@ -361,16 +361,20 @@ window.setLoadProgress = function (percent) {
 };
 
 // Floating Dock Navbar Active Link Detection
-document.addEventListener('DOMContentLoaded', () => {
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+function assignDockActiveLink() {
+    let currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    if (currentPage === '' || currentPage === '/') currentPage = 'index.html';
     document.querySelectorAll('.nav-links a').forEach(link => {
         const linkHref = link.getAttribute('href');
-        if (linkHref === currentPage || (currentPage === '' && linkHref === 'index.html')) {
+        if (linkHref && (linkHref === currentPage || linkHref.endsWith(currentPage))) {
             link.classList.add('active-dock-link');
         } else {
             link.classList.remove('active-dock-link');
         }
     });
-});
+}
+assignDockActiveLink();
+document.addEventListener('DOMContentLoaded', assignDockActiveLink);
+window.addEventListener('load', assignDockActiveLink);
 
 

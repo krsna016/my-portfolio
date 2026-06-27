@@ -158,13 +158,13 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    box-shadow: 0 0 14px rgba(0, 210, 255, 0.45);
+    box-shadow: none !important;
 }
 
 .ide-run-btn:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
     background: #1ae0ff;
-    box-shadow: 0 0 22px rgba(0, 210, 255, 0.8);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
 }
 
 .ide-code-area {
@@ -703,7 +703,7 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
     backdrop-filter: blur(24px) !important;
     -webkit-backdrop-filter: blur(24px) !important;
     border-radius: 50px !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border: none !important;
     box-shadow: 0 14px 35px rgba(0, 0, 0, 0.6) !important;
 }
 
@@ -740,6 +740,10 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
     border-radius: 30px !important;
     transition: all 0.2s ease !important;
     position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: visible !important;
 }
 
 .nav-links a:hover {
@@ -761,14 +765,15 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
 .nav-links a.active-dock-link::before {
     content: '';
     position: absolute;
-    top: -9px;
+    top: -6px;
     left: 50%;
     transform: translateX(-50%);
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
     background: #00d2ff;
     border-radius: 50%;
     box-shadow: 0 0 6px #00d2ff;
+    display: block !important;
 }
 
 @media (max-width: 850px) {
