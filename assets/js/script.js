@@ -360,4 +360,17 @@ window.setLoadProgress = function (percent) {
     }
 };
 
+// Floating Dock Navbar Active Link Detection
+document.addEventListener('DOMContentLoaded', () => {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        const linkHref = link.getAttribute('href');
+        if (linkHref === currentPage || (currentPage === '' && linkHref === 'index.html')) {
+            link.classList.add('active-dock-link');
+        } else {
+            link.classList.remove('active-dock-link');
+        }
+    });
+});
+
 
