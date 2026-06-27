@@ -971,14 +971,16 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
+    justify-content: space-between !important;
     width: 100% !important;
-    margin-bottom: 1.4rem !important;
+    flex: 1 !important;
+    margin-bottom: 0 !important;
 }
 
 .certificates-page .cert-info h3 {
     font-size: 1.1rem !important;
     font-weight: 700 !important;
-    margin-bottom: 0 !important;
+    margin-bottom: 1.2rem !important;
     color: #fff !important;
     line-height: 1.35 !important;
 }
