@@ -32,11 +32,7 @@
         <a href="index.html" class="logo">AP.</a>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
-            <li>
-                <a href="resume.html" class="active">Resume</a>
-                <a href="assets/docs/resume.pdf" download title="Download Resume" style="margin-left: 5px;"><i
-                        class="fa-solid fa-download"></i></a>
-            </li>
+            <li><a href="resume.html" class="active">Resume</a></li>
             <li><a href="certificates.html">Certificates</a></li>
             <li><a href="games.html">Arcade</a></li>
             <li><a href="articles.html">Blog & Articles</a></li>
@@ -54,9 +50,9 @@
             <h2 class="section-title">My Resume</h2>
 
             <!-- Drawing Controls -->
-            <!-- Drawing Controls -->
-            <div class="drawing-controls">
+            <div class="drawing-controls" style="flex-wrap: wrap; gap: 1rem;">
                 <div class="control-group">
+                    <a href="assets/docs/resume.pdf" download class="btn primary" style="padding: 6px 16px; display: inline-flex; align-items: center; gap: 8px; font-weight: 700; text-decoration: none;"><i class="fa-solid fa-download"></i> Download PDF</a>
                     <button id="toggle-pen" class="btn secondary"><i class="fa-solid fa-pen"></i> Pen</button>
                     <button id="toggle-highlighter" class="btn secondary"><i class="fa-solid fa-highlighter"></i>
                         Highlighter</button>
