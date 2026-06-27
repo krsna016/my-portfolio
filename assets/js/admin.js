@@ -524,6 +524,188 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Blog Management Logic ---
+    let currentBlogPosts = [];
+    let currentBlogCategories = [];
+    const blogList = document.getElementById('blog-list');
+    const blogForm = document.getElementById('blog-form');
+    const blogEditIndexInput = document.getElementById('blog-edit-index');
+    const clearBlogFormBtn = document.getElementById('clear-blog-form');
+
+    // Fetch existing blog data
+    fetch('assets/js/blog_data.json')
+        .then(res => res.json())
+        .then(data => {
+            currentBlogPosts = data.posts || [];
+            currentBlogCategories = data.categories || [];
+            renderBlogList();
+        })
+        .catch(err => {
+            console.error("Failed to load blog data:", err);
+            currentBlogPosts = [];
+            currentBlogCategories = [];
+            renderBlogList();
+        });
+
+    function renderBlogList() {
+        if (!blogList) return;
+        blogList.innerHTML = '';
+        currentBlogPosts.forEach((post, index) => {
+            const item = document.createElement('div');
+            item.className = 'cert-item';
+            item.innerHTML = `
+                <div class="cert-item-info">
+                    <div>
+                        <h4 style="margin: 0;">${post.title}</h4>
+                        <small style="color: #888;">${post.id} | ${post.category}</small>
+                    </div>
+                </div>
+                <div class="cert-item-actions">
+                    <button class="btn-icon btn-up" onclick="moveBlog(${index}, -1)" ${index === 0 ? 'disabled style="opacity:0.3"' : ''}>
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </button>
+                    <button class="btn-icon btn-down" onclick="moveBlog(${index}, 1)" ${index === currentBlogPosts.length - 1 ? 'disabled style="opacity:0.3"' : ''}>
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </button>
+                    <button class="btn-icon btn-edit" onclick="editBlog(${index})">
+                        <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button class="btn-icon btn-delete" onclick="deleteBlog(${index})">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            `;
+            blogList.appendChild(item);
+        });
+    }
+
+    if (blogForm) {
+        blogForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const id = document.getElementById('blog-id').value.trim();
+            const title = document.getElementById('blog-title').value.trim();
+            const category = document.getElementById('blog-category').value.trim();
+            const summary = document.getElementById('blog-summary').value.trim();
+            const content = document.getElementById('blog-content').value;
+            const index = parseInt(blogEditIndexInput.value);
+
+            const newPost = {
+                id,
+                title,
+                category,
+                date: new Date().toISOString().split('T')[0],
+                summary,
+                file: \`blogs/\${id}.md\`,
+                _mdContent: content // temporarily stored for markdown download
+            };
+
+            // Add category if new
+            if (!currentBlogCategories.includes(category)) {
+                currentBlogCategories.push(category);
+            }
+
+            if (index >= 0) {
+                // preserve old date if editing
+                newPost.date = currentBlogPosts[index].date;
+                currentBlogPosts[index] = newPost;
+            } else {
+                currentBlogPosts.push(newPost);
+            }
+
+            renderBlogList();
+            
+            // Do not clear the form immediately, so they can click "Download Markdown"!
+            alert("Saved to list! Make sure to click BOTH download buttons now.");
+        });
+    }
+
+    if (clearBlogFormBtn) {
+        clearBlogFormBtn.addEventListener('click', () => {
+            blogForm.reset();
+            blogEditIndexInput.value = '-1';
+            document.querySelector('#tab-blog .editor-panel h3').textContent = 'Add / Edit Blog Post';
+        });
+    }
+
+    window.editBlog = async function (index) {
+        const post = currentBlogPosts[index];
+        document.getElementById('blog-id').value = post.id;
+        document.getElementById('blog-title').value = post.title;
+        document.getElementById('blog-category').value = post.category;
+        document.getElementById('blog-summary').value = post.summary || '';
+        blogEditIndexInput.value = index;
+        
+        document.querySelector('#tab-blog .editor-panel h3').textContent = 'Edit Blog Post';
+
+        // Fetch markdown content
+        try {
+            const mdRes = await fetch(post.file + "?t=" + Date.now());
+            if (mdRes.ok) {
+                document.getElementById('blog-content').value = await mdRes.text();
+            } else {
+                document.getElementById('blog-content').value = post._mdContent || "Error loading file content.";
+            }
+        } catch (e) {
+            document.getElementById('blog-content').value = post._mdContent || "";
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    window.deleteBlog = function (index) {
+        if (confirm('Are you sure you want to delete this blog post?')) {
+            currentBlogPosts.splice(index, 1);
+            renderBlogList();
+        }
+    };
+
+    window.moveBlog = function (index, direction) {
+        const newIndex = index + direction;
+        if (newIndex >= 0 && newIndex < currentBlogPosts.length) {
+            [currentBlogPosts[index], currentBlogPosts[newIndex]] = [currentBlogPosts[newIndex], currentBlogPosts[index]];
+            renderBlogList();
+        }
+    };
+
+    // Download Blog Config
+    const saveBlogJsonBtn = document.getElementById('save-blog-json-btn');
+    if (saveBlogJsonBtn) {
+        saveBlogJsonBtn.addEventListener('click', () => {
+            // Strip out _mdContent before saving JSON
+            const cleanPosts = currentBlogPosts.map(p => {
+                const { _mdContent, ...rest } = p;
+                return rest;
+            });
+            const dataToSave = {
+                posts: cleanPosts,
+                categories: currentBlogCategories
+            };
+            downloadFile(JSON.stringify(dataToSave, null, 4), "blog_data.json");
+        });
+    }
+
+    // Download Markdown File
+    const saveBlogMdBtn = document.getElementById('save-blog-md-btn');
+    if (saveBlogMdBtn) {
+        saveBlogMdBtn.addEventListener('click', () => {
+            const content = document.getElementById('blog-content').value;
+            const id = document.getElementById('blog-id').value.trim();
+            if (!id || !content) {
+                alert("Please fill out the ID and Content to download the markdown file.");
+                return;
+            }
+            // Download as Markdown
+            const blob = new Blob([content], { type: "text/markdown" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = \`\${id}.md\`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+    }
+
     // Initial Render
     renderCertList();
 });
