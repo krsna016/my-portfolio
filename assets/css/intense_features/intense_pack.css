@@ -505,19 +505,19 @@
     border-radius: 14px !important;
     padding: 1.6rem 2rem !important;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 210, 255, 0.08) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.65) !important;
 }
 
 .exec-card:hover {
     transform: translateX(8px) !important;
-    background: rgba(24, 24, 38, 0.95) !important;
-    box-shadow: 0 15px 40px rgba(0, 210, 255, 0.22), 0 0 30px rgba(108, 92, 231, 0.25) !important;
+    background: rgba(22, 22, 34, 0.95) !important;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8) !important;
 }
 
 .exec-card:hover + .timeline-dot-connector,
 .timeline-item:hover .timeline-dot-connector {
-    background: #ff007f;
-    box-shadow: 0 0 18px #ff007f, 0 0 35px #ff007f;
+    background: #00d2ff;
+    box-shadow: 0 0 18px #00d2ff, 0 0 35px #00d2ff;
     transform: scale(1.25);
 }
 
@@ -565,11 +565,19 @@
 }
 
 .exec-company {
-    font-size: 1.35rem !important;
-    color: #fff !important;
+    font-size: 1.4rem !important;
+    color: #ffffff !important;
     margin: 0 !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.3px;
+    font-weight: 800 !important;
+    letter-spacing: 0.4px;
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.65), 0 0 22px rgba(0, 210, 255, 0.35), 0 0 35px rgba(108, 92, 231, 0.25) !important;
+    transition: all 0.3s ease !important;
+}
+
+.exec-card:hover .exec-company,
+.timeline-item:hover .exec-company {
+    color: #00ffff !important;
+    text-shadow: 0 0 15px #00ffff, 0 0 30px #00d2ff, 0 0 50px #6c5ce7, 0 0 75px #ff007f !important;
 }
 
 .exec-year {
