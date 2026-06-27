@@ -53,6 +53,7 @@
             <div class="drawing-controls" style="flex-wrap: wrap; gap: 1rem;">
                 <div class="control-group">
                     <a href="assets/docs/resume.pdf" download class="btn primary"><i class="fa-solid fa-download"></i> Download PDF</a>
+                    <button id="toggle-theme" class="btn secondary active-tool" title="Toggle Resume Dark/Light Mode"><i class="fa-solid fa-sun"></i> Light Mode</button>
                     <button id="toggle-pen" class="btn secondary"><i class="fa-solid fa-pen"></i> Pen</button>
                     <button id="toggle-highlighter" class="btn secondary"><i class="fa-solid fa-highlighter"></i>
                         Highlighter</button>
@@ -75,7 +76,7 @@
             <div id="resume-skeleton" class="resume-skeleton">
                 <div class="skeleton-shimmer"></div>
             </div>
-            <div id="ambient-container">
+            <div id="ambient-container" class="resume-dark-mode">
                 <!-- Canvas elements will be injected here by resume.js -->
             </div>
         </section>
