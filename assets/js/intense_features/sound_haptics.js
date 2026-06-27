@@ -59,6 +59,20 @@ window.CyberSound = (function() {
             setTimeout(() => playTone(300, 'sine', 0.05, 0.02), 15);
         },
         playBlip: function() { playTone(1200, 'sine', 0.1, 0.05); },
+        playType: function(e) {
+            if (!enabled) return;
+            if (e.key === 'Backspace') {
+                playTone(420, 'sawtooth', 0.02, 0.02);
+            } else if (e.key === 'Enter') {
+                playTone(850, 'sine', 0.05, 0.04);
+                setTimeout(() => playTone(400, 'triangle', 0.04, 0.02), 15);
+            } else if (e.key === ' ') {
+                playTone(320, 'sine', 0.04, 0.04);
+            } else if (e.key && e.key.length === 1) {
+                // Organic thock pitch variation for letter/digit keys
+                playTone(650 + Math.random() * 140, 'triangle', 0.02, 0.03);
+            }
+        },
         playSuccess: function() {
             if (!enabled) return;
             playTone(523.25, 'sine', 0.1, 0.05);
@@ -82,6 +96,12 @@ function initAudioHUD() {
     document.addEventListener('click', (e) => {
         if (window.CyberSound.isEnabled() && e.target.id !== 'hud-audio-toggle' && !e.target.closest('#hud-audio-toggle')) {
             window.CyberSound.playClick();
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (window.CyberSound.isEnabled()) {
+            window.CyberSound.playType(e);
         }
     });
 }
