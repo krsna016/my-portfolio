@@ -969,7 +969,7 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
     box-shadow: 0 0 12px rgba(0, 210, 255, 0.6) !important;
 }
 
-/* Remove solid borders and replace vertical section bar with horizontal bottom underline */
+/* Remove solid borders and vertical section bar */
 .games-page .pinned-heading,
 .certificates-page .pinned-heading {
     border: none !important;
@@ -977,24 +977,5 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
 
 .games-page .pinned-heading .section-title::after,
 .certificates-page .pinned-heading .section-title::after {
-    content: '' !important;
-    display: block !important;
-    position: absolute !important;
-    bottom: -10px !important;
-    top: auto !important;
-    right: 0 !important;
-    left: auto !important;
-    transform: none !important;
-    width: 60px !important;
-    height: 4px !important;
-    background: var(--primary-color) !important;
-    border-radius: 2px !important;
-}
-
-@media (max-width: 992px) {
-    .games-page .pinned-heading .section-title::after,
-    .certificates-page .pinned-heading .section-title::after {
-        right: auto !important;
-        left: 0 !important;
-    }
+    display: none !important;
 }
