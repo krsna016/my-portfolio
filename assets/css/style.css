@@ -2673,7 +2673,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
         min-height: 100vh !important;
         justify-content: center !important;
         align-items: center !important;
-        flex-direction: column-reverse !important;
+        flex-direction: column !important; /* Stack normally, text first */
         gap: 24px;
     }
     
@@ -2698,6 +2698,9 @@ input[type="range"]::-webkit-slider-thumb:hover {
         padding: 14px 24px !important;
         border-radius: 12px !important;
         font-size: 1.05rem !important;
+        background: rgba(255, 255, 255, 0.08) !important; /* Force visibility */
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        color: #fff !important;
     }
 
     /* Navbar & Mobile Menu */
@@ -2759,15 +2762,25 @@ input[type="range"]::-webkit-slider-thumb:hover {
     }
 
     .hamburger {
-        display: block !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 6px !important;
+        align-items: center !important;
+        justify-content: center !important;
         z-index: 1000 !important;
         padding: 12px !important; /* Larger touch target */
         margin-right: -12px !important;
         transition: transform 0.3s ease;
     }
     
+    .hamburger .line {
+        margin: 0 !important; /* Remove old margin to use flex gap */
+        width: 25px !important;
+        height: 3px !important;
+    }
+    
     .hamburger.active .line:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
+        transform: translateY(9px) rotate(45deg);
     }
     .hamburger.active .line:nth-child(2) {
         opacity: 0;
