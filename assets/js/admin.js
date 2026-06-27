@@ -677,7 +677,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Fetch markdown content
         try {
             const isLocal = window.location.protocol === 'file:';
-            const fetchUrl = isLocal ? post.file : `${post.file}?t=${Date.now()}`;
+            const absolutePath = post.file.startsWith('/') ? post.file : `/${post.file}`;
+            const fetchUrl = isLocal ? post.file : `${absolutePath}?t=${Date.now()}`;
             const mdRes = await fetch(fetchUrl);
             if (mdRes.ok) {
                 document.getElementById('blog-content').value = await mdRes.text();
