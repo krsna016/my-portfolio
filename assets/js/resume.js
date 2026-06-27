@@ -24,7 +24,8 @@ async function renderResume() {
         // Show skeleton
         if (skeleton) skeleton.classList.add('visible');
 
-        const loadingTask = pdfjsLib.getDocument(resumeBase64);
+        const pdfData = atob(resumeBase64);
+        const loadingTask = pdfjsLib.getDocument({ data: pdfData });
         const pdf = await loadingTask.promise;
 
         // Loop through all pages
