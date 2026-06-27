@@ -1,21 +1,59 @@
 {
-    "name": "Anurag Pareek Portfolio",
-    "short_name": "AP Portfolio",
-    "description": "Portfolio of Anurag Pareek, Data Analyst and Developer.",
-    "start_url": "/",
-    "display": "standalone",
-    "background_color": "#0f0c29",
-    "theme_color": "#0f0c29",
-    "icons": [
+  "name": "Anurag Pareek Portfolio",
+  "short_name": "AP Portfolio",
+  "description": "Portfolio of Anurag Pareek, Data Analyst and Developer.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f0c29",
+  "theme_color": "#0f0c29",
+  "icons": [
+    {
+      "src": "/assets/images/profile.webp",
+      "sizes": "192x192",
+      "type": "image/webp"
+    },
+    {
+      "src": "/assets/images/profile.webp",
+      "sizes": "512x512",
+      "type": "image/webp"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "View Resume",
+      "short_name": "Resume",
+      "description": "View Anurag's resume",
+      "url": "/resume.html",
+      "icons": [
         {
-            "src": "/assets/images/profile.webp",
-            "sizes": "192x192",
-            "type": "image/webp"
-        },
-        {
-            "src": "/assets/images/profile.webp",
-            "sizes": "512x512",
-            "type": "image/webp"
+          "src": "/assets/icons/icon-192x192.png",
+          "sizes": "192x192"
         }
-    ]
+      ]
+    },
+    {
+      "name": "Play Arcade",
+      "short_name": "Arcade",
+      "description": "Play interactive web games",
+      "url": "/arcade.html",
+      "icons": [
+        {
+          "src": "/assets/icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Read Blog",
+      "short_name": "Blog",
+      "description": "Read Anurag's latest tech articles",
+      "url": "/blog.html",
+      "icons": [
+        {
+          "src": "/assets/icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
 }
