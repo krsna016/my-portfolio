@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ap-portfolio-v3-god-mode';
+const CACHE_NAME = 'ap-portfolio-v4-god-mode';
 
 const PRECACHE_ASSETS = [
     '/',
@@ -15,6 +15,9 @@ const PRECACHE_ASSETS = [
     '/assets/js/particles.js',
     '/assets/js/intense_features/terminal.js',
     '/assets/js/intense_features/sound_haptics.js',
+    '/assets/js/intense_features/konami_gravity.js',
+    '/assets/js/resume.js',
+    '/assets/js/resume_data.js',
     '/manifest.json'
 ];
 
@@ -60,7 +63,14 @@ self.addEventListener('fetch', event => {
             });
 
             // Return cached immediately if available, otherwise wait for network
-            return cachedResponse || fetchPromise.then(res => res ? res : caches.match('/index.html'));
+            return cachedResponse || fetchPromise.then(res => {
+                if (res) return res;
+                // Only fallback to index.html for navigation requests
+                if (event.request.mode === 'navigate') {
+                    return caches.match('/index.html');
+                }
+                return new Response('Network error happened', { status: 408, headers: { 'Content-Type': 'text/plain' } });
+            });
         })
     );
 });
