@@ -131,25 +131,25 @@
 }
 
 .ide-run-btn {
-    background: linear-gradient(135deg, #00d2ff, #6c5ce7);
+    background: #00d2ff;
     border: none;
-    color: #fff;
+    color: #0f0c29;
     padding: 5px 14px;
     border-radius: 6px;
     font-size: 0.8rem;
-    font-weight: bold;
+    font-weight: 800;
     cursor: pointer;
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
     gap: 6px;
-    box-shadow: 0 0 12px rgba(0, 210, 255, 0.35);
+    box-shadow: 0 0 14px rgba(0, 210, 255, 0.45);
 }
 
 .ide-run-btn:hover {
     transform: scale(1.05);
-    background: linear-gradient(135deg, #6c5ce7, #ff007f);
-    box-shadow: 0 0 18px rgba(255, 0, 127, 0.6);
+    background: #1ae0ff;
+    box-shadow: 0 0 22px rgba(0, 210, 255, 0.8);
 }
 
 .ide-code-area {
