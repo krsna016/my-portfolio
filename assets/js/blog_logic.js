@@ -584,16 +584,35 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     function showListView() {
-        postReader.style.display = 'none';
-        postsList.style.display = 'grid'; // Restore grid
+        postReader.style.setProperty('display', 'none', 'important');
+        postsList.style.setProperty('display', 'grid', 'important');
+        
+        const categoryList = document.getElementById('category-list');
+        if (categoryList) categoryList.style.removeProperty('display');
+        
+        const introText = document.querySelector('.games-intro');
+        if (introText) introText.style.removeProperty('display');
+
+        const tabButtons = document.querySelector('.tab-buttons');
+        if (tabButtons) tabButtons.style.removeProperty('display');
+
         document.title = "Articles & Blog | Anurag Pareek";
         const scrollBar = document.getElementById('neon-scroll-progress');
         if (scrollBar) scrollBar.style.opacity = '0';
     }
 
     function showReaderView() {
-        postsList.style.display = 'none';
-        postReader.style.display = 'block';
+        postsList.style.setProperty('display', 'none', 'important');
+        postReader.style.setProperty('display', 'block', 'important');
+
+        const categoryList = document.getElementById('category-list');
+        if (categoryList) categoryList.style.setProperty('display', 'none', 'important');
+
+        const introText = document.querySelector('.games-intro');
+        if (introText) introText.style.setProperty('display', 'none', 'important');
+
+        const tabButtons = document.querySelector('.tab-buttons');
+        if (tabButtons) tabButtons.style.setProperty('display', 'none', 'important');
     }
 
     backButton.addEventListener('click', () => {
