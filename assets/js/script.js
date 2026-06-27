@@ -378,3 +378,128 @@ document.addEventListener('DOMContentLoaded', assignDockActiveLink);
 window.addEventListener('load', assignDockActiveLink);
 
 
+
+// ==========================================
+// 🚀 THE INVISIBLE LAYER (INTENSE METADATA HACKS)
+// ==========================================
+
+// 1. The "Dev-to-Dev" Handshake (Console Easter Egg)
+(function() {
+    const asciiArt = `
+    █████╗ ███╗   ██╗██╗   ██╗██████╗  █████╗  ██████╗
+   ██╔══██╗████╗  ██║██║   ██║██╔══██╗██╔══██╗██╔════╝
+   ███████║██╔██╗ ██║██║   ██║██████╔╝███████║██║  ███╗
+   ██╔══██║██║╚██╗██║██║   ██║██╔══██╗██╔══██║██║   ██║
+   ██║  ██║██║ ╚████║╚██████╔╝██║  ██║██║  ██║╚██████╔╝
+   ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝
+    `;
+    console.log(`%c${asciiArt}`, "color: #00d2ff; font-weight: bold; text-shadow: 0 0 10px #00d2ff;");
+    console.log("%c>>> SYSTEM BREACH DETECTED... Just kidding.", "color: #ff0055; font-size: 14px; font-weight: bold;");
+    console.log("%c>>> If you are inspecting this, you should probably hire me.", "color: #2ed573; font-size: 16px; font-weight: bold;");
+    console.log("%c>>> Contact: anuragpareek016@gmail.com", "color: #fff; font-size: 12px; background: #0f0c29; padding: 4px; border-radius: 4px;");
+})();
+
+// 2. Predictive Prefetching (Zero-latency Page Loads)
+(function() {
+    const prefetchedUrls = new Set();
+    document.addEventListener('mouseover', (e) => {
+        const link = e.target.closest('a');
+        if (link && link.href && link.href.startsWith(window.location.origin)) {
+            const url = link.href;
+            if (!prefetchedUrls.has(url)) {
+                // Add a tiny delay to ensure intentional hover (50ms)
+                link.prefetchTimeout = setTimeout(() => {
+                    const prefetchTag = document.createElement('link');
+                    prefetchTag.rel = 'prefetch';
+                    prefetchTag.href = url;
+                    document.head.appendChild(prefetchTag);
+                    prefetchedUrls.add(url);
+                    // console.log('Predictively prefetched:', url);
+                }, 50);
+            }
+        }
+    });
+    document.addEventListener('mouseout', (e) => {
+        const link = e.target.closest('a');
+        if (link && link.prefetchTimeout) {
+            clearTimeout(link.prefetchTimeout);
+        }
+    });
+})();
+
+// 3. Reactive Theme Color (OS Meta Integration)
+(function() {
+    // Create theme-color meta if it doesn't exist
+    let themeMeta = document.querySelector('meta[name="theme-color"]');
+    if (!themeMeta) {
+        themeMeta = document.createElement('meta');
+        themeMeta.name = "theme-color";
+        document.head.appendChild(themeMeta);
+    }
+    
+    const updateThemeColor = () => {
+        // Change color based on scroll depth or page type
+        const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) || 0;
+        // Interpolate between a dark purple and an electric blue
+        // Dark purple: #0f0c29 (15, 12, 41)
+        // Electric blue: #00d2ff (0, 210, 255)
+        
+        // For portfolio, let's keep it mostly dark but shift slightly
+        const r = Math.round(15 - (15 * scrollPercent));
+        const g = Math.round(12 + (198 * scrollPercent));
+        const b = Math.round(41 + (214 * scrollPercent));
+        
+        const hex = `#${r.toString(16).padStart(2,'0')}${g.toString(16).padStart(2,'0')}${b.toString(16).padStart(2,'0')}`;
+        themeMeta.setAttribute('content', hex);
+    };
+    
+    window.addEventListener('scroll', updateThemeColor, { passive: true });
+    updateThemeColor();
+})();
+
+// 4. vCard Injection (Instant Phone Contact)
+window.downloadVCard = function() {
+    const vcard = `BEGIN:VCARD
+VERSION:3.0
+N:Pareek;Anurag;;;
+FN:Anurag Pareek
+TITLE:Data Analyst & Developer
+EMAIL:anuragpareek016@gmail.com
+URL:https://krsna016.github.io/my-portfolio
+NOTE:Ready to Innovate - Python, SQL, JS
+END:VCARD`;
+    
+    const blob = new Blob([vcard], { type: 'text/vcard' });
+    const url = URL.createObjectURL(blob);
+    
+    const a = document.createElement('a');
+    a.style.display = 'none';
+    a.href = url;
+    a.download = 'Anurag_Pareek.vcf';
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+};
+
+// 5. Dynamic JSON-LD Knowledge Graph (Injected on Load)
+(function() {
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Anurag Pareek",
+        "jobTitle": "Data Analyst & Developer",
+        "url": window.location.origin,
+        "email": "anuragpareek016@gmail.com",
+        "sameAs": [
+            "https://github.com/krsna016",
+            "https://linkedin.com/in/anurag-pareek"
+        ],
+        "knowsAbout": ["Python", "SQL", "Data Analysis", "Machine Learning", "Web Development"]
+    };
+    
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify(schema);
+    document.head.appendChild(script);
+})();
