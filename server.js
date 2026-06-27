@@ -286,6 +286,35 @@ app.delete('/api/posts/:id', authenticateToken, async (req, res) => {
     res.send("Deleted");
 });
 
+// GitHub Diagnostic Endpoint
+app.get('/api/github-test', async (req, res) => {
+    const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+    const GITHUB_REPO = process.env.GITHUB_REPO;
+    
+    if (!GITHUB_TOKEN) return res.send("❌ Error: GITHUB_TOKEN is not set in Railway.");
+    if (!GITHUB_REPO) return res.send("❌ Error: GITHUB_REPO is not set in Railway.");
+    
+    try {
+        const url = `https://api.github.com/repos/${GITHUB_REPO}`;
+        const response = await fetch(url, {
+            headers: {
+                'Authorization': `Bearer ${GITHUB_TOKEN}`,
+                'Accept': 'application/vnd.github.v3+json',
+                'User-Agent': 'Live-CMS-Robot'
+            }
+        });
+        
+        const data = await response.json();
+        if (response.ok) {
+            res.send(`✅ Success! Connected to repo: ${data.full_name}. The token has permissions: ${response.headers.get('x-oauth-scopes')}`);
+        } else {
+            res.send(`❌ GitHub API Error (${response.status}): ${data.message}. Make sure your repo is formatted as "username/repo" and the token has "repo" scope.`);
+        }
+    } catch (e) {
+        res.send(`❌ Fetch Error: ${e.message}`);
+    }
+});
+
 // Fallback to index.html for other routes
 app.use((req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
