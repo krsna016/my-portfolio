@@ -2087,15 +2087,28 @@ footer {
 
 /* Tool Buttons */
 .drawing-controls .btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
+    padding: 0.5rem 1rem !important;
+    font-size: 0.9rem !important;
     min-width: auto;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.5rem !important;
+    height: 38px !important;
+    line-height: 1 !important;
+    transform: none !important;
+}
+
+.drawing-controls .btn:hover {
+    transform: translateY(0px) !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
 }
 
 .drawing-controls .btn.active-tool {
-    background: var(--primary-color);
-    box-shadow: 0 0 15px var(--primary-color);
-    border-color: var(--primary-color);
+    background: var(--primary-color) !important;
+    box-shadow: 0 0 15px var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
 }
 
 /* Color Picker */
