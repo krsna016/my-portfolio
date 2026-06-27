@@ -10,14 +10,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (sessionStorage.getItem('adminLoggedIn') === 'true') {
         loginOverlay.style.display = 'none';
     }
+    const biometricBtn = document.getElementById('biometric-btn');
 
-    // Login Form Submit
+    // Login Form Submit (Fallback)
     if (loginForm) {
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const password = passwordInput.value;
-
-            // HARDCODED PASSWORD - Change this if needed
             if (password === 'admin123') {
                 sessionStorage.setItem('adminLoggedIn', 'true');
                 loginOverlay.style.display = 'none';
@@ -27,6 +26,46 @@ document.addEventListener('DOMContentLoaded', () => {
                 loginError.style.display = 'block';
                 passwordInput.classList.add('shake');
                 setTimeout(() => passwordInput.classList.remove('shake'), 500);
+            }
+        });
+    }
+
+    // Biometric WebAuthn Logic
+    if (biometricBtn) {
+        biometricBtn.addEventListener('click', async () => {
+            if (!window.PublicKeyCredential) {
+                alert("Biometrics not supported on this device/browser.");
+                return;
+            }
+            try {
+                // Generate a dummy challenge to trigger native OS Biometric prompt
+                const challenge = new Uint8Array(32);
+                window.crypto.getRandomValues(challenge);
+                
+                const credential = await navigator.credentials.create({
+                    publicKey: {
+                        challenge: challenge,
+                        rp: { name: "Portfolio Admin", id: window.location.hostname },
+                        user: {
+                            id: new Uint8Array(16),
+                            name: "admin",
+                            displayName: "Administrator"
+                        },
+                        pubKeyCredParams: [{ type: "public-key", alg: -7 }],
+                        authenticatorSelection: { authenticatorAttachment: "platform" },
+                        timeout: 60000,
+                    }
+                });
+
+                if (credential) {
+                    sessionStorage.setItem('adminLoggedIn', 'true');
+                    loginOverlay.style.display = 'none';
+                    loginError.style.display = 'none';
+                }
+            } catch (err) {
+                console.error(err);
+                loginError.textContent = "Biometric Authentication Failed or Cancelled.";
+                loginError.style.display = 'block';
             }
         });
     }
