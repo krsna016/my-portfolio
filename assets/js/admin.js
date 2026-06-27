@@ -639,7 +639,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Fetch markdown content
         try {
-            const mdRes = await fetch(post.file + "?t=" + Date.now());
+            const mdRes = await fetch(post.file);
             if (mdRes.ok) {
                 document.getElementById('blog-content').value = await mdRes.text();
             } else {
