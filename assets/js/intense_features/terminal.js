@@ -61,15 +61,15 @@ function initQuakeTerm() {
         }
     });
 
-    // Add trigger link to footer
-    const footer = document.querySelector('footer .footer-socials');
-    if (footer) {
-        const trig = document.createElement('a');
-        trig.href = 'javascript:void(0)';
-        trig.title = 'Launch Hacker CLI (Press ~)';
-        trig.innerHTML = `<i class="fa-solid fa-code" style="color: #00d2ff; filter: drop-shadow(0 0 5px rgba(0, 210, 255, 0.6));"></i>`;
+    // Add floating fixed HUD trigger pill to bottom right
+    if (!document.getElementById('hud-terminal-toggle')) {
+        const trig = document.createElement('button');
+        trig.id = 'hud-terminal-toggle';
+        trig.className = 'hud-terminal-pill';
+        trig.title = 'Launch Quake Root CLI (Press ~)';
+        trig.innerHTML = `<i class="fa-solid fa-terminal" style="color: #00d2ff;"></i> CLI: ~`;
         trig.onclick = toggleTerm;
-        footer.appendChild(trig);
+        document.body.appendChild(trig);
     }
 
     function printOut(html) {
