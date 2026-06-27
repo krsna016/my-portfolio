@@ -377,41 +377,45 @@
 .dsa-bar.sorted { background: #2ed573; }
 
 /* --- 6. Tactile Cyber-Sound HUD Toggle --- */
-.hud-audio-pill {
+/* --- 6. Tactile Cyber-Sound & Quake CLI HUD Pills --- */
+.hud-audio-pill, .hud-terminal-pill {
     position: fixed;
     bottom: 25px;
-    left: 25px;
-    background: rgba(15, 15, 22, 0.9);
-    border: 1px solid rgba(0, 210, 255, 0.3);
+    background: rgba(15, 15, 22, 0.92);
+    border: none !important;
     color: #c8d6e5;
     padding: 8px 18px;
     border-radius: 30px;
     font-size: 0.85rem;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
-    z-index: 99999;
+    z-index: 999999;
     display: flex;
     align-items: center;
     gap: 8px;
     backdrop-filter: blur(15px);
-    transition: all 0.2s;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 16px rgba(0, 210, 255, 0.12);
 }
 
-.hud-audio-pill:hover {
-    border-color: #00d2ff;
+.hud-audio-pill { left: 25px; }
+.hud-terminal-pill { right: 25px; font-family: 'Courier New', Courier, monospace; color: #00d2ff; }
+
+.hud-audio-pill:hover, .hud-terminal-pill:hover {
     color: #fff;
-    transform: scale(1.05);
+    transform: translateY(-4px) scale(1.03);
+    background: rgba(24, 24, 38, 0.98);
+    box-shadow: 0 15px 40px rgba(0, 210, 255, 0.25), 0 0 30px rgba(108, 92, 231, 0.3);
 }
 
 .hud-audio-pill.enabled {
-    border-color: #2ed573;
     color: #2ed573;
-    box-shadow: 0 0 15px rgba(46, 213, 115, 0.35);
+    box-shadow: 0 0 20px rgba(46, 213, 115, 0.45), 0 10px 30px rgba(0, 0, 0, 0.6);
 }
 
 @media (max-width: 768px) {
-    .hud-audio-pill { bottom: 15px; left: 15px; padding: 6px 12px; font-size: 0.75rem; }
+    .hud-audio-pill { bottom: 15px; left: 15px; padding: 6px 14px; font-size: 0.75rem; }
+    .hud-terminal-pill { bottom: 15px; right: 15px; padding: 6px 14px; font-size: 0.75rem; }
     .ai-twin-window { width: 300px; height: 400px; bottom: 70px; right: -10px; }
 }
 
