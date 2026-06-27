@@ -497,23 +497,26 @@
     background: linear-gradient(90deg, #00d2ff, rgba(108, 92, 231, 0.4));
 }
 
-/* Remove solid borders from all cards across the site, keeping only ambient cyberpunk glow */
-.glass, .exec-card, .project-card, .about-card, .timeline-content, .card {
-    border: none !important;
+/* Universal Dark Obsidian Cards & Minimalistic Natural Drop-Shadows */
+.glass, .exec-card, .project-card, .about-card, .timeline-content, .card, .cert-card, .game-card, .article-card, .contact-container, .dsa-container {
+    background: rgba(18, 18, 28, 0.9) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6) !important;
 }
 
 .exec-card {
-    background: rgba(18, 18, 28, 0.88) !important;
-    border-radius: 14px !important;
     padding: 1.6rem 2rem !important;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.65) !important;
+}
+
+.glass:hover, .exec-card:hover, .project-card:hover, .about-card:hover, .timeline-content:hover, .card:hover, .cert-card:hover, .game-card:hover, .article-card:hover, .contact-container:hover {
+    background: rgba(22, 22, 34, 0.96) !important;
+    box-shadow: 0 16px 42px rgba(0, 0, 0, 0.78) !important;
 }
 
 .exec-card:hover {
     transform: translateX(8px) !important;
-    background: rgba(22, 22, 34, 0.95) !important;
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8) !important;
 }
 
 .exec-card:hover + .timeline-dot-connector,
@@ -619,4 +622,9 @@
 .exec-tag:hover {
     background: rgba(0, 210, 255, 0.15);
     transform: translateY(-2px);
+}
+
+/* --- 7. Minimalistic Luxury Glow & Shadow Overrides --- */
+.profile-img, .floating-wrapper, .tool-btn.active, .btn:hover, .exec-tag {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45) !important;
 }
