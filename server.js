@@ -143,6 +143,58 @@ function authenticateToken(req, res, next) {
     });
 }
 
+// --- GitHub Auto-Commit Utility ---
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const GITHUB_REPO = process.env.GITHUB_REPO;
+const GITHUB_BRANCH = process.env.GITHUB_BRANCH || "master";
+
+async function pushToGitHub(filePath, contentStr, commitMessage, isDelete = false) {
+    if (!GITHUB_TOKEN || !GITHUB_REPO) return; // Silent if not configured
+
+    try {
+        const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${filePath}`;
+        
+        // 1. Get file SHA if it exists
+        let sha = null;
+        const getRes = await fetch(url, {
+            headers: {
+                'Authorization': `Bearer ${GITHUB_TOKEN}`,
+                'Accept': 'application/vnd.github.v3+json',
+                'User-Agent': 'Live-CMS-Robot'
+            }
+        });
+        
+        if (getRes.ok) {
+            const data = await getRes.json();
+            sha = data.sha;
+        }
+
+        if (isDelete && !sha) return; // Nothing to delete
+
+        // 2. Commit the file
+        const method = isDelete ? 'DELETE' : 'PUT';
+        const body = { message: commitMessage, branch: GITHUB_BRANCH };
+        
+        if (sha) body.sha = sha;
+        if (!isDelete) body.content = Buffer.from(contentStr).toString('base64');
+
+        const commitRes = await fetch(url, {
+            method: method,
+            headers: {
+                'Authorization': `Bearer ${GITHUB_TOKEN}`,
+                'Accept': 'application/vnd.github.v3+json',
+                'User-Agent': 'Live-CMS-Robot'
+            },
+            body: JSON.stringify(body)
+        });
+
+        if (!commitRes.ok) console.error("GitHub API Commit Error:", await commitRes.text());
+        else console.log(`Successfully synced ${filePath} to GitHub`);
+    } catch (e) {
+        console.error("GitHub Sync Error:", e);
+    }
+}
+
 // --- API Endpoints ---
 
 // Login Endpoint
@@ -167,7 +219,7 @@ app.get('/api/data', (req, res) => {
 });
 
 // Create or update a post (Protected)
-app.post('/api/posts', authenticateToken, (req, res) => {
+app.post('/api/posts', authenticateToken, async (req, res) => {
     const { id, title, category, summary, content } = req.body;
     
     if (!id || !title || !content) {
@@ -201,13 +253,18 @@ app.post('/api/posts', authenticateToken, (req, res) => {
         dataObj.categories.push(category);
     }
 
-    fs.writeFileSync(DATA_FILE, JSON.stringify(dataObj, null, 4), 'utf8');
+    const jsonData = JSON.stringify(dataObj, null, 4);
+    fs.writeFileSync(DATA_FILE, jsonData, 'utf8');
     
+    // Push changes to GitHub asynchronously
+    pushToGitHub(`blogs/${id}.md`, content, `cms: add/update blog post ${id}`);
+    pushToGitHub(`assets/js/blog_data.json`, jsonData, `cms: update blog config for ${id}`);
+
     res.send("Success");
 });
 
 // Delete a post (Protected)
-app.delete('/api/posts/:id', authenticateToken, (req, res) => {
+app.delete('/api/posts/:id', authenticateToken, async (req, res) => {
     const { id } = req.params;
     
     const mdFilePath = path.join(BLOGS_DIR, `${id}.md`);
@@ -219,7 +276,12 @@ app.delete('/api/posts/:id', authenticateToken, (req, res) => {
     blogDataCache.posts = blogDataCache.posts.filter(p => p.id !== id);
     
     // Write to disk
-    fs.writeFileSync(DATA_FILE, JSON.stringify(blogDataCache, null, 4), 'utf8');
+    const jsonData = JSON.stringify(blogDataCache, null, 4);
+    fs.writeFileSync(DATA_FILE, jsonData, 'utf8');
+
+    // Push deletions to GitHub asynchronously
+    pushToGitHub(`blogs/${id}.md`, "", `cms: delete blog post ${id}`, true);
+    pushToGitHub(`assets/js/blog_data.json`, jsonData, `cms: update blog config after deleting ${id}`);
 
     res.send("Deleted");
 });
