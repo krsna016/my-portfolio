@@ -1,5 +1,14 @@
 {
-    "posts": [],
+    "posts": [
+        {
+            "id": "blog-1",
+            "title": "DEMO",
+            "category": "DSA",
+            "date": "2026-06-27",
+            "summary": "DEMO",
+            "file": "blogs/blog-1.md"
+        }
+    ],
     "categories": [
         "DSA",
         "Algorithms",
