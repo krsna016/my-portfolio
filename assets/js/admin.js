@@ -548,20 +548,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const blogEditIndexInput = document.getElementById('blog-edit-index');
     const clearBlogFormBtn = document.getElementById('clear-blog-form');
 
-    // Fetch existing blog data
-    fetch('assets/js/blog_data.json')
-        .then(res => res.json())
-        .then(data => {
-            currentBlogPosts = data.posts || [];
-            currentBlogCategories = data.categories || [];
-            renderBlogList();
-        })
-        .catch(err => {
-            console.error("Failed to load blog data:", err);
-            currentBlogPosts = [];
-            currentBlogCategories = [];
-            renderBlogList();
-        });
+    let currentBlogPosts = typeof blogData !== 'undefined' && blogData.posts ? [...blogData.posts] : [];
+    let currentBlogCategories = typeof blogData !== 'undefined' && blogData.categories ? [...blogData.categories] : [];
+    renderBlogList();
 
     function renderBlogList() {
         if (!blogList) return;
@@ -732,7 +721,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 posts: cleanPosts,
                 categories: currentBlogCategories
             };
-            downloadFile(JSON.stringify(dataToSave, null, 4), "blog_data.json");
+            downloadFile("const blogData = " + JSON.stringify(dataToSave, null, 4) + ";", "blog_data.js");
         });
     }
 

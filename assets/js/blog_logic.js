@@ -300,21 +300,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
-    // Fetch blog data
     try {
-        const res = await fetch('/api/data');
-        if (!res.ok) {
-            const fallbackRes = await fetch('assets/js/blog_data.json');
-            const data = await fallbackRes.json();
-            blogPosts = data.posts;
-            blogCategories = data.categories;
-        } else {
-            const data = await res.json();
-            blogPosts = data.posts;
-            blogCategories = data.categories;
+        if (typeof blogData !== 'undefined') {
+            blogPosts = blogData.posts || [];
+            blogCategories = blogData.categories || [];
         }
     } catch(e) {
-        console.error("Failed to fetch blog data", e);
+        console.error("Failed to load blog data", e);
     }
 
     updateAdminUI();

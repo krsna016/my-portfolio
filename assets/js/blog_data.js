@@ -1,4 +1,4 @@
-{
+const blogData = {
     "posts": [
         {
             "id": "demo-1",
@@ -15,4 +15,4 @@
         "System Design",
         "Web Dev"
     ]
-}
+};
