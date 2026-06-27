@@ -252,6 +252,7 @@
                     <button class="btn primary tab-btn active" data-tab="certificates">Certificates</button>
                     <button class="btn secondary tab-btn" data-tab="skills">Technical Skills</button>
                     <button class="btn secondary tab-btn" data-tab="projects">Key Projects</button>
+                    <button class="btn secondary tab-btn" data-tab="blog">Blog Posts</button>
                 </div>
             </div>
             <div>
@@ -411,6 +412,72 @@
             <div class="preview-panel">
                 <h3 style="margin-bottom: 1.5rem;">Current Projects</h3>
                 <div class="cert-list" id="project-list">
+                    <!-- List items injected by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOG POSTS TAB -->
+        <div id="tab-blog" class="admin-grid tab-content" style="display: none;">
+            <!-- Editor Panel -->
+            <div class="editor-panel">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <h3 style="margin: 0;">Add / Edit Blog Post</h3>
+                    <div style="display: flex; gap: 10px;">
+                        <button id="save-blog-json-btn" class="btn primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">
+                            <i class="fa-solid fa-download"></i> Config
+                        </button>
+                        <button id="save-blog-md-btn" class="btn primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">
+                            <i class="fa-solid fa-download"></i> Markdown
+                        </button>
+                    </div>
+                </div>
+                <form id="blog-form">
+                    <input type="hidden" id="blog-edit-index" value="-1">
+
+                    <div class="form-group">
+                        <label>Slug / ID</label>
+                        <input type="text" id="blog-id" required placeholder="e.g. blog-1">
+                        <small style="color: #888; display: block; margin-top: 5px;">
+                            * This will be the filename (e.g., blogs/blog-1.md).
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="blog-title" required placeholder="Post Title">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Category</label>
+                        <input type="text" id="blog-category" required placeholder="e.g. DSA">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Summary</label>
+                        <textarea id="blog-summary" rows="2"
+                            placeholder="Short summary..."
+                            style="width: 100%; padding: 0.8rem; background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; color: #fff; font-family: var(--font-main);"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Content (Markdown)</label>
+                        <textarea id="blog-content" rows="10" required
+                            placeholder="Write your markdown here..."
+                            style="width: 100%; padding: 0.8rem; background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; color: #fff; font-family: 'Fira Code', monospace;"></textarea>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                        <button type="submit" class="btn primary" style="flex: 1;">Save to List</button>
+                        <button type="button" id="clear-blog-form" class="btn secondary">Clear</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- List Panel -->
+            <div class="preview-panel">
+                <h3 style="margin-bottom: 1.5rem;">Current Blog Posts</h3>
+                <div class="cert-list" id="blog-list">
                     <!-- List items injected by JS -->
                 </div>
             </div>
