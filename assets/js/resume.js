@@ -24,7 +24,11 @@ async function renderResume() {
         // Show skeleton
         if (skeleton) skeleton.classList.add('visible');
 
-        const pdfData = atob(resumeBase64);
+        let base64String = resumeBase64;
+        if (base64String.startsWith('data:')) {
+            base64String = base64String.substring(base64String.indexOf(',') + 1);
+        }
+        const pdfData = atob(base64String);
         const loadingTask = pdfjsLib.getDocument({ data: pdfData });
         const pdf = await loadingTask.promise;
 
