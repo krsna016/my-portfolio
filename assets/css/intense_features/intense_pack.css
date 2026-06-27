@@ -929,3 +929,94 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
     color: #000 !important;
     box-shadow: 0 0 18px rgba(0, 210, 255, 0.65) !important;
 }
+
+/* Compact Executive Certifications Grid & Cards */
+.certificates-grid {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 1.8rem !important;
+    width: 100% !important;
+}
+
+.certificate-card {
+    width: 270px !important;
+    min-height: 240px !important;
+    padding: 1.6rem 1.2rem !important;
+    border-radius: 18px !important;
+    background: linear-gradient(145deg, rgba(24, 24, 38, 0.9), rgba(12, 12, 20, 0.96)) !important;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    text-align: center !important;
+}
+
+.certificate-card:hover {
+    transform: translateY(-8px) scale(1.02) !important;
+    box-shadow: 0 18px 40px rgba(0, 210, 255, 0.22) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.cert-icon-container {
+    width: auto !important;
+    height: auto !important;
+    background: transparent !important;
+    margin-bottom: 0.8rem !important;
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.cert-icon-container i {
+    font-size: 3.2rem !important;
+    filter: drop-shadow(0 4px 12px rgba(0, 210, 255, 0.3)) !important;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.certificate-card:hover .cert-icon-container i {
+    transform: scale(1.15) rotate(6deg) !important;
+    filter: drop-shadow(0 6px 18px rgba(0, 210, 255, 0.6)) !important;
+}
+
+.cert-info {
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+}
+
+.cert-info h3 {
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 1.2rem !important;
+    color: #fff !important;
+    line-height: 1.35 !important;
+}
+
+.cert-link {
+    margin-top: auto !important;
+    padding: 0.45rem 1.2rem !important;
+    background: rgba(0, 210, 255, 0.12) !important;
+    color: var(--primary-color) !important;
+    border: 1px solid rgba(0, 210, 255, 0.35) !important;
+    border-radius: 50px !important;
+    font-weight: 600 !important;
+    font-size: 0.82rem !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+}
+
+.certificate-card:hover .cert-link {
+    background: var(--primary-color) !important;
+    color: #000 !important;
+    box-shadow: 0 0 16px rgba(0, 210, 255, 0.65) !important;
+}
