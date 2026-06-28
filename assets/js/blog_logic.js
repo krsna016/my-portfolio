@@ -301,7 +301,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     try {
-        if (typeof blogData !== 'undefined') {
+        let res = await fetch('/api/data?t=' + Date.now()).catch(() => null);
+        if (!res || !res.ok) {
+            res = await fetch('assets/js/blog_data.json?t=' + Date.now());
+        }
+        if (res && res.ok) {
+            const data = await res.json();
+            blogPosts = data.posts || [];
+            blogCategories = data.categories || [];
+        } else if (typeof blogData !== 'undefined') {
             blogPosts = blogData.posts || [];
             blogCategories = blogData.categories || [];
         }
