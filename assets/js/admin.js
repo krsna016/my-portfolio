@@ -548,9 +548,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const blogEditIndexInput = document.getElementById('blog-edit-index');
     const clearBlogFormBtn = document.getElementById('clear-blog-form');
 
-    let currentBlogPosts = typeof blogData !== 'undefined' && blogData.posts ? [...blogData.posts] : [];
-    let currentBlogCategories = typeof blogData !== 'undefined' && blogData.categories ? [...blogData.categories] : [];
-    renderBlogList();
+    // Async data loader for admin
+    async function loadAdminBlogData() {
+        try {
+            let res = await fetch('/api/data?t=' + Date.now()).catch(() => null);
+            if (!res || !res.ok) {
+                res = await fetch('assets/js/blog_data.json?t=' + Date.now());
+            }
+            if (res && res.ok) {
+                const data = await res.json();
+                currentBlogPosts = data.posts || [];
+                currentBlogCategories = data.categories || [];
+            } else if (typeof blogData !== 'undefined') {
+                currentBlogPosts = blogData.posts ? [...blogData.posts] : [];
+                currentBlogCategories = blogData.categories ? [...blogData.categories] : [];
+            }
+        } catch(e) {
+            console.error(e);
+        }
+        renderBlogList();
+    }
+    loadAdminBlogData();
 
     function renderBlogList() {
         if (!blogList) return;
