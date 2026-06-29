@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ap-portfolio-v20-god-mode';
+const CACHE_NAME = 'ap-portfolio-v21-god-mode';
 
 const PRECACHE_ASSETS = [
     '/',
@@ -41,15 +41,34 @@ self.addEventListener('activate', event => {
     );
 });
 
-// Stale-While-Revalidate Strategy
+// Caching Strategy
 self.addEventListener('fetch', event => {
     if (event.request.method !== 'GET') return;
     if (event.request.url.includes('/api/')) return;
 
+    const url = event.request.url;
+    const isDynamicContent = url.endsWith('.json') || url.endsWith('.md') || url.includes('/blogs/');
+
+    if (isDynamicContent) {
+        // Network-First for blogs/data (forces latest version, falls back to offline cache)
+        event.respondWith(
+            fetch(event.request).then(networkResponse => {
+                if (networkResponse && networkResponse.status === 200) {
+                    const responseClone = networkResponse.clone();
+                    caches.open(CACHE_NAME).then(cache => cache.put(event.request, responseClone));
+                }
+                return networkResponse;
+            }).catch(() => {
+                return caches.match(event.request);
+            })
+        );
+        return;
+    }
+
+    // Stale-While-Revalidate for standard static assets (CSS, JS, Images)
     event.respondWith(
         caches.match(event.request).then(cachedResponse => {
             const fetchPromise = fetch(event.request).then(networkResponse => {
-                // Only cache successful, basic/cors GET requests
                 if (networkResponse && networkResponse.status === 200 && (networkResponse.type === 'basic' || networkResponse.type === 'cors')) {
                     const responseClone = networkResponse.clone();
                     caches.open(CACHE_NAME).then(cache => {
@@ -58,13 +77,11 @@ self.addEventListener('fetch', event => {
                 }
                 return networkResponse;
             }).catch(() => {
-                // Ignore network errors (offline)
+                // Offline fallback
             });
 
-            // Return cached immediately if available, otherwise wait for network
             return cachedResponse || fetchPromise.then(res => {
                 if (res) return res;
-                // Only fallback to index.html for navigation requests
                 if (event.request.mode === 'navigate') {
                     return caches.match('/index.html');
                 }
