@@ -46,8 +46,8 @@ loadBlogDataCache();
 
 // Smart Caching Strategy for Maximum Performance (Must be before send)
 app.use((req, res, next) => {
-    // Prevent caching for HTML pages and API routes to ensure fresh content
-    if (req.path.endsWith('.html') || req.path === '/' || req.path.startsWith('/api/')) {
+    // Prevent caching for HTML pages, API routes, and Blog Data to ensure fresh content
+    if (req.path.endsWith('.html') || req.path === '/' || req.path.startsWith('/api/') || req.path.endsWith('.md') || req.path.endsWith('.json')) {
         res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
         res.setHeader('Pragma', 'no-cache');
         res.setHeader('Expires', '0');
