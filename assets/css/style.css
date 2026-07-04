@@ -1360,12 +1360,15 @@ footer {
 }
 
 .contact-form input,
-.contact-form textarea {
+.contact-form textarea,
+.form-group input,
+.form-group select,
+.form-group textarea,
+.login-box input {
     width: 100%;
     padding: 1rem;
     background: rgba(255, 255, 255, 0.05);
     border: none;
-    /* Removed border */
     border-radius: 8px;
     color: var(--text-color);
     font-family: var(--font-main);
@@ -1374,7 +1377,11 @@ footer {
 }
 
 .contact-form input:focus,
-.contact-form textarea:focus {
+.contact-form textarea:focus,
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus,
+.login-box input:focus {
     outline: none;
     background: rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 15px rgba(108, 99, 255, 0.3);

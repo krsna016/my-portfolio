@@ -658,7 +658,7 @@ svg[class*="icon"]:hover path {
     fill: #FFFFFF !important;
 }
 /* GLOBAL BORDER REMOVAL CATCH-ALL */
-.glass, .card, .exec-card, .project-card, .cert-card, .game-card, .article-card, .resume-card, .about-card, .contact-container, .contact-form, .contact-form input, .contact-form textarea, .btn, .submit-btn, .contact-btn, .tool-btn, button, input, textarea, .pill, .tag, .exec-tag, .skill-tag, .ide-hero-card, .modal-content, .dsa-container, .quake-terminal-hud, .quake-terminal-header, .hud-terminal-pill, .terminal-window, .term-header, .terminal-card, .id-status-module, .id-auth-label {
+.glass, .card, .exec-card, .project-card, .cert-card, .game-card, .article-card, .resume-card, .about-card, .contact-container, .contact-form, .contact-form input, .contact-form textarea, .btn, .submit-btn, .contact-btn, .tool-btn, button, input, textarea, select, .pill, .tag, .exec-tag, .skill-tag, .ide-hero-card, .modal-content, .dsa-container, .quake-terminal-hud, .quake-terminal-header, .hud-terminal-pill, .terminal-window, .term-header, .terminal-card, .id-status-module, .id-auth-label {
     border: none !important;
 }
 

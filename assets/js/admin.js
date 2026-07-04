@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
         certList.innerHTML = '';
         currentCertificates.forEach((cert, index) => {
             const item = document.createElement('div');
-            item.className = 'cert-item';
+            item.className = 'cert-item glass';
             item.innerHTML = `
                 <div class="cert-item-info">
                     <div style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.1); border-radius: 50%;">
@@ -309,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
         skillList.innerHTML = '';
         currentSkills.forEach((skill, index) => {
             const item = document.createElement('div');
-            item.className = 'cert-item';
+            item.className = 'cert-item glass';
             item.innerHTML = `
                 <div class="cert-item-info">
                     <div>
@@ -402,7 +402,7 @@ document.addEventListener('DOMContentLoaded', () => {
         projectList.innerHTML = '';
         currentProjects.forEach((project, index) => {
             const item = document.createElement('div');
-            item.className = 'cert-item';
+            item.className = 'cert-item glass';
             item.innerHTML = `
                 <div class="cert-item-info">
                     <div>
@@ -575,7 +575,7 @@ document.addEventListener('DOMContentLoaded', () => {
         blogList.innerHTML = '';
         currentBlogPosts.forEach((post, index) => {
             const item = document.createElement('div');
-            item.className = 'cert-item';
+            item.className = 'cert-item glass';
             item.innerHTML = `
                 <div class="cert-item-info">
                     <div>
