@@ -82,10 +82,10 @@ function gameLoop() {
 
 // Food Types
 const FOOD_TYPES = {
-    NORMAL: { color: '#ff4757', chance: 0.7 },
-    MEGA: { color: '#ffd700', chance: 0.1 },   // Gold
-    SPEED: { color: '#00d2d3', chance: 0.1 },  // Cyan
-    GHOST: { color: '#a55eea', chance: 0.1 }   // Purple
+    NORMAL: { color: '#00d2ff', chance: 0.7 }, // Cyan Data Packet
+    MEGA: { color: '#ff003c', chance: 0.1 },   // Red Critical Payload
+    SPEED: { color: '#ffffff', chance: 0.1 },  // White Hyper Thread
+    GHOST: { color: '#00FF41', chance: 0.1 }   // Matrix Green Phantom
 };
 
 let currentFoodType = FOOD_TYPES.NORMAL;
@@ -173,8 +173,8 @@ function applyFoodEffect() {
         if (ghostTimer) clearTimeout(ghostTimer);
         ghostTimer = setTimeout(() => {
             ghostMode = false;
-            gameCanvas.style.borderColor = 'var(--primary-color)'; // Reset visual
-            gameCanvas.style.boxShadow = '0 0 20px rgba(108, 99, 255, 0.3)';
+            gameCanvas.style.borderColor = '#00d2ff'; // Reset visual to cyan
+            gameCanvas.style.boxShadow = '0 0 20px rgba(0, 210, 255, 0.3)';
         }, 5000);
     }
 
@@ -204,36 +204,66 @@ function checkCollision() {
 
 // Draw Game
 function drawGame() {
-    // Clear Canvas to let CSS background show through
-    gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
-
-    // Draw Snake
-    gameCtx.fillStyle = ghostMode ? 'rgba(165, 94, 234, 0.7)' : '#6c63ff'; // Ghost color or Primary
-    for (let part of snake) {
-        gameCtx.fillRect(part.x * GRID_SIZE, part.y * GRID_SIZE, GRID_SIZE - 2, GRID_SIZE - 2);
+    // Clear Canvas to let CSS background show through (transparent black)
+    gameCtx.fillStyle = 'rgba(0, 0, 0, 0.85)';
+    gameCtx.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
+    
+    // Draw Cyber Grid
+    gameCtx.strokeStyle = 'rgba(0, 210, 255, 0.05)';
+    gameCtx.lineWidth = 1;
+    for (let i = 0; i <= gameCanvas.width; i += GRID_SIZE) {
+        gameCtx.beginPath();
+        gameCtx.moveTo(i, 0);
+        gameCtx.lineTo(i, gameCanvas.height);
+        gameCtx.stroke();
+        
+        gameCtx.beginPath();
+        gameCtx.moveTo(0, i);
+        gameCtx.lineTo(gameCanvas.width, i);
+        gameCtx.stroke();
     }
 
-    // Draw Head distinctively
-    gameCtx.fillStyle = ghostMode ? '#fff' : '#8a84ff';
-    gameCtx.fillRect(snake[0].x * GRID_SIZE, snake[0].y * GRID_SIZE, GRID_SIZE - 2, GRID_SIZE - 2);
+    // Draw Snake
+    gameCtx.shadowBlur = 10;
+    for (let i = 0; i < snake.length; i++) {
+        let part = snake[i];
+        
+        if (i === 0) {
+            // Head
+            gameCtx.fillStyle = ghostMode ? 'rgba(0, 255, 65, 0.5)' : '#00FF41';
+            gameCtx.shadowColor = '#00FF41';
+        } else {
+            // Body (fades slightly towards tail)
+            let opacity = 1 - (i / snake.length) * 0.5;
+            gameCtx.fillStyle = ghostMode ? `rgba(0, 255, 65, ${opacity * 0.3})` : `rgba(0, 210, 255, ${opacity})`;
+            gameCtx.shadowColor = '#00d2ff';
+        }
+        
+        // Make the snake look like connected digital blocks
+        gameCtx.fillRect(part.x * GRID_SIZE + 1, part.y * GRID_SIZE + 1, GRID_SIZE - 2, GRID_SIZE - 2);
+    }
+    gameCtx.shadowBlur = 0; // Reset shadow for next elements
 
     // Draw Food
-    gameCtx.fillStyle = currentFoodType.color;
-    gameCtx.beginPath();
-    gameCtx.arc(
-        food.x * GRID_SIZE + GRID_SIZE / 2,
-        food.y * GRID_SIZE + GRID_SIZE / 2,
-        GRID_SIZE / 2 - 2,
-        0,
-        Math.PI * 2
-    );
-    gameCtx.fill();
-
-    // Draw Food Glow
     gameCtx.shadowBlur = 15;
     gameCtx.shadowColor = currentFoodType.color;
-    gameCtx.fill();
-    gameCtx.shadowBlur = 0; // Reset shadow
+    gameCtx.fillStyle = currentFoodType.color;
+    gameCtx.fillRect(
+        food.x * GRID_SIZE + 2,
+        food.y * GRID_SIZE + 2,
+        GRID_SIZE - 4,
+        GRID_SIZE - 4
+    );
+    
+    // Draw an inner core for the food to look like a chip
+    gameCtx.fillStyle = '#fff';
+    gameCtx.shadowBlur = 0;
+    gameCtx.fillRect(
+        food.x * GRID_SIZE + GRID_SIZE/2 - 2,
+        food.y * GRID_SIZE + GRID_SIZE/2 - 2,
+        4,
+        4
+    );
 }
 
 // Game Over
