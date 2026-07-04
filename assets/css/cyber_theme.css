@@ -747,6 +747,12 @@ button.ide-run-btn:hover svg[class*="fa-"] path {
 .read-more,
 .cert-link,
 .play-btn,
+.contact-btn,
+.contact-links a,
+.social-links a,
+.footer-socials a,
+.project-links a,
+.submit-btn,
 #hero-cli-trigger,
 button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links button) {
     background: rgba(255, 255, 255, 0.08) !important;
@@ -764,9 +770,15 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links butt
 .read-more:hover,
 .cert-link:hover,
 .play-btn:hover,
+.contact-btn:hover,
+.contact-links a:hover,
+.social-links a:hover,
+.footer-socials a:hover,
+.project-links a:hover,
+.submit-btn:hover,
 #hero-cli-trigger:hover,
 button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links button):hover {
-    background: rgba(255, 255, 255, 0.16) !important;
+    background: rgba(255, 255, 255, 0.18) !important;
     border: none !important;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4) !important;
     color: #FFFFFF !important;
@@ -911,7 +923,7 @@ button.btn.primary.chat-send-btn:hover svg,
 button.btn.primary.chat-send-btn:hover svg path,
 .chat-input-bar button.chat-send-btn:hover i,
 .chat-input-bar button.chat-send-btn:hover svg,
-.chat-input-bar button.chat-send-btn:hover svg path,
+.chat-input-bar button.chat-send-btn:hover svg path {
     text-shadow: 0 0 3px rgba(255, 255, 255, 0.15) !important;
     filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.15)) !important;
 }
@@ -961,4 +973,70 @@ button:not(.ide-run-btn):not(.hamburger):not(.nav-links button):hover,
 a.btn:not(.ide-run-btn):hover {
     border: none !important;
     outline: none !important;
+}
+
+/* ==========================================================================
+   BULLETPROOF CONTACT LINKS & SOCIAL BUTTONS HOVER VISIBILITY
+   ========================================================================== */
+.contact-btn,
+.contact-links a,
+.social-links a,
+.footer-socials a,
+.project-links a {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    text-decoration: none !important;
+}
+
+.contact-btn i,
+.contact-btn svg,
+.contact-links a i,
+.contact-links a svg,
+.social-links a i,
+.social-links a svg,
+.footer-socials a i,
+.footer-socials a svg,
+.project-links a i,
+.project-links a svg {
+    color: #FFFFFF !important;
+    fill: #FFFFFF !important;
+    transition: all 0.3s ease !important;
+}
+
+.contact-btn:hover,
+.contact-links a:hover,
+.social-links a:hover,
+.footer-socials a:hover,
+.project-links a:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    transform: translateY(-3px) scale(1.05) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6) !important;
+}
+
+.contact-btn:hover i,
+.contact-btn:hover svg,
+.contact-btn:hover svg path,
+.contact-links a:hover i,
+.contact-links a:hover svg,
+.contact-links a:hover svg path,
+.social-links a:hover i,
+.social-links a:hover svg,
+.social-links a:hover svg path,
+.footer-socials a:hover i,
+.footer-socials a:hover svg,
+.footer-socials a:hover svg path,
+.project-links a:hover i,
+.project-links a:hover svg,
+.project-links a:hover svg path {
+    color: #FFFFFF !important;
+    fill: #FFFFFF !important;
+    opacity: 1 !important;
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6)) !important;
 }
