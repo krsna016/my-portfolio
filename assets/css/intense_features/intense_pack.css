@@ -1027,8 +1027,10 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
 .read-more,
 button,
 .tab-btn {
-    background: transparent !important;
+    background: rgba(255, 255, 255, 0.02) !important;
     backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
 }
 
 .btn:hover,

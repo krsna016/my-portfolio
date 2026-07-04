@@ -1,0 +1,267 @@
+--- a/assets/css/cyber_theme.css
++++ b/assets/css/cyber_theme.css
+-    border: 1px solid var(--border-color) !important;
++    border: none !important;
+-/* Cybernetic Corner Brackets */
+-.cert-card::before, .resume-card::before, .card::before, .game-card::before {
+-    content: '';
+-    position: absolute;
+-    top: -1px; left: -1px;
+-    width: 12px; height: 12px;
+-    border-top: 2px solid var(--secondary-color);
+-    border-left: 2px solid var(--secondary-color);
+-    transition: border-color 0.3s;
+-}
+-.cert-card::after, .resume-card::after, .card::after, .game-card::after {
+-    content: '';
+-    position: absolute;
+-    bottom: -1px; right: -1px;
+-    width: 12px; height: 12px;
+-    border-bottom: 2px solid var(--secondary-color);
+-    border-right: 2px solid var(--secondary-color);
+-    transition: border-color 0.3s;
+-}
+-
+-.cert-card:hover::before, .resume-card:hover::before, .card:hover::before, .game-card:hover::before,
+-.cert-card:hover::after, .resume-card:hover::after, .card:hover::after, .game-card:hover::after {
+-    border-color: var(--accent-color);
+-}
++/* Removed neon square corners from cards for clean aesthetic */
+-    border: 1px solid var(--border-color) !important;
++    border: none !important;
+-    border-bottom: 1px solid var(--border-color) !important;
++    border-bottom: none !important;
+-    border: 1px solid var(--border-color) !important;
++    border: none !important;
+-    border: 1px solid #000 !important;
++    border: none !important;
+-    border: 1px solid var(--border-color) !important;
++    border: none !important;
+-    border: 1px solid var(--border-color) !important;
++    border: none !important;
+-    border-bottom: 1px solid var(--border-color) !important;
++    border-bottom: none !important;
+-    border-right: 1px solid var(--border-color) !important;
++    border-right: none !important;
+-    border: 1px solid var(--primary-color) !important;
++    border: none !important;
+-    border: 1px solid var(--border-color) !important;
++    border: none !important;
+-    border-bottom: 1px solid var(--border-color) !important;
++    border-bottom: none !important;
++/* ==========================================================================
++   PREMIUM ENGINEERING SECTION HEADINGS
++   ========================================================================== */
++
++/* Container resets */
++/* GLOBAL SSH CARET TERMINAL DIVIDER FOR ALL SECTIONS (EXCEPT RESUME & CONTACT) */
++.section-title {
++    position: relative !important;
++    display: block !important;
++    width: max-content !important;
++    margin: 0 auto 4rem auto !important;
++}
++
++/* Ensure pinned heading right-aligns its title to match original layout */
++.pinned-heading .section-title {
++    margin: 0 0 4rem auto !important;
++    display: block !important;
++    width: max-content !important;
++    text-align: right !important;
++}
++
++/* Base Terminal Caret */
++.section-title::after {
++    content: '' !important;
++    position: absolute !important;
++    top: 50% !important;
++    transform: translateY(-50%) !important;
++    right: -24px !important; /* Consistent 14-18px gap taking text into account */
++    left: auto !important;
++    bottom: auto !important;
++    width: 6px !important;
++    height: 60px !important;
++    /* Soft vertical gradient with faint scanline texture */
++    background: 
++        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.2) 2px, rgba(0,0,0,0.2) 4px),
++        linear-gradient(180deg, #4d4d4d 0%, #353535 100%) !important;
++    border-radius: 2px !important;
++    box-shadow: 0 0 12px rgba(0, 210, 255, 0.12), 0 0 12px rgba(108, 92, 231, 0.12), inset 1px 1px 2px rgba(255, 255, 255, 0.05) !important;
++    display: block !important;
++    animation: none !important;
++}
++
++/* Terminal Particle Accents */
++.section-title::before {
++    content: '' !important;
++    position: absolute !important;
++    top: 50% !important;
++    transform: translateY(-50%) !important;
++    right: -32px !important; /* Positioned slightly outside the caret */
++    left: auto !important;
++    bottom: auto !important;
++    width: 2px !important;
++    height: 2px !important;
++    background: transparent !important;
++    border-radius: 50% !important;
++    z-index: 2 !important;
++    opacity: 0.9 !important;
++    border: none !important;
++    animation: none !important;
++    /* Create multiple tiny scattered dots around the caret using box-shadow */
++    box-shadow: 
++        0 -18px 0 rgba(0, 210, 255, 0.8),
++        4px -8px 0 rgba(108, 92, 231, 0.6),
++        -2px 10px 0 rgba(0, 210, 255, 0.7),
++        2px 22px 0 rgba(108, 92, 231, 0.8),
++        -3px -25px 0 rgba(0, 210, 255, 0.4),
++        3px 30px 0 rgba(108, 92, 231, 0.5) !important;
++}
++
++/* --------------------------------------------------------------------------
++   REVERT RESUME & CONTACT PAGES TO HORIZONTAL UNDERLINE 
++   -------------------------------------------------------------------------- */
++.resume-page .section-title,
++.contact-page .section-title {
++    display: block !important; 
++    width: 100% !important; /* Full width so auto-center works inside it */
++    text-align: center !important;
++    margin-bottom: 4rem !important;
++}
++
++/* ==========================================================================
++   GLOBAL UNIFIED ICON DESIGN SYSTEM
++   ========================================================================== */
++
++/* 1. Strip all containers that wrap icons from having backgrounds/borders */
++.social-links a,
++.footer-socials a,
++.project-links a,
++.game-icon,
++.cert-icon-container,
++.icon-box,
++.stat-icon,
++.feature-icon,
++.timeline-icon {
++    background: transparent !important;
++    border: none !important;
++    box-shadow: none !important;
++    backdrop-filter: none !important;
++    -webkit-backdrop-filter: none !important;
++    padding: 0 !important;
++    margin: 0 8px !important; /* Keep slight spacing for flex rows */
++    width: auto !important;
++    height: auto !important;
++    display: inline-flex !important;
++    align-items: center !important;
++    justify-content: center !important;
++    border-radius: 0 !important;
++}
++
++/* Fix margin for standalone icons if needed */
++.icon-box, .cert-icon-container, .game-icon {
++    margin: 0 0 1rem 0 !important;
++}
++
++/* 2. Unified Idle State for ALL Icons globally */
++i[class*="fa-"],
++i.fas,
++i.fab,
++i.fa-solid,
++i.fa-brands,
++svg.icon,
++.icon {
++    display: inline-block !important;
++    color: #AAAAAA !important;
++    opacity: 0.95 !important;
++    background: transparent !important;
++    border: none !important;
++    box-shadow: none !important;
++    text-shadow: none !important;
++    padding: 0 !important;
++    margin: 0 !important;
++    transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease !important;
++    -webkit-font-smoothing: antialiased !important;
++    -moz-osx-font-smoothing: grayscale !important;
++    transform: scale(1) !important;
++}
++
++svg[class*="icon"] path,
++svg[class*="fa-"] path {
++    fill: #AAAAAA !important;
++    transition: fill 0.3s ease, transform 0.3s ease, filter 0.3s ease !important;
++}
++
++/* Space out icon if it's inside a text button */
++.btn i, .tool-btn i, .contact-btn i {
++    margin-right: 8px !important;
++}
++
++/* 3. Unified Hover State for ALL Icons globally */
++a:hover > i[class*="fa-"],
++button:hover > i[class*="fa-"],
++.game-card:hover .game-icon i,
++.certificate-card:hover .cert-icon-container i,
++.about-card:hover .icon,
++.project-card:hover .project-links a i,
++.exec-card:hover .exec-icon i,
++.article-card:hover .article-icon i,
++i[class*="fa-"]:hover,
++i.fas:hover,
++i.fab:hover,
++i.fa-solid:hover,
++i.fa-brands:hover,
++svg.icon:hover,
++.icon:hover {
++    color: #FFFFFF !important;
++    opacity: 1 !important;
++    transform: scale(1.08) !important;
++    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4) !important;
++    background: transparent !important;
++}
++
++a:hover > svg[class*="fa-"] path,
++button:hover > svg[class*="fa-"] path,
++svg[class*="icon"]:hover path {
++    fill: #FFFFFF !important;
++    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4)) !important;
++}
++
++/* Ensure no backgrounds pop up on hover for containers */
++.social-links a:hover,
++.footer-socials a:hover,
++.project-links a:hover,
++.icon-box:hover,
++.game-icon:hover,
++.cert-icon-container:hover {
++    background: transparent !important;
++    box-shadow: none !important;
++    border: none !important;
++    transform: none !important; /* Move transform to the <i> tag */
++}
++.resume-page .section-title::after,
++.contact-page .section-title::after {
++    content: '' !important;
++    position: absolute !important;
++    bottom: -10px !important;
++    left: 50% !important;
++    right: auto !important;
++    top: auto !important;
++    transform: translateX(-50%) !important;
++    width: 60px !important;
++    height: 4px !important;
++    background: var(--primary-color) !important;
++    border-radius: 2px !important;
++    box-shadow: none !important;
++}
++
++.resume-page .section-title::before,
++.contact-page .section-title::before {
++    display: none !important;
++}
++
++
++/* GLOBAL BORDER REMOVAL CATCH-ALL */
++.glass, .card, .exec-card, .project-card, .cert-card, .game-card, .article-card, .resume-card, .about-card, .contact-container, .contact-form, .contact-form input, .contact-form textarea, .btn, .submit-btn, .contact-btn, .tool-btn, button, input, textarea, .pill, .tag, .exec-tag, .skill-tag, .ide-hero-card, .modal-content, .dsa-container, .quake-terminal-hud, .quake-terminal-header, .hud-terminal-pill, .terminal-window, .term-header, .terminal-card, .id-status-module, .id-auth-label {
++    border: none !important;
++}
