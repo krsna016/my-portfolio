@@ -540,16 +540,18 @@ input[type="range"]::-webkit-slider-thumb {
     box-shadow: none !important;
     z-index: 2 !important;
     transition: all 0.3s ease !important;
-    opacity: 0 !important;
+    opacity: 1 !important; /* Fallback visibility */
 }
 
 /* Node appears slightly after sweep */
 .pinned-heading.visible .section-title::before {
-    animation: heading-node-fade-in 0.6s ease 0.6s forwards !important;
+    animation: heading-node-pulse 0.6s ease 0.6s forwards !important;
 }
 
-@keyframes heading-node-fade-in {
-    to { opacity: 1; }
+@keyframes heading-node-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); background: #fff; }
+    100% { transform: scale(1); }
 }
 
 /* Node Soft Glow on Hover */
