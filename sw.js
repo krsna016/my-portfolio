@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ap-portfolio-v83-god-mode';
+const CACHE_NAME = 'ap-portfolio-v84-god-mode';
 
 const PRECACHE_ASSETS = [
     '/',
@@ -19,8 +19,6 @@ const PRECACHE_ASSETS = [
     '/assets/js/resume_data.js',
     '/assets/css/cyber_theme.css',
     '/assets/js/cyber_ui.js',
-    '/assets/css/intense_features/premium_timeline.css',
-    '/assets/js/intense_features/premium_timeline.js',
     '/manifest.json'
 ];
 
