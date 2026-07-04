@@ -232,8 +232,9 @@
                 <div class="tab-buttons" style="display: flex; gap: 1rem; margin-bottom: 1rem;">
                     <button class="btn primary tab-btn active" data-tab="certificates">Certificates</button>
                     <button class="btn secondary tab-btn" data-tab="skills">Technical Skills</button>
-                    <button class="btn secondary tab-btn" data-tab="projects">Key Projects</button>
-                    <button class="btn secondary tab-btn" data-tab="blog">Blog Posts</button>
+                    <button class="btn secondary tab-btn" data-tab="projects"><i class="fa-solid fa-briefcase"></i> Projects</button>
+                    <button class="btn secondary tab-btn" data-tab="blog"><i class="fa-solid fa-newspaper"></i> Blog Posts</button>
+                    <button class="btn secondary tab-btn" data-tab="settings"><i class="fa-solid fa-gear"></i> Settings</button>
                 </div>
             </div>
             <div>
@@ -453,6 +454,40 @@
                 <h3 style="margin-bottom: 1.5rem;">Current Blog Posts</h3>
                 <div class="cert-list" id="blog-list">
                     <!-- List items injected by JS -->
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- SETTINGS TAB -->
+        <div id="tab-settings" class="admin-grid tab-content" style="display: none; grid-template-columns: 1fr;">
+            <div class="editor-panel glass" style="max-width: 600px; margin: 0 auto;">
+                <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;">
+                    <i class="fa-solid fa-cloud-arrow-up" style="color: #00d4ff;"></i> GitHub Auto-Sync
+                </h3>
+                <p style="color: #ccc; margin-bottom: 1.5rem; font-size: 0.95rem;">
+                    Enter your GitHub Personal Access Token (PAT) and repository details to automatically save changes directly to your live website without downloading files manually.
+                </p>
+                <form id="settings-form">
+                    <div class="form-group">
+                        <label>GitHub Repository</label>
+                        <input type="text" id="gh-repo" placeholder="e.g. krsna016/my-portfolio" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Branch</label>
+                        <input type="text" id="gh-branch" placeholder="e.g. master or main" value="master" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Personal Access Token (Classic)</label>
+                        <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxxxxx" required>
+                        <small style="color: #888; display: block; margin-top: 5px;">
+                            * Stored securely in your browser's local storage. Needs 'repo' scope.
+                        </small>
+                    </div>
+                    <button type="submit" class="btn primary" style="width: 100%; margin-top: 1rem;">Save Settings</button>
+                </form>
+                <div id="settings-success" style="color: #4cd137; font-size: 0.9rem; margin-top: 15px; display: none; text-align: center;">
+                    Settings saved successfully! Auto-Sync is now active.
                 </div>
             </div>
         </div>
