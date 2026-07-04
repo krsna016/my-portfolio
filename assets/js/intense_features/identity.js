@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="id-scan-line"></div>
             </div>
             <span class="id-bracket right">]</span>
+            <span class="id-cursor">_</span>
         </div>
         <div class="id-auth-labels" id="id-auth-labels"></div>
         <div class="id-particles" id="id-particles"></div>
