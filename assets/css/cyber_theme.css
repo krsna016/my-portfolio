@@ -68,6 +68,21 @@ h1, h2, h3, h4, h5, h6, .logo, .section-title, .hero-content h1 {
     font-size: 1.1rem !important;
     text-transform: uppercase !important;
     letter-spacing: 0.1em !important;
+    margin-top: 1.5rem !important;
+}
+
+.hero-text {
+    text-align: justify !important;
+    line-height: 1.7 !important;
+    letter-spacing: 0.02em !important;
+    max-width: 600px !important;
+    margin-top: 1rem !important;
+}
+
+.cta-buttons {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 12px !important;
     margin-top: 2rem !important;
 }
 
@@ -169,16 +184,35 @@ h1, h2, h3, h4, h5, h6, .logo, .section-title, .hero-content h1 {
 }
 
 /* Forms */
-input, textarea {
+input:not([type="range"]):not([type="color"]), textarea {
     background: #000 !important;
     border: 1px solid var(--border-color) !important;
     border-radius: 0 !important;
     font-family: var(--font-primary) !important;
     color: var(--text-color) !important;
 }
-input:focus, textarea:focus {
+input:not([type="range"]):not([type="color"]):focus, textarea:focus {
     border-color: var(--secondary-color) !important;
     outline: none !important;
+}
+
+/* Fix Range Sliders */
+input[type="range"] {
+    -webkit-appearance: none;
+    background: var(--glass-bg);
+    height: 4px;
+    outline: none;
+    border-radius: 0;
+    opacity: 0.8;
+}
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    background: var(--text-color);
+    border-radius: 0;
+    cursor: pointer;
 }
 
 /* Tags / Pills */
