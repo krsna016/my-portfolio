@@ -570,9 +570,25 @@ svg[class*="icon"]:hover path {
     transform: none !important; /* Move transform to the <i> tag */
 }
 
+/* IDE Run Button Triangle Hover Fix */
+.ide-run-btn i {
+    color: #ff3333 !important;
+    fill: #ff3333 !important;
+    transition: all 0.2s ease;
+}
+.ide-run-btn:hover i {
+    color: #00ff00 !important;
+    fill: #00ff00 !important;
+    text-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+}
 
-
+/* Fix active-tool (Light Mode button) icon disappearing on hover */
+.btn.active-tool:hover i, .active-tool:hover i {
+    color: #000 !important;
+    fill: #000 !important;
+}
 /* GLOBAL BORDER REMOVAL CATCH-ALL */
 .glass, .card, .exec-card, .project-card, .cert-card, .game-card, .article-card, .resume-card, .about-card, .contact-container, .contact-form, .contact-form input, .contact-form textarea, .btn, .submit-btn, .contact-btn, .tool-btn, button, input, textarea, .pill, .tag, .exec-tag, .skill-tag, .ide-hero-card, .modal-content, .dsa-container, .quake-terminal-hud, .quake-terminal-header, .hud-terminal-pill, .terminal-window, .term-header, .terminal-card, .id-status-module, .id-auth-label {
     border: none !important;
 }
+
