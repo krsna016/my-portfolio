@@ -116,81 +116,35 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Navbar not found!');
     }
 
-    // Draggable Icons Logic
+    // Idea Bubbles Click Logic (HUD Audio)
     const bubbles = document.querySelectorAll('.idea-bubble');
-    const heroVisual = document.querySelector('.hero-visual');
-
-    bubbles.forEach(bubble => {
-        let isDragging = false;
-        let startX, startY, initialLeft, initialTop;
-
-        const startDrag = (e) => {
-            isDragging = true;
-            bubble.classList.add('dragging');
-
-            // Get initial mouse/touch position
-            const clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
-            const clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
-
-            startX = clientX;
-            startY = clientY;
-
-            // Get current computed position
-            const style = window.getComputedStyle(bubble);
-            const matrix = new WebKitCSSMatrix(style.transform);
-
-            // We need to work with top/left, so we convert current position to explicit top/left
-            // relative to the offsetParent (profile-image-container)
-            const rect = bubble.getBoundingClientRect();
-            const parentRect = bubble.offsetParent.getBoundingClientRect();
-
-            initialLeft = rect.left - parentRect.left;
-            initialTop = rect.top - parentRect.top;
-
-            // Set explicit top/left and clear others to prevent fighting
-            bubble.style.right = 'auto';
-            bubble.style.bottom = 'auto';
-            bubble.style.left = `${initialLeft}px`;
-            bubble.style.top = `${initialTop}px`;
-
-            // Prevent default drag behavior (like image dragging)
-            if (e.type === 'mousedown') e.preventDefault();
+    bubbles.forEach((bubble, index) => {
+        bubble.style.cursor = 'pointer'; // Change from grab to pointer
+        
+        const playSound = (e) => {
+            if (window.CyberSound && window.CyberSound.isEnabled()) {
+                window.CyberSound.playSymbolSound(index);
+            }
+            
+            // Add a quick pulse effect for visual feedback on the icon
+            const icon = bubble.querySelector('i');
+            if (icon) {
+                const currentTransform = icon.style.transform;
+                icon.style.transition = 'transform 0.1s';
+                icon.style.transform = 'scale(0.8)';
+                setTimeout(() => {
+                    icon.style.transform = currentTransform || '';
+                }, 100);
+            }
         };
 
-        const onDrag = (e) => {
-            if (!isDragging) return;
-
-            const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
-            const clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
-
-            const deltaX = clientX - startX;
-            const deltaY = clientY - startY;
-
-            let newLeft = initialLeft + deltaX;
-            let newTop = initialTop + deltaY;
-
-            // Optional: Constrain to hero visual area (simple bounding box)
-            // For now, we allow free movement around the photo as requested
-
-            bubble.style.left = `${newLeft}px`;
-            bubble.style.top = `${newTop}px`;
-        };
-
-        const stopDrag = () => {
-            if (!isDragging) return;
-            isDragging = false;
-            bubble.classList.remove('dragging');
-        };
-
-        // Mouse Events
-        bubble.addEventListener('mousedown', startDrag);
-        document.addEventListener('mousemove', onDrag);
-        document.addEventListener('mouseup', stopDrag);
-
-        // Touch Events
-        bubble.addEventListener('touchstart', startDrag, { passive: false });
-        document.addEventListener('touchmove', onDrag, { passive: false });
-        document.addEventListener('touchend', stopDrag);
+        bubble.addEventListener('mousedown', playSound);
+        bubble.addEventListener('touchstart', (e) => {
+            // Prevent default to avoid double-firing with mousedown on touch devices
+            // But only if we actually handled it
+            if (e.cancelable) e.preventDefault();
+            playSound();
+        }, { passive: false });
     });
     // WhatsApp Form Redirect
     const whatsappForm = document.getElementById('whatsapp-form');

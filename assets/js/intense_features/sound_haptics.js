@@ -60,6 +60,15 @@ window.CyberSound = (function() {
             return enabled;
         },
         isEnabled: () => enabled,
+        playSymbolSound: function(index) {
+            if (!enabled) return;
+            const frequencies = [300, 400, 500, 600, 700, 800, 900, 1000, 1200];
+            const types = ['square', 'sawtooth', 'triangle', 'square', 'sine', 'sawtooth', 'triangle', 'square', 'sine'];
+            const f = frequencies[index % 9];
+            const t = types[index % 9];
+            playTone(f, t, 0.05, 0.04);
+            setTimeout(() => playTone(f * 1.5, t, 0.03, 0.02), 40);
+        },
         playHover: function() { playTone(440, 'sine', 0.04, 0.02); },
         playClick: function() { 
             playTone(900, 'triangle', 0.04, 0.05);
