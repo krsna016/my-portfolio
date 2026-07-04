@@ -18,8 +18,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap"></noscript>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/intense_features/intense_pack.css">
+    <link rel="stylesheet" href="assets/css/style.css?v=130">
+    <link rel="stylesheet" href="assets/css/intense_features/intense_pack.css?v=130">
     
     <!-- Marked.js for Markdown parsing -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -40,7 +40,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
-            justify-content: flex-start;
+            justify-content: center;
         }
 
         /* Categories styling */
@@ -307,53 +307,44 @@
 
             <!-- Blogs Tab (Merged from blog.html) -->
             <div id="tab-blogs" class="tab-content">
-                <div class="pinned-section-wrapper">
-                    <div class="pinned-heading">
-                        <h2 class="section-title">Blog</h2>
+                <div class="section-content" style="width: 100%; max-width: 1050px; margin: 0 auto; text-align: center;">
+                    <h2 class="section-title" style="text-align: center; margin-bottom: 0.5rem; border-right: none; display: inline-block;">Blog</h2>
+                    <p class="games-intro" style="text-align: center; margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">Read my latest tech deep-dives.</p>
+                    
+                    <!-- Categories (Horizontal pills) -->
+                    <ul class="category-list" id="category-list" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 2.5rem; padding: 0; list-style: none;">
+                        <li class="active" data-category="All">All Posts</li>
+                        <!-- Categories injected by JS -->
+                    </ul>
+
+                    <!-- List View (Grid exactly like Arcade) -->
+                    <div id="posts-list" class="games-grid" style="text-align: left;">
+                        <!-- Posts injected by JS -->
                     </div>
-                    <div class="section-content">
-                        <p class="games-intro" style="margin-bottom: 2rem;">Read my latest tech deep-dives.</p>
-                        
-                        <!-- Categories (Horizontal pills) -->
-                        <ul class="category-list" id="category-list">
-                            <li class="active" data-category="All">All Posts</li>
-                            <!-- Categories injected by JS -->
-                        </ul>
 
-                        <!-- List View (Grid exactly like Arcade) -->
-                        <div id="posts-list" class="games-grid">
-                            <!-- Posts injected by JS -->
-                        </div>
-
-                        <!-- Reader View -->
-                        <div id="post-reader">
-                            <div id="back-button"><i class="fa-solid fa-arrow-left"></i> Back to Posts</div>
-                            <div id="reader-content" class="markdown-body"></div>
-                        </div>
-
+                    <!-- Reader View -->
+                    <div id="post-reader" style="text-align: left;">
+                        <div id="back-button"><i class="fa-solid fa-arrow-left"></i> Back to Posts</div>
+                        <div id="reader-content" class="markdown-body"></div>
                     </div>
                 </div>
             </div>
 
             <!-- Articles Tab -->
             <div id="tab-articles" class="tab-content" style="display: none;">
-                <div class="pinned-section-wrapper">
-                    <div class="pinned-heading">
-                        <h2 class="section-title">Articles</h2>
-                    </div>
-                    <div class="section-content">
-                        <p class="games-intro">Thoughts, tutorials, and updates.</p>
+                <div class="section-content" style="width: 100%; max-width: 1050px; margin: 0 auto; text-align: center;">
+                    <h2 class="section-title" style="text-align: center; margin-bottom: 0.5rem; border-right: none; display: inline-block;">Articles</h2>
+                    <p class="games-intro" style="text-align: center; margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">Thoughts, tutorials, and updates.</p>
 
-                        <div class="about-grid">
-                            <!-- Skeleton / Placeholder for Articles -->
-                            <div class="about-card glass fade-in-up">
-                                <div class="game-icon"
-                                    style="font-size: 2rem; margin-bottom: 1rem; color: var(--primary-color);">
-                                    <i class="fa-solid fa-pen-nib"></i>
-                                </div>
-                                <h3>Coming Soon</h3>
-                                <p>Stay tuned for insightful articles on Data Science, AI, and Web Development.</p>
+                    <div class="about-grid" style="text-align: left;">
+                        <!-- Skeleton / Placeholder for Articles -->
+                        <div class="about-card glass fade-in-up">
+                            <div class="game-icon"
+                                style="font-size: 2rem; margin-bottom: 1rem; color: var(--primary-color);">
+                                <i class="fa-solid fa-pen-nib"></i>
                             </div>
+                            <h3>Coming Soon</h3>
+                            <p>Stay tuned for insightful articles on Data Science, AI, and Web Development.</p>
                         </div>
                     </div>
                 </div>
@@ -376,10 +367,10 @@
         <p>&copy; 2025 Anurag Pareek. All rights reserved.</p>
     </footer>
 
-    <script src="assets/js/script.js"></script>
-    <script src="assets/js/particles.js"></script>
-    <script src="assets/js/blog_data.js"></script>
-    <script src="assets/js/blog_logic.js"></script>
+    <script src="assets/js/script.js?v=130"></script>
+    <script src="assets/js/particles.js?v=130"></script>
+    <script src="assets/js/blog_data.js?v=130"></script>
+    <script src="assets/js/blog_logic.js?v=130"></script>
     <script>
         // Tab Switching Logic
         document.addEventListener('DOMContentLoaded', () => {
