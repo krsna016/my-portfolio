@@ -7,15 +7,15 @@
 */
 
 :root {
-    --bg-color: #060606 !important;
-    --glass-bg: #111111 !important;
-    --text-color: #F5F5F5 !important;
-    --primary-color: #F5F5F5 !important;
-    --secondary-color: #9A9A9A !important;
-    --accent-color: #F3EAD8 !important;
-    --border-color: rgba(255, 255, 255, 0.08) !important;
-    --font-primary: 'IBM Plex Mono', monospace !important;
-    --font-heading: 'Space Grotesk', sans-serif !important;
+    --bg-color: #060606;
+    --glass-bg: #111111;
+    --text-color: #F5F5F5;
+    --primary-color: #F5F5F5;
+    --secondary-color: #9A9A9A;
+    --accent-color: #F3EAD8;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --font-primary: 'IBM Plex Mono', monospace;
+    --font-heading: 'Space Grotesk', sans-serif;
 }
 
 body {
@@ -125,6 +125,16 @@ h1, h2, h3, h4, h5, h6, .logo, .section-title, .hero-content h1 {
     border-color: var(--secondary-color) !important;
     box-shadow: none !important;
     transform: none !important;
+}
+
+/* Active Tools (like Light Mode toggle) */
+.btn.active-tool, .active-tool {
+    background: var(--primary-color) !important;
+    color: #000 !important;
+    border-color: var(--primary-color) !important;
+}
+.btn.active-tool i, .active-tool i {
+    color: #000 !important;
 }
 
 /* Navbar */
