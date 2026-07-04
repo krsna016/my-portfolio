@@ -54,7 +54,8 @@ window.CyberSound = (function() {
             const pill = document.getElementById('hud-audio-toggle');
             if (pill) {
                 pill.className = `hud-audio-pill ${enabled ? 'enabled' : ''}`;
-                pill.innerHTML = enabled ? `<i class="fa-solid fa-volume-high" style="color:#2ed573;"></i> HUD Audio: ON` : `<i class="fa-solid fa-volume-xmark"></i> HUD Audio: OFF`;
+                pill.innerHTML = enabled ? `<i class="fa-solid fa-volume-high"></i>` : `<i class="fa-solid fa-volume-xmark"></i>`;
+                pill.title = enabled ? "HUD Audio: ON (Click to mute)" : "HUD Audio: OFF (Click to enable)";
             }
             if (enabled) this.playBlip();
             return enabled;
@@ -103,8 +104,8 @@ function initAudioHUD() {
         const pill = document.createElement('button');
         pill.id = 'hud-audio-toggle';
         pill.className = `hud-audio-pill ${isEn ? 'enabled' : ''}`;
-        pill.innerHTML = isEn ? `<i class="fa-solid fa-volume-high" style="color:#2ed573;"></i> HUD Audio: ON` : `<i class="fa-solid fa-volume-xmark"></i> HUD Audio: OFF`;
-        pill.title = "Toggle sci-fi tactile UI sound design";
+        pill.innerHTML = isEn ? `<i class="fa-solid fa-volume-high"></i>` : `<i class="fa-solid fa-volume-xmark"></i>`;
+        pill.title = isEn ? "HUD Audio: ON (Click to mute)" : "HUD Audio: OFF (Click to enable)";
         pill.onclick = () => window.CyberSound.toggle();
         document.body.appendChild(pill);
     }
