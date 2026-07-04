@@ -43,6 +43,7 @@
     <meta property="twitter:image" content="https://krsna016.github.io/my-portfolio/assets/images/profile.webp">
 
     <link rel="stylesheet" href="assets/css/cyber_theme.css">
+    <script src="assets/js/intense_features/cyber_globe.js" defer></script>
 </head>
 
 <body>
@@ -98,37 +99,21 @@
         <div class="hero-visual fade-in-up delay-200">
             <!-- Abstract geometric visual or placeholder for profile image -->
             <div class="floating-wrapper">
-                <div class="profile-image-container">
-                    <img src="assets/images/profile.webp" alt="Anurag Pareek" class="profile-img">
-
-                    <!-- Idea Bubbles (Icons Only) -->
-                    <div class="idea-bubble bubble-1">
-                        <i class="fa-solid fa-brain"></i>
+                <div class="profile-image-container" id="cyber-globe-container" style="width: 100%; height: 100%; position: relative;">
+                    <!-- Cyber Operations Globe will be injected here -->
+                    <div id="globe-viz" style="width: 100%; height: 100%;"></div>
+                    <!-- Intelligence Panel -->
+                    <div id="cyber-intel-panel" class="cyber-intel-panel hidden">
+                        <div class="panel-header">
+                            <span class="panel-title">CYBER INTELLIGENCE</span>
+                            <button id="close-intel-panel"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                        <div class="panel-content" id="intel-panel-content">
+                            <!-- Dynamic Content -->
+                        </div>
                     </div>
-                    <div class="idea-bubble bubble-2">
-                        <i class="fa-solid fa-chart-line"></i>
-                    </div>
-                    <div class="idea-bubble bubble-3">
-                        <i class="fa-solid fa-robot"></i>
-                    </div>
-                    <div class="idea-bubble bubble-4">
-                        <i class="fa-solid fa-network-wired"></i>
-                    </div>
-                    <div class="idea-bubble bubble-5">
-                        <i class="fa-solid fa-database"></i>
-                    </div>
-                    <div class="idea-bubble bubble-6">
-                        <i class="fa-brands fa-python"></i>
-                    </div>
-                    <div class="idea-bubble bubble-7">
-                        <i class="fa-solid fa-cloud"></i>
-                    </div>
-                    <div class="idea-bubble bubble-8">
-                        <i class="fa-solid fa-terminal"></i>
-                    </div>
-                    <div class="idea-bubble bubble-9">
-                        <i class="fa-solid fa-code"></i>
-                    </div>
+                    <!-- Terminal Notifications -->
+                    <div id="globe-notifications" class="globe-notifications"></div>
                 </div>
             </div>
         </div>
@@ -230,6 +215,8 @@
 
     <script src="assets/js/script.js" defer></script>
     <script src="assets/js/logo_effect.js" defer></script>
+    <script src="https://unpkg.com/three@0.147.0/build/three.min.js"></script>
+    <script src="https://unpkg.com/globe.gl@2.30.0/dist/globe.gl.min.js"></script>
     <script src="assets/js/particles.js" defer></script>
     <script src="assets/js/intense_features/sound_haptics.js" defer></script>
     <script src="assets/js/intense_features/terminal.js" defer></script>
