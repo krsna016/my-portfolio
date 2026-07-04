@@ -160,12 +160,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- 5. MICRO EFFECTS TIMERS (IDLE) ---
         
         // Heartbeat
-        const hbSvgBase = \`<svg xmlns="http://www.w3.org/2000/svg" width="800" height="200"><text x="400" y="100" fill="#66D9FF" font-family="monospace" font-size="32" font-weight="bold" text-anchor="middle">\`;
+        const hbSvgBase = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="200"><text x="400" y="100" fill="#66D9FF" font-family="monospace" font-size="32" font-weight="bold" text-anchor="middle">`;
         const heartbeats = ["IDENTITY VERIFIED", "AUTHENTICATED", "PUBLIC KEY VALID", "SIGNATURE VERIFIED"];
         setInterval(() => {
             if (isHovered) return;
             const text = heartbeats[Math.floor(Math.random() * heartbeats.length)];
-            const hbUrl = \`url('data:image/svg+xml;utf8,\${encodeURIComponent(hbSvgBase + text + "</text></svg>")}')\`;
+            const hbUrl = `url('data:image/svg+xml;utf8,${encodeURIComponent(hbSvgBase + text + "</text></svg>")}')`;
             h1.style.setProperty('--heartbeat-layer', hbUrl);
             setTimeout(() => {
                 h1.style.removeProperty('--heartbeat-layer');
