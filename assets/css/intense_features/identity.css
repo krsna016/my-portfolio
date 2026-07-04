@@ -214,3 +214,63 @@
         opacity: 1 !important;
     }
 }
+
+/* ==========================================================================
+   CINEMATIC DUOTONE / HOLOGRAM COLOR GRADE (HERO PORTRAIT)
+   ========================================================================== */
+.profile-image-container {
+    position: relative;
+    border-radius: 50% !important;
+}
+
+.profile-image-container .profile-img {
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), filter 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    will-change: transform, filter;
+}
+
+/* On hover: transition image from natural colors into cyber-inspired duotone palette */
+.profile-image-container:hover .profile-img {
+    /* hue-rotate(185deg) shifts midtones to cyan/teal; saturate(0.4) keeps it refined; contrast(1.15) deepens shadows */
+    filter: contrast(1.15) brightness(1.05) saturate(0.4) hue-rotate(185deg) !important;
+    transform: translateZ(30px) scale(1.05) !important;
+}
+
+/* Duotone Color Grade Overlay & Faint Cyan Rim Light */
+.profile-image-container::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50% !important;
+    /* Deep navy in shadows (#050b18), cyan in midtones (#00d2ff), and soft violet in highlights (#b48cff) */
+    background: linear-gradient(135deg, rgba(5, 11, 24, 0.7) 0%, rgba(0, 210, 255, 0.25) 50%, rgba(180, 140, 255, 0.35) 100%);
+    mix-blend-mode: overlay;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 15;
+    transform: translateZ(31px) scale(1);
+    border: 1.5px solid transparent;
+    transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1), transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.profile-image-container:hover::after {
+    opacity: 1;
+    transform: translateZ(31px) scale(1.05);
+    /* Faint cyan rim light and very soft glow */
+    border-color: rgba(0, 229, 255, 0.55);
+    box-shadow: inset 0 0 20px rgba(0, 229, 255, 0.25), 0 0 25px rgba(0, 229, 255, 0.3);
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    .profile-image-container .profile-img,
+    .profile-image-container::after {
+        transition: none !important;
+    }
+    .profile-image-container:hover .profile-img {
+        filter: none !important;
+        transform: translateZ(30px) !important;
+    }
+    .profile-image-container:hover::after {
+        opacity: 0 !important;
+    }
+}
