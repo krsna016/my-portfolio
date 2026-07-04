@@ -452,14 +452,14 @@
     max-width: 100% !important;
 }
 
-/* Pinned neon vertical track (Animated Cyberpunk Laser Data Stream) */
+/* Pinned metallic silver/grey/white vertical track */
 #experience .timeline::before {
     left: 11px !important;
-    width: 3px !important;
-    background: linear-gradient(180deg, #00d2ff 0%, #6c5ce7 35%, #ff007f 70%, #00d2ff 100%) !important;
-    background-size: 100% 200% !important;
-    animation: flowDataTrack 3s linear infinite !important;
-    box-shadow: 0 0 16px #00d2ff, 0 0 30px #6c5ce7 !important;
+    width: 4px !important;
+    background: linear-gradient(180deg, #FFFFFF 0%, #888888 50%, #444444 100%) !important;
+    background-size: 100% 100% !important;
+    animation: none !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4), inset 0 0 3px rgba(255, 255, 255, 0.5) !important;
     transform: none !important;
 }
 
@@ -672,11 +672,11 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
 /* Vertical timeline track and dot connectors */
 #experience .timeline::before,
 .timeline::before {
-    box-shadow: 0 0 3px rgba(0, 210, 255, 0.2) !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4), inset 0 0 3px rgba(255, 255, 255, 0.5) !important;
 }
 
 .timeline-dot-connector {
-    box-shadow: 0 0 4px rgba(0, 210, 255, 0.3) !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5), inset 0 0 3px rgba(255, 255, 255, 0.4) !important;
 }
 
 /* Subtle luxury hover on buttons, cards, tags, and pills */

@@ -803,49 +803,64 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links butt
 }
 
 /* ==========================================================================
-   GREEN TERMINAL RAIL & MATCHING NODES/TRACES (SSH TERMINAL AESTHETIC)
+   METALLIC MONOCHROME CYBER RAIL & MATCHING NODES/TRACES (SILVER/GREY/WHITE)
    ========================================================================== */
-/* Clean green terminal rail */
+@keyframes cyberSilverPulse {
+    0% {
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.3), 0 0 16px rgba(180, 180, 180, 0.2);
+        filter: brightness(1);
+    }
+    50% {
+        box-shadow: 0 0 16px rgba(255, 255, 255, 0.7), 0 0 28px rgba(200, 200, 200, 0.4);
+        filter: brightness(1.2);
+    }
+    100% {
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.3), 0 0 16px rgba(180, 180, 180, 0.2);
+        filter: brightness(1);
+    }
+}
+
+/* Sleek luminous silver/grey/white metallic timeline rail */
 #experience .timeline::before,
 .timeline::before {
     left: 11px !important;
     width: 4px !important;
-    background: linear-gradient(180deg, #00ff66 0%, #2ed573 50%, #10ac84 100%) !important;
+    background: linear-gradient(180deg, #FFFFFF 0%, #888888 50%, #444444 100%) !important;
     background-size: 100% 100% !important;
-    animation: none !important;
+    animation: cyberSilverPulse 4s infinite ease-in-out !important;
     border-radius: 4px !important;
-    box-shadow: 0 0 10px rgba(0, 255, 102, 0.4), inset 0 0 3px rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4), inset 0 0 3px rgba(255, 255, 255, 0.5) !important;
 }
 
-/* Timeline nodes: small green terminal rings with dark centers */
+/* Timeline nodes: sleek white/grey rings with dark glass centers */
 #experience .timeline-dot-connector,
 .timeline-dot-connector,
 .timeline-dot {
     width: 14px !important;
     height: 14px !important;
     background: #0a0a0f !important;
-    border: 2px solid #00ff66 !important;
+    border: 2px solid #FFFFFF !important;
     border-radius: 50% !important;
-    box-shadow: 0 0 8px rgba(0, 255, 102, 0.4), inset 0 0 3px rgba(0, 255, 102, 0.3) !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5), inset 0 0 3px rgba(255, 255, 255, 0.4) !important;
     z-index: 10;
     transition: all 0.3s ease;
 }
 
-/* Subtle understated hover state for timeline nodes */
+/* Luminous hover state for timeline nodes */
 .exec-card:hover + .timeline-dot-connector,
 .timeline-item:hover .timeline-dot-connector,
 .timeline-item:hover .timeline-dot {
-    background: #0a0a0f !important;
-    border: 2px solid #00ff66 !important;
-    box-shadow: 0 0 14px rgba(0, 255, 102, 0.6), inset 0 0 4px rgba(0, 255, 102, 0.4) !important;
-    transform: scale(1.1) !important;
+    background: #FFFFFF !important;
+    border: 2px solid #FFFFFF !important;
+    box-shadow: 0 0 18px rgba(255, 255, 255, 0.9), 0 0 30px rgba(200, 200, 200, 0.5) !important;
+    transform: scale(1.15) !important;
 }
 
-/* Horizontal trace connecting dot to card */
+/* Horizontal trace connecting dot to card in luminous silver/grey */
 .timeline-dot-connector::after {
-    background: linear-gradient(90deg, #00ff66, rgba(0, 255, 102, 0.15)) !important;
+    background: linear-gradient(90deg, #FFFFFF, rgba(200, 200, 200, 0.15)) !important;
     height: 1.5px !important;
-    box-shadow: 0 0 4px rgba(0, 255, 102, 0.3) !important;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.4) !important;
 }
 
 /* ==========================================================================
