@@ -49,6 +49,7 @@ h1, h2, h3, h4, h5, h6, .logo, .section-title, .hero-content h1 {
     text-transform: uppercase !important;
     max-width: 800px;
     white-space: nowrap !important;
+    margin-left: 4px !important; /* Offset negative font bearing */
     transition: all 0.3s ease !important;
 }
 
@@ -62,6 +63,10 @@ h1, h2, h3, h4, h5, h6, .logo, .section-title, .hero-content h1 {
     cursor: crosshair !important;
 }
 
+.greeting {
+    margin-left: 4px !important;
+}
+
 .hero-subtitle {
     font-family: var(--font-primary) !important;
     color: var(--secondary-color) !important;
@@ -69,6 +74,7 @@ h1, h2, h3, h4, h5, h6, .logo, .section-title, .hero-content h1 {
     text-transform: uppercase !important;
     letter-spacing: 0.1em !important;
     margin-top: 1.5rem !important;
+    margin-left: 4px !important;
 }
 
 .hero-text {
@@ -77,13 +83,15 @@ h1, h2, h3, h4, h5, h6, .logo, .section-title, .hero-content h1 {
     letter-spacing: 0.02em !important;
     max-width: 600px !important;
     margin-top: 1rem !important;
+    margin-left: 4px !important;
 }
 
 .cta-buttons {
     display: flex !important;
-    flex-wrap: wrap !important;
+    flex-wrap: nowrap !important;
     gap: 12px !important;
     margin-top: 2rem !important;
+    margin-left: 4px !important;
 }
 
 /* Brutalist Cards & Containers */
@@ -323,6 +331,7 @@ input[type="range"]::-webkit-slider-thumb {
     border: 1px solid var(--border-color) !important;
     border-radius: 0 !important;
     box-shadow: none !important;
+    margin-left: 4px !important;
 }
 .ide-topbar {
     background: var(--glass-bg) !important;
