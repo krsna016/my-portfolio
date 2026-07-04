@@ -29,7 +29,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateStatus() {
         const d = new Date();
-        const time = d.toUTCString().replace('GMT', 'UTC');
+        const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+        const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+        const dayName = days[d.getDay()];
+        const day = String(d.getDate()).padStart(2, '0');
+        const monthName = months[d.getMonth()];
+        const year = d.getFullYear();
+        const timeStr = d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).toUpperCase();
+        const time = `${dayName}, ${day} ${monthName} ${year} ${timeStr}`;
         const viewport = `${window.innerWidth}x${window.innerHeight}`;
         
         statusBox.innerHTML = `
