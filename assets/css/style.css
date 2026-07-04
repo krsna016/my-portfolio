@@ -1179,8 +1179,9 @@ textarea {
 .contact-btn:hover {
     background: var(--primary-color);
     border-color: var(--primary-color);
+    color: #000;
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
 }
 
 /* Footer */
