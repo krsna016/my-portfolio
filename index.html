@@ -42,8 +42,8 @@
     <meta property="twitter:description" content="Data Analyst with hands-on experience in data cleaning, analysis, and visualization using Excel, SQL, Power BI, and Python.">
     <meta property="twitter:image" content="https://krsna016.github.io/my-portfolio/assets/images/profile.webp">
 
-    <link rel="stylesheet" href="assets/css/cyber_theme.css?v=130">
-    <link rel="stylesheet" href="assets/css/intense_features/identity.css?v=130">
+    <link rel="stylesheet" href="assets/css/cyber_theme.css?v=131">
+    <link rel="stylesheet" href="assets/css/intense_features/identity.css?v=131">
 </head>
 
 <body>
@@ -99,8 +99,18 @@
         <div class="hero-visual fade-in-up delay-200">
             <!-- Abstract geometric visual or placeholder for profile image -->
             <div class="floating-wrapper">
-                <div class="profile-image-container">
-                    <img src="assets/images/profile.webp" alt="Anurag Pareek" class="profile-img">
+                <div class="profile-image-container" id="hero-profile-container">
+                    <img src="assets/images/profile.webp" alt="Anurag Pareek" class="profile-img" id="hero-normal-img">
+
+                    <!-- Evervault Gradient Mask Cyber Layer (PORTRAIT ONLY) -->
+                    <div class="evervault-mask-layer" id="hero-evervault-mask" aria-hidden="true">
+                        <div class="evervault-duotone-wrapper">
+                            <img src="assets/images/profile.webp" alt="" class="evervault-img">
+                            <div class="evervault-color-grade"></div>
+                            <div class="evervault-scanlines"></div>
+                            <canvas id="evervault-canvas" class="evervault-canvas"></canvas>
+                        </div>
+                    </div>
 
                     <!-- Idea Bubbles (Icons Only) -->
                     <div class="idea-bubble bubble-1">
@@ -239,6 +249,7 @@
     <script src="assets/js/intense_features/boot_sequence.js" defer></script>
     <script src="assets/js/intense_features/identity.js" defer></script>
     <script src="assets/js/cyber_ui.js" defer></script>
+    <script src="assets/js/evervault_portrait.js?v=131" defer></script>
 
     <!-- Schema.org Structured Data (JSON-LD) for Search Engine Optimization -->
     <script type="application/ld+json">
