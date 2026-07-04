@@ -186,7 +186,12 @@
             max-width: 90%;
         }
 
-        
+        /* Fix for color input */
+        .form-group input[type="color"] {
+            padding: 2px;
+            height: 50px;
+            cursor: pointer;
+        }
     </style>
     <link rel="manifest" href="/manifest.json">
 
@@ -277,7 +282,7 @@
 
                     <div class="form-group">
                         <label>Color Theme</label>
-                        <input type="color" id="cert-color" value="#6c63ff" style="height: 50px; cursor: pointer;">
+                        <input type="color" id="cert-color" value="#6c63ff">
                     </div>
 
                     <div class="form-group">
@@ -460,8 +465,8 @@
             <h2 style="margin-bottom: 1rem;">Admin Access</h2>
             <p style="color: #aaa; font-size: 0.9rem; margin-bottom: 1.5rem;">Hardware Authentication Required</p>
             
-            <button type="button" class="btn primary" id="biometric-btn" style="width: 100%; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; gap: 10px;">
-                <i class="fa-solid fa-fingerprint" style="font-size: 1.2rem;"></i> Authenticate with TouchID / FaceID
+            <button type="button" class="btn primary" id="biometric-btn" style="width: 100%; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.85rem; padding: 1rem 0.5rem; white-space: normal;">
+                <i class="fa-solid fa-fingerprint" style="font-size: 1.2rem;"></i> Biometric Login
             </button>
 
             <div style="margin: 1.5rem 0; color: #555; display: flex; align-items: center;">
