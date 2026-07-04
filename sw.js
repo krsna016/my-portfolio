@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ap-portfolio-v115-god-mode';
+const CACHE_NAME = 'ap-portfolio-v116-god-mode';
 
 const PRECACHE_ASSETS = [
     '/',
@@ -54,7 +54,7 @@ self.addEventListener('fetch', event => {
     if (isDynamicContent) {
         // Network-First for blogs/data (forces latest version, falls back to offline cache)
         event.respondWith(
-            fetch(event.request).then(networkResponse => {
+            fetch(event.request, { cache: 'no-cache' }).then(networkResponse => {
                 if (networkResponse && networkResponse.status === 200) {
                     const responseClone = networkResponse.clone();
                     caches.open(CACHE_NAME).then(cache => cache.put(event.request, responseClone));
@@ -67,10 +67,10 @@ self.addEventListener('fetch', event => {
         return;
     }
 
-    // Use Network-First strategy for everything to ensure immediate updates.
+    // Use Network-First strategy with { cache: 'no-cache' } for everything to bypass HTTP cache and ensure immediate updates.
     // Falls back to offline cache if network fails.
     event.respondWith(
-        fetch(event.request).then(networkResponse => {
+        fetch(event.request, { cache: 'no-cache' }).then(networkResponse => {
             if (networkResponse && networkResponse.status === 200 && (networkResponse.type === 'basic' || networkResponse.type === 'cors')) {
                 const responseClone = networkResponse.clone();
                 caches.open(CACHE_NAME).then(cache => {

@@ -469,8 +469,10 @@
 }
 
 .pinned-heading .section-title::after {
-    background: linear-gradient(180deg, #00d2ff, #6c5ce7) !important;
-    box-shadow: 0 0 14px rgba(0, 210, 255, 0.6) !important;
+    background: linear-gradient(180deg, #00ff66 0%, #00e5ff 50%, #9d4edd 100%) !important;
+    box-shadow: 0 0 12px rgba(0, 255, 102, 0.5), 0 0 25px rgba(0, 229, 255, 0.3) !important;
+    width: 4px !important;
+    border-radius: 4px !important;
 }
 
 #experience .timeline-item {
