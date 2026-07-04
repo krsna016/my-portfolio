@@ -396,3 +396,55 @@ input[type="range"]::-webkit-slider-thumb {
     margin-bottom: 1.5rem !important;
     font-family: var(--font-primary) !important;
 }
+
+/* Hacker Theme Modal Overrides */
+.modal-content {
+    background: #050505 !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 0 !important;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8) !important;
+    height: 85vh !important;
+}
+.modal-header {
+    background: #111 !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    padding: 0.8rem 1rem !important;
+    display: flex !important;
+    align-items: center !important;
+}
+.modal-header h3 {
+    font-family: var(--font-primary) !important;
+    text-transform: uppercase !important;
+    font-size: 0.9rem !important;
+    letter-spacing: 0.1em !important;
+    color: var(--text-color) !important;
+}
+.modal-header h3::before {
+    content: "[ ROOT@SECURE ] ~ ";
+    color: var(--secondary-color);
+}
+.close-modal {
+    top: 0.7rem !important;
+    right: 1rem !important;
+    font-size: 0 !important; /* Hide the &times; */
+    color: var(--secondary-color) !important;
+    transition: all 0.2s !important;
+}
+.close-modal::after {
+    content: "[ X ]";
+    font-size: 1rem !important;
+    font-family: var(--font-primary) !important;
+}
+.close-modal:hover::after {
+    color: #ff0055 !important;
+    text-shadow: 0 0 8px rgba(255, 0, 85, 0.6);
+}
+.pdf-viewer-container {
+    border-radius: 0 !important;
+    background: #000 !important;
+    padding: 2px !important; /* Tiny border gap */
+}
+.pdf-viewer-container iframe {
+    filter: invert(0) !important; /* Keeps PDF colors intact */
+    opacity: 0.95;
+}
