@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f0c29">
+            <meta property="og:type" content="website">
+    
+    <title>Blog & Articles | Anurag Pareek</title>
+
+    <!-- Intense Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://kit.fontawesome.com https://ka-f.fontawesome.com https://frontend-cdn.perplexity.ai https://cdn.jsdelivr.net blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://kit.fontawesome.com https://ka-f.fontawesome.com https://frontend-cdn.perplexity.ai https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://kit.fontawesome.com https://ka-f.fontawesome.com https://frontend-cdn.perplexity.ai; img-src 'self' data: blob: https:; connect-src 'self' https://cdnjs.cloudflare.com https://kit.fontawesome.com https://ka-f.fontawesome.com https://frontend-cdn.perplexity.ai https://cdn.jsdelivr.net; worker-src 'self' blob: https://cdnjs.cloudflare.com https://kit.fontawesome.com https://ka-f.fontawesome.com https://frontend-cdn.perplexity.ai; object-src 'self' data: blob:;">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=()">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap"></noscript>
+    <link rel="stylesheet" href="assets/css/style.css?v=133">
+    <link rel="stylesheet" href="assets/css/intense_features/intense_pack.css?v=133">
+    
+    <!-- Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- DOMPurify for sanitizing HTML -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
+    <!-- Highlight.js for Code Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+    <style>
+        .category-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: flex-start;
+        }
+
+        /* Categories styling */
+        .category-list li {
+            margin-bottom: 10px;
+            cursor: pointer;
+            padding: 10px 24px;
+            border-radius: 30px; /* Pill shape */
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.08);
+            border: none !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .category-list li:hover {
+            background: rgba(255, 255, 255, 0.18) !important;
+            color: #fff !important;
+            border: none !important;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+        }
+        
+        .category-list li.active {
+            background: rgba(255, 255, 255, 0.22) !important;
+            color: #fff !important;
+            border: none !important;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+            font-weight: 600;
+        }
+
+        /* Admin Controls */
+        #admin-controls {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        /* Post Reader styling */
+        #post-reader {
+            display: none;
+            background: rgba(10, 10, 15, 0.6);
+            backdrop-filter: blur(12px);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        #back-button {
+            margin-bottom: 30px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        #back-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Aesthetic Markdown Body */
+        .markdown-body {
+            color: #dcdde1;
+            line-height: 1.8;
+            font-size: calc(1.4rem * var(--blog-scale, 1)); /* Increased for better visibility */
+            font-weight: 300;
+            transition: font-size 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .markdown-body h1, .markdown-body h2, .markdown-body h3 {
+            margin-top: 2.5em;
+            margin-bottom: 1em;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        
+        .markdown-body h1 { 
+            font-size: calc(2.8rem * var(--blog-scale, 1)); 
+            color: var(--primary-color);
+            margin-top: 0;
+            line-height: 1.2;
+            transition: font-size 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .markdown-body h2 { 
+            font-size: calc(2.2rem * var(--blog-scale, 1)); 
+            color: var(--primary-color);
+            border-bottom: 2px solid rgba(108, 92, 231, 0.2); 
+            padding-bottom: 10px;
+            transition: font-size 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .markdown-body h3 {
+            font-size: calc(1.6rem * var(--blog-scale, 1));
+            color: var(--primary-color);
+            transition: font-size 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .markdown-body p {
+            margin-bottom: 1.8em;
+            letter-spacing: 0.2px;
+        }
+
+        /* Subtle Separator Lines */
+        .markdown-body hr {
+            border: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.15); /* Very thin, subtle line */
+            margin: 3em 0;
+        }
+
+        /* Mac-like Code Blocks */
+        .markdown-body pre {
+            background: #1e1e24;
+            padding: 40px 20px 20px 20px; /* space for mac buttons */
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-bottom: 2em;
+            border: 1px solid rgba(255,255,255,0.08);
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        /* Mac window dots */
+        .markdown-body pre::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ff5f56;
+            box-shadow: 20px 0 0 #ffbd2e, 40px 0 0 #27c93f;
+        }
+        
+        .markdown-body code {
+            font-family: 'Fira Code', 'Courier New', Courier, monospace;
+            background: rgba(108, 92, 231, 0.15);
+            color: #a29bfe;
+            padding: 3px 6px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+        
+        .markdown-body pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+            font-weight: 400;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        /* Beautiful Blockquotes */
+        .markdown-body blockquote {
+            position: relative;
+            background: linear-gradient(to right, rgba(108, 92, 231, 0.1), transparent);
+            border-left: 4px solid var(--primary-color);
+            padding: 20px 20px 20px 45px;
+            margin: 2em 0;
+            border-radius: 0 12px 12px 0;
+            color: #b2bec3;
+            font-style: italic;
+            font-size: 1.2rem;
+        }
+
+        .markdown-body blockquote::before {
+            content: '"';
+            position: absolute;
+            left: 10px;
+            top: 5px;
+            font-size: 4rem;
+            color: rgba(108, 92, 231, 0.2);
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .markdown-body ul, .markdown-body ol {
+            margin-bottom: 2em;
+            padding-left: 25px;
+        }
+        
+        .markdown-body li {
+            margin-bottom: 0.8em;
+            position: relative;
+        }
+
+        /* Custom Bullet Points */
+        .markdown-body ul li::marker {
+            color: var(--primary-color);
+        }
+        
+        /* Modal inputs */
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color) !important;
+        }
+    </style>
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Intensive Metadata Hacks -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://krsna016.github.io/my-portfolio/">
+    <meta property="og:title" content="Anurag Pareek - Data Analyst & Developer">
+    <meta property="og:description" content="Data Analyst with hands-on experience in data cleaning, analysis, and visualization using Excel, SQL, Power BI, and Python.">
+    <meta property="og:image" content="https://krsna016.github.io/my-portfolio/assets/images/profile.webp">
+    
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://krsna016.github.io/my-portfolio/">
+    <meta property="twitter:title" content="Anurag Pareek - Data Analyst & Developer">
+    <meta property="twitter:description" content="Data Analyst with hands-on experience in data cleaning, analysis, and visualization using Excel, SQL, Power BI, and Python.">
+    <meta property="twitter:image" content="https://krsna016.github.io/my-portfolio/assets/images/profile.webp">
+
+    <link rel="stylesheet" href="assets/css/cyber_theme.css">
+</head>
+
+<body>
+    <div class="background-glow"></div>
+
+    <canvas id="particle-canvas"></canvas>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">AP<span class="logo-dot">.</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="resume.html">Resume</a></li>
+            <li><a href="certificates.html">Certificates</a></li>
+            <li><a href="games.html">Arcade</a></li>
+            <li><a href="articles.html" class="active">Blog & Articles</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </nav>
+
+    <section class="section games-page">
+        <div class="container">
+            <!-- Tab Navigation -->
+            <div class="tab-buttons" style="display: flex; gap: 1rem; margin-bottom: 2rem; justify-content: center;">
+                <button class="btn primary tab-btn active" data-tab="blogs">Blog</button>
+                <button class="btn secondary tab-btn" data-tab="articles">Articles</button>
+            </div>
+
+            <!-- Blogs Tab (Merged from blog.html) -->
+            <div id="tab-blogs" class="tab-content">
+                <div class="pinned-section-wrapper">
+                    <div class="pinned-heading">
+                        <h2 class="section-title">Blog</h2>
+                    </div>
+                    <div class="section-content">
+                        <p class="games-intro" style="margin-bottom: 2rem;">Read my latest tech deep-dives.</p>
+                        
+                        <!-- Categories (Horizontal pills) -->
+                        <ul class="category-list" id="category-list">
+                            <li class="active" data-category="All">All Posts</li>
+                            <!-- Categories injected by JS -->
+                        </ul>
+
+                        <!-- List View (Grid exactly like Arcade) -->
+                        <div id="posts-list" class="games-grid">
+                            <!-- Posts injected by JS -->
+                        </div>
+
+                        <!-- Reader View -->
+                        <div id="post-reader">
+                            <div id="back-button"><i class="fa-solid fa-arrow-left"></i> Back to Posts</div>
+                            <div id="reader-content" class="markdown-body"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Articles Tab -->
+            <div id="tab-articles" class="tab-content" style="display: none;">
+                <div class="pinned-section-wrapper">
+                    <div class="pinned-heading">
+                        <h2 class="section-title">Articles</h2>
+                    </div>
+                    <div class="section-content">
+                        <p class="games-intro">Thoughts, tutorials, and updates.</p>
+
+                        <div class="about-grid">
+                            <!-- Skeleton / Placeholder for Articles -->
+                            <div class="about-card glass fade-in-up">
+                                <div class="game-icon"
+                                    style="font-size: 2rem; margin-bottom: 1rem; color: var(--primary-color);">
+                                    <i class="fa-solid fa-pen-nib"></i>
+                                </div>
+                                <h3>Coming Soon</h3>
+                                <p>Stay tuned for insightful articles on Data Science, AI, and Web Development.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <footer>
+        <div class="footer-socials">
+            <a href="#" class="secure-contact" data-contact="YW51cmFnMDIwNDE2QGdtYWlsLmNvbQ==" target="_blank"
+                aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/anuragpareek016" target="_blank" aria-label="LinkedIn"><i
+                    class="fa-brands fa-linkedin"></i></a>
+            <a href="https://github.com/krsna016" target="_blank" aria-label="GitHub"><i
+                    class="fa-brands fa-github"></i></a>
+        </div>
+        <p>&copy; 2025 Anurag Pareek. All rights reserved.</p>
+    </footer>
+
+    <script src="assets/js/script.js?v=133"></script>
+    <script src="assets/js/particles.js?v=133"></script>
+    <script src="assets/js/blog_data.js?v=133"></script>
+    <script src="assets/js/blog_logic.js?v=133"></script>
+    <script>
+        // Tab Switching Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    tabBtns.forEach(b => {
+                        b.classList.remove('active');
+                        b.classList.remove('primary');
+                        b.classList.add('secondary');
+                    });
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+                    btn.classList.remove('secondary');
+                    btn.classList.add('primary');
+
+                    // Hide all contents
+                    tabContents.forEach(content => content.style.display = 'none');
+                    // Show target content
+                    const targetId = `tab-${btn.dataset.tab}`;
+                    document.getElementById(targetId).style.display = 'block';
+                });
+            });
+        });
+    </script>
+    <script src="assets/js/intense_features/sound_haptics.js" defer></script>
+    <script src="assets/js/intense_features/terminal.js" defer></script>
+    <script src="assets/js/cyber_ui.js"></script>
+</body>
+</html>
