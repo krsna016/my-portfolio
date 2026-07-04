@@ -90,58 +90,37 @@ h1, h2, h3, h4, h5, h6, .logo, .section-title, .hero-content h1 {
 
 /* Brutalist Cards & Containers */
 .glass, .cert-card, .card, .resume-card, .contact-container, .timeline-content, .game-card {
-    background: linear-gradient(135deg, rgba(17, 17, 17, 0.9) 0%, rgba(5, 5, 5, 0.95) 100%) !important;
-    border: 1px solid rgba(0, 210, 255, 0.15) !important;
+    background: var(--glass-bg) !important;
+    border: 1px solid var(--border-color) !important;
     border-radius: 0 !important; /* Sharp edges */
-    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5) !important;
-    backdrop-filter: blur(10px) !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
     position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease !important;
 }
 
-/* Add a glowing tech accent line to all cards */
-.glass::after, .cert-card::after, .card::after, .resume-card::after, .contact-container::after, .timeline-content::after, .game-card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 2px;
-    height: 100%;
-    background: #00d2ff;
-    box-shadow: 0 0 10px #00d2ff;
-    opacity: 0.5;
-    transition: opacity 0.3s, background 0.3s, box-shadow 0.3s;
-    z-index: 2;
-}
-
-.glass:hover, .cert-card:hover, .card:hover, .resume-card:hover, .contact-container:hover, .timeline-content:hover, .game-card:hover {
-    border-color: rgba(0, 255, 65, 0.3) !important;
-    background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(5, 5, 5, 0.95) 100%) !important;
-    box-shadow: inset 0 0 30px rgba(0, 255, 65, 0.05), 0 0 20px rgba(0, 255, 65, 0.1) !important;
-    transform: translateY(-2px) !important;
-}
-
-.glass:hover::after, .cert-card:hover::after, .card:hover::after, .resume-card:hover::after, .contact-container:hover::after, .timeline-content:hover::after, .game-card:hover::after {
-    background: #00FF41;
-    box-shadow: 0 0 15px #00FF41;
-    opacity: 1;
-}
-
-/* Cybernetic Corner Brackets (Modified for all cards) */
+/* Cybernetic Corner Brackets */
 .cert-card::before, .resume-card::before, .card::before, .game-card::before {
     content: '';
     position: absolute;
-    top: -1px; right: -1px;
-    width: 15px; height: 15px;
-    border-top: 2px solid rgba(0, 210, 255, 0.5);
-    border-right: 2px solid rgba(0, 210, 255, 0.5);
+    top: -1px; left: -1px;
+    width: 12px; height: 12px;
+    border-top: 2px solid var(--secondary-color);
+    border-left: 2px solid var(--secondary-color);
     transition: border-color 0.3s;
-    z-index: 3;
+}
+.cert-card::after, .resume-card::after, .card::after, .game-card::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; right: -1px;
+    width: 12px; height: 12px;
+    border-bottom: 2px solid var(--secondary-color);
+    border-right: 2px solid var(--secondary-color);
+    transition: border-color 0.3s;
 }
 
-.cert-card:hover::before, .resume-card:hover::before, .card:hover::before, .game-card:hover::before {
-    border-color: #00FF41;
+.cert-card:hover::before, .resume-card:hover::before, .card:hover::before, .game-card:hover::before,
+.cert-card:hover::after, .resume-card:hover::after, .card:hover::after, .game-card:hover::after {
+    border-color: var(--accent-color);
 }
 
 /* Buttons */
@@ -386,143 +365,4 @@ input[type="range"]::-webkit-slider-thumb {
 .ide-textarea {
     color: var(--text-color) !important;
     font-family: var(--font-primary) !important;
-}
-
-/* Certificate Badges / Logos */
-.certificates-page .cert-icon-container {
-    background: transparent !important;
-    border: 1px solid rgba(0, 210, 255, 0.3) !important;
-    border-radius: 0 !important; /* Brutalist sharp edges */
-    position: relative;
-    box-shadow: 0 0 10px rgba(0, 210, 255, 0.05) inset !important;
-}
-
-/* Add corner brackets to the icon container for that cyber aesthetic */
-.certificates-page .cert-icon-container::before {
-    content: '';
-    position: absolute;
-    top: -1px; left: -1px;
-    width: 8px; height: 8px;
-    border-top: 1px solid #00d2ff;
-    border-left: 1px solid #00d2ff;
-}
-.certificates-page .cert-icon-container::after {
-    content: '';
-    position: absolute;
-    bottom: -1px; right: -1px;
-    width: 8px; height: 8px;
-    border-bottom: 1px solid #00d2ff;
-    border-right: 1px solid #00d2ff;
-}
-
-.certificates-page .cert-icon-container i {
-    color: #00d2ff !important; /* Force cyber cyan */
-    text-shadow: 0 0 8px rgba(0, 210, 255, 0.6) !important;
-    filter: none !important;
-}
-
-.certificates-page .certificate-card:hover .cert-icon-container {
-    border-color: #00FF41 !important;
-    box-shadow: 0 0 15px rgba(0, 255, 65, 0.1) inset !important;
-}
-
-.certificates-page .certificate-card:hover .cert-icon-container::before,
-.certificates-page .certificate-card:hover .cert-icon-container::after {
-    border-color: #00FF41 !important;
-}
-
-.certificates-page .certificate-card:hover .cert-icon-container i {
-    color: #00FF41 !important; /* Matrix Green on hover */
-    text-shadow: 0 0 12px rgba(0, 255, 65, 0.8) !important;
-}
-
-/* Certificate View Link */
-.certificates-page .cert-link {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 8px !important;
-    background: transparent !important;
-    border: 1px solid rgba(0, 210, 255, 0.3) !important;
-    color: #00d2ff !important;
-    padding: 8px 12px !important;
-    font-size: 11px !important;
-    font-family: var(--font-primary) !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.1em !important;
-    border-radius: 0 !important;
-    transition: all 0.2s ease !important;
-    margin-top: 15px !important;
-}
-
-.certificates-page .certificate-card:hover .cert-link {
-    border-color: #00FF41 !important;
-    color: #00FF41 !important;
-    background: rgba(0, 255, 65, 0.05) !important;
-}
-
-/* Modal View / PDF Viewer Styling for Cyber Theme */
-.modal {
-    background-color: rgba(5, 5, 5, 0.95) !important;
-    backdrop-filter: blur(8px) !important;
-}
-
-.modal-content {
-    background: #060606 !important;
-    border: 1px solid rgba(0, 210, 255, 0.4) !important;
-    border-radius: 0 !important;
-    box-shadow: 0 0 30px rgba(0, 210, 255, 0.15), inset 0 0 20px rgba(0, 210, 255, 0.05) !important;
-}
-
-/* Cyber Modal Scanline */
-.modal-content::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 2px;
-    background: rgba(0, 210, 255, 0.5);
-    box-shadow: 0 0 10px #00d2ff, 0 0 5px #00d2ff;
-    animation: modalScanline 4s linear infinite;
-    pointer-events: none;
-    z-index: 10;
-}
-
-@keyframes modalScanline {
-    0% { top: 0; opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { top: 100%; opacity: 0; }
-}
-
-.modal-header {
-    background: rgba(0, 210, 255, 0.05) !important;
-    border-bottom: 1px solid rgba(0, 210, 255, 0.3) !important;
-    padding: 15px 20px !important;
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-}
-
-.modal-header h2 {
-    font-family: var(--font-primary) !important;
-    color: #00d2ff !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.1em !important;
-    font-size: 1.1rem !important;
-    margin: 0 !important;
-}
-
-.close-modal {
-    color: rgba(255, 255, 255, 0.5) !important;
-    font-family: var(--font-primary) !important;
-    font-size: 28px !important;
-    transition: color 0.3s, text-shadow 0.3s !important;
-    position: absolute !important;
-    top: 12px !important;
-    right: 20px !important;
-    z-index: 20 !important;
-}
-
-.close-modal:hover {
-    color: #00FF41 !important;
-    text-shadow: 0 0 10px rgba(0, 255, 65, 0.8) !important;
 }
