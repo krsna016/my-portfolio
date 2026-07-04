@@ -469,73 +469,100 @@ input[type="range"]::-webkit-slider-thumb {
    ========================================================================== */
 
 /* Container resets */
-.pinned-heading {
-    border-right: none !important;
-}
-
-.pinned-heading .section-title {
+/* GLOBAL SSH CARET TERMINAL DIVIDER FOR ALL SECTIONS (EXCEPT RESUME & CONTACT) */
+.section-title {
     position: relative !important;
-}
-
-/* 2px Matte Accent Line */
-.pinned-heading .section-title::after {
-    content: '' !important;
-    position: absolute !important;
-    right: -2.1rem !important;
-    top: 0 !important;
-    width: 2px !important;
-    height: 100% !important;
-    background: #444 !important; /* Base gray */
-    box-shadow: none !important;
-    border-radius: 0 !important;
     display: block !important;
-    overflow: hidden !important;
+    width: max-content !important;
+    margin: 0 auto 4rem auto !important;
 }
 
-/* Upward highlight sweep when scrolled into view */
-.pinned-heading.visible .section-title::after {
-    animation: heading-accent-sweep 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
+/* Ensure pinned heading right-aligns its title to match original layout */
+.pinned-heading .section-title {
+    margin: 0 0 4rem auto !important;
+    display: block !important;
+    width: max-content !important;
+    text-align: right !important;
 }
 
-@keyframes heading-accent-sweep {
-    0% { background: linear-gradient(to top, #8A8A8A 0%, #444 0%); }
-    50% { background: linear-gradient(to top, #8A8A8A 30%, #444 30%); }
-    100% { background: linear-gradient(to top, #8A8A8A 100%, #444 100%); }
-}
-
-/* Tiny Illuminated Engineering Node */
-.pinned-heading .section-title::before {
+/* Base Terminal Caret */
+.section-title::after {
     content: '' !important;
     position: absolute !important;
-    right: calc(-2.1rem - 3px) !important; /* 2px line, 8px node -> center is right-3px */
-    top: 0 !important;
-    width: 8px !important;
-    height: 8px !important;
-    border: 1px solid #8A8A8A !important;
-    background: #050505 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    right: -24px !important; /* Consistent 14-18px gap taking text into account */
+    left: auto !important;
+    bottom: auto !important;
+    width: 6px !important;
+    height: 60px !important;
+    /* Soft vertical gradient with faint scanline texture */
+    background: 
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.2) 2px, rgba(0,0,0,0.2) 4px),
+        linear-gradient(180deg, #4d4d4d 0%, #353535 100%) !important;
+    border-radius: 2px !important;
+    box-shadow: 0 0 12px rgba(0, 210, 255, 0.12), 0 0 12px rgba(108, 92, 231, 0.12), inset 1px 1px 2px rgba(255, 255, 255, 0.05) !important;
+    display: block !important;
+    animation: none !important;
+}
+
+/* Terminal Particle Accents */
+.section-title::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    right: -32px !important; /* Positioned slightly outside the caret */
+    left: auto !important;
+    bottom: auto !important;
+    width: 2px !important;
+    height: 2px !important;
+    background: transparent !important;
     border-radius: 50% !important;
-    box-shadow: none !important;
     z-index: 2 !important;
-    transition: all 0.3s ease !important;
-    opacity: 1 !important; /* Fallback visibility */
+    opacity: 0.9 !important;
+    border: none !important;
+    animation: none !important;
+    /* Create multiple tiny scattered dots around the caret using box-shadow */
+    box-shadow: 
+        0 -18px 0 rgba(0, 210, 255, 0.8),
+        4px -8px 0 rgba(108, 92, 231, 0.6),
+        -2px 10px 0 rgba(0, 210, 255, 0.7),
+        2px 22px 0 rgba(108, 92, 231, 0.8),
+        -3px -25px 0 rgba(0, 210, 255, 0.4),
+        3px 30px 0 rgba(108, 92, 231, 0.5) !important;
 }
 
-/* Node appears slightly after sweep */
-.pinned-heading.visible .section-title::before {
-    animation: heading-node-pulse 0.6s ease 0.6s forwards !important;
+/* --------------------------------------------------------------------------
+   REVERT RESUME & CONTACT PAGES TO HORIZONTAL UNDERLINE 
+   -------------------------------------------------------------------------- */
+.resume-page .section-title,
+.contact-page .section-title {
+    display: block !important; 
+    width: 100% !important; /* Full width so auto-center works inside it */
+    text-align: center !important;
+    margin-bottom: 4rem !important;
 }
 
-@keyframes heading-node-pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.3); background: #fff; }
-    100% { transform: scale(1); }
+.resume-page .section-title::after,
+.contact-page .section-title::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: -10px !important;
+    left: 50% !important;
+    right: auto !important;
+    top: auto !important;
+    transform: translateX(-50%) !important;
+    width: 60px !important;
+    height: 4px !important;
+    background: var(--primary-color) !important;
+    border-radius: 2px !important;
+    box-shadow: none !important;
 }
 
-/* Node Soft Glow on Hover */
-.pinned-heading:hover .section-title::before {
-    border-color: #fff !important;
-    background: #fff !important;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7) !important;
+.resume-page .section-title::before,
+.contact-page .section-title::before {
+    display: none !important;
 }
 
 
