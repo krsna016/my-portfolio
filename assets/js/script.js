@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    document.querySelectorAll('.scroll-reveal, .pinned-heading').forEach(el => {
+    document.querySelectorAll('.scroll-reveal').forEach(el => {
         observer.observe(el);
     });
 
@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Re-trigger scroll reveal observer for new elements
     if (typeof observer !== 'undefined') {
-        document.querySelectorAll('.scroll-reveal, .pinned-heading').forEach(el => {
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
             observer.observe(el);
         });
     }
