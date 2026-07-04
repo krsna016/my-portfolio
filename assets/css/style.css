@@ -1539,6 +1539,19 @@ footer {
     font-size: 1.2rem;
 }
 
+/* Center games intro relative to navbar by pulling it across the 264px left column */
+.pinned-section-wrapper .section-content .games-intro {
+    margin-left: -264px;
+    width: calc(100% + 264px);
+}
+
+@media (max-width: 900px) {
+    .pinned-section-wrapper .section-content .games-intro {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
 .games-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
