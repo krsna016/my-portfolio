@@ -832,35 +832,49 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links butt
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.4), inset 0 0 3px rgba(255, 255, 255, 0.5) !important;
 }
 
-/* Timeline nodes: sleek white/grey rings with dark glass centers */
+/* Timeline nodes: solid glowing white nodes (no black inside) */
 #experience .timeline-dot-connector,
 .timeline-dot-connector,
 .timeline-dot {
     width: 14px !important;
     height: 14px !important;
-    background: #0a0a0f !important;
-    border: 2px solid #FFFFFF !important;
+    background: #FFFFFF !important;
+    border: none !important;
     border-radius: 50% !important;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5), inset 0 0 3px rgba(255, 255, 255, 0.4) !important;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.85), 0 0 22px rgba(255, 255, 255, 0.45) !important;
     z-index: 10;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-/* Luminous hover state for timeline nodes */
+/* Hover state: turns vibrant glowing red! */
 .exec-card:hover + .timeline-dot-connector,
 .timeline-item:hover .timeline-dot-connector,
-.timeline-item:hover .timeline-dot {
-    background: #FFFFFF !important;
-    border: 2px solid #FFFFFF !important;
-    box-shadow: 0 0 18px rgba(255, 255, 255, 0.9), 0 0 30px rgba(200, 200, 200, 0.5) !important;
-    transform: scale(1.15) !important;
+.timeline-item:hover .timeline-dot,
+#experience .timeline-dot-connector:hover,
+.timeline-dot-connector:hover,
+.timeline-dot:hover {
+    background: #ff003b !important;
+    border: none !important;
+    box-shadow: 0 0 16px rgba(255, 0, 59, 0.95), 0 0 32px rgba(255, 0, 59, 0.65), 0 0 48px rgba(255, 0, 59, 0.35) !important;
+    transform: scale(1.25) !important;
 }
 
-/* Horizontal trace connecting dot to card in luminous silver/grey */
+/* Horizontal trace connecting dot to card in luminous white */
 .timeline-dot-connector::after {
     background: linear-gradient(90deg, #FFFFFF, rgba(200, 200, 200, 0.15)) !important;
     height: 1.5px !important;
     box-shadow: 0 0 6px rgba(255, 255, 255, 0.4) !important;
+    transition: all 0.3s ease !important;
+}
+
+/* On hover, the connecting trace also glows vibrant red! */
+.exec-card:hover + .timeline-dot-connector::after,
+.timeline-item:hover .timeline-dot-connector::after,
+.timeline-item:hover .timeline-dot::after,
+.timeline-dot-connector:hover::after,
+.timeline-dot:hover::after {
+    background: linear-gradient(90deg, #ff003b, rgba(255, 0, 59, 0.15)) !important;
+    box-shadow: 0 0 8px rgba(255, 0, 59, 0.7) !important;
 }
 
 /* ==========================================================================

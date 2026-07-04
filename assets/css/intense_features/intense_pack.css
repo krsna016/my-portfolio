@@ -491,17 +491,17 @@
     display: none !important; /* Remove old broken dots/mirror years */
 }
 
-/* Glowing dot attached to vertical line (pure glow orb, no black border) */
+/* Glowing dot attached to vertical line (pure glow orb, solid white) */
 .timeline-dot-connector {
     position: absolute;
     left: -30px;
     top: 28px;
     width: 14px;
     height: 14px;
-    background: #00d2ff;
+    background: #FFFFFF !important;
     border: none !important;
     border-radius: 50%;
-    box-shadow: 0 0 6px rgba(0, 210, 255, 0.4) !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8) !important;
     z-index: 10;
     transition: all 0.3s ease;
 }
@@ -514,7 +514,7 @@
     left: 12px;
     width: 20px;
     height: 2px;
-    background: linear-gradient(90deg, #00d2ff, rgba(108, 92, 231, 0.4));
+    background: linear-gradient(90deg, #FFFFFF, rgba(200, 200, 200, 0.2)) !important;
 }
 
 /* Universal Dark Obsidian Cards & Minimalistic Natural Drop-Shadows (Strictly No Borders) */
@@ -541,9 +541,9 @@
 
 .exec-card:hover + .timeline-dot-connector,
 .timeline-item:hover .timeline-dot-connector {
-    background: #00d2ff;
-    box-shadow: 0 0 8px rgba(0, 210, 255, 0.5) !important;
-    transform: scale(1.15);
+    background: #ff003b !important;
+    box-shadow: 0 0 16px rgba(255, 0, 59, 0.9) !important;
+    transform: scale(1.25);
 }
 
 .exec-card-header {
