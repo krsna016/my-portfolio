@@ -487,3 +487,73 @@ input[type="range"]::-webkit-slider-thumb {
     border-radius: 50% !important;
 }
 
+/* ==========================================================================
+   HACKER TIMELINE & ACCENT LINES (Grey & Neon Aesthetic)
+   ========================================================================== */
+
+/* The main timeline vertical line */
+.timeline::before {
+    background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(0, 210, 255, 0.8), rgba(255,255,255,0.05)) !important;
+    background-size: 100% 200% !important;
+    animation: cyber-timeline-pulse 4s infinite linear !important;
+    width: 2px !important;
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.3) !important;
+}
+
+@keyframes cyber-timeline-pulse {
+    0% { background-position: 0 -100%; }
+    100% { background-position: 0 100%; }
+}
+
+/* Pinned Heading Line */
+.pinned-heading {
+    border-right: 2px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 1px 0 10px rgba(0, 210, 255, 0.1) !important;
+}
+.pinned-heading .section-title::after {
+    background: rgba(0, 210, 255, 0.5) !important;
+    box-shadow: 0 0 10px rgba(0, 210, 255, 0.8) !important;
+}
+
+/* Timeline Dots (Nodes) */
+.timeline-item::after {
+    background: #050505 !important;
+    border: 2px solid #00d2ff !important;
+    box-shadow: 0 0 10px rgba(0, 210, 255, 0.4), inset 0 0 5px rgba(0, 210, 255, 0.2) !important;
+    width: 14px !important;
+    height: 14px !important;
+    transition: all 0.3s ease !important;
+}
+
+@media (min-width: 769px) {
+    .timeline-item::after {
+        left: calc(50% - 7px) !important;
+    }
+}
+
+.timeline-item:hover::after {
+    background: #00d2ff !important;
+    box-shadow: 0 0 15px #00d2ff, 0 0 30px #00d2ff !important;
+    transform: scale(1.2) !important;
+}
+
+/* Timeline Date/Tags matching */
+.timeline-content .date {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #9A9A9A !important;
+    border-radius: 12px !important;
+}
+.timeline-content:hover .date {
+    background: rgba(0, 210, 255, 0.1) !important;
+    border-color: #00d2ff !important;
+    color: #00d2ff !important;
+    box-shadow: 0 0 10px rgba(0, 210, 255, 0.2) !important;
+}
+
+/* Connective Arrows */
+.timeline-content::before {
+    border-right-color: var(--glass-bg) !important;
+    border-left-color: var(--glass-bg) !important;
+}
+
