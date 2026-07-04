@@ -207,6 +207,14 @@ input:not([type="range"]):not([type="color"]):focus, textarea:focus {
     outline: none !important;
 }
 
+/* Fix Chat Input Bar Textarea Border */
+.chat-input-bar textarea {
+    border: none !important;
+}
+.chat-input-bar textarea:focus {
+    border: none !important;
+}
+
 /* Fix Range Sliders */
 input[type="range"] {
     -webkit-appearance: none !important;
