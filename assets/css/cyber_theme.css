@@ -712,10 +712,50 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links butt
     box-shadow: 0 0 8px rgba(255, 255, 255, 0.4) !important;
 }
 
-/* Ensure timeline vertical bar matches our sleek white/grey theme */
+/* ==========================================================================
+   PREMIUM SSH TERMINAL AESTHETIC: EXPERIENCE TIMELINE RAIL & NODES
+   ========================================================================== */
+/* Subtle 4px vertical rail with soft cyan -> blue -> violet gradient, faint inner glow, and terminal depth */
+#experience .timeline::before,
 .timeline::before {
-    background: linear-gradient(180deg, #FFFFFF, #555555) !important;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2) !important;
+    left: 11px !important;
+    width: 4px !important;
+    background: linear-gradient(180deg, rgba(0, 210, 255, 0.65) 0%, rgba(58, 123, 213, 0.55) 50%, rgba(138, 43, 226, 0.45) 100%) !important;
+    background-size: 100% 100% !important;
+    animation: none !important;
+    border-radius: 4px !important;
+    box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.35), 0 0 8px rgba(0, 210, 255, 0.2) !important;
+}
+
+/* Timeline nodes: small premium cyan rings with dark centers and a subtle glow */
+#experience .timeline-dot-connector,
+.timeline-dot-connector,
+.timeline-dot {
+    width: 14px !important;
+    height: 14px !important;
+    background: #0a0a0f !important;
+    border: 2px solid rgba(0, 210, 255, 0.85) !important;
+    border-radius: 50% !important;
+    box-shadow: 0 0 8px rgba(0, 210, 255, 0.35), inset 0 0 3px rgba(0, 210, 255, 0.25) !important;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+/* Subtle understated hover state for timeline nodes */
+.exec-card:hover + .timeline-dot-connector,
+.timeline-item:hover .timeline-dot-connector,
+.timeline-item:hover .timeline-dot {
+    background: #0a0a0f !important;
+    border: 2px solid #00d2ff !important;
+    box-shadow: 0 0 12px rgba(0, 210, 255, 0.5), inset 0 0 4px rgba(0, 210, 255, 0.35) !important;
+    transform: scale(1.1) !important;
+}
+
+/* Horizontal trace connecting dot to card */
+.timeline-dot-connector::after {
+    background: linear-gradient(90deg, rgba(0, 210, 255, 0.5), rgba(58, 123, 213, 0.15)) !important;
+    height: 1.5px !important;
+    box-shadow: 0 0 4px rgba(0, 210, 255, 0.2) !important;
 }
 
 /* ==========================================================================
