@@ -251,13 +251,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const wrapperRect = wrapper.getBoundingClientRect();
             lightPass.style.transition = 'none';
             lightPass.style.opacity = '1';
-            lightPass.style.transform = \`translateX(-100px) skewX(-15deg)\`;
+            lightPass.style.transform = `translateX(-100px) skewX(-15deg)`;
             
             // Force reflow
             void lightPass.offsetWidth;
             
             lightPass.style.transition = 'transform 0.5s linear, opacity 0.2s';
-            lightPass.style.transform = \`translateX(\${wrapperRect.width + 100}px) skewX(-15deg)\`;
+            lightPass.style.transform = `translateX(${wrapperRect.width + 100}px) skewX(-15deg)`;
             
             setTimeout(() => {
                 lightPass.style.opacity = '0';
@@ -321,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 p.style.transition = 'transform 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease';
                 const vx = (Math.random() - 0.5) * 60;
                 const vy = (Math.random() * -40) - 10;
-                p.style.transform = \`translate(\${vx}px, \${vy}px)\`;
+                p.style.transform = `translate(${vx}px, ${vy}px)`;
                 p.style.opacity = '0';
             });
 
@@ -337,7 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const elapsed = now - startTime;
 
                 if (elapsed <= 150) {
-                    scanline.style.transform = \`translateY(\${(elapsed / 150) * h1Height}px)\`;
+                    scanline.style.transform = `translateY(${(elapsed / 150) * h1Height}px)`;
                 } else if (elapsed > 150 && elapsed < 200) {
                     scanline.style.opacity = '0';
                 }
