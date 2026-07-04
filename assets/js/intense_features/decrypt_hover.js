@@ -14,43 +14,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const originalText = "ANURAG PAREEK";
         h1.innerHTML = '';
         
-        // Create an isolation wrapper to contain the mix-blend-mode
-        const wrapper = document.createElement('div');
-        wrapper.className = 'crypto-wrapper';
-        h1.parentNode.insertBefore(wrapper, h1);
-        
-        // Create the data stream container
-        const stream = document.createElement('div');
-        stream.className = 'crypto-stream';
-        
-        // Generate continuous stream content
-        const dataTokens = [
-            "01011010", "11010101", "0x7FA2", "0xAB91", "SHA256", "SHA3", 
-            "BLAKE3", "AES", "AES-256", "RSA", "ECC", "TLS1.3", "JWT", 
-            "3FA85F64", "2001:db8::", "0x00007FFE", "A7 F2 8C 19", "<>", "{}", "[]", "::"
-        ];
-        
-        function genContent(lines, withHeartbeat = false) {
-            let html = '';
-            for(let i=0; i<lines; i++) {
-                if (withHeartbeat && i === Math.floor(lines/2)) {
-                    html += `<div class="crypto-heartbeat" style="white-space:nowrap; overflow:hidden;">0x7FA2 AES-256</div>`;
-                } else {
-                    html += `<div style="white-space:nowrap; overflow:hidden;">${dataTokens[Math.floor(Math.random()*dataTokens.length)]} ${dataTokens[Math.floor(Math.random()*dataTokens.length)]} ${dataTokens[Math.floor(Math.random()*dataTokens.length)]}</div>`;
-                }
+        function generateSVGLayer(tokenCount, baseColor, minSize, maxSize) {
+            let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="800">`;
+            const tokens = ["0101", "1101", "0x7FA2", "SHA256", "AES", "TLS", "3FA8", "2001::", "<>", "::"];
+            for(let i=0; i<tokenCount; i++) {
+                const x = Math.random() * 400;
+                const y = Math.random() * 800;
+                const size = minSize + Math.random() * (maxSize - minSize);
+                const text = tokens[Math.floor(Math.random() * tokens.length)];
+                svg += `<text x="${x}" y="${y}" fill="${baseColor}" font-family="monospace" font-size="${size}">${text}</text>`;
             }
-            return html + html; // duplicate for infinite scroll
+            svg += `</svg>`;
+            return `url('data:image/svg+xml;utf8,${encodeURIComponent(svg)}')`;
         }
 
-        stream.innerHTML = `
-            <div class="crypto-layer crypto-layer-1">${genContent(40)}</div>
-            <div class="crypto-layer crypto-layer-2">${genContent(30, true)}</div>
-            <div class="crypto-layer crypto-layer-3">${genContent(20)}</div>
-            <div class="crypto-light-pass"></div>
-        `;
-        
-        wrapper.appendChild(stream);
-        wrapper.appendChild(h1);
+        const layer1 = generateSVGLayer(40, 'rgba(0, 255, 65, 0.2)', 10, 12);
+        const layer2 = generateSVGLayer(30, 'rgba(0, 255, 65, 0.4)', 14, 16);
+        const layer3 = generateSVGLayer(20, '#00FF41', 18, 22);
         
         // --- 2. SET UP THE TEXT SPANS ---
         const spanArray = [];
@@ -109,99 +89,42 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- 4. INJECT STYLES ---
         const style = document.createElement('style');
         style.textContent = `
-            .crypto-wrapper {
-                position: relative;
-                display: inline-block;
-                isolation: isolate; /* Create new stacking context for multiply */
-                margin: 1rem 0; /* Transfer margin from h1 */
-                width: fit-content;
-            }
-            @media (max-width: 768px) {
-                .crypto-wrapper { margin: 1rem auto; }
-            }
-            @media (max-width: 480px) {
-                .crypto-wrapper { margin: 0.5rem 0; }
-            }
-            .crypto-stream {
-                position: absolute;
-                inset: 0;
-                background: #F5F5F5; /* White background keeps the letter body white */
-                overflow: hidden;
-                z-index: 1;
-                opacity: 1;
-                transition: opacity 0.15s ease;
-                font-family: 'SF Mono', 'IBM Plex Mono', monospace;
-                line-height: 1.5;
-                pointer-events: none;
-            }
-            .crypto-layer {
-                position: absolute;
-                top: 0; left: 0; width: 100%;
-                display: flex;
-                flex-direction: column;
-                will-change: transform;
-            }
-            .crypto-layer-1 {
-                color: rgba(0, 255, 65, 0.2); /* Matrix faint green */
-                font-size: 10px;
-                opacity: 0.4;
-                animation: crypto-move 35s linear infinite;
-            }
-            .crypto-layer-2 {
-                color: rgba(0, 255, 65, 0.4); /* Matrix mid green */
-                font-size: 14px;
-                opacity: 0.7;
-                animation: crypto-move 25s linear infinite;
-                margin-left: 10%;
-            }
-            .crypto-layer-3 {
-                color: #00FF41; /* Matrix bright green */
-                font-size: 18px;
-                opacity: 1;
-                filter: blur(0.5px);
-                animation: crypto-move 18s linear infinite;
-                margin-left: 20%;
-            }
-            @keyframes crypto-move {
-                0% { transform: translateY(0); }
-                100% { transform: translateY(-50%); }
-            }
-            .crypto-light-pass {
-                position: absolute;
-                top: -10%; bottom: -10%;
-                width: 40px;
-                background: rgba(0, 255, 65, 0.5); /* Green light pass */
-                box-shadow: 0 0 40px 30px rgba(0, 255, 65, 0.4);
-                transform: translateX(-150px) skewX(-15deg);
-                opacity: 0;
-                transition: transform 0.6s linear, opacity 0.2s;
-                will-change: transform;
-            }
-            
-            /* Apply mix-blend-mode to H1 to act as mask */
+            /* SVG Background masking eliminates the black box entirely! */
             #typing-text.crypto-idle {
-                position: relative;
-                z-index: 2;
-                margin: 0 !important; /* Margin transferred to wrapper to fix white box leak */
-                color: #FFFFFF !important;
-                mix-blend-mode: multiply;
-                background-color: #060606 !important;
                 background-image: 
-                    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px) !important;
-                background-size: 100px 100px !important;
-                background-position: center center !important;
-                background-attachment: fixed !important;
+                    var(--heartbeat-layer, linear-gradient(transparent, transparent)),
+                    ${layer3}, 
+                    ${layer2}, 
+                    ${layer1}, 
+                    linear-gradient(#050505, #050505) !important;
+                background-size: 
+                    100% 100%, 
+                    400px 800px, 
+                    300px 600px, 
+                    200px 400px, 
+                    100% 100% !important;
+                -webkit-background-clip: text !important;
+                background-clip: text !important;
+                -webkit-text-fill-color: transparent !important;
+                color: transparent !important;
+                animation: crypto-scroll-bg 15s linear infinite !important;
                 transition: background-color 0s, color 0s;
+            }
+            #typing-text.crypto-idle span {
+                -webkit-text-fill-color: transparent !important;
+                color: transparent !important;
+            }
+            @keyframes crypto-scroll-bg {
+                0% { background-position: center center, 0 0, 0 0, 0 0, 0 0; }
+                100% { background-position: center center, 0 -800px, 0 -600px, 0 -400px, 0 0; }
             }
             
             #typing-text.crypto-hovered {
                 position: relative;
                 z-index: 2;
-                margin: 0 !important;
-                mix-blend-mode: normal;
                 background: transparent !important;
                 color: var(--text-color) !important;
+                -webkit-text-fill-color: var(--text-color) !important;
             }
 
             /* Auth Hover Nodes */
@@ -237,42 +160,17 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- 5. MICRO EFFECTS TIMERS (IDLE) ---
         
         // Heartbeat
+        const hbSvgBase = \`<svg xmlns="http://www.w3.org/2000/svg" width="800" height="200"><text x="400" y="100" fill="#66D9FF" font-family="monospace" font-size="32" font-weight="bold" text-anchor="middle">\`;
         const heartbeats = ["IDENTITY VERIFIED", "AUTHENTICATED", "PUBLIC KEY VALID", "SIGNATURE VERIFIED"];
         setInterval(() => {
             if (isHovered) return;
-            const hbs = document.querySelectorAll('.crypto-heartbeat');
-            hbs.forEach(hb => {
-                const old = hb.textContent;
-                hb.textContent = heartbeats[Math.floor(Math.random() * heartbeats.length)];
-                hb.style.color = '#66D9FF';
-                hb.style.fontWeight = 'bold';
-                setTimeout(() => {
-                    hb.textContent = old;
-                    hb.style.color = '';
-                    hb.style.fontWeight = 'normal';
-                }, 300);
-            });
-        }, 9000); // ~9s
-
-        // Light Pass
-        const lightPass = stream.querySelector('.crypto-light-pass');
-        setInterval(() => {
-            if (isHovered) return;
-            const wrapperRect = wrapper.getBoundingClientRect();
-            lightPass.style.transition = 'none';
-            lightPass.style.opacity = '1';
-            lightPass.style.transform = `translateX(-100px) skewX(-15deg)`;
-            
-            // Force reflow
-            void lightPass.offsetWidth;
-            
-            lightPass.style.transition = 'transform 0.5s linear, opacity 0.2s';
-            lightPass.style.transform = `translateX(${wrapperRect.width + 100}px) skewX(-15deg)`;
-            
+            const text = heartbeats[Math.floor(Math.random() * heartbeats.length)];
+            const hbUrl = \`url('data:image/svg+xml;utf8,\${encodeURIComponent(hbSvgBase + text + "</text></svg>")}')\`;
+            h1.style.setProperty('--heartbeat-layer', hbUrl);
             setTimeout(() => {
-                lightPass.style.opacity = '0';
-            }, 450);
-        }, 10000); // 10s
+                h1.style.removeProperty('--heartbeat-layer');
+            }, 300);
+        }, 9000); // ~9s
 
         // --- 6. HOVER ANIMATION LOGIC ---
         function generateGlyphSequence(origChar) {
@@ -295,7 +193,6 @@ document.addEventListener('DOMContentLoaded', () => {
             isHovered = true;
             
             // Swap to Hover State
-            stream.style.opacity = '0';
             h1.classList.remove('crypto-idle');
             h1.classList.add('crypto-hovered');
 
@@ -411,9 +308,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // Smoothly restore Idle State
             h1.classList.remove('crypto-hovered');
             h1.classList.add('crypto-idle');
-            setTimeout(() => {
-                if (!isHovered) stream.style.opacity = '1';
-            }, 100); // small delay to match CSS transitions
         }
     }
 });
