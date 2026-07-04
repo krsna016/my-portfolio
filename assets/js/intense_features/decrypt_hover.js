@@ -113,11 +113,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 position: relative;
                 display: inline-block;
                 isolation: isolate; /* Create new stacking context for multiply */
+                margin: 1rem 0; /* Transfer margin from h1 */
+                width: fit-content;
+            }
+            @media (max-width: 768px) {
+                .crypto-wrapper { margin: 1rem auto; }
+            }
+            @media (max-width: 480px) {
+                .crypto-wrapper { margin: 0.5rem 0; }
             }
             .crypto-stream {
                 position: absolute;
                 inset: 0;
-                background: #F5F5F5; /* White background for the window */
+                background: #F5F5F5; /* White background keeps the letter body white */
                 overflow: hidden;
                 z-index: 1;
                 opacity: 1;
@@ -134,22 +142,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 will-change: transform;
             }
             .crypto-layer-1 {
-                color: #D0D0D0;
+                color: rgba(0, 255, 65, 0.2); /* Matrix faint green */
                 font-size: 10px;
-                opacity: 0.15;
+                opacity: 0.4;
                 animation: crypto-move 35s linear infinite;
             }
             .crypto-layer-2 {
-                color: #C0C0C0;
+                color: rgba(0, 255, 65, 0.4); /* Matrix mid green */
                 font-size: 14px;
-                opacity: 0.4;
+                opacity: 0.7;
                 animation: crypto-move 25s linear infinite;
                 margin-left: 10%;
             }
             .crypto-layer-3 {
-                color: #66D9FF;
+                color: #00FF41; /* Matrix bright green */
                 font-size: 18px;
-                opacity: 0.6;
+                opacity: 1;
                 filter: blur(0.5px);
                 animation: crypto-move 18s linear infinite;
                 margin-left: 20%;
@@ -162,8 +170,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 position: absolute;
                 top: -10%; bottom: -10%;
                 width: 40px;
-                background: rgba(255, 255, 255, 0.8);
-                box-shadow: 0 0 40px 30px rgba(255, 255, 255, 0.6);
+                background: rgba(0, 255, 65, 0.5); /* Green light pass */
+                box-shadow: 0 0 40px 30px rgba(0, 255, 65, 0.4);
                 transform: translateX(-150px) skewX(-15deg);
                 opacity: 0;
                 transition: transform 0.6s linear, opacity 0.2s;
@@ -174,6 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
             #typing-text.crypto-idle {
                 position: relative;
                 z-index: 2;
+                margin: 0 !important; /* Margin transferred to wrapper to fix white box leak */
                 color: #FFFFFF !important;
                 mix-blend-mode: multiply;
                 background-color: #060606 !important;
@@ -189,6 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
             #typing-text.crypto-hovered {
                 position: relative;
                 z-index: 2;
+                margin: 0 !important;
                 mix-blend-mode: normal;
                 background: transparent !important;
                 color: var(--text-color) !important;
