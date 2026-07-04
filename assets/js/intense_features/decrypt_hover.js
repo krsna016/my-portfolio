@@ -72,6 +72,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const style = document.createElement('style');
         style.textContent = `
             /* SVG Background masking eliminates the black box entirely! */
+            #typing-text.crypto-idle {
+                position: relative; /* CRUCIAL for canvas positioning */
+                z-index: 2;
+                background: transparent !important;
+                background-clip: border-box !important;
+                -webkit-background-clip: border-box !important;
+                -webkit-text-fill-color: currentcolor !important;
+            }
             #typing-text.crypto-idle span {
                 opacity: 0 !important; /* Hide HTML text during idle, canvas takes over */
             }
@@ -79,6 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 position: relative;
                 z-index: 2;
                 background: transparent !important;
+                background-clip: border-box !important;
+                -webkit-background-clip: border-box !important;
                 color: var(--text-color) !important;
                 -webkit-text-fill-color: var(--text-color) !important;
             }
