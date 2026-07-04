@@ -877,18 +877,18 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links butt
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
     backdrop-filter: blur(8px) !important;
     font-family: monospace !important;
-    padding: 6px 16px !important;
-    font-size: 0.95rem !important;
+    padding: 5px 14px !important;
+    font-size: 0.84rem !important;
     border-radius: 20px !important;
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-/* Make technical skill tags specifically a little larger and more prominent */
+/* Make technical skill tags compact, sleek, and beautiful */
 .skill-tag {
-    padding: 10px 24px !important;
-    font-size: 1.08rem !important;
-    border-radius: 30px !important;
-    font-weight: 600 !important;
+    padding: 6px 15px !important;
+    font-size: 0.86rem !important;
+    border-radius: 20px !important;
+    font-weight: 500 !important;
     letter-spacing: 0.5px !important;
     margin: 4px !important;
     display: inline-block !important;
@@ -905,8 +905,8 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links butt
     background: rgba(255, 255, 255, 0.2) !important;
     color: #FFFFFF !important;
     border: none !important;
-    transform: translateY(-3px) scale(1.05) !important;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5) !important;
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4) !important;
 }
 
 /* ==========================================================================
