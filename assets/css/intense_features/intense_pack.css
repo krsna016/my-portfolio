@@ -452,26 +452,7 @@
     max-width: 100% !important;
 }
 
-/* Pinned neon vertical track (Animated Cyberpunk Laser Data Stream) */
-#experience .timeline::before {
-    left: 11px !important;
-    width: 3px !important;
-    background: linear-gradient(180deg, #00d2ff 0%, #6c5ce7 35%, #ff007f 70%, #00d2ff 100%) !important;
-    background-size: 100% 200% !important;
-    animation: flowDataTrack 3s linear infinite !important;
-    box-shadow: 0 0 16px #00d2ff, 0 0 30px #6c5ce7 !important;
-    transform: none !important;
-}
-
-@keyframes flowDataTrack {
-    0% { background-position: 0% 0%; }
-    100% { background-position: 0% 200%; }
-}
-
-.pinned-heading .section-title::after {
-    background: linear-gradient(180deg, #00d2ff, #6c5ce7) !important;
-    box-shadow: 0 0 14px rgba(0, 210, 255, 0.6) !important;
-}
+/* Pinned track overrides removed for premium aesthetic */
 
 #experience .timeline-item {
     position: relative;
@@ -491,31 +472,7 @@
     display: none !important; /* Remove old broken dots/mirror years */
 }
 
-/* Glowing dot attached to vertical line (pure glow orb, no black border) */
-.timeline-dot-connector {
-    position: absolute;
-    left: -30px;
-    top: 28px;
-    width: 14px;
-    height: 14px;
-    background: #00d2ff;
-    border: none !important;
-    border-radius: 50%;
-    box-shadow: 0 0 6px rgba(0, 210, 255, 0.4) !important;
-    z-index: 10;
-    transition: all 0.3s ease;
-}
-
-/* Horizontal trace connecting dot to card */
-.timeline-dot-connector::after {
-    content: '';
-    position: absolute;
-    top: 6px;
-    left: 12px;
-    width: 20px;
-    height: 2px;
-    background: linear-gradient(90deg, #00d2ff, rgba(108, 92, 231, 0.4));
-}
+/* Glowing dot connectors removed for premium aesthetic */
 
 /* Universal Dark Obsidian Cards & Minimalistic Natural Drop-Shadows (Strictly No Borders) */
 .glass, .exec-card, .project-card, .about-card, .timeline-content, .card, .cert-card, .game-card, .article-card, .contact-container, .dsa-container {
@@ -539,12 +496,7 @@
     transform: translateX(8px) !important;
 }
 
-.exec-card:hover + .timeline-dot-connector,
-.timeline-item:hover .timeline-dot-connector {
-    background: #00d2ff;
-    box-shadow: 0 0 8px rgba(0, 210, 255, 0.5) !important;
-    transform: scale(1.15);
-}
+/* Timeline hover removed */
 
 .exec-card-header {
     display: flex;
@@ -669,15 +621,7 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
     text-shadow: none !important;
 }
 
-/* Vertical timeline track and dot connectors */
-#experience .timeline::before,
-.timeline::before {
-    box-shadow: 0 0 3px rgba(0, 210, 255, 0.2) !important;
-}
-
-.timeline-dot-connector {
-    box-shadow: 0 0 4px rgba(0, 210, 255, 0.3) !important;
-}
+/* Shadow overrides removed */
 
 /* Subtle luxury hover on buttons, cards, tags, and pills */
 .btn:hover, .btn.primary:hover, .btn.secondary:hover,
