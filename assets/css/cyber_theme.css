@@ -846,35 +846,25 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links butt
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-/* Hover state: turns vibrant glowing red! */
+/* Hover state: solid white node with a brilliant red glow! (No red lines) */
 .exec-card:hover + .timeline-dot-connector,
 .timeline-item:hover .timeline-dot-connector,
 .timeline-item:hover .timeline-dot,
 #experience .timeline-dot-connector:hover,
 .timeline-dot-connector:hover,
 .timeline-dot:hover {
-    background: #ff003b !important;
+    background: #FFFFFF !important;
     border: none !important;
-    box-shadow: 0 0 16px rgba(255, 0, 59, 0.95), 0 0 32px rgba(255, 0, 59, 0.65), 0 0 48px rgba(255, 0, 59, 0.35) !important;
+    box-shadow: 0 0 16px rgba(255, 0, 59, 1), 0 0 32px rgba(255, 0, 59, 0.85), 0 0 50px rgba(255, 0, 59, 0.5) !important;
     transform: scale(1.25) !important;
 }
 
-/* Horizontal trace connecting dot to card in luminous white */
+/* Horizontal trace connecting dot to card in luminous white (never turns red) */
 .timeline-dot-connector::after {
     background: linear-gradient(90deg, #FFFFFF, rgba(200, 200, 200, 0.15)) !important;
     height: 1.5px !important;
     box-shadow: 0 0 6px rgba(255, 255, 255, 0.4) !important;
     transition: all 0.3s ease !important;
-}
-
-/* On hover, the connecting trace also glows vibrant red! */
-.exec-card:hover + .timeline-dot-connector::after,
-.timeline-item:hover .timeline-dot-connector::after,
-.timeline-item:hover .timeline-dot::after,
-.timeline-dot-connector:hover::after,
-.timeline-dot:hover::after {
-    background: linear-gradient(90deg, #ff003b, rgba(255, 0, 59, 0.15)) !important;
-    box-shadow: 0 0 8px rgba(255, 0, 59, 0.7) !important;
 }
 
 /* ==========================================================================

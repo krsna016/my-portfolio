@@ -541,8 +541,8 @@
 
 .exec-card:hover + .timeline-dot-connector,
 .timeline-item:hover .timeline-dot-connector {
-    background: #ff003b !important;
-    box-shadow: 0 0 16px rgba(255, 0, 59, 0.9) !important;
+    background: #FFFFFF !important;
+    box-shadow: 0 0 16px rgba(255, 0, 59, 1), 0 0 32px rgba(255, 0, 59, 0.85) !important;
     transform: scale(1.25);
 }
 
