@@ -198,21 +198,21 @@ input:not([type="range"]):not([type="color"]):focus, textarea:focus {
 
 /* Fix Range Sliders */
 input[type="range"] {
-    -webkit-appearance: none;
-    background: var(--glass-bg);
-    height: 4px;
-    outline: none;
-    border-radius: 0;
-    opacity: 0.8;
+    -webkit-appearance: none !important;
+    background: rgba(255, 255, 255, 0.3) !important;
+    height: 2px !important;
+    outline: none !important;
+    border-radius: 0 !important;
 }
 input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 14px;
-    height: 14px;
-    background: var(--text-color);
-    border-radius: 0;
-    cursor: pointer;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    width: 12px !important;
+    height: 12px !important;
+    background: #fff !important;
+    border: 1px solid #000 !important;
+    border-radius: 0 !important;
+    cursor: pointer !important;
 }
 
 /* Tags / Pills */
