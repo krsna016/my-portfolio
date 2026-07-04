@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const y = e.clientY - rect.top - rect.height/2;
             const rotX = (y / rect.height) * -6; // max 3 deg
             const rotY = (x / rect.width) * 6;
-            h1.style.transform = \`perspective(800px) rotateX(\${rotX}deg) rotateY(\${rotY}deg) scale(1.02)\`;
+            h1.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
         });
         
         function spawnHexNodes(parent) {
@@ -257,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 p.animate([
                     { transform: 'translate(0,0)', opacity: 1 },
-                    { transform: \`translate(\${vx}px, \${vy}px)\`, opacity: 0 }
+                    { transform: `translate(${vx}px, ${vy}px)`, opacity: 0 }
                 ], { duration: 600 + Math.random()*400, easing: 'ease-out' });
                 
                 setTimeout(() => p.remove(), 1000);
