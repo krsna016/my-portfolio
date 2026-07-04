@@ -44,6 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Restore the typing cursor so it continues to blink at the end
+        const cursor = document.createElement('span');
+        cursor.className = 'typing-cursor';
+        h1.appendChild(cursor);
+
         // Pre-create DOM nodes to avoid layout thrashing during animation
         const hexNodes = [];
         for(let i=0; i<4; i++) {
