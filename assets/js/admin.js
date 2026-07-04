@@ -194,18 +194,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
                 <div class="cert-item-actions">
-                    <button class="btn-icon btn-up" onclick="moveCert(${index}, -1)" ${index === 0 ? 'disabled style="opacity:0.3"' : ''}>
-                        <i class="fa-solid fa-arrow-up"></i>
-                    </button>
-                    <button class="btn-icon btn-down" onclick="moveCert(${index}, 1)" ${index === currentCertificates.length - 1 ? 'disabled style="opacity:0.3"' : ''}>
-                        <i class="fa-solid fa-arrow-down"></i>
-                    </button>
-                    <button class="btn-icon btn-edit" onclick="editCert(${index})">
-                        <i class="fa-solid fa-pen"></i>
-                    </button>
-                    <button class="btn-icon btn-delete" onclick="deleteCert(${index})">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
+                    <button class="tool-btn" onclick="moveCert(${index}, -1)" title="Move Up"><i class="fa-solid fa-arrow-up"></i></button>
+                    <button class="tool-btn" onclick="moveCert(${index}, 1)" title="Move Down"><i class="fa-solid fa-arrow-down"></i></button>
+                    <button class="tool-btn" style="color: #00d4ff;" onclick="editCert(${index})" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                    <button class="tool-btn" style="color: #ff6b6b;" onclick="deleteCert(${index})" title="Delete"><i class="fa-solid fa-trash"></i></button>
                 </div>
             `;
             certList.appendChild(item);
@@ -318,18 +310,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
                 <div class="cert-item-actions">
-                    <button class="btn-icon btn-up" onclick="moveSkill(${index}, -1)" ${index === 0 ? 'disabled style="opacity:0.3"' : ''}>
-                        <i class="fa-solid fa-arrow-up"></i>
-                    </button>
-                    <button class="btn-icon btn-down" onclick="moveSkill(${index}, 1)" ${index === currentSkills.length - 1 ? 'disabled style="opacity:0.3"' : ''}>
-                        <i class="fa-solid fa-arrow-down"></i>
-                    </button>
-                    <button class="btn-icon btn-edit" onclick="editSkill(${index})">
-                        <i class="fa-solid fa-pen"></i>
-                    </button>
-                    <button class="btn-icon btn-delete" onclick="deleteSkill(${index})">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
+                    <button class="tool-btn" onclick="moveSkill(${index}, -1)" title="Move Up"><i class="fa-solid fa-arrow-up"></i></button>
+                    <button class="tool-btn" onclick="moveSkill(${index}, 1)" title="Move Down"><i class="fa-solid fa-arrow-down"></i></button>
+                    <button class="tool-btn" style="color: #00d4ff;" onclick="editSkill(${index})" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                    <button class="tool-btn" style="color: #ff6b6b;" onclick="deleteSkill(${index})" title="Delete"><i class="fa-solid fa-trash"></i></button>
                 </div>
             `;
             skillList.appendChild(item);
@@ -411,18 +395,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
                 <div class="cert-item-actions">
-                    <button class="btn-icon btn-up" onclick="moveProject(${index}, -1)" ${index === 0 ? 'disabled style="opacity:0.3"' : ''}>
-                        <i class="fa-solid fa-arrow-up"></i>
-                    </button>
-                    <button class="btn-icon btn-down" onclick="moveProject(${index}, 1)" ${index === currentProjects.length - 1 ? 'disabled style="opacity:0.3"' : ''}>
-                        <i class="fa-solid fa-arrow-down"></i>
-                    </button>
-                    <button class="btn-icon btn-edit" onclick="editProject(${index})">
-                        <i class="fa-solid fa-pen"></i>
-                    </button>
-                    <button class="btn-icon btn-delete" onclick="deleteProject(${index})">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
+                    <button class="tool-btn" onclick="moveProject(${index}, -1)" title="Move Up"><i class="fa-solid fa-arrow-up"></i></button>
+                    <button class="tool-btn" onclick="moveProject(${index}, 1)" title="Move Down"><i class="fa-solid fa-arrow-down"></i></button>
+                    <button class="tool-btn" style="color: #00d4ff;" onclick="editProject(${index})" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                    <button class="tool-btn" style="color: #ff6b6b;" onclick="deleteProject(${index})" title="Delete"><i class="fa-solid fa-trash"></i></button>
                 </div>
             `;
             projectList.appendChild(item);
@@ -584,18 +560,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
                 <div class="cert-item-actions">
-                    <button class="btn-icon btn-up" onclick="moveBlog(${index}, -1)" ${index === 0 ? 'disabled style="opacity:0.3"' : ''}>
-                        <i class="fa-solid fa-arrow-up"></i>
-                    </button>
-                    <button class="btn-icon btn-down" onclick="moveBlog(${index}, 1)" ${index === currentBlogPosts.length - 1 ? 'disabled style="opacity:0.3"' : ''}>
-                        <i class="fa-solid fa-arrow-down"></i>
-                    </button>
-                    <button class="btn-icon btn-edit" onclick="editBlog(${index})">
-                        <i class="fa-solid fa-pen"></i>
-                    </button>
-                    <button class="btn-icon btn-delete" onclick="deleteBlog(${index})">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
+                    <button class="tool-btn" onclick="moveBlog(${index}, -1)" title="Move Up"><i class="fa-solid fa-arrow-up"></i></button>
+                    <button class="tool-btn" onclick="moveBlog(${index}, 1)" title="Move Down"><i class="fa-solid fa-arrow-down"></i></button>
+                    <button class="tool-btn" style="color: #00d4ff;" onclick="editBlog(${index})" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                    <button class="tool-btn" style="color: #ff6b6b;" onclick="deleteBlog(${index})" title="Delete"><i class="fa-solid fa-trash"></i></button>
                 </div>
             `;
             blogList.appendChild(item);
