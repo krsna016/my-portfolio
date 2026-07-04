@@ -659,3 +659,58 @@ button.ide-run-btn:hover svg[class*="fa-"] path {
     filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4)) !important;
     background: transparent !important;
 }
+
+/* ==========================================================================
+   BUTTON VISIBILITY & MONOCHROME VERTICAL BARS
+   ========================================================================== */
+/* Ensure buttons do not look like they are floating in air by adding a clean, visible light background and border */
+.btn:not(.chat-send-btn):not(.ide-run-btn),
+.tool-btn,
+.tab-btn,
+.read-more,
+.cert-link,
+.play-btn,
+#hero-cli-trigger,
+button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links button) {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    color: #FFFFFF !important;
+}
+
+/* Hover state for buttons */
+.btn:not(.chat-send-btn):not(.ide-run-btn):hover,
+.tool-btn:hover,
+.tab-btn:hover,
+.read-more:hover,
+.cert-link:hover,
+.play-btn:hover,
+#hero-cli-trigger:hover,
+button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links button):hover {
+    background: rgba(255, 255, 255, 0.16) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4) !important;
+    color: #FFFFFF !important;
+}
+
+/* Active tab button */
+.tab-btn.active {
+    background: rgba(255, 255, 255, 0.22) !important;
+    border-color: rgba(255, 255, 255, 0.6) !important;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Sleek monochrome vertical bar for section headings (About, Experience, Skills, Projects) */
+.pinned-heading .section-title::after,
+.section-title::after {
+    background: #FFFFFF !important;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Ensure timeline vertical bar matches our sleek white/grey theme */
+.timeline::before {
+    background: linear-gradient(180deg, #FFFFFF, #555555) !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2) !important;
+}
