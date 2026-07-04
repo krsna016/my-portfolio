@@ -21,7 +21,8 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap"></noscript>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/intense_features/intense_pack.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous" defer></script>
+    <link rel="canonical" href="https://krsna016.github.io/my-portfolio/" />
     <!-- Placeholder for FontAwesome -->
     <!-- Using a CDN for icons since I can't guarantee local setup -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -60,7 +61,7 @@
 
     <nav class="navbar">
         <div class="logo-container">
-            <a class='logo' href='/'>AP<span class="logo-dot">.</span></a>
+            <a class='logo' href='/' aria-label="Anurag Pareek Home">AP<span class="logo-dot">.</span></a>
             <div id="welcome-card" class="glass">
                 <span class="welcome-text"></span>
             </div>
@@ -73,17 +74,17 @@
             <li><a href="articles.html">Blog & Articles</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
-        <div class="hamburger">
+        <button type="button" class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
             <div class="line"></div>
             <div class="line"></div>
             <div class="line"></div>
-        </div>
+        </button>
     </nav>
 
     <header id="home" class="hero">
         <div class="hero-content fade-in-up">
             <span class="greeting">Hello, I'm</span>
-            <h1 id="typing-text">&nbsp;</h1>
+            <h1 id="typing-text" aria-label="Anurag Pareek" role="status" aria-live="polite">&nbsp;</h1>
             <h2 class="subtitle">Aspiring <span class="highlight">Data Analyst</span></h2>
             <p class="hero-text">Data Analyst with hands-on experience in data cleaning, analysis, and visualization
                 using Excel, SQL, Power BI, and Python. Proven ability to transform raw data into meaningful insights
@@ -238,7 +239,28 @@
     <script src="assets/js/intense_features/decrypt_hover.js" defer></script>
     <script src="assets/js/intense_features/boot_sequence.js" defer></script>
     <script src="assets/js/intense_features/identity.js" defer></script>
-    <script src="assets/js/cyber_ui.js"></script>
+    <script src="assets/js/cyber_ui.js" defer></script>
+
+    <!-- Schema.org Structured Data (JSON-LD) for Search Engine Optimization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Anurag Pareek",
+      "url": "https://krsna016.github.io/my-portfolio/",
+      "image": "https://krsna016.github.io/my-portfolio/assets/images/profile.webp",
+      "jobTitle": "Data Analyst & Software Developer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "GLA University"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/anuragpareek016",
+        "https://github.com/krsna016"
+      ],
+      "description": "Data Analyst with hands-on experience in data cleaning, analysis, and visualization using Excel, SQL, Power BI, and Python."
+    }
+    </script>
 </body>
 
 </html>

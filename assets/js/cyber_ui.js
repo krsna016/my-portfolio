@@ -48,6 +48,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     updateStatus();
-    setInterval(updateStatus, 1000);
+    let statusInterval = setInterval(updateStatus, 1000);
+
+    // Page Visibility API: pause clock tick when tab is hidden to save CPU & battery
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            if (statusInterval) clearInterval(statusInterval);
+            statusInterval = null;
+        } else if (!statusInterval) {
+            updateStatus();
+            statusInterval = setInterval(updateStatus, 1000);
+        }
+    });
+
+    // Cleanup on navigation/unload to prevent memory leaks
+    window.addEventListener('beforeunload', () => {
+        if (statusInterval) clearInterval(statusInterval);
+    });
 
 });
