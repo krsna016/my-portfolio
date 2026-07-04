@@ -48,19 +48,21 @@ function initQuakeTerm() {
 
     header.addEventListener('mousedown', (e) => {
         isDragging = true;
-        termHUD.classList.add('dragged');
         
-        // Get the current translation or left/top if no translation
+        // Get the current visual bounds BEFORE removing transform
         const rect = termHUD.getBoundingClientRect();
+        
+        termHUD.classList.add('dragged');
         
         // Calculate offset from mouse to top-left of the modal
         offsetX = e.clientX - rect.left;
         offsetY = e.clientY - rect.top;
         
         // Override the initial centered transform so we can freely move it with top/left
+        termHUD.style.transition = 'none';
+        termHUD.style.transform = 'none';
         termHUD.style.left = rect.left + 'px';
         termHUD.style.top = rect.top + 'px';
-        termHUD.style.transform = 'none';
         
         document.body.style.userSelect = 'none'; // prevent text selection
     });
