@@ -132,12 +132,14 @@ h1, h2, h3, h4, h5, h6, .logo, .section-title, .hero-content h1 {
 
 /* Active Tools (like Light Mode toggle) */
 .btn.active-tool, .active-tool {
-    background: var(--primary-color) !important;
-    color: #000 !important;
-    border-color: var(--primary-color) !important;
+    background: rgba(255, 255, 255, 0.22) !important;
+    color: #FFFFFF !important;
+    border: none !important;
 }
-.btn.active-tool i, .active-tool i {
-    color: #000 !important;
+.btn.active-tool i, .active-tool i,
+.btn.active-tool svg, .active-tool svg {
+    color: #FFFFFF !important;
+    fill: #FFFFFF !important;
 }
 
 /* Navbar */
@@ -576,9 +578,10 @@ svg[class*="icon"]:hover path {
 }
 
 /* Fix active-tool (Light Mode button) icon disappearing on hover */
-.btn.active-tool:hover i, .active-tool:hover i {
-    color: #000 !important;
-    fill: #000 !important;
+.btn.active-tool:hover i, .active-tool:hover i,
+.btn.active-tool:hover svg, .active-tool:hover svg {
+    color: #FFFFFF !important;
+    fill: #FFFFFF !important;
 }
 /* GLOBAL BORDER REMOVAL CATCH-ALL */
 .glass, .card, .exec-card, .project-card, .cert-card, .game-card, .article-card, .resume-card, .about-card, .contact-container, .contact-form, .contact-form input, .contact-form textarea, .btn, .submit-btn, .contact-btn, .tool-btn, button, input, textarea, .pill, .tag, .exec-tag, .skill-tag, .ide-hero-card, .modal-content, .dsa-container, .quake-terminal-hud, .quake-terminal-header, .hud-terminal-pill, .terminal-window, .term-header, .terminal-card, .id-status-module, .id-auth-label {
