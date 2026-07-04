@@ -753,6 +753,7 @@ button.ide-run-btn:hover svg[class*="fa-"] path {
 .footer-socials a,
 .project-links a,
 .submit-btn,
+.category-list li,
 #hero-cli-trigger,
 button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links button) {
     background: rgba(255, 255, 255, 0.08) !important;
@@ -776,6 +777,7 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links butt
 .footer-socials a:hover,
 .project-links a:hover,
 .submit-btn:hover,
+.category-list li:hover,
 #hero-cli-trigger:hover,
 button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links button):hover {
     background: rgba(255, 255, 255, 0.18) !important;
@@ -785,9 +787,11 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links butt
 }
 
 /* Active tab button */
-.tab-btn.active {
+.tab-btn.active,
+.category-list li.active {
     background: rgba(255, 255, 255, 0.22) !important;
     border: none !important;
+    color: #FFFFFF !important;
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.2) !important;
 }
 
@@ -958,6 +962,7 @@ button.btn.primary.chat-send-btn:hover svg path,
 .drawing-controls button.active-tool,
 .control-group button,
 .control-group a.btn,
+.category-list li,
 #hero-cli-trigger,
 button:not(.ide-run-btn):not(.hamburger):not(.nav-links button),
 a.btn:not(.ide-run-btn) {
@@ -981,6 +986,8 @@ a.btn:not(.ide-run-btn) {
 .drawing-controls button.active-tool:hover,
 .control-group button:hover,
 .control-group a.btn:hover,
+.category-list li:hover,
+.category-list li.active,
 #hero-cli-trigger:hover,
 button:not(.ide-run-btn):not(.hamburger):not(.nav-links button):hover,
 a.btn:not(.ide-run-btn):hover {
