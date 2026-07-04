@@ -92,7 +92,7 @@ h1, h2, h3, h4, h5, h6, .logo, .section-title, .hero-content h1 {
 .glass, .cert-card, .card, .resume-card, .contact-container, .timeline-content, .game-card {
     background: var(--glass-bg) !important;
     border: 1px solid var(--border-color) !important;
-    border-radius: 0 !important; /* Sharp edges */
+    border-radius: 16px !important; /* Modern rounded corners */
     box-shadow: none !important;
     backdrop-filter: none !important;
     position: relative;
@@ -131,7 +131,7 @@ h1, h2, h3, h4, h5, h6, .logo, .section-title, .hero-content h1 {
     letter-spacing: 0.1em !important;
     background: transparent !important;
     border: 1px solid var(--border-color) !important;
-    border-radius: 0 !important;
+    border-radius: 12px !important;
     color: var(--text-color) !important;
     box-shadow: none !important;
     transition: all 0.2s ease !important;
@@ -198,7 +198,7 @@ h1, h2, h3, h4, h5, h6, .logo, .section-title, .hero-content h1 {
 input:not([type="range"]):not([type="color"]), textarea {
     background: #000 !important;
     border: 1px solid var(--border-color) !important;
-    border-radius: 0 !important;
+    border-radius: 12px !important;
     font-family: var(--font-primary) !important;
     color: var(--text-color) !important;
 }
@@ -221,7 +221,7 @@ input[type="range"] {
     background: rgba(255, 255, 255, 0.3) !important;
     height: 2px !important;
     outline: none !important;
-    border-radius: 0 !important;
+    border-radius: 12px !important;
 }
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none !important;
@@ -230,7 +230,7 @@ input[type="range"]::-webkit-slider-thumb {
     height: 12px !important;
     background: #fff !important;
     border: 1px solid #000 !important;
-    border-radius: 0 !important;
+    border-radius: 12px !important;
     cursor: pointer !important;
 }
 
@@ -238,7 +238,7 @@ input[type="range"]::-webkit-slider-thumb {
 .skill-tag, .exec-tag {
     background: #000 !important;
     border: 1px solid var(--border-color) !important;
-    border-radius: 0 !important;
+    border-radius: 12px !important;
     font-family: var(--font-primary) !important;
     text-transform: uppercase !important;
     font-size: 0.75rem !important;
@@ -318,7 +318,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 ::-webkit-scrollbar-thumb {
     background: var(--border-color);
-    border-radius: 0;
+    border-radius: 12px;
 }
 ::-webkit-scrollbar-thumb:hover {
     background: var(--secondary-color);
@@ -340,20 +340,21 @@ input[type="range"]::-webkit-slider-thumb {
 .ide-hero-card {
     background: var(--bg-color) !important;
     border: 1px solid var(--border-color) !important;
-    border-radius: 0 !important;
+    border-radius: 16px !important;
     box-shadow: none !important;
     margin-left: 4px !important;
 }
 .ide-topbar {
     background: var(--glass-bg) !important;
     border-bottom: 1px solid var(--border-color) !important;
-    border-radius: 0 !important;
+    border-top-left-radius: 16px !important;
+    border-top-right-radius: 16px !important;
 }
 .ide-tab {
     background: transparent !important;
     border: none !important;
     border-right: 1px solid var(--border-color) !important;
-    border-radius: 0 !important;
+    border-top-left-radius: 16px !important;
     color: var(--secondary-color) !important;
     font-family: var(--font-primary) !important;
     text-transform: uppercase !important;
@@ -362,7 +363,7 @@ input[type="range"]::-webkit-slider-thumb {
 .ide-run-btn {
     background: var(--primary-color) !important;
     color: #000 !important;
-    border-radius: 0 !important;
+    border-top-right-radius: 16px !important;
     border: 1px solid var(--primary-color) !important;
     text-transform: uppercase !important;
     font-weight: bold !important;
@@ -377,7 +378,8 @@ input[type="range"]::-webkit-slider-thumb {
 }
 .ide-code-area {
     background: #000 !important;
-    border-radius: 0 !important;
+    border-bottom-left-radius: 16px !important;
+    border-bottom-right-radius: 16px !important;
 }
 .ide-textarea {
     color: var(--text-color) !important;
@@ -401,7 +403,7 @@ input[type="range"]::-webkit-slider-thumb {
 .modal-content {
     background: #050505 !important;
     border: 1px solid var(--border-color) !important;
-    border-radius: 0 !important;
+    border-radius: 16px !important;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.8) !important;
     height: 85vh !important;
 }
@@ -440,7 +442,8 @@ input[type="range"]::-webkit-slider-thumb {
     text-shadow: 0 0 8px rgba(255, 0, 85, 0.6);
 }
 .pdf-viewer-container {
-    border-radius: 0 !important;
+    border-bottom-left-radius: 16px !important;
+    border-bottom-right-radius: 16px !important;
     background: #000 !important;
     padding: 2px !important; /* Tiny border gap */
 }
@@ -448,3 +451,39 @@ input[type="range"]::-webkit-slider-thumb {
     filter: invert(0) !important; /* Keeps PDF colors intact */
     opacity: 0.95;
 }
+
+/* ==========================================================================
+   GLOBAL ROUNDED CORNER SYSTEM (16px/12px)
+   Overrides brutalist sharp edges for a modern premium feel.
+   ========================================================================== */
+
+/* Cards, Panels, and Containers: 16px */
+.glass, .card, .glass-panel, .project-card, .resume-card, .contact-container, 
+.timeline-content, .game-card, .stat-card, .ide-hero-card, .terminal-card, 
+.modal-content, .quake-terminal-hud {
+    border-radius: 16px !important;
+}
+
+/* Headers of Cards: Match top corners */
+.modal-header, .ide-topbar, .terminal-header, .term-header {
+    border-radius: 16px 16px 0 0 !important;
+}
+
+/* Bottom of Cards: Match bottom corners */
+.pdf-viewer-container, .ide-code-area, .term-body, .terminal-body {
+    border-radius: 0 0 16px 16px !important;
+}
+
+/* Buttons, Inputs, Tags, and Small Modules: 12px */
+.btn:not(.social-links a), input:not([type="range"]):not([type="color"]), textarea, select,
+.skill-tag, .exec-tag, .ide-run-btn, .ide-tab, .game-btn, .nav-links a,
+.tooltip-inner {
+    border-radius: 12px !important;
+}
+
+/* Enforce circular elements explicitly to prevent 12px overrides */
+.profile-img-container, .profile-img, .profile-img-container::before, 
+.timeline-dot, .social-links a, .term-dot, .color-dot {
+    border-radius: 50% !important;
+}
+
