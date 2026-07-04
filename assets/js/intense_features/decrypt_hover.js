@@ -14,6 +14,44 @@ document.addEventListener('DOMContentLoaded', () => {
         const originalText = "ANURAG PAREEK";
         h1.innerHTML = '';
         
+        // Create an isolation wrapper to contain the mix-blend-mode
+        const wrapper = document.createElement('div');
+        wrapper.className = 'crypto-wrapper';
+        h1.parentNode.insertBefore(wrapper, h1);
+        
+        // Create the data stream container
+        const stream = document.createElement('div');
+        stream.className = 'crypto-stream';
+        
+        // Generate continuous stream content
+        const dataTokens = [
+            "01011010", "11010101", "0x7FA2", "0xAB91", "SHA256", "SHA3", 
+            "BLAKE3", "AES", "AES-256", "RSA", "ECC", "TLS1.3", "JWT", 
+            "3FA85F64", "2001:db8::", "0x00007FFE", "A7 F2 8C 19", "<>", "{}", "[]", "::"
+        ];
+        
+        function genContent(lines, withHeartbeat = false) {
+            let html = '';
+            for(let i=0; i<lines; i++) {
+                if (withHeartbeat && i === Math.floor(lines/2)) {
+                    html += `<div class="crypto-heartbeat" style="white-space:nowrap; overflow:hidden;">0x7FA2 AES-256</div>`;
+                } else {
+                    html += `<div style="white-space:nowrap; overflow:hidden;">${dataTokens[Math.floor(Math.random()*dataTokens.length)]} ${dataTokens[Math.floor(Math.random()*dataTokens.length)]} ${dataTokens[Math.floor(Math.random()*dataTokens.length)]}</div>`;
+                }
+            }
+            return html + html; // duplicate for infinite scroll
+        }
+
+        stream.innerHTML = `
+            <div class="crypto-layer crypto-layer-1">${genContent(40)}</div>
+            <div class="crypto-layer crypto-layer-2">${genContent(30, true)}</div>
+            <div class="crypto-layer crypto-layer-3">${genContent(20)}</div>
+            <div class="crypto-light-pass"></div>
+        `;
+        
+        wrapper.appendChild(stream);
+        wrapper.appendChild(h1);
+        
         // --- 2. SET UP THE TEXT SPANS ---
         const spanArray = [];
         const chars = originalText.split('');
@@ -71,37 +109,99 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- 4. INJECT STYLES ---
         const style = document.createElement('style');
         style.textContent = `
-            /* SVG Background masking eliminates the black box entirely! */
+            .crypto-wrapper {
+                position: relative;
+                display: inline-block;
+                isolation: isolate; /* Create new stacking context for multiply */
+                margin: 1rem 0; /* Transfer margin from h1 */
+                width: fit-content;
+            }
+            @media (max-width: 768px) {
+                .crypto-wrapper { margin: 1rem auto; }
+            }
+            @media (max-width: 480px) {
+                .crypto-wrapper { margin: 0.5rem 0; }
+            }
+            .crypto-stream {
+                position: absolute;
+                inset: 0;
+                background: #F5F5F5; /* White background keeps the letter body white */
+                overflow: hidden;
+                z-index: 1;
+                opacity: 1;
+                transition: opacity 0.15s ease;
+                font-family: 'SF Mono', 'IBM Plex Mono', monospace;
+                line-height: 1.5;
+                pointer-events: none;
+            }
+            .crypto-layer {
+                position: absolute;
+                top: 0; left: 0; width: 100%;
+                display: flex;
+                flex-direction: column;
+                will-change: transform;
+            }
+            .crypto-layer-1 {
+                color: rgba(0, 255, 65, 0.2); /* Matrix faint green */
+                font-size: 10px;
+                opacity: 0.4;
+                animation: crypto-move 35s linear infinite;
+            }
+            .crypto-layer-2 {
+                color: rgba(0, 255, 65, 0.4); /* Matrix mid green */
+                font-size: 14px;
+                opacity: 0.7;
+                animation: crypto-move 25s linear infinite;
+                margin-left: 10%;
+            }
+            .crypto-layer-3 {
+                color: #00FF41; /* Matrix bright green */
+                font-size: 18px;
+                opacity: 1;
+                filter: blur(0.5px);
+                animation: crypto-move 18s linear infinite;
+                margin-left: 20%;
+            }
+            @keyframes crypto-move {
+                0% { transform: translateY(0); }
+                100% { transform: translateY(-50%); }
+            }
+            .crypto-light-pass {
+                position: absolute;
+                top: -10%; bottom: -10%;
+                width: 40px;
+                background: rgba(0, 255, 65, 0.5); /* Green light pass */
+                box-shadow: 0 0 40px 30px rgba(0, 255, 65, 0.4);
+                transform: translateX(-150px) skewX(-15deg);
+                opacity: 0;
+                transition: transform 0.6s linear, opacity 0.2s;
+                will-change: transform;
+            }
+            
+            /* Apply mix-blend-mode to H1 to act as mask */
             #typing-text.crypto-idle {
-                position: relative; /* CRUCIAL for canvas positioning */
+                position: relative;
                 z-index: 2;
-                background: transparent !important;
-                background-clip: border-box !important;
-                -webkit-background-clip: border-box !important;
-                -webkit-text-fill-color: currentcolor !important;
+                margin: 0 !important; /* Margin transferred to wrapper to fix white box leak */
+                color: #FFFFFF !important;
+                mix-blend-mode: multiply;
+                background-color: #060606 !important;
+                background-image: 
+                    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px) !important;
+                background-size: 100px 100px !important;
+                background-position: center center !important;
+                background-attachment: fixed !important;
+                transition: background-color 0s, color 0s;
             }
-            #typing-text.crypto-idle span {
-                opacity: 0 !important; /* Hide HTML text during idle, canvas takes over */
-            }
+            
             #typing-text.crypto-hovered {
                 position: relative;
                 z-index: 2;
+                margin: 0 !important;
+                mix-blend-mode: normal;
                 background: transparent !important;
-                background-clip: border-box !important;
-                -webkit-background-clip: border-box !important;
                 color: var(--text-color) !important;
-                -webkit-text-fill-color: var(--text-color) !important;
-            }
-
-            .crypto-canvas {
-                position: absolute;
-                inset: 0;
-                width: 100%;
-                height: 100%;
-                pointer-events: none;
-                z-index: 1;
-                opacity: 1;
-                transition: opacity 0.2s;
             }
 
             /* Auth Hover Nodes */
@@ -134,98 +234,45 @@ document.addEventListener('DOMContentLoaded', () => {
         // Initialize Idle State
         h1.classList.add('crypto-idle');
 
-        // --- 5. CANVAS MATRIX IDLE ANIMATION ---
-        const canvas = document.createElement('canvas');
-        canvas.className = 'crypto-canvas';
-        h1.appendChild(canvas);
-        const ctx = canvas.getContext('2d');
-
-        let cw, ch;
-        function resizeCanvas() {
-            const rect = h1.getBoundingClientRect();
-            // Need high-res for sharp text
-            const dpr = window.devicePixelRatio || 1;
-            cw = rect.width;
-            ch = rect.height;
-            canvas.width = cw * dpr;
-            canvas.height = ch * dpr;
-            ctx.scale(dpr, dpr);
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        const dataTokens = ["01011010", "0x7FA2", "0xAB91", "SHA256", "AES", "TLS", "3FA8", "2001::", "<>", "::"];
-        const streams = [];
-        for(let i=0; i<40; i++) {
-            streams.push({
-                x: Math.random(), // percentage
-                y: Math.random() * 200, 
-                speed: 15 + Math.random() * 25, 
-                text: dataTokens[Math.floor(Math.random() * dataTokens.length)],
-                opacity: 0.3 + Math.random() * 0.7,
-                size: 10 + Math.random() * 12
-            });
-        }
-
-        let heartbeatText = "";
+        // --- 5. MICRO EFFECTS TIMERS (IDLE) ---
+        
+        // Heartbeat
         const heartbeats = ["IDENTITY VERIFIED", "AUTHENTICATED", "PUBLIC KEY VALID", "SIGNATURE VERIFIED"];
         setInterval(() => {
             if (isHovered) return;
-            heartbeatText = heartbeats[Math.floor(Math.random() * heartbeats.length)];
-            setTimeout(() => heartbeatText = "", 300);
-        }, 9000);
+            const hbs = document.querySelectorAll('.crypto-heartbeat');
+            hbs.forEach(hb => {
+                const old = hb.textContent;
+                hb.textContent = heartbeats[Math.floor(Math.random() * heartbeats.length)];
+                hb.style.color = '#66D9FF';
+                hb.style.fontWeight = 'bold';
+                setTimeout(() => {
+                    hb.textContent = old;
+                    hb.style.color = '';
+                    hb.style.fontWeight = 'normal';
+                }, 300);
+            });
+        }, 9000); // ~9s
 
-        function drawIdle() {
-            if (!isHovered) {
-                ctx.clearRect(0, 0, cw, ch);
-                
-                // 1. Draw solid silver base for the text letters
-                ctx.fillStyle = '#F5F5F5';
-                ctx.fillRect(0, 0, cw, ch);
-
-                // 2. Draw matrix rain
-                streams.forEach(s => {
-                    ctx.fillStyle = `rgba(0, 255, 65, ${s.opacity})`;
-                    ctx.font = `${s.size}px "IBM Plex Mono", monospace`;
-                    ctx.fillText(s.text, s.x * cw, s.y);
-                    s.y -= s.speed * 0.016; // Move up
-                    if (s.y < -20) {
-                        s.y = ch + 20;
-                        s.x = Math.random();
-                        s.text = dataTokens[Math.floor(Math.random() * dataTokens.length)];
-                    }
-                });
-
-                // 3. Draw Heartbeat
-                if (heartbeatText) {
-                    ctx.fillStyle = '#66D9FF';
-                    ctx.font = 'bold 32px monospace';
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText(heartbeatText, cw/2, ch/2);
-                    ctx.textAlign = 'left'; // reset
-                    ctx.textBaseline = 'alphabetic';
-                }
-
-                // 4. MASK THE ENTIRE CANVAS TO THE HTML TEXT
-                ctx.globalCompositeOperation = 'destination-in';
-                const computedStyle = window.getComputedStyle(h1);
-                ctx.font = `700 ${computedStyle.fontSize} ${computedStyle.fontFamily}`;
-                ctx.textBaseline = 'top';
-                ctx.fillStyle = 'white'; // Any solid color acts as the mask
-                
-                spanArray.forEach(item => {
-                    if (item && item.orig !== ' ') {
-                        // offsetLeft/Top perfectly align with the span's position within h1!
-                        ctx.fillText(item.orig, item.el.offsetLeft, item.el.offsetTop);
-                    }
-                });
-                
-                ctx.globalCompositeOperation = 'source-over';
-            }
-            requestAnimationFrame(drawIdle);
-        }
-        requestAnimationFrame(drawIdle);
+        // Light Pass
+        const lightPass = stream.querySelector('.crypto-light-pass');
+        setInterval(() => {
+            if (isHovered) return;
+            const wrapperRect = wrapper.getBoundingClientRect();
+            lightPass.style.transition = 'none';
+            lightPass.style.opacity = '1';
+            lightPass.style.transform = `translateX(-100px) skewX(-15deg)`;
+            
+            // Force reflow
+            void lightPass.offsetWidth;
+            
+            lightPass.style.transition = 'transform 0.5s linear, opacity 0.2s';
+            lightPass.style.transform = `translateX(${wrapperRect.width + 100}px) skewX(-15deg)`;
+            
+            setTimeout(() => {
+                lightPass.style.opacity = '0';
+            }, 450);
+        }, 10000); // 10s
 
         // --- 6. HOVER ANIMATION LOGIC ---
         function generateGlyphSequence(origChar) {
@@ -248,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isHovered = true;
             
             // Swap to Hover State
-            canvas.style.opacity = '0';
+            stream.style.opacity = '0';
             h1.classList.remove('crypto-idle');
             h1.classList.add('crypto-hovered');
 
@@ -291,7 +338,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // Reset text spans
             spanArray.forEach(item => {
                 if (item) {
-                    item.el.style.opacity = '1'; // Show span during hover!
                     item.el.classList.remove('auth-outline', 'auth-solid-sweep');
                     item.glyphs = generateGlyphSequence(item.orig);
                 }
@@ -358,7 +404,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (item) {
                     item.el.classList.remove('auth-outline', 'auth-solid-sweep');
                     item.el.textContent = item.orig;
-                    item.el.style.opacity = ''; // Let CSS take over (it will be 0 in crypto-idle)
                 }
             });
             scanline.style.opacity = '0';
@@ -367,8 +412,8 @@ document.addEventListener('DOMContentLoaded', () => {
             h1.classList.remove('crypto-hovered');
             h1.classList.add('crypto-idle');
             setTimeout(() => {
-                if (!isHovered) canvas.style.opacity = '1';
-            }, 100);
+                if (!isHovered) stream.style.opacity = '1';
+            }, 100); // small delay to match CSS transitions
         }
     }
 });
