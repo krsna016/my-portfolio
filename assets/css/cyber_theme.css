@@ -119,10 +119,13 @@ h1, h2, h3, h4, h5, h6, .logo, .section-title, .hero-content h1 {
 /* Fix chat send button border */
 .chat-send-btn {
     border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
 }
 .chat-send-btn:hover {
     border: none !important;
     background: transparent !important;
+    box-shadow: none !important;
 }
 
 /* Active Tools (like Light Mode toggle) */
