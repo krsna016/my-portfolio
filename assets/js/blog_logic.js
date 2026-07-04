@@ -302,16 +302,22 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try {
         let res = await fetch('/api/data?t=' + Date.now()).catch(() => null);
-        if (!res || !res.ok) {
-            res = await fetch('assets/js/blog_data.json?t=' + Date.now());
-        }
         if (res && res.ok) {
             const data = await res.json();
             blogPosts = data.posts || [];
             blogCategories = data.categories || [];
-        } else if (typeof blogData !== 'undefined') {
-            blogPosts = blogData.posts || [];
-            blogCategories = blogData.categories || [];
+        } else {
+            await new Promise(resolve => {
+                const script = document.createElement('script');
+                script.src = 'assets/js/blog_data.js?t=' + Date.now();
+                script.onload = resolve;
+                script.onerror = resolve;
+                document.head.appendChild(script);
+            });
+            if (typeof blogData !== 'undefined') {
+                blogPosts = blogData.posts || [];
+                blogCategories = blogData.categories || [];
+            }
         }
     } catch(e) {
         console.error("Failed to load blog data", e);

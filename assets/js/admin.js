@@ -576,16 +576,22 @@ document.addEventListener('DOMContentLoaded', () => {
     async function loadAdminBlogData() {
         try {
             let res = await fetch('/api/data?t=' + Date.now()).catch(() => null);
-            if (!res || !res.ok) {
-                res = await fetch('assets/js/blog_data.json?t=' + Date.now());
-            }
             if (res && res.ok) {
                 const data = await res.json();
                 currentBlogPosts = data.posts || [];
                 currentBlogCategories = data.categories || [];
-            } else if (typeof blogData !== 'undefined') {
-                currentBlogPosts = blogData.posts ? [...blogData.posts] : [];
-                currentBlogCategories = blogData.categories ? [...blogData.categories] : [];
+            } else {
+                await new Promise(resolve => {
+                    const script = document.createElement('script');
+                    script.src = 'assets/js/blog_data.js?t=' + Date.now();
+                    script.onload = resolve;
+                    script.onerror = resolve;
+                    document.head.appendChild(script);
+                });
+                if (typeof blogData !== 'undefined') {
+                    currentBlogPosts = blogData.posts ? [...blogData.posts] : [];
+                    currentBlogCategories = blogData.categories ? [...blogData.categories] : [];
+                }
             }
         } catch(e) {
             console.error(e);
