@@ -861,44 +861,8 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links butt
 .timeline-dot:hover {
     background: #FFFFFF !important;
     border: none !important;
-    box-shadow: 0 0 12px 4px #ff003b, 0 0 25px 8px #ff003b, 0 0 45px 15px #ff003b, 0 0 80px 25px rgba(255, 0, 59, 0.95) !important;
-    transform: scale(1.3) !important;
-}
-
-/* Intense Red Neon Halo behind white dot */
-#experience .timeline-dot-connector::before,
-.timeline-dot-connector::before,
-.timeline-dot::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 44px;
-    height: 44px;
-    background: radial-gradient(circle, #ff003b 0%, rgba(255, 0, 59, 0.85) 45%, transparent 80%);
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 0;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    pointer-events: none;
-    z-index: -1;
-}
-
-#experience .timeline-item:hover .timeline-dot-connector::before,
-#experience .timeline-item:hover .timeline-dot::before,
-#experience-container .timeline-item:hover .timeline-dot-connector::before,
-#experience-container .timeline-item:hover .timeline-dot::before,
-#experience .timeline-dot-connector:hover::before,
-#experience .timeline-dot:hover::before,
-#experience-container .timeline-dot-connector:hover::before,
-#experience-container .timeline-dot:hover::before,
-.timeline-item:hover .timeline-dot-connector::before,
-.timeline-item:hover .timeline-dot::before,
-.timeline-dot-connector:hover::before,
-.timeline-dot:hover::before {
-    transform: translate(-50%, -50%) scale(1.8) !important;
-    opacity: 1 !important;
-    filter: drop-shadow(0 0 15px #ff003b) drop-shadow(0 0 30px #ff0000) !important;
+    box-shadow: 0 0 5px #ff003b, 0 0 12px #ff003b, 0 0 25px #ff003b, 0 0 50px rgba(255, 0, 59, 0.9), 0 0 80px rgba(255, 0, 59, 0.7) !important;
+    transform: scale(1.25) !important;
 }
 
 /* Horizontal trace connecting dot to card in luminous white (never turns red) */
