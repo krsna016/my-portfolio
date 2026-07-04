@@ -747,9 +747,53 @@ button.btn.primary.chat-send-btn:hover svg path,
 .chat-input-bar button.chat-send-btn:hover i,
 .chat-input-bar button.chat-send-btn:hover svg,
 .chat-input-bar button.chat-send-btn:hover svg path,
-.chat-send-btn:hover i,
-.chat-send-btn:hover svg,
-.chat-send-btn:hover svg path {
     text-shadow: 0 0 3px rgba(255, 255, 255, 0.15) !important;
     filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.15)) !important;
+}
+
+/* ==========================================================================
+   BULLETPROOF: REMOVE SOLID BORDERS FROM ALL BUTTONS & TOOLBAR BUTTONS
+   ========================================================================== */
+.btn,
+.btn.primary,
+.btn.secondary,
+.tool-btn,
+.tab-btn,
+.read-more,
+.cert-link,
+.play-btn,
+.drawing-controls .btn,
+.drawing-controls .btn.active-tool,
+.drawing-controls button,
+.drawing-controls button.active-tool,
+.control-group button,
+.control-group a.btn,
+#hero-cli-trigger,
+button:not(.ide-run-btn):not(.hamburger):not(.nav-links button),
+a.btn:not(.ide-run-btn) {
+    border: none !important;
+    outline: none !important;
+}
+
+/* Hover & Active state: ensure no solid borders appear on hover or active either */
+.btn:hover,
+.btn.primary:hover,
+.btn.secondary:hover,
+.tool-btn:hover,
+.tab-btn:hover,
+.tab-btn.active,
+.read-more:hover,
+.cert-link:hover,
+.play-btn:hover,
+.drawing-controls .btn:hover,
+.drawing-controls .btn.active-tool:hover,
+.drawing-controls button:hover,
+.drawing-controls button.active-tool:hover,
+.control-group button:hover,
+.control-group a.btn:hover,
+#hero-cli-trigger:hover,
+button:not(.ide-run-btn):not(.hamburger):not(.nav-links button):hover,
+a.btn:not(.ide-run-btn):hover {
+    border: none !important;
+    outline: none !important;
 }
