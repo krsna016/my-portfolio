@@ -14,24 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const originalText = "ANURAG PAREEK";
         h1.innerHTML = '';
         
-        function generateSVGLayer(tokenCount, baseColor, minSize, maxSize) {
-            let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="800">`;
-            const tokens = ["0101", "1101", "0x7FA2", "SHA256", "AES", "TLS", "3FA8", "2001::", "<>", "::"];
-            for(let i=0; i<tokenCount; i++) {
-                const x = Math.random() * 400;
-                const y = Math.random() * 800;
-                const size = minSize + Math.random() * (maxSize - minSize);
-                const text = tokens[Math.floor(Math.random() * tokens.length)];
-                svg += `<text x="${x}" y="${y}" fill="${baseColor}" font-family="monospace" font-size="${size}">${text}</text>`;
-            }
-            svg += `</svg>`;
-            return `url('data:image/svg+xml;utf8,${encodeURIComponent(svg)}')`;
-        }
-
-        const layer1 = generateSVGLayer(40, 'rgba(0, 255, 65, 0.2)', 10, 12);
-        const layer2 = generateSVGLayer(30, 'rgba(0, 255, 65, 0.4)', 14, 16);
-        const layer3 = generateSVGLayer(20, '#00FF41', 18, 22);
-        
         // --- 2. SET UP THE TEXT SPANS ---
         const spanArray = [];
         const chars = originalText.split('');
@@ -90,41 +72,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const style = document.createElement('style');
         style.textContent = `
             /* SVG Background masking eliminates the black box entirely! */
-            #typing-text.crypto-idle {
-                background-image: 
-                    var(--heartbeat-layer, linear-gradient(transparent, transparent)),
-                    ${layer3}, 
-                    ${layer2}, 
-                    ${layer1}, 
-                    linear-gradient(#050505, #050505) !important;
-                background-size: 
-                    100% 100%, 
-                    400px 800px, 
-                    300px 600px, 
-                    200px 400px, 
-                    100% 100% !important;
-                -webkit-background-clip: text !important;
-                background-clip: text !important;
-                -webkit-text-fill-color: transparent !important;
-                color: transparent !important;
-                animation: crypto-scroll-bg 15s linear infinite !important;
-                transition: background-color 0s, color 0s;
-            }
             #typing-text.crypto-idle span {
-                -webkit-text-fill-color: transparent !important;
-                color: transparent !important;
+                opacity: 0 !important; /* Hide HTML text during idle, canvas takes over */
             }
-            @keyframes crypto-scroll-bg {
-                0% { background-position: center center, 0 0, 0 0, 0 0, 0 0; }
-                100% { background-position: center center, 0 -800px, 0 -600px, 0 -400px, 0 0; }
-            }
-            
             #typing-text.crypto-hovered {
                 position: relative;
                 z-index: 2;
                 background: transparent !important;
                 color: var(--text-color) !important;
                 -webkit-text-fill-color: var(--text-color) !important;
+            }
+
+            .crypto-canvas {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 1;
+                opacity: 1;
+                transition: opacity 0.2s;
             }
 
             /* Auth Hover Nodes */
@@ -157,20 +124,98 @@ document.addEventListener('DOMContentLoaded', () => {
         // Initialize Idle State
         h1.classList.add('crypto-idle');
 
-        // --- 5. MICRO EFFECTS TIMERS (IDLE) ---
-        
-        // Heartbeat
-        const hbSvgBase = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="200"><text x="400" y="100" fill="#66D9FF" font-family="monospace" font-size="32" font-weight="bold" text-anchor="middle">`;
+        // --- 5. CANVAS MATRIX IDLE ANIMATION ---
+        const canvas = document.createElement('canvas');
+        canvas.className = 'crypto-canvas';
+        h1.appendChild(canvas);
+        const ctx = canvas.getContext('2d');
+
+        let cw, ch;
+        function resizeCanvas() {
+            const rect = h1.getBoundingClientRect();
+            // Need high-res for sharp text
+            const dpr = window.devicePixelRatio || 1;
+            cw = rect.width;
+            ch = rect.height;
+            canvas.width = cw * dpr;
+            canvas.height = ch * dpr;
+            ctx.scale(dpr, dpr);
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const dataTokens = ["01011010", "0x7FA2", "0xAB91", "SHA256", "AES", "TLS", "3FA8", "2001::", "<>", "::"];
+        const streams = [];
+        for(let i=0; i<40; i++) {
+            streams.push({
+                x: Math.random(), // percentage
+                y: Math.random() * 200, 
+                speed: 15 + Math.random() * 25, 
+                text: dataTokens[Math.floor(Math.random() * dataTokens.length)],
+                opacity: 0.3 + Math.random() * 0.7,
+                size: 10 + Math.random() * 12
+            });
+        }
+
+        let heartbeatText = "";
         const heartbeats = ["IDENTITY VERIFIED", "AUTHENTICATED", "PUBLIC KEY VALID", "SIGNATURE VERIFIED"];
         setInterval(() => {
             if (isHovered) return;
-            const text = heartbeats[Math.floor(Math.random() * heartbeats.length)];
-            const hbUrl = `url('data:image/svg+xml;utf8,${encodeURIComponent(hbSvgBase + text + "</text></svg>")}')`;
-            h1.style.setProperty('--heartbeat-layer', hbUrl);
-            setTimeout(() => {
-                h1.style.removeProperty('--heartbeat-layer');
-            }, 300);
-        }, 9000); // ~9s
+            heartbeatText = heartbeats[Math.floor(Math.random() * heartbeats.length)];
+            setTimeout(() => heartbeatText = "", 300);
+        }, 9000);
+
+        function drawIdle() {
+            if (!isHovered) {
+                ctx.clearRect(0, 0, cw, ch);
+                
+                // 1. Draw solid silver base for the text letters
+                ctx.fillStyle = '#F5F5F5';
+                ctx.fillRect(0, 0, cw, ch);
+
+                // 2. Draw matrix rain
+                streams.forEach(s => {
+                    ctx.fillStyle = `rgba(0, 255, 65, ${s.opacity})`;
+                    ctx.font = `${s.size}px "IBM Plex Mono", monospace`;
+                    ctx.fillText(s.text, s.x * cw, s.y);
+                    s.y -= s.speed * 0.016; // Move up
+                    if (s.y < -20) {
+                        s.y = ch + 20;
+                        s.x = Math.random();
+                        s.text = dataTokens[Math.floor(Math.random() * dataTokens.length)];
+                    }
+                });
+
+                // 3. Draw Heartbeat
+                if (heartbeatText) {
+                    ctx.fillStyle = '#66D9FF';
+                    ctx.font = 'bold 32px monospace';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(heartbeatText, cw/2, ch/2);
+                    ctx.textAlign = 'left'; // reset
+                    ctx.textBaseline = 'alphabetic';
+                }
+
+                // 4. MASK THE ENTIRE CANVAS TO THE HTML TEXT
+                ctx.globalCompositeOperation = 'destination-in';
+                const computedStyle = window.getComputedStyle(h1);
+                ctx.font = `700 ${computedStyle.fontSize} ${computedStyle.fontFamily}`;
+                ctx.textBaseline = 'top';
+                ctx.fillStyle = 'white'; // Any solid color acts as the mask
+                
+                spanArray.forEach(item => {
+                    if (item && item.orig !== ' ') {
+                        // offsetLeft/Top perfectly align with the span's position within h1!
+                        ctx.fillText(item.orig, item.el.offsetLeft, item.el.offsetTop);
+                    }
+                });
+                
+                ctx.globalCompositeOperation = 'source-over';
+            }
+            requestAnimationFrame(drawIdle);
+        }
+        requestAnimationFrame(drawIdle);
 
         // --- 6. HOVER ANIMATION LOGIC ---
         function generateGlyphSequence(origChar) {
@@ -193,6 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isHovered = true;
             
             // Swap to Hover State
+            canvas.style.opacity = '0';
             h1.classList.remove('crypto-idle');
             h1.classList.add('crypto-hovered');
 
@@ -235,6 +281,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Reset text spans
             spanArray.forEach(item => {
                 if (item) {
+                    item.el.style.opacity = '1'; // Show span during hover!
                     item.el.classList.remove('auth-outline', 'auth-solid-sweep');
                     item.glyphs = generateGlyphSequence(item.orig);
                 }
@@ -301,6 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (item) {
                     item.el.classList.remove('auth-outline', 'auth-solid-sweep');
                     item.el.textContent = item.orig;
+                    item.el.style.opacity = ''; // Let CSS take over (it will be 0 in crypto-idle)
                 }
             });
             scanline.style.opacity = '0';
@@ -308,6 +356,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Smoothly restore Idle State
             h1.classList.remove('crypto-hovered');
             h1.classList.add('crypto-idle');
+            setTimeout(() => {
+                if (!isHovered) canvas.style.opacity = '1';
+            }, 100);
         }
     }
 });
