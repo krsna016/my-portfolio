@@ -343,8 +343,8 @@ input[type="range"]::-webkit-slider-thumb {
     font-family: var(--font-primary) !important;
 }
 .ide-run-btn:hover {
-    background: transparent !important;
-    color: var(--primary-color) !important;
+    background: #e0e0e0 !important;
+    color: #000 !important;
     box-shadow: none !important;
     transform: none !important;
 }
@@ -570,18 +570,6 @@ svg[class*="icon"]:hover path {
     transform: none !important; /* Move transform to the <i> tag */
 }
 
-/* IDE Run Button Triangle Hover Fix */
-.ide-run-btn i {
-    color: #ff3333 !important;
-    fill: #ff3333 !important;
-    transition: all 0.2s ease;
-}
-.ide-run-btn:hover i {
-    color: #00ff00 !important;
-    fill: #00ff00 !important;
-    text-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
-}
-
 /* Fix active-tool (Light Mode button) icon disappearing on hover */
 .btn.active-tool:hover i, .active-tool:hover i {
     color: #000 !important;
@@ -601,4 +589,10 @@ svg[class*="icon"]:hover path {
     border: none !important;
     border-color: transparent !important;
     box-shadow: none !important;
+}
+
+/* Ensure run button icon stays visible on light grey hover */
+.ide-run-btn:hover i {
+    color: #000 !important;
+    fill: #000 !important;
 }
