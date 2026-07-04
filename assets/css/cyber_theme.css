@@ -594,8 +594,9 @@ svg[class*="icon"]:hover path {
     box-shadow: none !important;
 }
 
-/* Ensure run button icon stays visible on light grey hover */
+/* Ensure run button icon stays visible on light grey hover, but turns green */
 .ide-run-btn:hover i {
-    color: #000 !important;
-    fill: #000 !important;
+    color: #00ff00 !important;
+    fill: #00ff00 !important;
+    text-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
 }
