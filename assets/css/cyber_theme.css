@@ -787,30 +787,30 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links butt
 }
 
 /* ==========================================================================
-   PREMIUM SSH TERMINAL AESTHETIC: EXPERIENCE TIMELINE RAIL & NODES
+   GREEN TERMINAL RAIL & MATCHING NODES/TRACES (SSH TERMINAL AESTHETIC)
    ========================================================================== */
-/* Subtle 4px vertical rail with soft cyan -> blue -> violet gradient, faint inner glow, and terminal depth */
+/* Clean green terminal rail */
 #experience .timeline::before,
 .timeline::before {
     left: 11px !important;
     width: 4px !important;
-    background: linear-gradient(180deg, rgba(0, 210, 255, 0.65) 0%, rgba(58, 123, 213, 0.55) 50%, rgba(138, 43, 226, 0.45) 100%) !important;
+    background: linear-gradient(180deg, #00ff66 0%, #2ed573 50%, #10ac84 100%) !important;
     background-size: 100% 100% !important;
     animation: none !important;
     border-radius: 4px !important;
-    box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.35), 0 0 8px rgba(0, 210, 255, 0.2) !important;
+    box-shadow: 0 0 10px rgba(0, 255, 102, 0.4), inset 0 0 3px rgba(255, 255, 255, 0.3) !important;
 }
 
-/* Timeline nodes: small premium cyan rings with dark centers and a subtle glow */
+/* Timeline nodes: small green terminal rings with dark centers */
 #experience .timeline-dot-connector,
 .timeline-dot-connector,
 .timeline-dot {
     width: 14px !important;
     height: 14px !important;
     background: #0a0a0f !important;
-    border: 2px solid rgba(0, 210, 255, 0.85) !important;
+    border: 2px solid #00ff66 !important;
     border-radius: 50% !important;
-    box-shadow: 0 0 8px rgba(0, 210, 255, 0.35), inset 0 0 3px rgba(0, 210, 255, 0.25) !important;
+    box-shadow: 0 0 8px rgba(0, 255, 102, 0.4), inset 0 0 3px rgba(0, 255, 102, 0.3) !important;
     z-index: 10;
     transition: all 0.3s ease;
 }
@@ -820,16 +820,64 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links butt
 .timeline-item:hover .timeline-dot-connector,
 .timeline-item:hover .timeline-dot {
     background: #0a0a0f !important;
-    border: 2px solid #00d2ff !important;
-    box-shadow: 0 0 12px rgba(0, 210, 255, 0.5), inset 0 0 4px rgba(0, 210, 255, 0.35) !important;
+    border: 2px solid #00ff66 !important;
+    box-shadow: 0 0 14px rgba(0, 255, 102, 0.6), inset 0 0 4px rgba(0, 255, 102, 0.4) !important;
     transform: scale(1.1) !important;
 }
 
 /* Horizontal trace connecting dot to card */
 .timeline-dot-connector::after {
-    background: linear-gradient(90deg, rgba(0, 210, 255, 0.5), rgba(58, 123, 213, 0.15)) !important;
+    background: linear-gradient(90deg, #00ff66, rgba(0, 255, 102, 0.15)) !important;
     height: 1.5px !important;
-    box-shadow: 0 0 4px rgba(0, 210, 255, 0.2) !important;
+    box-shadow: 0 0 4px rgba(0, 255, 102, 0.3) !important;
+}
+
+/* ==========================================================================
+   MONOCHROME THEME: CARD TITLES (GREY ON HOVER) & BADGES/TAGS
+   ========================================================================== */
+/* On hover, company name / titles become sleek grey instead of cyan */
+.exec-card:hover .exec-company,
+.timeline-item:hover .exec-company,
+.timeline-content:hover h3,
+.project-card:hover h3,
+.cert-card:hover h3,
+.game-card:hover h3,
+.article-card:hover h3,
+.about-card:hover h3 {
+    color: #cccccc !important;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Above tags (AI/ML INTERN, DATA SCIENCE INTERN) and skill tags use monochrome theme */
+.exec-badge,
+.exec-tag,
+.skill-tag,
+.tag,
+.role-badge,
+.intern-badge {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+    backdrop-filter: blur(8px) !important;
+    font-family: monospace !important;
+    padding: 4px 12px !important;
+    border-radius: 20px !important;
+    transition: all 0.2s ease !important;
+}
+
+.exec-tag {
+    border-radius: 6px !important;
+}
+
+.exec-badge:hover,
+.exec-tag:hover,
+.skill-tag:hover,
+.tag:hover {
+    background: rgba(255, 255, 255, 0.16) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    transform: translateY(-2px) !important;
 }
 
 /* ==========================================================================
