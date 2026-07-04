@@ -604,6 +604,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             renderBlogList();
+            resetBlogForm();
             
             // Try to hit API if it exists (Railway), otherwise fallback to download
             const token = sessionStorage.getItem('adminToken');
@@ -618,25 +619,27 @@ document.addEventListener('DOMContentLoaded', () => {
                         body: JSON.stringify({ id, title, category, summary, content })
                     });
                     if (res.ok) {
-                        alert("Saved to live server! You can still download files if you want.");
+                        setTimeout(() => alert("Saved to live server! You can still download files if you want."), 10);
                     } else {
-                        alert("Failed to save to live server! Please click BOTH download buttons to save manually.");
+                        setTimeout(() => alert("Failed to save to live server! Please click BOTH download buttons to save manually."), 10);
                     }
                 } catch(err) {
-                    alert("Live server unreachable. Please click BOTH download buttons to save manually.");
+                    setTimeout(() => alert("Live server unreachable. Please click BOTH download buttons to save manually."), 10);
                 }
             } else {
-                alert("Saved to list locally! Make sure to click BOTH download buttons now to update files.");
+                setTimeout(() => alert("Saved to list locally! Make sure to click BOTH download buttons now to update files."), 10);
             }
         });
     }
 
+    function resetBlogForm() {
+        blogForm.reset();
+        blogEditIndexInput.value = '-1';
+        document.querySelector('#tab-blog .editor-panel h3').textContent = 'Add / Edit Blog Post';
+    }
+
     if (clearBlogFormBtn) {
-        clearBlogFormBtn.addEventListener('click', () => {
-            blogForm.reset();
-            blogEditIndexInput.value = '-1';
-            document.querySelector('#tab-blog .editor-panel h3').textContent = 'Add / Edit Blog Post';
-        });
+        clearBlogFormBtn.addEventListener('click', resetBlogForm);
     }
 
     window.editBlog = async function (index) {
