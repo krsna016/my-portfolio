@@ -1404,8 +1404,8 @@ footer {
 
 /* Resume Page */
 .resume-page {
-    padding-top: 70px;
-    /* Reduced padding */
+    padding-top: 120px;
+    /* Increased padding to prevent navbar overlap */
     padding-bottom: 0;
     /* Remove bottom padding */
     flex: 1;
