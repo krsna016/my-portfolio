@@ -466,12 +466,30 @@ END:VCARD`;
 // 1. Advanced Email Cryptography (Anti-Scraping)
 document.addEventListener('DOMContentLoaded', () => {
     const secureLinks = document.querySelectorAll('.secure-contact');
+    
+    function unlockEmail(link) {
+        if (link.getAttribute('href') === '#') {
+            const decoded = atob(link.getAttribute('data-contact'));
+            link.setAttribute('href', 'mailto:' + decoded);
+            return decoded;
+        }
+        return null;
+    }
+
     secureLinks.forEach(link => {
-        link.addEventListener('mouseover', function() {
+        // Pre-decode on hover for desktop
+        link.addEventListener('mouseenter', function() {
+            unlockEmail(this);
+        });
+        
+        // Decode and trigger on click (fixes mobile and fast clicks)
+        link.addEventListener('click', function(e) {
             if (this.getAttribute('href') === '#') {
-                const decoded = atob(this.getAttribute('data-contact'));
-                this.setAttribute('href', 'https://mail.google.com/mail/?view=cm&fs=1&to=' + decoded);
-                // console.log("Email unlocked securely.");
+                e.preventDefault(); // Stop smooth scroll script
+                const decoded = unlockEmail(this);
+                if (decoded) {
+                    window.location.href = 'mailto:' + decoded;
+                }
             }
         });
     });
