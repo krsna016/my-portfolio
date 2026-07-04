@@ -17,11 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="id-coord-label id-coord-2">ID:AP-001</div>
         <div class="identity-name-container">
             <span class="id-bracket left">[</span>
-            <div id="id-name-chars" style="display:flex; position:relative;">
+            <div id="id-name-chars" style="display:flex; align-items:baseline; position:relative;">
                 <div class="id-scan-line"></div>
             </div>
             <span class="id-bracket right">]</span>
-            <span class="id-cursor">_</span>
         </div>
         <div class="id-auth-labels" id="id-auth-labels"></div>
         <div class="id-particles" id="id-particles"></div>
@@ -56,6 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
             charElements.push(span);
         }
     }
+    
+    // Add the cursor directly after the text
+    const cursorSpan = document.createElement('span');
+    cursorSpan.className = 'id-cursor';
+    cursorSpan.textContent = '_';
+    charsContainer.appendChild(cursorSpan);
 
     // Prefers Reduced Motion Check
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
