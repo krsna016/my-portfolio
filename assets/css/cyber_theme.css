@@ -544,6 +544,116 @@ input[type="range"]::-webkit-slider-thumb {
     margin-bottom: 4rem !important;
 }
 
+/* ==========================================================================
+   GLOBAL UNIFIED ICON DESIGN SYSTEM
+   ========================================================================== */
+
+/* 1. Strip all containers that wrap icons from having backgrounds/borders */
+.social-links a,
+.footer-socials a,
+.project-links a,
+.game-icon,
+.cert-icon-container,
+.icon-box,
+.stat-icon,
+.feature-icon,
+.timeline-icon {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    padding: 0 !important;
+    margin: 0 8px !important; /* Keep slight spacing for flex rows */
+    width: auto !important;
+    height: auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 0 !important;
+}
+
+/* Fix margin for standalone icons if needed */
+.icon-box, .cert-icon-container, .game-icon {
+    margin: 0 0 1rem 0 !important;
+}
+
+/* 2. Unified Idle State for ALL Icons globally */
+i[class*="fa-"],
+i.fas,
+i.fab,
+i.fa-solid,
+i.fa-brands,
+svg.icon,
+.icon {
+    display: inline-block !important;
+    color: #AAAAAA !important;
+    opacity: 0.95 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    transform: scale(1) !important;
+}
+
+svg[class*="icon"] path,
+svg[class*="fa-"] path {
+    fill: #AAAAAA !important;
+    transition: fill 0.3s ease, transform 0.3s ease, filter 0.3s ease !important;
+}
+
+/* Space out icon if it's inside a text button */
+.btn i, .tool-btn i, .contact-btn i {
+    margin-right: 8px !important;
+}
+
+/* 3. Unified Hover State for ALL Icons globally */
+a:hover > i[class*="fa-"],
+button:hover > i[class*="fa-"],
+.game-card:hover .game-icon i,
+.certificate-card:hover .cert-icon-container i,
+.about-card:hover .icon,
+.project-card:hover .project-links a i,
+.exec-card:hover .exec-icon i,
+.article-card:hover .article-icon i,
+i[class*="fa-"]:hover,
+i.fas:hover,
+i.fab:hover,
+i.fa-solid:hover,
+i.fa-brands:hover,
+svg.icon:hover,
+.icon:hover {
+    color: #FFFFFF !important;
+    opacity: 1 !important;
+    transform: scale(1.08) !important;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4) !important;
+    background: transparent !important;
+}
+
+a:hover > svg[class*="fa-"] path,
+button:hover > svg[class*="fa-"] path,
+svg[class*="icon"]:hover path {
+    fill: #FFFFFF !important;
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4)) !important;
+}
+
+/* Ensure no backgrounds pop up on hover for containers */
+.social-links a:hover,
+.footer-socials a:hover,
+.project-links a:hover,
+.icon-box:hover,
+.game-icon:hover,
+.cert-icon-container:hover {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    transform: none !important; /* Move transform to the <i> tag */
+}
 .resume-page .section-title::after,
 .contact-page .section-title::after {
     content: '' !important;
