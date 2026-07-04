@@ -259,3 +259,15 @@ input:focus, textarea:focus {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--secondary-color);
 }
+
+/* Move Audio HUD to Right */
+.hud-audio-pill {
+    left: auto !important;
+    right: 24px !important;
+}
+@media (max-width: 768px) {
+    .hud-audio-pill {
+        right: 15px !important;
+        left: auto !important;
+    }
+}
