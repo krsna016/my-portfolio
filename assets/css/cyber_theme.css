@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@300;400;500;700&display=swap');
+
+/* 
+   ====================================================
+   HACKTRON ELITE CYBERSECURITY OS THEME
+   ====================================================
+*/
+
+:root {
+    --bg-color: #060606 !important;
+    --glass-bg: #111111 !important;
+    --text-color: #F5F5F5 !important;
+    --primary-color: #F5F5F5 !important;
+    --secondary-color: #9A9A9A !important;
+    --accent-color: #F3EAD8 !important;
+    --border-color: rgba(255, 255, 255, 0.08) !important;
+    --font-primary: 'IBM Plex Mono', monospace !important;
+    --font-heading: 'Space Grotesk', sans-serif !important;
+}
+
+body {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+    font-family: var(--font-primary) !important;
+    background-image: 
+        linear-gradient(var(--border-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-color) 1px, transparent 1px) !important;
+    background-size: 100px 100px !important;
+    background-position: center center !important;
+    background-attachment: fixed !important;
+}
+
+/* Remove Background Glows */
+.background-glow {
+    display: none !important;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6, .logo, .section-title, .hero-content h1 {
+    font-family: var(--font-heading) !important;
+    letter-spacing: -0.02em !important;
+    font-weight: 700 !important;
+    text-transform: none !important;
+}
+
+.hero-content h1 {
+    font-size: clamp(3rem, 8vw, 6rem) !important;
+    line-height: 1.1 !important;
+    text-transform: uppercase !important;
+    max-width: 800px;
+}
+
+.hero-subtitle {
+    font-family: var(--font-primary) !important;
+    color: var(--secondary-color) !important;
+    font-size: 1.1rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    margin-top: 2rem !important;
+}
+
+/* Brutalist Cards & Containers */
+.glass, .cert-card, .card, .resume-card, .contact-container, .timeline-content, .game-card {
+    background: var(--glass-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 0 !important; /* Sharp edges */
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    position: relative;
+}
+
+/* Cybernetic Corner Brackets */
+.cert-card::before, .resume-card::before, .card::before, .game-card::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px;
+    width: 12px; height: 12px;
+    border-top: 2px solid var(--secondary-color);
+    border-left: 2px solid var(--secondary-color);
+    transition: border-color 0.3s;
+}
+.cert-card::after, .resume-card::after, .card::after, .game-card::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; right: -1px;
+    width: 12px; height: 12px;
+    border-bottom: 2px solid var(--secondary-color);
+    border-right: 2px solid var(--secondary-color);
+    transition: border-color 0.3s;
+}
+
+.cert-card:hover::before, .resume-card:hover::before, .card:hover::before, .game-card:hover::before,
+.cert-card:hover::after, .resume-card:hover::after, .card:hover::after, .game-card:hover::after {
+    border-color: var(--accent-color);
+}
+
+/* Buttons */
+.btn, .tool-btn, button {
+    text-transform: uppercase !important;
+    font-family: var(--font-primary) !important;
+    font-size: 0.85rem !important;
+    letter-spacing: 0.1em !important;
+    background: transparent !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 0 !important;
+    color: var(--text-color) !important;
+    box-shadow: none !important;
+    transition: all 0.2s ease !important;
+}
+
+.btn:hover, .tool-btn:hover, button:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: var(--secondary-color) !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+/* Navbar */
+.navbar {
+    background: rgba(6, 6, 6, 0.9) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    backdrop-filter: blur(10px) !important;
+}
+.nav-links a {
+    font-family: var(--font-primary) !important;
+    font-size: 0.85rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    color: var(--secondary-color) !important;
+}
+.nav-links a:hover, .nav-links a.active {
+    color: var(--text-color) !important;
+}
+.nav-links a::after {
+    display: none !important; /* Remove underline animation */
+}
+
+/* Remove all intense pack glows and gradients */
+* {
+    text-shadow: none !important;
+    box-shadow: none !important;
+}
+.text-gradient {
+    background: none !important;
+    -webkit-text-fill-color: var(--text-color) !important;
+    color: var(--text-color) !important;
+}
+
+/* Forms */
+input, textarea {
+    background: #000 !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 0 !important;
+    font-family: var(--font-primary) !important;
+    color: var(--text-color) !important;
+}
+input:focus, textarea:focus {
+    border-color: var(--secondary-color) !important;
+    outline: none !important;
+}
+
+/* Tags / Pills */
+.skill-tag, .exec-tag {
+    background: #000 !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 0 !important;
+    font-family: var(--font-primary) !important;
+    text-transform: uppercase !important;
+    font-size: 0.75rem !important;
+    letter-spacing: 0.05em !important;
+}
+
+/* Cybernetic Crosshair Overlay */
+.cyber-crosshair-x, .cyber-crosshair-y {
+    position: fixed;
+    background: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+    z-index: 9998;
+}
+.cyber-crosshair-x {
+    width: 100vw;
+    height: 1px;
+    left: 0;
+    top: -100px;
+}
+.cyber-crosshair-y {
+    height: 100vh;
+    width: 1px;
+    top: 0;
+    left: -100px;
+}
+.cyber-coords {
+    position: fixed;
+    color: rgba(255, 255, 255, 0.4);
+    font-family: var(--font-primary);
+    font-size: 10px;
+    pointer-events: none;
+    z-index: 9999;
+    top: -100px;
+    left: -100px;
+    padding: 4px;
+    line-height: 1.2;
+}
+
+/* ASCII Background Element */
+.ascii-bg {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-primary);
+    font-size: 8px;
+    line-height: 8px;
+    color: rgba(255, 255, 255, 0.02);
+    white-space: pre;
+    z-index: -1;
+    pointer-events: none;
+    user-select: none;
+    text-align: center;
+}
+
+/* System Status Overlay */
+.system-status {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    font-family: var(--font-primary);
+    font-size: 9px;
+    color: var(--secondary-color);
+    z-index: 9999;
+    pointer-events: none;
+    text-transform: uppercase;
+}
+.system-status span {
+    display: block;
+    margin-bottom: 2px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
