@@ -673,7 +673,7 @@ button.ide-run-btn:hover svg[class*="fa-"] path {
 #hero-cli-trigger,
 button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links button) {
     background: rgba(255, 255, 255, 0.08) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border: none !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
     backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(10px) !important;
@@ -690,7 +690,7 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links butt
 #hero-cli-trigger:hover,
 button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links button):hover {
     background: rgba(255, 255, 255, 0.16) !important;
-    border-color: rgba(255, 255, 255, 0.4) !important;
+    border: none !important;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4) !important;
     color: #FFFFFF !important;
 }
@@ -698,7 +698,7 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links butt
 /* Active tab button */
 .tab-btn.active {
     background: rgba(255, 255, 255, 0.22) !important;
-    border-color: rgba(255, 255, 255, 0.6) !important;
+    border: none !important;
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.2) !important;
 }
 
