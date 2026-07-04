@@ -546,8 +546,36 @@
 .exec-card:hover + .timeline-dot-connector,
 .timeline-item:hover .timeline-dot-connector {
     background: #FFFFFF !important;
-    box-shadow: 0 0 18px rgba(255, 0, 59, 1), 0 0 35px rgba(255, 0, 59, 0.9), 0 0 60px rgba(255, 0, 59, 0.7) !important;
+    box-shadow: 0 0 12px 4px #ff003b, 0 0 25px 8px #ff003b, 0 0 45px 15px #ff003b, 0 0 80px 25px rgba(255, 0, 59, 0.95) !important;
     transform: scale(1.3) !important;
+}
+
+#experience .timeline-dot-connector::before,
+.timeline-dot-connector::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    background: radial-gradient(circle, #ff003b 0%, rgba(255, 0, 59, 0.85) 45%, transparent 80%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    z-index: -1;
+}
+
+#experience .timeline-item:hover .timeline-dot-connector::before,
+#experience-container .timeline-item:hover .timeline-dot-connector::before,
+#experience .timeline-dot-connector:hover::before,
+#experience-container .timeline-dot-connector:hover::before,
+.exec-card:hover + .timeline-dot-connector::before,
+.timeline-item:hover .timeline-dot-connector::before {
+    transform: translate(-50%, -50%) scale(1.8) !important;
+    opacity: 1 !important;
+    filter: drop-shadow(0 0 15px #ff003b) drop-shadow(0 0 30px #ff0000) !important;
 }
 
 .exec-card-header {
