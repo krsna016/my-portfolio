@@ -144,6 +144,15 @@ h1, h2, h3, h4, h5, h6, .logo, .section-title, .hero-content h1 {
     transform: none !important;
 }
 
+/* Fix chat send button border */
+.chat-send-btn {
+    border: none !important;
+}
+.chat-send-btn:hover {
+    border: none !important;
+    background: transparent !important;
+}
+
 /* Active Tools (like Light Mode toggle) */
 .btn.active-tool, .active-tool {
     background: var(--primary-color) !important;
