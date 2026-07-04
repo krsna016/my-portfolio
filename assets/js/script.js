@@ -290,16 +290,6 @@ document.addEventListener('DOMContentLoaded', () => {
         heroSection.addEventListener('mouseleave', () => {
             profileContainer.style.transform = `rotateX(0deg) rotateY(0deg)`;
         });
-
-        // Premium AI Terminal Scan hover effect (triggers once per hover, no looping)
-        profileContainer.addEventListener('mouseenter', () => {
-            if (!profileContainer.classList.contains('is-scanning')) {
-                profileContainer.classList.add('is-scanning');
-                setTimeout(() => {
-                    profileContainer.classList.remove('is-scanning');
-                }, 1400);
-            }
-        });
     }
 });
 
