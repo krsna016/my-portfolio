@@ -64,6 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const title = document.createElement('h3');
         title.textContent = cert.title;
 
+        const desc = document.createElement('p');
+        desc.textContent = cert.desc;
+
         const link = document.createElement('a');
         link.href = '#';
         link.className = 'cert-link';
@@ -84,6 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         info.appendChild(title);
+        info.appendChild(desc);
         info.appendChild(link);
 
         card.appendChild(iconContainer);
