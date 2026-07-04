@@ -52,6 +52,9 @@ h1, h2, h3, h4, h5, h6, .logo, .section-title, .hero-content h1 {
     margin-left: 4px !important; /* Offset negative font bearing */
     transition: all 0.1s ease !important;
     cursor: crosshair !important;
+    background: none !important;
+    -webkit-text-fill-color: var(--text-color) !important;
+    color: var(--text-color) !important;
 }
 
 .greeting {
