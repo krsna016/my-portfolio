@@ -16,20 +16,20 @@ function initIDESandbox() {
     ideCard.innerHTML = `
         <div class="ide-topbar">
             <div class="ide-tabs">
-                <span class="ide-tab"><i class="fa-brands fa-js" style="color: #f1c40f;"></i> profile.js</span>
+                <span class="ide-tab"><i class="fa-solid fa-terminal" style="color: #00ff66;"></i> [ ROOT@SECURE ] ~/PROFILE.SYS</span>
             </div>
             <button id="ide-run-btn" class="ide-run-btn" title="Execute script to update homepage DOM">
-                <i class="fa-solid fa-play"></i> Run Code
+                [ EXECUTE ]
             </button>
         </div>
         <div class="ide-code-area">
-            <div style="color: #6c5ce7; margin-bottom: 6px;">// Edit properties below & click Run Code!</div>
+            <div style="color: #00d2ff; margin-bottom: 6px; font-weight: bold; text-shadow: 0 0 5px rgba(0, 210, 255, 0.5);">// OVERRIDE_PROPERTIES & INITIATE_EXECUTION</div>
             <textarea id="ide-code-editor" class="ide-textarea" spellcheck="false">const Anurag = {
     role: "Data Analyst",
     techFocus: "Python & SQL",
     status: "Ready to Innovate"
 };</textarea>
-            <div id="ide-status-msg" style="font-size: 0.78rem; color: #8c7ae6; margin-top: 6px; min-height: 16px;">▶ Console ready. Try changing role to "AI Engineer"</div>
+            <div id="ide-status-msg" style="font-size: 0.78rem; color: #00ff66; margin-top: 6px; min-height: 16px; text-shadow: 0 0 5px rgba(0,255,102,0.5);">▶ TERMINAL_READY. AWAITING_INPUT...</div>
         </div>
     `;
 

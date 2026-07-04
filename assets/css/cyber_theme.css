@@ -338,50 +338,56 @@ input[type="range"]::-webkit-slider-thumb {
 
 /* IDE Sandbox Overrides */
 .ide-hero-card {
-    background: var(--bg-color) !important;
-    border: 1px solid var(--border-color) !important;
+    background: #050505 !important;
+    border: 1px solid #00d2ff !important;
     border-radius: 0 !important;
-    box-shadow: none !important;
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.2), inset 0 0 10px rgba(0, 210, 255, 0.1) !important;
     margin-left: 4px !important;
 }
 .ide-topbar {
-    background: var(--glass-bg) !important;
-    border-bottom: 1px solid var(--border-color) !important;
+    background: #0a0a0a !important;
+    border-bottom: 1px solid #00d2ff !important;
     border-radius: 0 !important;
 }
 .ide-tab {
     background: transparent !important;
     border: none !important;
-    border-right: 1px solid var(--border-color) !important;
+    border-right: 1px solid #00d2ff !important;
     border-radius: 0 !important;
-    color: var(--secondary-color) !important;
+    color: #00d2ff !important;
     font-family: var(--font-primary) !important;
     text-transform: uppercase !important;
     font-size: 0.8rem !important;
+    letter-spacing: 1px !important;
 }
 .ide-run-btn {
-    background: var(--primary-color) !important;
-    color: #000 !important;
+    background: transparent !important;
+    color: #00ff66 !important;
     border-radius: 0 !important;
-    border: 1px solid var(--primary-color) !important;
+    border: 1px solid #00ff66 !important;
     text-transform: uppercase !important;
     font-weight: bold !important;
-    box-shadow: none !important;
+    box-shadow: 0 0 10px rgba(0, 255, 102, 0.2) !important;
     font-family: var(--font-primary) !important;
+    letter-spacing: 1px !important;
+    text-shadow: 0 0 5px rgba(0, 255, 102, 0.5) !important;
+    transition: all 0.2s ease !important;
 }
 .ide-run-btn:hover {
-    background: transparent !important;
-    color: var(--primary-color) !important;
-    box-shadow: none !important;
-    transform: none !important;
+    background: #00ff66 !important;
+    color: #000 !important;
+    box-shadow: 0 0 20px rgba(0, 255, 102, 0.5) !important;
+    transform: scale(1.02) !important;
 }
 .ide-code-area {
     background: #000 !important;
     border-radius: 0 !important;
+    border-left: 3px solid #00ff66 !important;
 }
 .ide-textarea {
-    color: var(--text-color) !important;
+    color: #00ff66 !important;
     font-family: var(--font-primary) !important;
+    text-shadow: 0 0 2px rgba(0, 255, 102, 0.3) !important;
 }
 
 /* Match Certificates exactly to Arcade style */
