@@ -487,3 +487,75 @@ input[type="range"]::-webkit-slider-thumb {
     border-radius: 50% !important;
 }
 
+/* ==========================================================================
+   PREMIUM ENGINEERING SECTION HEADINGS
+   ========================================================================== */
+
+/* Container resets */
+.pinned-heading {
+    border-right: none !important;
+}
+
+.pinned-heading .section-title {
+    position: relative !important;
+}
+
+/* 2px Matte Accent Line */
+.pinned-heading .section-title::after {
+    content: '' !important;
+    position: absolute !important;
+    right: -2.1rem !important;
+    top: 0 !important;
+    width: 2px !important;
+    height: 100% !important;
+    background: #444 !important; /* Base gray */
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    display: block !important;
+    overflow: hidden !important;
+}
+
+/* Upward highlight sweep when scrolled into view */
+.pinned-heading.visible .section-title::after {
+    animation: heading-accent-sweep 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
+}
+
+@keyframes heading-accent-sweep {
+    0% { background: linear-gradient(to top, #8A8A8A 0%, #444 0%); }
+    50% { background: linear-gradient(to top, #8A8A8A 30%, #444 30%); }
+    100% { background: linear-gradient(to top, #8A8A8A 100%, #444 100%); }
+}
+
+/* Tiny Illuminated Engineering Node */
+.pinned-heading .section-title::before {
+    content: '' !important;
+    position: absolute !important;
+    right: calc(-2.1rem - 3px) !important; /* 2px line, 8px node -> center is right-3px */
+    top: 0 !important;
+    width: 8px !important;
+    height: 8px !important;
+    border: 1px solid #8A8A8A !important;
+    background: #050505 !important;
+    border-radius: 50% !important;
+    box-shadow: none !important;
+    z-index: 2 !important;
+    transition: all 0.3s ease !important;
+    opacity: 0 !important;
+}
+
+/* Node appears slightly after sweep */
+.pinned-heading.visible .section-title::before {
+    animation: heading-node-fade-in 0.6s ease 0.6s forwards !important;
+}
+
+@keyframes heading-node-fade-in {
+    to { opacity: 1; }
+}
+
+/* Node Soft Glow on Hover */
+.pinned-heading:hover .section-title::before {
+    border-color: #fff !important;
+    background: #fff !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7) !important;
+}
+
