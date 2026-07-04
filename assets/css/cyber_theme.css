@@ -538,3 +538,8 @@ input[type="range"]::-webkit-slider-thumb {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.7) !important;
 }
 
+
+/* GLOBAL BORDER REMOVAL CATCH-ALL */
+.glass, .card, .exec-card, .project-card, .cert-card, .game-card, .article-card, .resume-card, .about-card, .contact-container, .contact-form, .contact-form input, .contact-form textarea, .btn, .submit-btn, .contact-btn, .tool-btn, button, input, textarea, .pill, .tag, .exec-tag, .skill-tag, .ide-hero-card, .modal-content, .dsa-container {
+    border: none !important;
+}
