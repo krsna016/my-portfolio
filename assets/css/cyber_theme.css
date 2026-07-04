@@ -847,16 +847,22 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links butt
 }
 
 /* Hover state: solid white node with a brilliant red glow! (No red lines) */
-.exec-card:hover + .timeline-dot-connector,
+#experience .timeline-item:hover .timeline-dot-connector,
+#experience .timeline-item:hover .timeline-dot,
+#experience-container .timeline-item:hover .timeline-dot-connector,
+#experience-container .timeline-item:hover .timeline-dot,
+#experience .timeline-dot-connector:hover,
+#experience .timeline-dot:hover,
+#experience-container .timeline-dot-connector:hover,
+#experience-container .timeline-dot:hover,
 .timeline-item:hover .timeline-dot-connector,
 .timeline-item:hover .timeline-dot,
-#experience .timeline-dot-connector:hover,
 .timeline-dot-connector:hover,
 .timeline-dot:hover {
     background: #FFFFFF !important;
     border: none !important;
-    box-shadow: 0 0 16px rgba(255, 0, 59, 1), 0 0 32px rgba(255, 0, 59, 0.85), 0 0 50px rgba(255, 0, 59, 0.5) !important;
-    transform: scale(1.25) !important;
+    box-shadow: 0 0 18px rgba(255, 0, 59, 1), 0 0 35px rgba(255, 0, 59, 0.9), 0 0 60px rgba(255, 0, 59, 0.7) !important;
+    transform: scale(1.3) !important;
 }
 
 /* Horizontal trace connecting dot to card in luminous white (never turns red) */
