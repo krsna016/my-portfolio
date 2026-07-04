@@ -866,11 +866,15 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
     align-items: center !important;
     justify-content: center !important;
     margin: 0.5rem auto 1rem auto !important;
-    background: transparent !important;
-    border: none !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    border-radius: 14px !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
     font-size: 1.8rem !important;
-    color: #fff !important;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    background-image: none !important;
+    color: var(--primary-color) !important;
+    filter: none !important;
+    box-shadow: none !important;
+    transition: transform 0.3s ease !important;
 }
 
 .games-page .game-card:hover .game-icon {

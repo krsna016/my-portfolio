@@ -592,3 +592,13 @@ svg[class*="icon"]:hover path {
     border: none !important;
 }
 
+/* Fix for game and cert icon boundaries disappearing on hover */
+.games-page .game-card:hover .game-icon,
+.games-page .game-card .game-icon:hover,
+.certificates-page .certificate-card:hover .cert-icon-container,
+.certificates-page .cert-icon-container:hover {
+    background: transparent !important;
+    border: none !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
