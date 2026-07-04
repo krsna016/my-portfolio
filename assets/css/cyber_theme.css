@@ -737,6 +737,19 @@ button.btn.primary.chat-send-btn:active,
     box-shadow: none !important;
     outline: none !important;
     backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
     transform: none !important;
+}
+
+/* Reduce glow on contact send button icon to very minimal on hover */
+button.btn.primary.chat-send-btn:hover i,
+button.btn.primary.chat-send-btn:hover svg,
+button.btn.primary.chat-send-btn:hover svg path,
+.chat-input-bar button.chat-send-btn:hover i,
+.chat-input-bar button.chat-send-btn:hover svg,
+.chat-input-bar button.chat-send-btn:hover svg path,
+.chat-send-btn:hover i,
+.chat-send-btn:hover svg,
+.chat-send-btn:hover svg path {
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.15) !important;
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.15)) !important;
 }
