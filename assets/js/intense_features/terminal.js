@@ -13,13 +13,16 @@ function initQuakeTerm() {
         <div class="term-header">
             <div class="term-header-left">
                 <div class="term-traffic-lights">
-                    <span class="term-dot red"></span>
+                    <span class="term-dot red" onclick="toggleTerm()" style="cursor:pointer;" title="Close"></span>
                     <span class="term-dot yellow"></span>
                     <span class="term-dot green"></span>
                 </div>
-                <strong style="margin-left: 10px; color: #00d2ff;"><i class="fa-solid fa-terminal"></i> root@anuragpareek016:~</strong>
+                <strong style="margin-left: 10px; color: #00d2ff; letter-spacing:1px;"><i class="fa-solid fa-terminal"></i> root@system:~</strong>
             </div>
-            <span>Press <kbd style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;">~</kbd> or <kbd style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;">ESC</kbd> to close</span>
+            <div style="display:flex; align-items:center; gap:10px;">
+                <span style="font-size: 0.75rem;">Press <kbd style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;">~</kbd> or <kbd style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;">ESC</kbd> to close</span>
+                <span onclick="toggleTerm()" style="cursor:pointer; color:#ff0055; font-weight:bold; font-size:1.1rem; padding: 0 5px;" title="Close Terminal">[ X ]</span>
+            </div>
         </div>
         <div class="term-body" id="term-body">
             <div class="term-output">
@@ -36,6 +39,52 @@ function initQuakeTerm() {
 
     const input = document.getElementById('term-input');
     const body = document.getElementById('term-body');
+
+    // Make it draggable
+    const header = termHUD.querySelector('.term-header');
+    header.style.cursor = 'move';
+    let isDragging = false;
+    let offsetX, offsetY;
+
+    header.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        termHUD.classList.add('dragged');
+        
+        // Get the current translation or left/top if no translation
+        const rect = termHUD.getBoundingClientRect();
+        
+        // Calculate offset from mouse to top-left of the modal
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+        
+        // Override the initial centered transform so we can freely move it with top/left
+        termHUD.style.left = rect.left + 'px';
+        termHUD.style.top = rect.top + 'px';
+        termHUD.style.transform = 'none';
+        
+        document.body.style.userSelect = 'none'; // prevent text selection
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        
+        let newX = e.clientX - offsetX;
+        let newY = e.clientY - offsetY;
+        
+        // Optional boundary checks to prevent dragging off-screen completely
+        newY = Math.max(0, Math.min(newY, window.innerHeight - 50));
+        newX = Math.max(10 - termHUD.offsetWidth, Math.min(newX, window.innerWidth - 50));
+        
+        termHUD.style.left = newX + 'px';
+        termHUD.style.top = newY + 'px';
+    });
+
+    document.addEventListener('mouseup', () => {
+        if (isDragging) {
+            isDragging = false;
+            document.body.style.userSelect = '';
+        }
+    });
 
     function toggleTerm() {
         termHUD.classList.toggle('open');

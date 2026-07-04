@@ -4,42 +4,47 @@
    ========================================================================== */
 
 /* --- 1. Dropdown Quake Hacker Terminal HUD --- */
-/* --- 1. Dropdown Quake Hacker Terminal HUD --- */
+/* --- 1. Floating Hacker Terminal HUD --- */
 .quake-terminal-hud {
     position: fixed;
-    top: -100%;
-    left: 0;
-    width: 100%;
-    height: 450px;
-    max-height: 75vh;
-    background: rgba(12, 12, 18, 0.96);
-    border: none !important;
-    border-bottom: 1px solid rgba(0, 210, 255, 0.25) !important;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    width: 600px;
+    height: 400px;
+    max-width: 95vw;
+    max-height: 90vh;
+    background: rgba(5, 5, 5, 0.98);
+    border: 1px solid #00d2ff !important;
+    box-shadow: 0 0 30px rgba(0, 210, 255, 0.2), inset 0 0 20px rgba(0, 0, 0, 0.9);
     z-index: 1000000;
-    transition: top 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     display: flex;
     flex-direction: column;
     font-family: 'Courier New', Courier, monospace;
     color: #00ff66;
-    backdrop-filter: blur(24px);
+    backdrop-filter: blur(10px);
+    border-radius: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    resize: both;
+    overflow: hidden;
 }
 
-/* High-Tech Interesting Cyberpunk Laser Energy Beam Lip */
+/* Optional styling to make the drag handle more obvious */
 .quake-terminal-hud::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent 0%, #00d2ff 25%, #a29bfe 50%, #ff007a 75%, transparent 100%);
-    box-shadow: 0 0 8px rgba(0, 210, 255, 0.6), 0 0 16px rgba(255, 0, 122, 0.4);
-    opacity: 0.9;
+    display: none;
 }
 
 .quake-terminal-hud.open {
-    top: 0;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+/* If JS applies inline transform, we override the default scale */
+.quake-terminal-hud.open.dragged {
+    transform: none !important;
+    transition: none !important;
 }
 
 .term-header {
