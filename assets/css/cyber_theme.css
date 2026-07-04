@@ -50,16 +50,7 @@ h1, h2, h3, h4, h5, h6, .logo, .section-title, .hero-content h1 {
     max-width: 800px;
     white-space: nowrap !important;
     margin-left: 4px !important; /* Offset negative font bearing */
-    transition: all 0.3s ease !important;
-}
-
-.hero-content h1:hover {
-    background: transparent !important;
-    -webkit-text-fill-color: transparent !important;
-    color: transparent !important;
-    -webkit-text-stroke: 2px #555 !important;
-    filter: drop-shadow(0 0 15px rgba(150, 150, 150, 0.5)) !important;
-    transform: scale(1.05) !important;
+    transition: all 0.1s ease !important;
     cursor: crosshair !important;
 }
 
