@@ -605,3 +605,57 @@ button.ide-run-btn:hover svg[class*="fa-"] path {
     text-shadow: none !important;
     filter: none !important;
 }
+
+/* ==========================================================================
+   INTERNSHIP EXPERIENCE & ABOUT SECTION ICON DESIGN LANGUAGE MATCH
+   ========================================================================== */
+/* Strip container box from Internship Experience icons so they float cleanly */
+.exec-icon {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Ensure both Internship and About section icons share identical floating styling, pure white default, size, and weight */
+.exec-icon i,
+.exec-icon svg,
+.about-card .icon,
+.about-card i,
+.about-card svg {
+    color: #FFFFFF !important;
+    fill: #FFFFFF !important;
+    opacity: 0.95 !important;
+    font-size: 2.5rem !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    transition: all 0.3s ease !important;
+    display: inline-block !important;
+}
+
+/* Identical hover interaction: slight brightening (1.0 opacity), subtle glow, and smooth scale */
+.exec-card:hover .exec-icon i,
+.exec-card:hover .exec-icon svg,
+.exec-card:hover .exec-icon svg path,
+.about-card:hover .icon,
+.about-card:hover i,
+.about-card:hover svg,
+.about-card:hover svg path {
+    color: #FFFFFF !important;
+    fill: #FFFFFF !important;
+    opacity: 1 !important;
+    transform: scale(1.08) !important;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4) !important;
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4)) !important;
+    background: transparent !important;
+}
