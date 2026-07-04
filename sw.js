@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ap-portfolio-v94-god-mode';
+const CACHE_NAME = 'ap-portfolio-v95-god-mode';
 
 const PRECACHE_ASSETS = [
     '/',
@@ -67,27 +67,27 @@ self.addEventListener('fetch', event => {
         return;
     }
 
-    // Stale-While-Revalidate for standard static assets (CSS, JS, Images)
+    // Use Network-First strategy for everything to ensure immediate updates.
+    // Falls back to offline cache if network fails.
     event.respondWith(
-        caches.match(event.request).then(cachedResponse => {
-            const fetchPromise = fetch(event.request).then(networkResponse => {
-                if (networkResponse && networkResponse.status === 200 && (networkResponse.type === 'basic' || networkResponse.type === 'cors')) {
-                    const responseClone = networkResponse.clone();
-                    caches.open(CACHE_NAME).then(cache => {
-                        cache.put(event.request, responseClone);
-                    });
+        fetch(event.request).then(networkResponse => {
+            if (networkResponse && networkResponse.status === 200 && (networkResponse.type === 'basic' || networkResponse.type === 'cors')) {
+                const responseClone = networkResponse.clone();
+                caches.open(CACHE_NAME).then(cache => {
+                    cache.put(event.request, responseClone);
+                });
+            }
+            return networkResponse;
+        }).catch(() => {
+            return caches.match(event.request).then(cachedResponse => {
+                if (cachedResponse) {
+                    return cachedResponse;
                 }
-                return networkResponse;
-            }).catch(() => {
-                // Offline fallback
-            });
-
-            return cachedResponse || fetchPromise.then(res => {
-                if (res) return res;
+                // Fallback for navigation requests
                 if (event.request.mode === 'navigate') {
                     return caches.match('/index.html');
                 }
-                return new Response('Network error happened', { status: 408, headers: { 'Content-Type': 'text/plain' } });
+                return new Response('Network error happened and no cache available', { status: 408, headers: { 'Content-Type': 'text/plain' } });
             });
         })
     );
