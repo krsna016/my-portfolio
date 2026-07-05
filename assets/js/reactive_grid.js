@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Minor lines
         ctx.lineWidth = 1;
-        ctx.strokeStyle = `rgba(255, 255, 255, ${0.05 + currentScrollIntensity})`;
+        ctx.strokeStyle = `rgba(255, 255, 255, ${0.015 + currentScrollIntensity})`;
         ctx.stroke(minorGridPath);
         
         // Major lines
@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Minor grid glow
             let grad = ctx.createRadialGradient(x, y, 0, x, y, radius);
-            grad.addColorStop(0, `rgba(34, 211, 238, ${0.08 * data.intensity})`);
+            grad.addColorStop(0, `rgba(34, 211, 238, ${0.02 * data.intensity})`);
             grad.addColorStop(1, 'rgba(34, 211, 238, 0)');
             
             ctx.strokeStyle = grad;
@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Minor grid glow for cursor
             let cursorGrad = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, cursorRadius);
-            cursorGrad.addColorStop(0, `rgba(0, 255, 64, 0.15)`);
+            cursorGrad.addColorStop(0, `rgba(0, 255, 64, 0.04)`);
             cursorGrad.addColorStop(1, 'rgba(0, 255, 64, 0)');
             
             ctx.strokeStyle = cursorGrad;
