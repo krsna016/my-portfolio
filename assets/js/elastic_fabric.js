@@ -11,6 +11,7 @@
  * - Spring physics hover deformation (2-4px lift toward hovered chip with smooth cloth propagation)
  * - 600ms growth animation when section enters viewport (runs once)
  * - 60 FPS GPU-accelerated Canvas rendering
+ * - Bulletproof DOM re-attachment (immune to innerHTML clearing by other scripts)
  */
 
 (function () {
@@ -18,7 +19,6 @@
 
     let canvas, ctx;
     let container;
-    let chips = [];
     let hullVertices = [];
     let physicalVertices = [];
     let mouseX = -1000, mouseY = -1000;
@@ -60,7 +60,8 @@
         canvas.style.height = '100%';
         canvas.style.pointerEvents = 'none';
         canvas.style.zIndex = '-1';
-        container.insertBefore(canvas, container.firstChild);
+        
+        ensureCanvasAttached();
         ctx = canvas.getContext('2d');
 
         // Generate procedural micro-grain texture
@@ -69,14 +70,30 @@
         // Setup observers and listeners
         setupListeners();
 
-        // Wait slightly for DOM chips to be populated by script.js
-        setTimeout(() => {
-            updateDimensions();
-            startLoop();
-        }, 150);
+        // Initial setup and loop start
+        updateDimensions();
+        startLoop();
+
+        // Periodic check to guarantee canvas remains attached and hull is synchronized
+        // even if another script (like script.js) clears innerHTML or fonts shift layout
+        setInterval(() => {
+            ensureCanvasAttached();
+            calculateHull();
+        }, 400);
+    }
+
+    function ensureCanvasAttached() {
+        if (!canvas || !container) return;
+        if (!canvas.parentNode || canvas.parentNode !== container) {
+            container.insertBefore(canvas, container.firstChild);
+        }
+        if (getComputedStyle(container).position === 'static') {
+            container.style.position = 'relative';
+        }
     }
 
     function createNoisePattern() {
+        if (!ctx) return;
         const nCanvas = document.createElement('canvas');
         nCanvas.width = 64;
         nCanvas.height = 64;
@@ -94,7 +111,10 @@
     }
 
     function setupListeners() {
-        window.addEventListener('resize', debounce(updateDimensions, 100));
+        window.addEventListener('resize', debounce(() => {
+            ensureCanvasAttached();
+            updateDimensions();
+        }, 100));
 
         // Track mouse for spring physics deformation
         container.addEventListener('mousemove', (e) => {
@@ -119,11 +139,12 @@
                     entryStartTime = performance.now();
                 }
             });
-        }, { threshold: 0.2 });
+        }, { threshold: 0.15 });
         observer.observe(container);
 
-        // Observe DOM mutations in case skill chips are added/modified
+        // Observe DOM mutations (when script.js injects .skill-tag elements)
         const mutObserver = new MutationObserver(() => {
+            ensureCanvasAttached();
             updateDimensions();
         });
         mutObserver.observe(container, { childList: true, subtree: true });
@@ -131,11 +152,17 @@
 
     function updateDimensions() {
         if (!container || !canvas) return;
+        ensureCanvasAttached();
         const rect = container.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) return;
+
         const dpr = window.devicePixelRatio || 1;
-        canvas.width = rect.width * dpr;
-        canvas.height = rect.height * dpr;
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        if (canvas.width !== Math.round(rect.width * dpr) || canvas.height !== Math.round(rect.height * dpr)) {
+            canvas.width = Math.round(rect.width * dpr);
+            canvas.height = Math.round(rect.height * dpr);
+            if (ctx) ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            if (!noisePattern) createNoisePattern();
+        }
 
         calculateHull();
     }
@@ -169,10 +196,13 @@
     }
 
     function calculateHull() {
+        if (!container) return;
         const chipElements = container.querySelectorAll('.skill-tag');
         if (chipElements.length === 0) return;
 
         const containerRect = container.getBoundingClientRect();
+        if (containerRect.width === 0 || containerRect.height === 0) return;
+
         const points = [];
 
         chipElements.forEach(chip => {
@@ -209,7 +239,7 @@
                 targetY: v.y
             }));
         } else {
-            // Update targets without resetting velocities
+            // Update targets smoothly without resetting velocities
             for (let i = 0; i < hullVertices.length; i++) {
                 physicalVertices[i].targetX = hullVertices[i].x;
                 physicalVertices[i].targetY = hullVertices[i].y;
@@ -225,10 +255,15 @@
 
     function render(timestamp) {
         animFrameId = requestAnimationFrame(render);
-        if (!ctx || physicalVertices.length === 0) return;
+        if (!ctx || !canvas) return;
+        
+        ensureCanvasAttached();
+        if (physicalVertices.length === 0) return;
 
         const width = canvas.width / (window.devicePixelRatio || 1);
         const height = canvas.height / (window.devicePixelRatio || 1);
+        if (width <= 0 || height <= 0) return;
+
         const centerX = width / 2;
         const centerY = height / 2;
 
