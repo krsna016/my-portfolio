@@ -1110,7 +1110,6 @@ body .glass, body .card, body .certificate-card, body .game-card, body .contact-
 .certificates-page .certificate-card:hover, .games-page .game-card:hover,
 body .glass:hover, body .card:hover, body .certificate-card:hover, body .game-card:hover, body .contact-container:hover, .contact-page .contact-container:hover {
     background-size: 100% 2px, 2px 100%, 100% 2px, 2px 100% !important;
-    box-shadow: 0 0 20px rgba(0, 255, 102, 0.15) !important;
 }
 
 /* Phosphor Glow for Icons inside Cards on Hover */
