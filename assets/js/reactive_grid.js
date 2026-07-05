@@ -196,13 +196,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Draw Base Grid
         ctx.globalCompositeOperation = 'source-over';
         
-        // Minor lines (Invisible by default, only shown via glows)
+        // Minor lines
         ctx.lineWidth = 1;
-        ctx.strokeStyle = `rgba(255, 255, 255, 0)`;
+        ctx.strokeStyle = `rgba(255, 255, 255, ${0.05 + currentScrollIntensity})`;
         ctx.stroke(minorGridPath);
         
-        // Major lines (Invisible by default, only shown via glows)
-        ctx.strokeStyle = `rgba(255, 255, 255, 0)`;
+        // Major lines
+        ctx.strokeStyle = `rgba(255, 255, 255, ${0.15 + currentScrollIntensity})`;
         ctx.stroke(majorGridPath);
         
         // Draw Radial Glows
