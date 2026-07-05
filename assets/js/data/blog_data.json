@@ -1,12 +1,12 @@
 {
     "posts": [
         {
-            "id": "demo-1",
-            "title": "demo",
-            "category": "DSA",
-            "date": "2026-06-27",
-            "summary": "demo",
-            "file": "blogs/demo-1.md"
+            "id": "intro-to-dp",
+            "title": "Introduction to Dynamic Programming",
+            "category": "Algorithms",
+            "date": "2026-07-05",
+            "summary": "Learn the core concepts of dynamic programming, memoization, and tabulation.",
+            "file": "blogs/intro-to-dp.md"
         }
     ],
     "categories": [
