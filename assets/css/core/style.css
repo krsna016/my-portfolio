@@ -3019,9 +3019,9 @@ body.focus-mode-active .interactive-bg {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
 }
 
-/* H2 — Section titles, neon green */
+/* H2 — Section titles, white */
 #reader-content.markdown-body h2 {
-    color: #00ff66 !important; /* Neon green text */
+    color: #ffffff !important; /* Pure white text */
     font-size: calc(1.65rem * var(--blog-scale, 1));
     font-weight: 600;
     margin: 3rem 0 1.2rem 0;
