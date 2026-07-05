@@ -774,7 +774,7 @@ button.ide-run-btn:hover svg[class*="fa-"] path {
 #hero-cli-trigger,
 button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger) {
     background: rgba(255, 255, 255, 0.15) !important;
-    border: none !important;
+    border: 1px solid transparent !important;
     outline: none !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
     backdrop-filter: blur(10px) !important;
@@ -799,7 +799,7 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger) {
 #hero-cli-trigger:hover,
 button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):hover {
     background: rgba(255, 255, 255, 0.25) !important;
-    border: none !important;
+    border: 1px solid transparent !important;
     outline: none !important;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
     color: #FFFFFF !important;
@@ -809,7 +809,7 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):hover {
 .tab-btn.active,
 .category-list li.active {
     background: rgba(255, 255, 255, 0.25) !important;
-    border: none !important;
+    border: 1px solid transparent !important;
     outline: none !important;
     color: #FFFFFF !important;
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.3) !important;
@@ -1412,7 +1412,7 @@ button.btn.primary.chat-send-btn:hover,
 .drawing-controls .btn,
 .drawing-controls button {
     background: rgba(255, 255, 255, 0.15) !important;
-    border: none !important;
+    border: 1px solid transparent !important;
     outline: none !important;
     color: #FFFFFF !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
@@ -1424,7 +1424,7 @@ button.btn.primary.chat-send-btn:hover,
 .drawing-controls .btn:hover,
 .drawing-controls button:hover {
     background: rgba(255, 255, 255, 0.25) !important;
-    border: none !important;
+    border: 1px solid transparent !important;
     outline: none !important;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
     color: #FFFFFF !important;
@@ -1466,7 +1466,7 @@ button.btn.primary.chat-send-btn:hover,
 button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger),
 a.btn:not(.ide-run-btn):not(.chat-send-btn) {
     background: rgba(255, 255, 255, 0.15) !important;
-    border: none !important;
+    border: 1px solid transparent !important;
     outline: none !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
     backdrop-filter: blur(10px) !important;
@@ -1499,7 +1499,7 @@ a.btn:not(.ide-run-btn):not(.chat-send-btn) {
 button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):hover,
 a.btn:not(.ide-run-btn):not(.chat-send-btn):hover {
     background: rgba(255, 255, 255, 0.25) !important;
-    border: none !important;
+    border: 1px solid transparent !important;
     outline: none !important;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
     color: #FFFFFF !important;

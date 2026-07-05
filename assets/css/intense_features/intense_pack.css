@@ -926,7 +926,7 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
 .games-page .play-btn:hover,
 .games-page .game-card:hover .play-btn {
     background: rgba(255, 255, 255, 0.25) !important;
-    border: none !important;
+    border: 1px solid transparent !important;
     outline: none !important;
     color: #fff !important;
     transform: none !important;
@@ -1036,7 +1036,7 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
 .certificates-page .cert-link:hover,
 .certificates-page .certificate-card:hover .cert-link {
     background: rgba(255, 255, 255, 0.25) !important;
-    border: none !important;
+    border: 1px solid transparent !important;
     outline: none !important;
     color: #fff !important;
     transform: none !important;
@@ -1056,7 +1056,7 @@ button:not(.ide-run-btn):not(.chat-send-btn),
 .exec-tag,
 .tag {
     background: rgba(255, 255, 255, 0.15) !important;
-    border: none !important;
+    border: 1px solid transparent !important;
     outline: none !important;
     backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(10px) !important;
@@ -1079,7 +1079,7 @@ button:not(.ide-run-btn):not(.chat-send-btn):hover,
 .exec-tag:hover,
 .tag:hover {
     background: rgba(255, 255, 255, 0.25) !important;
-    border: none !important;
+    border: 1px solid transparent !important;
     outline: none !important;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
     color: #FFFFFF !important;
