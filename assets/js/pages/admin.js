@@ -728,15 +728,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // Reload Button
-    const loadBtn = document.getElementById('load-json-btn');
-    if (loadBtn) {
-        loadBtn.addEventListener('click', () => {
-            if (confirm('Reloading will discard unsaved changes. Continue?')) {
-                window.location.reload();
-            }
-        });
-    }
+
 
     // --- Blog Management Logic ---
     let currentBlogPosts = [];
