@@ -1129,7 +1129,6 @@ html body .read-more.read-more.read-more:hover,
 html body .cert-link.cert-link.cert-link:hover,
 html body #hero-cli-trigger:hover,
 html body .ide-run-btn.ide-run-btn.ide-run-btn:hover,
-html body .chat-send-btn.chat-send-btn.chat-send-btn:hover,
 html body .category-list li.category-list li:hover,
 html body .category-list li:hover,
 html body #back-button:hover {
@@ -1167,19 +1166,22 @@ html body #back-button:hover i {
     fill: #000000 !important;
 }
 
-/* FINAL OVERRIDE FOR CONTACT AND FOOTER BUTTONS */
-html body .footer-socials a.footer-socials a:hover,
-html body .footer-socials a:hover,
-html body .contact-btn.contact-btn.contact-btn:hover,
-html body .contact-links a:hover {
+/* FINAL OVERRIDE FOR CONTACT BUTTONS */
+html body .contact-btn.contact-btn.contact-btn:hover {
     background: #FFFFFF !important;
     background-color: #FFFFFF !important;
     color: #000000 !important;
 }
 
-html body .footer-socials a.footer-socials a:hover i,
-html body .footer-socials a:hover i,
-html body .contact-btn.contact-btn.contact-btn:hover i,
-html body .contact-links a:hover i {
+html body .contact-btn.contact-btn.contact-btn:hover i {
     color: #000000 !important;
+}
+
+/* KEEP ICON BUTTONS TRANSPARENT ON HOVER */
+html body .footer-socials a:hover,
+html body .contact-links a:hover,
+html body .chat-send-btn:hover,
+html body .social-links a:hover {
+    background: transparent !important;
+    background-color: transparent !important;
 }
