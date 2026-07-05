@@ -28,9 +28,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     
     let activeTocObserver = null;
-    // Teleport state — save original parent so we can restore on back
+    // Teleport state — save original positions so we can restore on back
     let postReaderOriginalParent = null;
     let postReaderOriginalNextSibling = null;
+    let tocOriginalNextSibling = null; // TOC is always inside #post-reader, restored there
 
     // --- Setup Reading Preferences Bar (Size, Sepia theme, Focus mode) ---
     function setupFontSizeBar() {
@@ -758,6 +759,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         document.body.classList.remove('reader-open');
 
+        // Restore #reader-toc back INSIDE #post-reader (before .post-reader-layout)
+        const readerToc = document.getElementById('reader-toc');
+        const layout = postReader.querySelector('.post-reader-layout');
+        if (readerToc && readerToc.parentNode === document.body) {
+            if (layout) {
+                postReader.insertBefore(readerToc, layout);
+            } else {
+                postReader.appendChild(readerToc);
+            }
+        }
+
         // Restore #post-reader to its original DOM position
         if (postReaderOriginalParent) {
             if (postReaderOriginalNextSibling && postReaderOriginalNextSibling.parentNode === postReaderOriginalParent) {
@@ -792,12 +804,20 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.body.classList.add('reader-open');
 
         // Teleport #post-reader to <body> to escape section/container nesting
-        // This eliminates the coordinate mismatch between fixed TOC and padded content
         if (!postReaderOriginalParent) {
             postReaderOriginalParent = postReader.parentNode;
             postReaderOriginalNextSibling = postReader.nextSibling;
         }
         document.body.appendChild(postReader);
+
+        // ALSO teleport #reader-toc to <body> as a sibling of #post-reader.
+        // This prevents the overflow-y:auto scroll container on #post-reader from
+        // treating the fixed-position TOC as a layout child (Chrome behaviour),
+        // which was causing ~1200px of phantom blank space before the article.
+        const readerToc = document.getElementById('reader-toc');
+        if (readerToc && readerToc.parentNode !== document.body) {
+            document.body.appendChild(readerToc);
+        }
     }
 
     backButton.addEventListener('click', () => {

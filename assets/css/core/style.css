@@ -2988,17 +2988,15 @@ body.focus-mode-active .interactive-bg {
 body.reader-open > #post-reader {
     position: fixed !important;
     top: 70px;                  /* below navbar (~64px) */
-    left: 0 !important;
+    left: 280px !important;     /* starts after the 280px TOC sidebar */
     right: 0 !important;
     bottom: 0 !important;
     overflow-y: auto !important;
     z-index: 100 !important;
     background: var(--dark-bg, #0a0a0f) !important;
-    /* Left padding reserves the 280px TOC column */
-    padding: 2rem 3rem 4rem 300px !important;
+    padding: 2rem 3rem 4rem 2.5rem !important;  /* normal padding — no big left offset needed */
     box-sizing: border-box !important;
     display: block !important;
-    /* Remove margins that applied when nested */
     margin: 0 !important;
 }
 
