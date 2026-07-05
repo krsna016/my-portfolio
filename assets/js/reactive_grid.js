@@ -63,7 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Track hovered elements
     let activeTargets = new Map();
-    let signals = [];
     
     let mouseX = -1000;
     let mouseY = -1000;
@@ -79,49 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const interactiveSelectors = 'a, button, .card, .glass, .project-card, .certificate-card, .game-card, .article-card, .timeline-content, .ide-tab, [onclick], .social-link, .dsa-container, .contact-container, .hero-visual';
 
-    function spawnSignal(startX, startY, type = 'standard') {
-        if (prefersReducedMotion) return;
-        
-        // Snap to grid
-        const sx = Math.round(startX / 20) * 20;
-        const sy = Math.round(startY / 20) * 20;
-        
-        let vx = 0;
-        let vy = 0;
-        let maxLife = 0.6 + Math.random() * 0.3; // 600-900ms
-        let speed = (window.innerWidth / 2) + Math.random() * 200; 
-        
-        if (type === 'nav') {
-            vy = speed;
-        } else if (type === 'contact') {
-            speed *= 0.5;
-            const dir = Math.floor(Math.random() * 4);
-            if (dir === 0) vy = -speed;
-            if (dir === 1) vx = speed;
-            if (dir === 2) vy = speed;
-            if (dir === 3) vx = -speed;
-        } else if (type === 'scroll') {
-            vx = Math.random() > 0.5 ? speed : -speed;
-            maxLife = 1.0 + Math.random() * 0.5;
-        } else {
-            const dir = Math.floor(Math.random() * 4);
-            if (dir === 0) vy = -speed;
-            if (dir === 1) vx = speed;
-            if (dir === 2) vy = speed;
-            if (dir === 3) vx = -speed;
-        }
-        
-        signals.push({
-            x: sx,
-            y: sy,
-            vx: vx,
-            vy: vy,
-            life: 0,
-            maxLife: maxLife,
-            length: 40 + Math.random() * 40
-        });
-    }
-
     document.addEventListener('mouseover', (e) => {
         const target = e.target.closest(interactiveSelectors);
         if (target && !activeTargets.has(target)) {
@@ -129,19 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 intensity: 0,
                 targetIntensity: 1
             });
-            
-            const rect = target.getBoundingClientRect();
-            const cx = rect.left + rect.width / 2;
-            const cy = rect.top + rect.height / 2;
-            
-            let type = 'standard';
-            if (target.tagName === 'A' || target.closest('nav')) type = 'nav';
-            else if (target.closest('.contact-container') || target.closest('form')) type = 'contact';
-            
-            const count = (type === 'contact') ? 3 : (1 + Math.floor(Math.random() * 2));
-            for(let i=0; i<count; i++) {
-                spawnSignal(cx, cy, type);
-            }
         }
     }, {passive: true});
     
@@ -152,27 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (data) data.targetIntensity = 0;
         }
     }, {passive: true});
-
-    // Scroll Observer for Section Initialization
-    const sectionObserver = new IntersectionObserver((entries) => {
-        if (prefersReducedMotion) return;
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const rect = entry.target.getBoundingClientRect();
-                const cy = rect.top + rect.height / 2;
-                const cx = window.innerWidth / 2;
-                spawnSignal(cx, cy, 'scroll');
-                spawnSignal(cx, cy, 'scroll');
-            }
-        });
-    }, { threshold: 0.1 });
-    
-    // Defer observing to ensure DOM is ready
-    setTimeout(() => {
-        document.querySelectorAll('section, .glass, .contact-container').forEach(el => {
-            sectionObserver.observe(el);
-        });
-    }, 1000);
 
     let lastTime = performance.now();
     
@@ -243,53 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.strokeStyle = gradMajor;
             ctx.lineWidth = 1.5;
             ctx.stroke(majorGridPath);
-        }
-        
-        // Draw Signals
-        for (let i = signals.length - 1; i >= 0; i--) {
-            const sig = signals[i];
-            sig.life += dt;
-            if (sig.life >= sig.maxLife) {
-                signals.splice(i, 1);
-                continue;
-            }
-            
-            sig.x += sig.vx * dt;
-            sig.y += sig.vy * dt;
-            
-            let progress = sig.life / sig.maxLife;
-            // Eases in quickly, fades out slowly
-            let alpha = progress < 0.2 ? (progress / 0.2) : (1 - (progress - 0.2) / 0.8);
-            
-            let tailX = sig.x - (sig.vx === 0 ? 0 : Math.sign(sig.vx) * sig.length);
-            let tailY = sig.y - (sig.vy === 0 ? 0 : Math.sign(sig.vy) * sig.length);
-            
-            // 1-2px cyan-white energy pulse
-            let grad = ctx.createLinearGradient(tailX, tailY, sig.x, sig.y);
-            grad.addColorStop(0, `rgba(34, 211, 238, 0)`);
-            grad.addColorStop(1, `rgba(255, 255, 255, ${alpha * 0.9})`);
-            
-            ctx.beginPath();
-            ctx.moveTo(tailX, tailY);
-            ctx.lineTo(sig.x, sig.y);
-            ctx.strokeStyle = grad;
-            ctx.lineWidth = 1.5;
-            ctx.stroke();
-            
-            // Intersection Glow (smooth decay ambient light)
-            let glowGrad = ctx.createRadialGradient(sig.x, sig.y, 0, sig.x, sig.y, 45);
-            glowGrad.addColorStop(0, `rgba(34, 211, 238, ${alpha * 0.3})`);
-            glowGrad.addColorStop(1, `rgba(34, 211, 238, 0)`);
-            ctx.beginPath();
-            ctx.arc(sig.x, sig.y, 45, 0, Math.PI*2);
-            ctx.fillStyle = glowGrad;
-            ctx.fill();
-            
-            // Intense traveling node
-            ctx.beginPath();
-            ctx.arc(sig.x, sig.y, 1.5, 0, Math.PI*2);
-            ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
-            ctx.fill();
         }
         
         // Draw Cursor Glow (Green)
