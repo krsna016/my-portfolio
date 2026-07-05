@@ -1109,3 +1109,47 @@ button.chat-send-btn:hover svg,
     text-shadow: none !important;
     filter: none !important;
 }
+
+
+/* GLOBAL HOVER OVERRIDE: All buttons turn solid white with black text */
+/* Using high specificity by chaining .btn and including primary/secondary */
+html body .btn.btn:not(.ide-run-btn):not(.chat-send-btn):hover,
+html body .btn.primary:not(.ide-run-btn):not(.chat-send-btn):hover,
+html body .btn.secondary:not(.ide-run-btn):not(.chat-send-btn):hover,
+html body button.btn:not(.ide-run-btn):not(.chat-send-btn):hover,
+html body a.btn:not(.ide-run-btn):not(.chat-send-btn):hover,
+html body .cta-buttons .btn:not(.ide-run-btn):not(.chat-send-btn):hover,
+html body .cta-buttons a:not(.ide-run-btn):not(.chat-send-btn):hover,
+html body .cta-buttons button:not(.ide-run-btn):not(.chat-send-btn):hover,
+html body .tab-btn:hover,
+html body .contact-btn:hover,
+html body .submit-btn:hover,
+html body .play-btn:hover,
+html body .read-more:hover,
+html body .cert-link:hover {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+}
+
+/* Force icons inside buttons to also turn black on hover */
+html body .btn.btn:not(.ide-run-btn):not(.chat-send-btn):hover i,
+html body .btn.btn:not(.ide-run-btn):not(.chat-send-btn):hover svg,
+html body .btn.primary:not(.ide-run-btn):not(.chat-send-btn):hover i,
+html body .btn.secondary:not(.ide-run-btn):not(.chat-send-btn):hover i,
+html body button.btn:not(.ide-run-btn):not(.chat-send-btn):hover i,
+html body button.btn:not(.ide-run-btn):not(.chat-send-btn):hover svg,
+html body a.btn:not(.ide-run-btn):not(.chat-send-btn):hover i,
+html body a.btn:not(.ide-run-btn):not(.chat-send-btn):hover svg,
+html body .cta-buttons .btn:hover i,
+html body .cta-buttons a:hover i,
+html body .cta-buttons button:hover i,
+html body .tab-btn:hover i,
+html body .contact-btn:hover i,
+html body .submit-btn:hover i,
+html body .play-btn:hover i,
+html body .read-more:hover i,
+html body .cert-link:hover i {
+    color: #000000 !important;
+    fill: #000000 !important;
+}
