@@ -1314,57 +1314,31 @@ body .glass:not(.timeline-content):hover::after, body .card:not(.timeline-conten
 /* ==========================================================================
    ABSOLUTE BULLETPROOF OVERRIDE FOR CHAT SEND BUTTON & ICON GLOW
    ========================================================================== */
-/* Default chat send button state */
+/* ABSOLUTE OVERRIDE: Remove all backgrounds, borders, outlines, shadows, and glows from chat send button & icon in ALL states */
 button.chat-send-btn,
 button.btn.chat-send-btn,
 button.btn.primary.chat-send-btn,
 .chat-input-bar .chat-send-btn,
 .chat-input-bar button.chat-send-btn,
 .chat-input-bar button[type="submit"],
-.chat-send-btn {
-    background: transparent !important;
-    background-color: transparent !important;
-    border: none !important;
-    border-color: transparent !important;
-    box-shadow: none !important;
-    outline: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    padding: 0 10px !important;
-    margin: 0 !important;
-    transform: none !important;
-    border-radius: 0 !important;
-    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.25s ease !important;
-    cursor: pointer !important;
-}
-
-/* Remove glow from send button icon */
-button.chat-send-btn i,
-button.chat-send-btn svg,
-.chat-input-bar .chat-send-btn i {
-    text-shadow: none !important;
-    filter: none !important;
-    color: var(--primary-color) !important;
-    fill: var(--primary-color) !important;
-}
-
-/* Hovered & Clicked state: Send button COMES UP (lifts out of input bar with smooth breathing) */
-@keyframes sendBtnComeUp {
-    0% { transform: translateY(-4px) scale(1.18); }
-    50% { transform: translateY(-7px) scale(1.28); }
-    100% { transform: translateY(-4px) scale(1.18); }
-}
-
+.chat-send-btn,
 button.chat-send-btn:hover,
+button.btn.chat-send-btn:hover,
+button.btn.primary.chat-send-btn:hover,
+.chat-input-bar .chat-send-btn:hover,
+.chat-input-bar button.chat-send-btn:hover,
+.chat-input-bar button[type="submit"]:hover,
 button.chat-send-btn:focus,
 button.chat-send-btn:active,
-.chat-input-bar button.chat-send-btn:hover,
-.chat-input-bar button.chat-send-btn:focus,
-.chat-input-bar button.chat-send-btn:active,
+.chat-send-btn:focus,
+.chat-send-btn:active,
 .chat-input-bar:hover .chat-send-btn,
 .chat-input-bar:focus-within .chat-send-btn,
+button.chat-send-btn i,
+button.chat-send-btn svg,
 button.chat-send-btn:hover i,
 button.chat-send-btn:hover svg,
+.chat-input-bar .chat-send-btn i,
 .chat-input-bar .chat-send-btn:hover i,
 .contact-container:hover .chat-send-btn i,
 .contact-container:hover .chat-send-btn svg {
@@ -1376,8 +1350,27 @@ button.chat-send-btn:hover svg,
     outline: none !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    padding: 0 10px !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+}
+
+/* Breathing & come-up animation ONLY when hovering directly over the send button itself */
+@keyframes sendBtnComeUp {
+    0% { transform: translateY(-3px) scale(1.15); }
+    50% { transform: translateY(-5px) scale(1.25); }
+    100% { transform: translateY(-3px) scale(1.15); }
+}
+
+button.chat-send-btn:hover,
+button.btn.chat-send-btn:hover,
+button.btn.primary.chat-send-btn:hover,
+.chat-input-bar button.chat-send-btn:hover,
+.chat-input-bar button[type="submit"]:hover {
     animation: sendBtnComeUp 1.5s ease-in-out infinite !important;
-    transform: translateY(-4px) scale(1.18) !important;
+    transform: translateY(-3px) scale(1.15) !important;
     transform-origin: center center !important;
-    filter: drop-shadow(0 4px 8px rgba(0, 210, 255, 0.5)) !important;
+    cursor: pointer !important;
 }
