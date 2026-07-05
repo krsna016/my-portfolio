@@ -3193,7 +3193,7 @@ body.focus-mode-active .interactive-bg {
     font-size: 0.88em;
     color: var(--primary-color, #2ed573);
     background: rgba(46, 213, 115, 0.1);
-    border: 1px solid rgba(46, 213, 115, 0.2);
+    border: none !important;
     border-radius: 4px;
     padding: 0.15em 0.45em;
 }
@@ -3201,7 +3201,7 @@ body.focus-mode-active .interactive-bg {
 /* ── Code blocks ──────────────────────────────────────────── */
 #reader-content.markdown-body pre {
     background: #181824; /* Greyish background */
-    border: 1px solid #2d2d3a;
+    border: none !important;
     border-radius: 10px;
     padding: 2.2rem 1.6rem 1.6rem 1.6rem; /* Extra top padding to space the terminal dots from the top */
     overflow-x: auto;
@@ -3228,7 +3228,7 @@ body.focus-mode-active .interactive-bg {
     font-size: 0.95em;
     border-radius: 8px;
     overflow: hidden;
-    border: 1px solid #1e1e3a;
+    border: none !important;
 }
 #reader-content.markdown-body thead tr {
     background: #12122a;
@@ -3241,12 +3241,12 @@ body.focus-mode-active .interactive-bg {
 #reader-content.markdown-body th {
     padding: 0.75rem 1rem;
     text-align: left;
-    border-bottom: 2px solid var(--primary-color, #2ed573);
+    border-bottom: none !important;
 }
 #reader-content.markdown-body td {
     padding: 0.65rem 1rem;
     color: #c8c8c8;
-    border-bottom: 1px solid #1a1a2e;
+    border-bottom: none !important;
 }
 #reader-content.markdown-body tbody tr:nth-child(even) {
     background: rgba(255, 255, 255, 0.025);
