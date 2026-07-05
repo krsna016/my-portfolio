@@ -2513,8 +2513,8 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 
 .font-ctrl-btn:hover:not(:disabled) {
-    background: rgba(108, 92, 231, 0.25);
-    color: var(--primary-color);
+    background: #ffffff !important;
+    color: #000000 !important;
 }
 
 .font-ctrl-btn:active:not(:disabled) {
