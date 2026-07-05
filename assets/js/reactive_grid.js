@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Minor grid glow for cursor
             let cursorGrad = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, cursorRadius);
-            cursorGrad.addColorStop(0, `rgba(0, 255, 64, 0.4)`);
+            cursorGrad.addColorStop(0, `rgba(0, 255, 64, 0.15)`);
             cursorGrad.addColorStop(1, 'rgba(0, 255, 64, 0)');
             
             ctx.strokeStyle = cursorGrad;
@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Major grid glow for cursor
             let cursorGradMajor = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, cursorRadius);
-            cursorGradMajor.addColorStop(0, `rgba(0, 255, 64, 0.7)`);
+            cursorGradMajor.addColorStop(0, `rgba(0, 255, 64, 0.25)`);
             cursorGradMajor.addColorStop(1, 'rgba(0, 255, 64, 0)');
             
             ctx.strokeStyle = cursorGradMajor;
