@@ -27,7 +27,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         tabButtons.style.margin = '0 auto 2rem auto';
     }
     
-    // --- Setup Reading Font Size Bar ---
+    let activeTocObserver = null;
+
+    // --- Setup Reading Preferences Bar (Size, Sepia theme, Focus mode) ---
     function setupFontSizeBar() {
         if (!postReader || !readerContent) return;
         if (document.getElementById('blog-font-bar')) return;
@@ -46,6 +48,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <button id="font-dec-btn" class="font-ctrl-btn" aria-label="Decrease font size" title="Decrease size (Ctrl/Cmd + -)">A−</button>
                 <span id="font-size-display" class="font-size-display" role="button" tabindex="0" aria-label="Current font size 100%, click to reset" title="Click to reset (Ctrl/Cmd + 0)">100%</span>
                 <button id="font-inc-btn" class="font-ctrl-btn" aria-label="Increase font size" title="Increase size (Ctrl/Cmd + +)">A+</button>
+            </div>
+            <div class="font-bar-themes" style="display: flex; gap: 6px; margin-left: 12px; border-left: 1px solid rgba(255,255,255,0.15); padding-left: 12px; align-items: center;">
+                <button id="theme-dark-btn" class="theme-ctrl-btn active" title="Default Dark Theme"><i class="fa-solid fa-moon"></i></button>
+                <button id="theme-sepia-btn" class="theme-ctrl-btn" title="Sepia Eye-Care Mode"><i class="fa-solid fa-book-open"></i></button>
+                <button id="theme-focus-btn" class="theme-ctrl-btn" title="Focus Mode (Dim Background)"><i class="fa-solid fa-eye"></i></button>
             </div>
         `;
 
@@ -86,10 +93,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         const decBtn = fontBar.querySelector('#font-dec-btn');
         const incBtn = fontBar.querySelector('#font-inc-btn');
         const display = fontBar.querySelector('#font-size-display');
+        const darkThemeBtn = fontBar.querySelector('#theme-dark-btn');
+        const sepiaThemeBtn = fontBar.querySelector('#theme-sepia-btn');
+        const focusToggleBtn = fontBar.querySelector('#theme-focus-btn');
 
         let toastTimer = null;
-        function showToast(size) {
-            toast.innerHTML = `<i class="fa-solid fa-text-height"></i> Reading Size: ${size}%`;
+        function showToast(message) {
+            toast.innerHTML = message;
             toast.classList.add('show');
             clearTimeout(toastTimer);
             toastTimer = setTimeout(() => {
@@ -108,9 +118,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             decBtn.disabled = currentSize <= 80;
             incBtn.disabled = currentSize >= 150;
 
-            if (notify) showToast(currentSize);
+            if (notify) showToast(`<i class="fa-solid fa-text-height"></i> Reading Size: ${currentSize}%`);
         }
 
+        // Font triggers
         decBtn.addEventListener('click', () => updateFontSize(currentSize - 5));
         incBtn.addEventListener('click', () => updateFontSize(currentSize + 5));
         display.addEventListener('click', () => updateFontSize(100));
@@ -121,7 +132,48 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         });
 
+        // Theme and Focus Toggles
+        darkThemeBtn.addEventListener('click', () => {
+            postReader.classList.remove('reader-sepia');
+            darkThemeBtn.classList.add('active');
+            sepiaThemeBtn.classList.remove('active');
+            localStorage.setItem('blogTheme', 'dark');
+            showToast('<i class="fa-solid fa-moon"></i> Cyber Dark theme active');
+        });
+
+        sepiaThemeBtn.addEventListener('click', () => {
+            postReader.classList.add('reader-sepia');
+            darkThemeBtn.classList.remove('active');
+            sepiaThemeBtn.classList.add('active');
+            localStorage.setItem('blogTheme', 'sepia');
+            showToast('<i class="fa-solid fa-book-open"></i> Sepia Eye-Care mode active');
+        });
+
+        focusToggleBtn.addEventListener('click', () => {
+            const isActive = document.body.classList.toggle('focus-mode-active');
+            focusToggleBtn.classList.toggle('active', isActive);
+            localStorage.setItem('blogFocus', isActive ? 'on' : 'off');
+            showToast(isActive 
+                ? '<i class="fa-solid fa-eye-slash"></i> Focus Mode enabled (Background animations dimmed)' 
+                : '<i class="fa-solid fa-eye"></i> Focus Mode disabled'
+            );
+        });
+
+        // Restore saved settings on boot
         updateFontSize(currentSize, false);
+
+        const savedTheme = localStorage.getItem('blogTheme') || 'dark';
+        if (savedTheme === 'sepia') {
+            postReader.classList.add('reader-sepia');
+            darkThemeBtn.classList.remove('active');
+            sepiaThemeBtn.classList.add('active');
+        }
+
+        const savedFocus = localStorage.getItem('blogFocus') || 'off';
+        if (savedFocus === 'on') {
+            document.body.classList.add('focus-mode-active');
+            focusToggleBtn.classList.add('active');
+        }
 
         window.addEventListener('keydown', (e) => {
             if (postReader.style.display !== 'block') return;
@@ -139,7 +191,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         });
 
-        // --- INTENSE Cyberpunk Scroll Progress Bar Listener ---
+        // Scroll listener for reading progress indicators
         window.addEventListener('scroll', () => {
             const scrollBar = document.getElementById('neon-scroll-progress');
             if (!scrollBar || postReader.style.display !== 'block') return;
@@ -462,6 +514,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <div class="blog-meta">
                         <span class="blog-category">${escapeHTML(post.category || "Uncategorized")}</span>
                         <span class="blog-date">${escapeHTML(post.date || "")}</span>
+                        <span class="blog-card-read-time" id="read-time-${post.id}" style="margin-left: 8px; opacity: 0.8;"><i class="fa-regular fa-clock"></i> ...</span>
                     </div>
                     <h3 class="blog-title">${escapeHTML(post.title || "Untitled Post")}</h3>
                     <p class="blog-summary">${escapeHTML(post.summary || "Read more about this topic...")}</p>
@@ -471,6 +524,30 @@ document.addEventListener('DOMContentLoaded', async () => {
                 </div>
                 ${adminHTML}
             `;
+            
+            // Dynamic Async word count cache loader for list cards
+            const loadCardReadTime = async (postId, fileUrl) => {
+                const cacheKey = `readTime_${postId}`;
+                let cached = localStorage.getItem(cacheKey);
+                if (cached) {
+                    const el = document.getElementById(`read-time-${postId}`);
+                    if (el) el.innerHTML = `<i class="fa-regular fa-clock"></i> ${cached} min`;
+                    return;
+                }
+                try {
+                    const res = await fetch(fileUrl);
+                    if (res.ok) {
+                        const text = await res.text();
+                        const words = text.trim().split(/\s+/).length;
+                        const mins = Math.max(1, Math.ceil(words / 225));
+                        localStorage.setItem(cacheKey, mins);
+                        const el = document.getElementById(`read-time-${postId}`);
+                        if (el) el.innerHTML = `<i class="fa-regular fa-clock"></i> ${mins} min`;
+                    }
+                } catch(e) {}
+            };
+            loadCardReadTime(post.id, post.file);
+
             card.addEventListener('click', () => loadPost(post));
             postsList.appendChild(card);
         });
@@ -626,18 +703,19 @@ document.addEventListener('DOMContentLoaded', async () => {
             scrollBar.style.width = '0%';
             scrollBar.style.opacity = '1';
 
-            // 4. One-Click Copy Superpower on Code Blocks
+            // 4. One-Click Copy Superpower on Code Blocks (Upgraded to match style.css overrides)
             readerContent.querySelectorAll('pre').forEach(pre => {
-                if (pre.querySelector('.copy-code-btn')) return;
+                if (pre.querySelector('.code-copy-btn')) return;
+                pre.style.position = 'relative';
                 const btn = document.createElement('button');
-                btn.className = 'copy-code-btn';
+                btn.className = 'code-copy-btn';
                 btn.innerHTML = `<i class="fa-regular fa-copy"></i> Copy`;
                 btn.title = "Copy code to clipboard";
                 btn.addEventListener('click', async () => {
                     const codeText = pre.querySelector('code')?.innerText || pre.innerText;
                     try {
                         await navigator.clipboard.writeText(codeText);
-                        btn.innerHTML = `<i class="fa-solid fa-check" style="color: #2ed573;"></i> Copied!`;
+                        btn.innerHTML = `<i class="fa-solid fa-check" style="color: #00d2ff;"></i> Copied!`;
                         setTimeout(() => btn.innerHTML = `<i class="fa-regular fa-copy"></i> Copy`, 2000);
                     } catch (err) {
                         console.error(err);
@@ -646,11 +724,72 @@ document.addEventListener('DOMContentLoaded', async () => {
                 pre.appendChild(btn);
             });
 
+            // 5. Build Dynamic Table of Contents Sidebar
+            const tocList = document.getElementById('toc-list');
+            const readerToc = document.getElementById('reader-toc');
+            if (tocList && readerToc) {
+                tocList.innerHTML = '';
+                const headings = readerContent.querySelectorAll('h2, h3');
+                if (headings.length > 1) {
+                    readerToc.style.display = 'block';
+                    headings.forEach((heading, idx) => {
+                        const id = 'heading-' + idx;
+                        heading.id = id;
+                        
+                        const li = document.createElement('li');
+                        const a = document.createElement('a');
+                        a.href = '#' + id;
+                        a.textContent = heading.textContent;
+                        if (heading.tagName === 'H3') {
+                            li.style.paddingLeft = '15px';
+                        }
+                        
+                        a.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            heading.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        });
+                        
+                        li.appendChild(a);
+                        tocList.appendChild(li);
+                    });
+                    
+                    // Setup intersection observer to track reading scroll section
+                    setupTocObserver();
+                } else {
+                    readerToc.style.display = 'none';
+                }
+            }
+
         } catch (error) {
             console.error('Error loading markdown file:', error);
             readerContent.innerHTML = `<p style="color:red;">Error loading content: ${error.message}</p><pre style="color:red;">${error.stack}</pre>`;
             showReaderView();
         }
+    }
+
+    function setupTocObserver() {
+        if (activeTocObserver) activeTocObserver.disconnect();
+        const headings = readerContent.querySelectorAll('h2, h3');
+        const tocLinks = document.querySelectorAll('#toc-list a');
+        
+        activeTocObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    tocLinks.forEach(link => {
+                        if (link.getAttribute('href') === '#' + id) {
+                            link.style.color = 'var(--primary-color)';
+                            link.style.fontWeight = 'bold';
+                        } else {
+                            link.style.color = '';
+                            link.style.fontWeight = '';
+                        }
+                    });
+                }
+            });
+        }, { rootMargin: '0px 0px -40% 0px', threshold: 0.1 });
+        
+        headings.forEach(h => activeTocObserver.observe(h));
     }
 
     function showListView() {
@@ -668,6 +807,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             tabButtons.style.removeProperty('display');
             tabButtons.style.setProperty('display', 'flex');
         }
+
+        // Hide Table of Contents
+        const readerToc = document.getElementById('reader-toc');
+        if (readerToc) readerToc.style.display = 'none';
 
         document.title = "Articles & Blog | Anurag Pareek";
         const scrollBar = document.getElementById('neon-scroll-progress');

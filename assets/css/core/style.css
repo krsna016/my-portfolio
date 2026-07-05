@@ -2969,3 +2969,215 @@ input[type="range"]::-webkit-slider-thumb:hover {
         border-radius: 8px;
     }
 }
+
+/* ==========================================================================
+   Blog Reading UX Overhauls (v-100+)
+   ========================================================================== */
+
+/* 1. Focus Mode Styles */
+body.focus-mode-active #particles-js,
+body.focus-mode-active .background-glow,
+body.focus-mode-active .cyber-grid,
+body.focus-mode-active .grid-line,
+body.focus-mode-active .interactive-bg {
+    opacity: 0.03 !important;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+}
+
+/* 2. Reader View 2-Column Grid & TOC */
+.post-reader-layout {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+    margin-top: 1.5rem;
+}
+
+.reader-toc {
+    width: 250px;
+    position: sticky;
+    top: 120px;
+    padding: 1.5rem;
+    border-radius: 12px;
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
+    flex-shrink: 0;
+    user-select: none;
+}
+
+.reader-toc h4 {
+    margin-top: 0;
+    margin-bottom: 1.2rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 0.5rem;
+}
+
+.reader-toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.reader-toc li {
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.reader-toc a {
+    color: #888;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s, font-weight 0.2s;
+    display: block;
+}
+
+.reader-toc a:hover {
+    color: var(--primary-color);
+}
+
+@media (max-width: 1024px) {
+    .post-reader-layout {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .reader-toc {
+        width: 100%;
+        position: static;
+        max-height: none;
+    }
+}
+
+/* 3. Sepia Mode Styles */
+#post-reader.reader-sepia {
+    background: #f4ecd8 !important;
+    color: #5c4033 !important;
+    border: 1px solid #e4dcc6;
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(92, 64, 51, 0.1) !important;
+}
+
+#post-reader.reader-sepia #back-button {
+    color: #8b5a2b !important;
+}
+
+#post-reader.reader-sepia #back-button:hover {
+    color: #5c4033 !important;
+}
+
+#post-reader.reader-sepia .markdown-body {
+    color: #5c4033 !important;
+}
+
+#post-reader.reader-sepia .markdown-body h1,
+#post-reader.reader-sepia .markdown-body h2,
+#post-reader.reader-sepia .markdown-body h3,
+#post-reader.reader-sepia .markdown-body h4 {
+    color: #3d2314 !important;
+    border-bottom-color: #dcd4be !important;
+}
+
+#post-reader.reader-sepia .markdown-body a {
+    color: #b87333 !important;
+}
+
+#post-reader.reader-sepia .markdown-body code {
+    background: rgba(139, 90, 43, 0.1) !important;
+    color: #8b5a2b !important;
+    border: 1px solid rgba(139, 90, 43, 0.15) !important;
+}
+
+#post-reader.reader-sepia .markdown-body pre {
+    background: #ece4cd !important;
+    border: 1px solid #dcd4be !important;
+    box-shadow: none !important;
+}
+
+#post-reader.reader-sepia .markdown-body pre code {
+    color: #5c4033 !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+#post-reader.reader-sepia .post-reader-top-bar span,
+#post-reader.reader-sepia .blog-font-bar {
+    color: #8b5a2b !important;
+    background: #ece4cd !important;
+    border-color: #dcd4be !important;
+}
+
+#post-reader.reader-sepia .blog-font-bar button {
+    color: #8b5a2b !important;
+}
+
+#post-reader.reader-sepia .blog-font-bar button:hover {
+    background: rgba(139, 90, 43, 0.15) !important;
+}
+
+#post-reader.reader-sepia .code-copy-btn {
+    background: rgba(139, 90, 43, 0.15) !important;
+    border: 1px solid rgba(139, 90, 43, 0.2) !important;
+    color: #8b5a2b !important;
+}
+
+#post-reader.reader-sepia .code-copy-btn:hover {
+    background: rgba(139, 90, 43, 0.3) !important;
+    color: #3d2314 !important;
+}
+
+/* 4. Code Block Copy Button */
+.code-copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #bbb;
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease;
+    z-index: 10;
+}
+
+pre:hover .code-copy-btn {
+    opacity: 1;
+}
+
+.code-copy-btn:hover {
+    background: rgba(0, 210, 255, 0.2);
+    color: #00d2ff;
+    border-color: #00d2ff;
+}
+
+/* 5. Theme Controls Adjustments */
+.theme-ctrl-btn {
+    background: transparent;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    font-size: 0.95rem;
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s, color 0.2s;
+}
+
+.theme-ctrl-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--primary-color);
+}
+
+.theme-ctrl-btn.active {
+    color: var(--primary-color);
+    background: rgba(0, 210, 255, 0.1);
+}
