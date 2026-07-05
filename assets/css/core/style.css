@@ -3194,16 +3194,16 @@ body.focus-mode-active .interactive-bg {
 
 /* ── Code blocks ──────────────────────────────────────────── */
 #reader-content.markdown-body pre {
-    background: #0d0d1a;
-    border: 1px solid #1e1e3a;
+    background: #181824; /* Greyish background */
+    border: 1px solid #2d2d3a;
     border-radius: 10px;
-    padding: 1.4rem 1.6rem;
+    padding: 2.2rem 1.6rem 1.6rem 1.6rem; /* Extra top padding to space the terminal dots from the top */
     overflow-x: auto;
     margin: 1.5rem 0;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 #reader-content.markdown-body pre::first-line {
-    line-height: 2.2 !important;
+    line-height: 2.6 !important; /* Spacing below the terminal buttons to prevent touching the text */
 }
 #reader-content.markdown-body pre code {
     color: #e0e0e0;
