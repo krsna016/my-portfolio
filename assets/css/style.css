@@ -262,7 +262,7 @@ textarea {
 }
 
 .hero-content {
-    width: min(95%, 600px); max-width: none;
+    width: 100%; max-width: 600px;
 }
 
 .greeting {
@@ -877,7 +877,7 @@ textarea {
 /* Timeline */
 .timeline {
     position: relative;
-    width: min(90%, 800px); max-width: none;
+    width: 100%; max-width: 800px;
     margin: 0 auto;
 }
 
@@ -1148,7 +1148,7 @@ textarea {
 /* Contact */
 .contact-wrapper {
     text-align: center;
-    width: min(95%, 600px); max-width: none;
+    width: 100%; max-width: 600px;
     margin: 0 auto;
 }
 
@@ -1317,7 +1317,7 @@ footer {
 }
 
 .contact-container {
-    width: min(95%, 600px); max-width: none;
+    width: 100%; max-width: 600px;
     margin: 0 auto;
     /* Match .glass styles exactly */
     background: var(--glass-bg);
@@ -1563,7 +1563,7 @@ footer {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    width: min(92%, 1000px); max-width: none;
+    width: 100%; max-width: 1000px;
     margin: 0;
 }
 
@@ -1745,7 +1745,7 @@ footer {
     border: 1px solid var(--glass-border);
     border-radius: 16px;
     width: 90%;
-    width: min(92%, 1000px); max-width: none;
+    width: 100%; max-width: 1000px;
     height: 90vh;
     display: flex;
     flex-direction: column;
@@ -2276,7 +2276,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 /* Resume Skeleton Loader */
 .resume-skeleton {
     width: 100%;
-    width: min(90%, 800px); max-width: none;
+    width: 100%; max-width: 800px;
     /* Match typical resume width */
     aspect-ratio: 1 / 1.414;
     /* A4 Aspect Ratio */
