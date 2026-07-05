@@ -65,6 +65,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let activeTargets = new Map();
     let pulses = [];
     
+    let mouseX = -1000;
+    let mouseY = -1000;
+    
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    }, {passive: true});
+    
     // Scroll tracking
     let lastScrollY = window.scrollY;
     let scrollVelocity = 0;
@@ -261,6 +269,29 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
             ctx.fillStyle = `rgba(255, 255, 255, ${currentAlpha * 0.8})`;
             ctx.fill();
+        }
+        
+        // Draw Cursor Glow (Green)
+        if (mouseX > -500 && mouseY > -500) {
+            const cursorRadius = 350;
+            
+            // Minor grid glow for cursor
+            let cursorGrad = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, cursorRadius);
+            cursorGrad.addColorStop(0, `rgba(0, 255, 64, 0.4)`);
+            cursorGrad.addColorStop(1, 'rgba(0, 255, 64, 0)');
+            
+            ctx.strokeStyle = cursorGrad;
+            ctx.lineWidth = 1.5;
+            ctx.stroke(minorGridPath);
+            
+            // Major grid glow for cursor
+            let cursorGradMajor = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, cursorRadius);
+            cursorGradMajor.addColorStop(0, `rgba(0, 255, 64, 0.7)`);
+            cursorGradMajor.addColorStop(1, 'rgba(0, 255, 64, 0)');
+            
+            ctx.strokeStyle = cursorGradMajor;
+            ctx.lineWidth = 2;
+            ctx.stroke(majorGridPath);
         }
         
         requestAnimationFrame(render);
