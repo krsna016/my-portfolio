@@ -80,7 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
         void scanLine.offsetWidth;
 
         scanLine.style.transition = 'transform 600ms linear, opacity 200ms ease';
-        scanLine.style.transform = `translateX(${charsContainer.offsetWidth + 20}px)`;
+        const dist = (charsContainer.offsetWidth > 0 ? charsContainer.offsetWidth : 400) + 20;
+        scanLine.style.transform = `translateX(${dist}px)`;
 
         // Highlight letters as scan passes
         const totalTime = 600;
@@ -89,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 if (isHovering) return;
                 el.style.color = '#fff';
-                el.style.textShadow = '0 0 10px #00d2ff, 0 0 20px #00d2ff';
+                el.style.textShadow = '0 0 10px #00FF41, 0 0 20px #00FF41'; // Changed to Matrix Green
                 
                 setTimeout(() => {
                     if (isHovering) return;
@@ -105,8 +106,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     if (!prefersReducedMotion) {
-        scanInterval = setInterval(runIdleScan, 9000);
-        setTimeout(runIdleScan, 2000);
+        scanInterval = setInterval(runIdleScan, 6000); // reduced to 6s
+        setTimeout(runIdleScan, 1500); // runs slightly earlier initially
     }
 
     /* ==========================================================================
