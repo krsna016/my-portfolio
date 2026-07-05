@@ -3026,13 +3026,13 @@ body.focus-mode-active .interactive-bg {
     color: #ffffff !important; /* Pure white text */
     font-size: calc(1.65rem * var(--blog-scale, 1));
     font-weight: 600;
-    margin: 3rem 0 1.2rem 0;
-    padding: 1rem 1.5rem !important;
-    background: #161622 !important; /* Matte card background */
+    margin: 2.5rem 0 1rem 0;
+    padding: 0 0 0 0.8rem !important;
+    background: transparent !important; /* No card background */
     border: none !important;
-    border-left: 4px solid #00ff66 !important; /* Solid green left bar */
-    border-radius: 0 10px 10px 0;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-left: 3px solid #00ff66 !important; /* Green left accent */
+    border-radius: 0 !important;
+    box-shadow: none !important;
 }
 
 /* H3 — Sub-sections, light grey */
