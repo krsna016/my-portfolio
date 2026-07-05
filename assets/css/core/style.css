@@ -2464,16 +2464,15 @@ input[type="range"]::-webkit-slider-thumb:hover {
     padding: 6px 10px 6px 14px;
     margin-bottom: 0;
     background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    border: none !important;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(2px);
     position: static; /* Compact, sits alongside Back button */
-    transition: border-color 0.3s ease, background 0.3s ease;
+    transition: background 0.3s ease;
 }
 
 .blog-font-bar:hover {
-    border-color: rgba(108, 92, 231, 0.35);
     background: rgba(255, 255, 255, 0.06);
 }
 
@@ -2494,7 +2493,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
     background: rgba(0, 0, 0, 0.3);
     padding: 3px;
     border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.015);
+    border: none !important;
 }
 
 .font-ctrl-btn {
