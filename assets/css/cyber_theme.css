@@ -412,27 +412,30 @@ input[type="range"]::-webkit-slider-thumb {
     font-size: 0.8rem !important;
 }
 .ide-run-btn {
-    background: #2ed573 !important;
-    border: none !important;
-    color: #000000 !important;
-    padding: 5px 14px !important;
-    border-radius: 6px !important;
-    font-size: 0.85rem !important;
-    font-weight: 800 !important;
+    background: rgba(255, 255, 255, 0.10) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #F5F5F5 !important;
+    border-top-right-radius: 16px !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    text-transform: uppercase !important;
+    font-weight: bold !important;
+    box-shadow: none !important;
+    font-family: var(--font-primary) !important;
+    padding: 6px 16px !important;
     cursor: pointer !important;
     transition: all 0.2s ease !important;
     display: flex !important;
     align-items: center !important;
     gap: 6px !important;
-    box-shadow: 0 0 10px rgba(46, 213, 115, 0.3) !important;
-    font-family: var(--font-primary) !important;
-    text-transform: none !important;
 }
 .ide-run-btn:hover {
-    transform: scale(1.05) !important;
-    background: #26b160 !important;
+    background: #F5F5F5 !important;
     color: #000000 !important;
-    box-shadow: 0 4px 15px rgba(46, 213, 115, 0.5) !important;
+    border-color: #F5F5F5 !important;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4) !important;
+    transform: none !important;
 }
 .ide-code-area {
     background: rgba(0, 0, 0, 0.1) !important;
@@ -678,10 +681,16 @@ svg[class*="icon"]:hover path {
     box-shadow: none !important;
 }
 
-/* Ensure run button icon stays visible in black in all states */
+/* Ensure run button icon is white in default state, and turns black when hovered */
 button.ide-run-btn i,
 button.ide-run-btn svg,
-button.ide-run-btn svg[class*="fa-"] path,
+button.ide-run-btn svg[class*="fa-"] path {
+    color: #F5F5F5 !important;
+    fill: #F5F5F5 !important;
+    text-shadow: none !important;
+    filter: none !important;
+}
+
 button.ide-run-btn:hover i,
 button.ide-run-btn:hover svg,
 button.ide-run-btn:hover svg[class*="fa-"] path {
