@@ -1112,52 +1112,52 @@ button.chat-send-btn:hover svg,
 
 
 /* GLOBAL HOVER OVERRIDE: All buttons turn solid white with black text */
-/* Using high specificity including IDs to beat everything */
-html body .btn:hover,
-html body .btn.primary:hover,
-html body .btn.secondary:hover,
-html body button.btn:hover,
-html body a.btn:hover,
-html body .cta-buttons .btn:hover,
-html body .cta-buttons a:hover,
-html body .cta-buttons button:hover,
-html body .tab-btn:hover,
-html body .contact-btn:hover,
-html body .submit-btn:hover,
-html body .play-btn:hover,
-html body .read-more:hover,
-html body .cert-link:hover,
+/* Using INSANE specificity by chaining classes to beat everything */
+html body .btn.btn.btn.btn.btn:hover,
+html body .btn.primary.primary.primary.primary:hover,
+html body .btn.secondary.secondary.secondary.secondary:hover,
+html body button.btn.btn.btn.btn.btn:hover,
+html body a.btn.btn.btn.btn.btn:hover,
+html body .cta-buttons .btn.btn.btn.btn:hover,
+html body .cta-buttons a.btn.btn.btn:hover,
+html body .cta-buttons button.btn.btn.btn:hover,
+html body .tab-btn.tab-btn.tab-btn.tab-btn:hover,
+html body .contact-btn.contact-btn.contact-btn:hover,
+html body .submit-btn.submit-btn.submit-btn:hover,
+html body .play-btn.play-btn.play-btn:hover,
+html body .read-more.read-more.read-more:hover,
+html body .cert-link.cert-link.cert-link:hover,
 html body #hero-cli-trigger:hover,
-html body .ide-run-btn:hover,
-html body .chat-send-btn:hover {
+html body .ide-run-btn.ide-run-btn.ide-run-btn:hover,
+html body .chat-send-btn.chat-send-btn.chat-send-btn:hover {
     background: #ffffff !important;
     background-color: #ffffff !important;
     color: #000000 !important;
 }
 
 /* Force icons inside buttons to also turn black on hover */
-html body .btn:hover i,
-html body .btn:hover svg,
-html body .btn.primary:hover i,
-html body .btn.secondary:hover i,
-html body button.btn:hover i,
-html body button.btn:hover svg,
-html body a.btn:hover i,
-html body a.btn:hover svg,
-html body .cta-buttons .btn:hover i,
-html body .cta-buttons a:hover i,
-html body .cta-buttons button:hover i,
-html body .tab-btn:hover i,
-html body .contact-btn:hover i,
-html body .submit-btn:hover i,
-html body .play-btn:hover i,
-html body .read-more:hover i,
-html body .cert-link:hover i,
+html body .btn.btn.btn.btn.btn:hover i,
+html body .btn.btn.btn.btn.btn:hover svg,
+html body .btn.primary.primary.primary.primary:hover i,
+html body .btn.secondary.secondary.secondary.secondary:hover i,
+html body button.btn.btn.btn.btn:hover i,
+html body button.btn.btn.btn.btn:hover svg,
+html body a.btn.btn.btn.btn:hover i,
+html body a.btn.btn.btn.btn:hover svg,
+html body .cta-buttons .btn.btn.btn:hover i,
+html body .cta-buttons a.btn.btn.btn:hover i,
+html body .cta-buttons button.btn.btn:hover i,
+html body .tab-btn.tab-btn.tab-btn:hover i,
+html body .contact-btn.contact-btn:hover i,
+html body .submit-btn.submit-btn:hover i,
+html body .play-btn.play-btn:hover i,
+html body .read-more.read-more:hover i,
+html body .cert-link.cert-link:hover i,
 html body #hero-cli-trigger:hover i,
 html body #hero-cli-trigger:hover svg,
-html body .ide-run-btn:hover i,
-html body .chat-send-btn:hover i,
-html body .chat-send-btn:hover svg {
+html body .ide-run-btn.ide-run-btn:hover i,
+html body .chat-send-btn.chat-send-btn:hover i,
+html body .chat-send-btn.chat-send-btn:hover svg {
     color: #000000 !important;
     fill: #000000 !important;
 }
