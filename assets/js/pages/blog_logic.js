@@ -753,6 +753,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         const wrapper = postReader.closest('.pinned-section-wrapper');
         if (wrapper) wrapper.classList.remove('reader-active');
 
+        document.body.classList.remove('reader-open');
+
         document.title = "Articles & Blog | Anurag Pareek";
         const scrollBar = document.getElementById('neon-scroll-progress');
         if (scrollBar) scrollBar.style.opacity = '0';
@@ -774,6 +776,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Enable full-width expansion
         const wrapper = postReader.closest('.pinned-section-wrapper');
         if (wrapper) wrapper.classList.add('reader-active');
+
+        document.body.classList.add('reader-open');
     }
 
     backButton.addEventListener('click', () => {

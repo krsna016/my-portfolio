@@ -3200,3 +3200,28 @@ pre:hover .code-copy-btn {
 #post-reader.reader-sepia .intense-meta-badge .meta-category {
     color: #3d2314 !important;
 }
+
+/* Ensure content-visibility is disabled for sticky TOC containment */
+.section.games-page {
+    content-visibility: visible !important;
+}
+
+/* Ambient Focus Blur for reading view */
+body.reader-open #particle-canvas {
+    opacity: 0.05 !important;
+    filter: blur(8px);
+    transition: opacity 0.5s ease, filter 0.5s ease;
+}
+
+body.reader-open .background-glow {
+    opacity: 0.12 !important;
+    filter: blur(25px);
+    transition: opacity 0.5s ease, filter 0.5s ease;
+}
+
+body.reader-open .cyber-grid,
+body.reader-open .grid-line {
+    opacity: 0.05 !important;
+    filter: blur(2px);
+    transition: opacity 0.5s ease, filter 0.5s ease;
+}
