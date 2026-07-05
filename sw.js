@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ap-portfolio-v142-god-mode';
+const CACHE_NAME = 'ap-portfolio-v143-god-mode';
 
 const PRECACHE_ASSETS = [
     '/',
@@ -8,7 +8,6 @@ const PRECACHE_ASSETS = [
     '/certificates.html',
     '/contact.html',
     '/games.html',
-    '/admin.html',
     '/assets/css/core/style.css',
     '/assets/css/features/intense_pack.css',
     '/assets/js/core/script.js',
@@ -51,6 +50,9 @@ self.addEventListener('fetch', event => {
     
     // Bypass Google Fonts to prevent CORS/opaque response loading conflicts
     if (event.request.url.includes('fonts.googleapis.com') || event.request.url.includes('fonts.gstatic.com')) return;
+
+    // Bypass Admin page completely to prevent caching out-of-sync panels
+    if (event.request.url.includes('/admin') || event.request.url.includes('/admin.html')) return;
 
     const url = new URL(event.request.url);
     const pathname = url.pathname;
