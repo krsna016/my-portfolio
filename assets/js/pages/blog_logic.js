@@ -27,11 +27,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         tabButtons.style.margin = '0 auto 2rem auto';
     }
     
-    let activeTocObserver = null;
-    // Teleport state — save original positions so we can restore on back
+    // Teleport state — save original position so we can restore on back
     let postReaderOriginalParent = null;
     let postReaderOriginalNextSibling = null;
-    let tocOriginalNextSibling = null; // TOC is always inside #post-reader, restored there
 
     // --- Setup Reading Preferences Bar (Size, Sepia theme, Focus mode) ---
     function setupFontSizeBar() {
@@ -665,72 +663,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                 pre.appendChild(btn);
             });
 
-            // 5. Build Dynamic Table of Contents Sidebar
-            const tocList = document.getElementById('toc-list');
-            const readerToc = document.getElementById('reader-toc');
-            if (tocList && readerToc) {
-                tocList.innerHTML = '';
-                const headings = readerContent.querySelectorAll('h2, h3');
-                if (headings.length > 1) {
-                    readerToc.style.display = 'block';
-                    headings.forEach((heading, idx) => {
-                        const id = 'heading-' + idx;
-                        heading.id = id;
-                        
-                        const li = document.createElement('li');
-                        const a = document.createElement('a');
-                        a.href = '#' + id;
-                        a.textContent = heading.textContent;
-                        if (heading.tagName === 'H3') {
-                            li.style.paddingLeft = '15px';
-                        }
-                        
-                        a.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            heading.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        });
-                        
-                        li.appendChild(a);
-                        tocList.appendChild(li);
-                    });
-                    
-                    // Setup intersection observer to track reading scroll section
-                    setupTocObserver();
-                } else {
-                    readerToc.style.display = 'none';
-                }
-            }
-
         } catch (error) {
             console.error('Error loading markdown file:', error);
             readerContent.innerHTML = `<p style="color:red;">Error loading content: ${error.message}</p><pre style="color:red;">${error.stack}</pre>`;
             showReaderView();
         }
-    }
-
-    function setupTocObserver() {
-        if (activeTocObserver) activeTocObserver.disconnect();
-        const headings = readerContent.querySelectorAll('h2, h3');
-        const tocLinks = document.querySelectorAll('#toc-list a');
-        
-        activeTocObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.id;
-                    tocLinks.forEach(link => {
-                        if (link.getAttribute('href') === '#' + id) {
-                            link.style.color = 'var(--primary-color)';
-                            link.style.fontWeight = 'bold';
-                        } else {
-                            link.style.color = '';
-                            link.style.fontWeight = '';
-                        }
-                    });
-                }
-            });
-        }, { rootMargin: '0px 0px -40% 0px', threshold: 0.1 });
-        
-        headings.forEach(h => activeTocObserver.observe(h));
     }
 
     function showListView() {
@@ -749,26 +686,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             tabButtons.style.setProperty('display', 'flex');
         }
 
-        // Hide Table of Contents
-        const readerToc = document.getElementById('reader-toc');
-        if (readerToc) readerToc.style.display = 'none';
-
         // Disable full-width expansion
         const wrapper = postReader.closest('.pinned-section-wrapper');
         if (wrapper) wrapper.classList.remove('reader-active');
 
         document.body.classList.remove('reader-open');
-
-        // Restore #reader-toc back INSIDE #post-reader (before .post-reader-layout)
-        const readerToc = document.getElementById('reader-toc');
-        const layout = postReader.querySelector('.post-reader-layout');
-        if (readerToc && readerToc.parentNode === document.body) {
-            if (layout) {
-                postReader.insertBefore(readerToc, layout);
-            } else {
-                postReader.appendChild(readerToc);
-            }
-        }
 
         // Restore #post-reader to its original DOM position
         if (postReaderOriginalParent) {
@@ -809,15 +731,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             postReaderOriginalNextSibling = postReader.nextSibling;
         }
         document.body.appendChild(postReader);
-
-        // ALSO teleport #reader-toc to <body> as a sibling of #post-reader.
-        // This prevents the overflow-y:auto scroll container on #post-reader from
-        // treating the fixed-position TOC as a layout child (Chrome behaviour),
-        // which was causing ~1200px of phantom blank space before the article.
-        const readerToc = document.getElementById('reader-toc');
-        if (readerToc && readerToc.parentNode !== document.body) {
-            document.body.appendChild(readerToc);
-        }
     }
 
     backButton.addEventListener('click', () => {

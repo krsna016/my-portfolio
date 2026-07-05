@@ -2978,29 +2978,27 @@ body.focus-mode-active .interactive-bg {
 }
 
 /* ================================================================
-   2. READER VIEW — Teleport Layout
-   #post-reader is moved to <body> by JS in reader mode.
-   body.reader-open > #post-reader targets it directly,
-   bypassing ALL section / container / wrapper nesting.
+   2. READER VIEW — Full-page article reader (no TOC)
+   #post-reader is teleported to <body> by JS in reader mode.
    ================================================================ */
 
 /* Full-page scrollable reader overlay */
 body.reader-open > #post-reader {
     position: fixed !important;
-    top: 70px;                  /* below navbar (~64px) */
-    left: 280px !important;     /* starts after the 280px TOC sidebar */
+    top: 70px !important;
+    left: 0 !important;
     right: 0 !important;
     bottom: 0 !important;
     overflow-y: auto !important;
     z-index: 100 !important;
     background: var(--dark-bg, #0a0a0f) !important;
-    padding: 2rem 3rem 4rem 2.5rem !important;  /* normal padding — no big left offset needed */
+    padding: 2rem 0 4rem 0 !important;
     box-sizing: border-box !important;
     display: block !important;
     margin: 0 !important;
 }
 
-/* Top bar — spans the article column (to the right of TOC) */
+/* Top bar — back button, metadata, size controls in one line */
 body.reader-open > #post-reader .post-reader-top-bar {
     display: flex !important;
     justify-content: space-between !important;
@@ -3008,83 +3006,19 @@ body.reader-open > #post-reader .post-reader-top-bar {
     flex-wrap: wrap !important;
     gap: 1rem !important;
     margin-bottom: 2rem !important;
-    padding: 0 !important;
+    padding: 0 clamp(1.5rem, 5vw, 4rem) !important;
     width: 100% !important;
+    box-sizing: border-box !important;
 }
 
-/* Article content layout */
+/* Article content — centred readable column */
 body.reader-open > #post-reader .post-reader-layout {
     display: block !important;
-    margin: 0 !important;
-    padding: 0 !important;
+    max-width: 780px !important;
+    margin: 0 auto !important;
+    padding: 0 clamp(1.5rem, 5vw, 3rem) !important;
     width: 100% !important;
-}
-
-/* === FIXED LEFT SIDEBAR TOC ===
-   position:fixed is relative to viewport, NOT to #post-reader
-   (overflow:auto on parent does not create containing block for fixed)  */
-.reader-toc {
-    position: fixed;
-    top: 70px;
-    left: 0;
-    width: 280px;
-    height: calc(100vh - 70px);
-    overflow-y: auto;
-    z-index: 101;
-    padding: 2rem 1.5rem;
-    border-right: 1px solid var(--glass-border);
-    background: rgba(10, 10, 15, 0.97);
-    backdrop-filter: blur(8px);
-    border-radius: 0;
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary-color) transparent;
-    user-select: none;
-    box-sizing: border-box;
-}
-
-.reader-toc h4 {
-    margin-top: 0;
-    margin-bottom: 1.2rem;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--primary-color);
-    border-bottom: 1px solid var(--glass-border);
-    padding-bottom: 0.6rem;
-}
-
-.reader-toc ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.reader-toc li {
-    margin-bottom: 8px;
-    line-height: 1.4;
-}
-
-.reader-toc a {
-    color: #888;
-    text-decoration: none;
-    font-size: 0.82rem;
-    transition: color 0.2s, font-weight 0.2s;
-    display: block;
-    padding: 2px 0;
-}
-
-.reader-toc a:hover {
-    color: var(--primary-color);
-}
-
-/* === Responsive: collapse TOC on small screens === */
-@media (max-width: 1100px) {
-    body.reader-open > #post-reader {
-        padding: 1.5rem 1.5rem 4rem 1.5rem !important;
-    }
-    .reader-toc {
-        display: none !important;
-    }
+    box-sizing: border-box !important;
 }
 
 /* 3. Sepia Mode Styles */
