@@ -2606,37 +2606,29 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .intense-meta-badge {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    color: #aaa;
+    font-size: 0.9rem;
 }
 
-.meta-pill {
+.intense-meta-badge span {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+    gap: 6px;
+}
+
+.intense-meta-badge .meta-divider {
+    color: #555;
+    user-select: none;
+}
+
+.intense-meta-badge .meta-category {
+    color: var(--primary-color);
     font-weight: 500;
-    color: #c8d6e5;
-    transition: all 0.3s ease;
-}
-
-.meta-pill:hover {
-    background: rgba(108, 92, 231, 0.2);
-    border-color: rgba(108, 92, 231, 0.5);
-    color: #fff;
-    transform: translateY(-2px);
-}
-
-.meta-pill.category {
-    background: rgba(108, 92, 231, 0.25);
-    border-color: var(--primary-color);
-    color: #fff;
 }
 
 /* --- Cyberpunk Scroll Progress Bar --- */
@@ -3180,4 +3172,32 @@ pre:hover .code-copy-btn {
 .theme-ctrl-btn.active {
     color: var(--primary-color);
     background: rgba(0, 210, 255, 0.1);
+}
+
+/* Full page width expansion for post reader */
+.pinned-section-wrapper.reader-active {
+    gap: 0 !important;
+}
+
+.pinned-section-wrapper.reader-active .pinned-heading {
+    display: none !important;
+}
+
+.pinned-section-wrapper.reader-active .section-content {
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
+}
+
+/* Sepia overrides for inline metadata list */
+#post-reader.reader-sepia .intense-meta-badge {
+    border-bottom-color: #dcd4be !important;
+    color: #8b5a2b !important;
+}
+
+#post-reader.reader-sepia .intense-meta-badge .meta-divider {
+    color: #c4bcab !important;
+}
+
+#post-reader.reader-sepia .intense-meta-badge .meta-category {
+    color: #3d2314 !important;
 }

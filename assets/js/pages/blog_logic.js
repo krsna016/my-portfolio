@@ -676,7 +676,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 "keywords": post.category || "Software Engineering"
             });
 
-            // 2. Intense Metadata Badge
+            // 2. Intense Metadata Badge (Sleek Inline Line)
             let metaBadge = document.getElementById('intense-meta-badge');
             if (!metaBadge) {
                 metaBadge = document.createElement('div');
@@ -685,10 +685,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                 readerContent.parentNode.insertBefore(metaBadge, readerContent);
             }
             metaBadge.innerHTML = `
-                <span class="meta-pill"><i class="fa-regular fa-clock"></i> ${readTime} min read</span>
-                <span class="meta-pill"><i class="fa-solid fa-align-left"></i> ${words} words</span>
-                <span class="meta-pill category"><i class="fa-solid fa-tag"></i> ${escapeHTML(post.category || 'Engineering')}</span>
-                ${post.date ? `<span class="meta-pill"><i class="fa-regular fa-calendar"></i> ${escapeHTML(post.date)}</span>` : ''}
+                <span><i class="fa-regular fa-clock"></i> ${readTime} min read</span>
+                <span class="meta-divider">•</span>
+                <span><i class="fa-solid fa-align-left"></i> ${words} words</span>
+                <span class="meta-divider">•</span>
+                <span class="meta-category"><i class="fa-solid fa-tag"></i> ${escapeHTML(post.category || 'Engineering')}</span>
+                ${post.date ? `<span class="meta-divider">•</span><span><i class="fa-regular fa-calendar"></i> ${escapeHTML(post.date)}</span>` : ''}
             `;
             metaBadge.style.display = 'flex';
 
@@ -812,6 +814,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         const readerToc = document.getElementById('reader-toc');
         if (readerToc) readerToc.style.display = 'none';
 
+        // Disable full-width expansion
+        const wrapper = postReader.closest('.pinned-section-wrapper');
+        if (wrapper) wrapper.classList.remove('reader-active');
+
         document.title = "Articles & Blog | Anurag Pareek";
         const scrollBar = document.getElementById('neon-scroll-progress');
         if (scrollBar) scrollBar.style.opacity = '0';
@@ -829,6 +835,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const tabButtons = document.querySelector('.tab-buttons');
         if (tabButtons) tabButtons.style.setProperty('display', 'none', 'important');
+
+        // Enable full-width expansion
+        const wrapper = postReader.closest('.pinned-section-wrapper');
+        if (wrapper) wrapper.classList.add('reader-active');
     }
 
     backButton.addEventListener('click', () => {
