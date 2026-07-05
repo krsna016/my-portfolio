@@ -192,8 +192,8 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.strokeStyle = `rgba(255, 255, 255, 0)`;
         ctx.stroke(minorGridPath);
         
-        // Major lines
-        ctx.strokeStyle = `rgba(255, 255, 255, ${0.15 + currentScrollIntensity})`;
+        // Major lines (Invisible by default, only shown via glows)
+        ctx.strokeStyle = `rgba(255, 255, 255, 0)`;
         ctx.stroke(majorGridPath);
         
         // Draw Radial Glows
