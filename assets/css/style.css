@@ -2967,19 +2967,20 @@ input[type="range"]::-webkit-slider-thumb:hover {
     }
 }
 
-/* Make hero CTA buttons thicker like the tab buttons */
-.cta-buttons .btn,
-.cta-buttons button,
-.cta-buttons a.btn {
-    background: rgba(255, 255, 255, 0.25) !important;
+
+/* Make hero CTA buttons thicker like the tab buttons - HIGH SPECIFICITY */
+div.cta-buttons a.btn.primary:not(.ide-run-btn):not(.chat-send-btn),
+div.cta-buttons a.btn.secondary:not(.ide-run-btn):not(.chat-send-btn),
+div.cta-buttons button.btn.secondary:not(.ide-run-btn):not(.chat-send-btn) {
+    background: rgba(255, 255, 255, 0.35) !important;
     backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(10px) !important;
     border: 1px solid transparent !important;
     color: #FFFFFF !important;
 }
 
-.cta-buttons .btn:hover,
-.cta-buttons button:hover,
-.cta-buttons a.btn:hover {
-    background: rgba(255, 255, 255, 0.35) !important;
+div.cta-buttons a.btn.primary:not(.ide-run-btn):not(.chat-send-btn):hover,
+div.cta-buttons a.btn.secondary:not(.ide-run-btn):not(.chat-send-btn):hover,
+div.cta-buttons button.btn.secondary:not(.ide-run-btn):not(.chat-send-btn):hover {
+    background: rgba(255, 255, 255, 0.45) !important;
 }
