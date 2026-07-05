@@ -361,14 +361,33 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         }
 
+        populateCategories();
         updateAdminUI();
     }
     fetchBlogData();
 
-    // Populate Categories
-    try {
-        if(blogCategories && Array.isArray(blogCategories)) {
+    function populateCategories() {
+        if (!categoryList) return;
+        categoryList.innerHTML = '';
+        
+        // Add "All Posts"
+        const allLi = document.createElement('li');
+        allLi.textContent = 'All Posts';
+        allLi.className = 'active';
+        allLi.dataset.category = 'All';
+        allLi.addEventListener('click', () => {
+            document.querySelectorAll('.category-list li').forEach(el => el.classList.remove('active'));
+            allLi.classList.add('active');
+            currentCategory = 'All';
+            renderPosts();
+            showListView();
+        });
+        categoryList.appendChild(allLi);
+
+        // Add the rest dynamically
+        if (blogCategories && Array.isArray(blogCategories)) {
             blogCategories.forEach(category => {
+                if (category.toLowerCase() === 'all' || category.toLowerCase() === 'all posts') return;
                 const li = document.createElement('li');
                 li.textContent = category;
                 li.dataset.category = category;
@@ -382,18 +401,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 categoryList.appendChild(li);
             });
         }
-    } catch (e) {
-        console.error("Error populating categories:", e);
-    }
-
-    if(categoryList.firstElementChild) {
-        categoryList.firstElementChild.addEventListener('click', (e) => {
-            document.querySelectorAll('.category-list li').forEach(el => el.classList.remove('active'));
-            e.target.classList.add('active');
-            currentCategory = 'All';
-            renderPosts();
-            showListView();
-        });
     }
 
 
