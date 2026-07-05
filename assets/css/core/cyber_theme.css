@@ -1533,3 +1533,12 @@ html body .read-more.read-more.read-more i,
 html body .read-more.read-more.read-more:hover i {
     color: inherit !important;
 }
+
+/* Ensure size preference buttons turn white with black text on hover */
+html body .font-ctrl-btn:hover:not(:disabled),
+html body button.font-ctrl-btn:hover:not(:disabled),
+.font-ctrl-btn:hover:not(:disabled) {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+}
