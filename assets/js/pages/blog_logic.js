@@ -664,7 +664,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (introText) introText.style.removeProperty('display');
 
         const tabButtons = document.querySelector('.tab-buttons');
-        if (tabButtons) tabButtons.style.removeProperty('display');
+        if (tabButtons) tabButtons.style.display = 'flex';
 
         document.title = "Articles & Blog | Anurag Pareek";
         const scrollBar = document.getElementById('neon-scroll-progress');
