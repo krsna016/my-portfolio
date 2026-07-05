@@ -2374,16 +2374,16 @@ input[type="range"]::-webkit-slider-thumb:hover {
     padding: 24px;
     border-radius: 16px;
     background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.015);
+    border: 2px dotted var(--primary-color, #2ed573) !important; /* Dotted green outline */
     backdrop-filter: blur(2px);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .blog-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(108, 92, 231, 0.15);
-    border-color: rgba(108, 92, 231, 0.3);
-    background: rgba(255, 255, 255, 0.015);
+    box-shadow: 0 10px 30px rgba(46, 213, 115, 0.2);
+    border-color: var(--primary-color, #2ed573) !important;
+    background: rgba(46, 213, 115, 0.03) !important;
 }
 
 .blog-card-content {
