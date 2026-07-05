@@ -391,7 +391,7 @@ input[type="range"]::-webkit-slider-thumb {
 
 /* IDE Sandbox Overrides */
 .ide-hero-card {
-    background: var(--bg-color) !important;
+    background-color: var(--bg-color) !important;
     border: none !important;
     border-radius: 16px !important;
     box-shadow: none !important;
@@ -1102,7 +1102,7 @@ body .glass, body .card, body .certificate-card, body .game-card, body .contact-
     backdrop-filter: blur(2px) !important;
     -webkit-backdrop-filter: blur(2px) !important;
     border: none !important;
-    transition: background-size 0.3s ease-out, box-shadow 0.3s ease-out !important;
+    transition: all 0.3s ease-out, background-size 0.2s ease-out, box-shadow 0.2s ease-out !important;
 }
 
 /* Neon Wireframe Trace Hover Activation */

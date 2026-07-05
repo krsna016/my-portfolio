@@ -288,14 +288,6 @@ textarea {
 }
 
 .hero-content h1:hover {
-    background: transparent;
-    -webkit-text-fill-color: transparent;
-    -webkit-text-stroke: 2px var(--secondary-color);
-    /* Neon Cyan stroke */
-    filter: drop-shadow(0 0 10px var(--secondary-color));
-    /* Glow effect */
-    transform: scale(1.05);
-    /* Subtle zoom */
     cursor: default;
 }
 
