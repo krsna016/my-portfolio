@@ -1331,14 +1331,14 @@ button.btn.primary.chat-send-btn,
 .chat-input-bar button.chat-send-btn,
 .chat-input-bar button[type="submit"],
 .chat-send-btn {
-    background: rgba(255, 255, 255, 0.10) !important;
+    background: transparent !important;
     border: none !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
-    backdrop-filter: blur(8px) !important;
-    -webkit-backdrop-filter: blur(8px) !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
     color: #FFFFFF !important;
-    border-radius: 12px !important;
-    padding: 10px 18px !important;
+    border-radius: 0 !important;
+    padding: 8px 12px !important;
     margin: 0 0 0 8px !important;
     cursor: pointer !important;
     transition: all 0.3s ease-out !important;
@@ -1372,11 +1372,13 @@ button.btn.chat-send-btn:hover,
 button.btn.primary.chat-send-btn:hover,
 .chat-input-bar button.chat-send-btn:hover,
 .chat-input-bar button[type="submit"]:hover {
-    background: rgba(255, 255, 255, 0.22) !important;
+    background: transparent !important;
     border: none !important;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5) !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
     animation: sendBtnComeUp 1.6s ease-in-out infinite !important;
-    transform: scale(1.03) !important;
+    transform: scale(1.1) !important;
     transform-origin: center center !important;
     cursor: pointer !important;
     color: #FFFFFF !important;
