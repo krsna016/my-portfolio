@@ -904,7 +904,7 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
     padding: 0.55rem 1rem !important;
     background: transparent !important;
     color: #fff !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border: none !important;
     border-radius: 8px !important;
     font-weight: 500 !important;
     font-size: 0.85rem !important;
@@ -1010,7 +1010,7 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
     padding: 0.55rem 1rem !important;
     background: transparent !important;
     color: #fff !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border: none !important;
     border-radius: 8px !important;
     font-weight: 500 !important;
     font-size: 0.85rem !important;
@@ -1043,7 +1043,7 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
 button:not(.ide-run-btn),
 .tab-btn {
     background: rgba(255, 255, 255, 0.10) !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border: none !important;
     backdrop-filter: blur(8px) !important;
     -webkit-backdrop-filter: blur(8px) !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
@@ -1060,7 +1060,7 @@ button:not(.ide-run-btn):hover,
 .category-list li.active,
 .category-list li:hover {
     background: rgba(255, 255, 255, 0.22) !important;
-    border: 1px solid rgba(255, 255, 255, 0.28) !important;
+    border: none !important;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
     color: #FFFFFF !important;
 }

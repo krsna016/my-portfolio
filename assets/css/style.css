@@ -2122,7 +2122,7 @@ footer {
     white-space: nowrap !important;
     flex-shrink: 0;
     background: rgba(255, 255, 255, 0.10) !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border: none !important;
     border-radius: 12px !important;
     color: #FFFFFF !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
@@ -2133,7 +2133,7 @@ footer {
 .drawing-controls .btn:hover {
     transform: translateY(0px) !important;
     background: rgba(255, 255, 255, 0.22) !important;
-    border: 1px solid rgba(255, 255, 255, 0.28) !important;
+    border: none !important;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5) !important;
     color: #FFFFFF !important;
 }
