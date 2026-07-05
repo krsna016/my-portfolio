@@ -609,21 +609,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const rawHtml = marked.parse(markdownContent);
             const safeHtml = DOMPurify.sanitize(rawHtml);
             
-            // Extract the first H1 tag as the title, and the rest as content
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = safeHtml;
-            const h1Element = tempDiv.querySelector('h1');
-            
-            const titleCard = document.getElementById('reader-title-card');
-            if (h1Element && titleCard) {
-                titleCard.innerHTML = `<h1>${h1Element.innerHTML}</h1>`;
-                titleCard.style.display = 'block';
-                h1Element.remove(); // Remove H1 from main content
-            } else if (titleCard) {
-                titleCard.style.display = 'none';
-            }
-            
-            readerContent.innerHTML = tempDiv.innerHTML;
+            readerContent.innerHTML = safeHtml;
             showReaderView();
             window.scrollTo(0, 0);
 

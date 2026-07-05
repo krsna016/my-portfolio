@@ -3005,47 +3005,32 @@ body.focus-mode-active .interactive-bg {
 
 /* ── Headings ─────────────────────────────────────────────── */
 
-/* Title card - separate matte box */
-.reader-title-card {
-    background: #121218 !important; /* Matte dark background */
-    border: none !important;
-    border-radius: 16px;
-    padding: 2.2rem clamp(1.5rem, 5vw, 4rem) !important;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
-    margin-bottom: 2rem;
-    box-sizing: border-box !important;
-}
-
-.reader-title-card h1 {
-    color: #00ff66 !important; /* Neon hack green text */
-    font-size: calc(2.45rem * var(--blog-scale, 1));
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important; /* No underline */
-    line-height: 1.3;
-}
-
-/* H1 fallback — Article title, pure white, large */
+/* H1 — Article title, pure white, large */
 #reader-content.markdown-body h1 {
     color: #00ff66 !important; /* Neon hack green text */
     font-size: calc(2.4rem * var(--blog-scale, 1));
     font-weight: 700;
     letter-spacing: -0.5px;
-    margin: 0 0 1.8rem 0;
-    padding-bottom: 0.6rem;
+    margin: 0 0 2rem 0;
+    padding: 1.5rem 2rem !important;
+    background: #161622 !important; /* Matte card background */
     border: none !important;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
 }
 
 /* H2 — Section titles, neon green */
 #reader-content.markdown-body h2 {
-    color: var(--primary-color, #2ed573);
+    color: #00ff66 !important; /* Neon green text */
     font-size: calc(1.65rem * var(--blog-scale, 1));
     font-weight: 600;
-    margin: 2.5rem 0 1rem 0;
-    padding-left: 0.8rem;
-    border-left: 3px solid var(--primary-color, #2ed573);
+    margin: 3rem 0 1.2rem 0;
+    padding: 1rem 1.5rem !important;
+    background: #161622 !important; /* Matte card background */
+    border: none !important;
+    border-left: 4px solid #00ff66 !important; /* Solid green left bar */
+    border-radius: 0 10px 10px 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* H3 — Sub-sections, light grey */
@@ -3053,8 +3038,13 @@ body.focus-mode-active .interactive-bg {
     color: #b0b8c1;
     font-size: calc(1.3rem * var(--blog-scale, 1));
     font-weight: 600;
-    margin: 2rem 0 0.8rem 0;
+    margin: 2.5rem 0 1rem 0;
     letter-spacing: 0.2px;
+    padding: 0.8rem 1.2rem !important;
+    background: #181826 !important; /* Matte background, slightly different shade */
+    border: none !important;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
 }
 
 /* H4 — "Important" markers, red */
@@ -3064,7 +3054,13 @@ body.focus-mode-active .interactive-bg {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin: 1.8rem 0 0.6rem 0;
+    margin: 2.2rem 0 0.8rem 0;
+    padding: 0.8rem 1.2rem !important;
+    background: rgba(255, 71, 87, 0.05) !important; /* Subtle red matte background */
+    border: none !important;
+    border-left: 4px solid #ff4757 !important;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
 }
 
 /* H5 — Notes, muted grey */
