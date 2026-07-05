@@ -174,7 +174,7 @@
 }
 
 .hero-identity-wrapper.hovering .id-bracket {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(0, 255, 65, 0.8);
     transform: translateX(0);
 }
 .hero-identity-wrapper.hovering .id-coord-label {
