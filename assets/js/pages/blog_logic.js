@@ -51,23 +51,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             </div>
         `;
 
-        const topBar = document.createElement('div');
-        topBar.className = 'post-reader-top-bar';
-        topBar.style.display = 'flex';
-        topBar.style.justifyContent = 'space-between';
-        topBar.style.alignItems = 'center';
-        topBar.style.marginBottom = '30px';
-        topBar.style.flexWrap = 'wrap';
-        topBar.style.gap = '15px';
-
-        if (backButton && backButton.parentNode === postReader) {
-            postReader.insertBefore(topBar, backButton);
-            topBar.appendChild(backButton);
-            backButton.style.marginBottom = '0';
-        } else {
-            postReader.insertBefore(topBar, readerContent);
+        const existingTopBar = postReader.querySelector('.post-reader-top-bar');
+        if (existingTopBar) {
+            existingTopBar.appendChild(fontBar);
         }
-        topBar.appendChild(fontBar);
 
         let toast = document.getElementById('font-size-toast');
         if (!toast) {
@@ -629,28 +616,18 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
 
             // 2. Intense Metadata Badge (Sleek Inline Line)
-            let metaBadge = document.getElementById('intense-meta-badge');
-            if (!metaBadge) {
-                metaBadge = document.createElement('div');
-                metaBadge.id = 'intense-meta-badge';
-                metaBadge.className = 'intense-meta-badge fade-in-up';
-                
-                const layoutWrapper = postReader.querySelector('.post-reader-layout');
-                if (layoutWrapper) {
-                    postReader.insertBefore(metaBadge, layoutWrapper);
-                } else {
-                    readerContent.parentNode.insertBefore(metaBadge, readerContent);
-                }
+            const metaBadge = document.getElementById('intense-meta-badge');
+            if (metaBadge) {
+                metaBadge.innerHTML = `
+                    <span><i class="fa-regular fa-clock"></i> ${readTime} min read</span>
+                    <span class="meta-divider">•</span>
+                    <span><i class="fa-solid fa-align-left"></i> ${words} words</span>
+                    <span class="meta-divider">•</span>
+                    <span class="meta-category"><i class="fa-solid fa-tag"></i> ${escapeHTML(post.category || 'Engineering')}</span>
+                    ${post.date ? `<span class="meta-divider">•</span><span><i class="fa-regular fa-calendar"></i> ${escapeHTML(post.date)}</span>` : ''}
+                `;
+                metaBadge.style.display = 'flex';
             }
-            metaBadge.innerHTML = `
-                <span><i class="fa-regular fa-clock"></i> ${readTime} min read</span>
-                <span class="meta-divider">•</span>
-                <span><i class="fa-solid fa-align-left"></i> ${words} words</span>
-                <span class="meta-divider">•</span>
-                <span class="meta-category"><i class="fa-solid fa-tag"></i> ${escapeHTML(post.category || 'Engineering')}</span>
-                ${post.date ? `<span class="meta-divider">•</span><span><i class="fa-regular fa-calendar"></i> ${escapeHTML(post.date)}</span>` : ''}
-            `;
-            metaBadge.style.display = 'flex';
 
             // 3. Cyberpunk Top Scroll Progress Bar
             let scrollBar = document.getElementById('neon-scroll-progress');
