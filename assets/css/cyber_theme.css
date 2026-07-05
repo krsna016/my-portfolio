@@ -1145,3 +1145,124 @@ body .glass:not(.timeline-content):hover::after, body .card:not(.timeline-conten
     transform: scale(1.05);
     transition: all 0.3s ease-out !important;
 }
+
+/* ==========================================================================
+   PREMIUM RADAR CURSOR
+   ========================================================================== */
+#radar-cursor-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 10001;
+    will-change: transform;
+}
+
+.radar-spotlight {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100px;
+    height: 100px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.radar-main {
+    position: absolute;
+    top: 0; left: 0;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.1s ease-out; /* For click scale */
+}
+
+/* Caret Mode */
+.radar-caret {
+    display: none;
+    width: 2px;
+    height: 20px;
+    background: #F5F5F5;
+    box-shadow: 0 0 6px rgba(34, 211, 238, 0.6);
+    border-radius: 1px;
+}
+
+.radar-text-mode .radar-svg {
+    display: none;
+}
+.radar-text-mode .radar-caret {
+    display: block;
+    animation: radar-caret-blink 1s infinite;
+}
+@keyframes radar-caret-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* Base SVG styling */
+.radar-svg {
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    filter: drop-shadow(0 0 4px rgba(34, 211, 238, 0.3));
+}
+
+.radar-dot {
+    transition: fill 0.3s ease;
+}
+
+.radar-ring {
+    transition: r 0.3s ease, opacity 0.3s ease, stroke 0.3s ease;
+}
+
+/* Sweep Rotation */
+.radar-sweep {
+    transform-origin: 16px 16px;
+    animation: radar-spin 2.5s linear infinite;
+    will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+    .radar-sweep {
+        animation: none;
+    }
+}
+@keyframes radar-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Hover States (Outer ring expands, sweeps faster, dot brightens) */
+.radar-hover .radar-svg {
+    transform: scale(1.12);
+}
+.radar-hover .radar-ring {
+    stroke: #22D3EE;
+    opacity: 0.8;
+}
+.radar-hover .radar-dot {
+    fill: #22D3EE;
+    filter: drop-shadow(0 0 4px #22D3EE);
+}
+.radar-hover .radar-sweep {
+    animation-duration: 1.2s;
+}
+.radar-disabled {
+    opacity: 0.4;
+    filter: grayscale(1);
+}
+
+/* Click / Ambient Pulse */
+.radar-click-pulse {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border: 1px solid #22D3EE;
+    border-radius: 50%;
+    animation: radar-click-expand 0.35s ease-out forwards;
+    pointer-events: none;
+}
+@keyframes radar-click-expand {
+    0% { width: 8px; height: 8px; opacity: 0.8; }
+    100% { width: 45px; height: 45px; opacity: 0; }
+}
