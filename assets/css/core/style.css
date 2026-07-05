@@ -2991,13 +2991,28 @@ body.reader-open .section.games-page {
     margin-right: 0;
 }
 
-/* === STEP 2: Offset entire #post-reader to clear the fixed TOC === */
-/* TOC is 260px wide at left:16px → occupies 0 to 276px */
-/* So post-reader needs padding-left: 290px to start safely after TOC */
+/* Reset any previous padding on #post-reader */
 #post-reader {
-    padding-left: 290px;
-    padding-right: 2rem;
+    padding: 0;
     box-sizing: border-box;
+}
+
+/* === STEP 2: Shift top-bar and article content to the RIGHT of the fixed TOC ===
+   TOC: position:fixed, left:16px, width:260px → occupies viewport x=16 to x=276
+   We use margin-left on the direct children so they visually start after the TOC.
+   margin-left on a block element shifts IT rightward without affecting its own width. */
+
+#post-reader .post-reader-top-bar {
+    margin-left: 290px;
+    margin-right: 1rem;
+}
+
+/* Layout inside #post-reader */
+#post-reader .post-reader-layout {
+    display: block;
+    margin-top: 1.5rem;
+    margin-left: 290px;  /* same as top-bar, clears fixed TOC */
+    margin-right: 1rem;
 }
 
 /* === STEP 3: Fixed LEFT sidebar TOC — viewport-anchored === */
