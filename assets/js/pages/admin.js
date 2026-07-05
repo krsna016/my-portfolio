@@ -9,7 +9,7 @@ function escapeHTML(str) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Authentication Logic ---
+    // DOM Elements
     const loginOverlay = document.getElementById('login-overlay');
     const loginForm = document.getElementById('login-form');
     const passwordInput = document.getElementById('admin-password');
@@ -18,43 +18,74 @@ document.addEventListener('DOMContentLoaded', () => {
     const adminContainer = document.querySelector('.admin-container');
     const navbar = document.querySelector('.navbar');
 
-    async function checkAuthentication() {
-        const token = localStorage.getItem('adminToken');
-        if (!token) {
-            loginOverlay.style.display = 'flex';
-            if (adminContainer) adminContainer.style.display = 'none';
-            if (navbar) navbar.style.display = 'none';
-            return;
-        }
+    // Parse cookies helper
+    function parseCookies(cookieHeader) {
+        const list = {};
+        if (!cookieHeader) return list;
+        cookieHeader.split(';').forEach(cookie => {
+            let parts = cookie.split('=');
+            list[parts.shift().trim()] = decodeURI(parts.join('='));
+        });
+        return list;
+    }
 
-        try {
-            const res = await fetch('/api/check-auth', {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            if (res.ok) {
-                localStorage.setItem('adminLoggedIn', 'true');
-                loginOverlay.style.display = 'none';
-                if (adminContainer) adminContainer.style.display = 'block';
-                if (navbar) navbar.style.display = 'flex';
-            } else {
-                // Expired or invalid token -> Force logout
-                localStorage.removeItem('adminLoggedIn');
-                localStorage.removeItem('adminToken');
-                document.cookie = "adminToken=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Strict";
-                loginOverlay.style.display = 'flex';
-                if (adminContainer) adminContainer.style.display = 'none';
-                if (navbar) navbar.style.display = 'none';
+    // Sync token state on boot
+    let token = localStorage.getItem('adminToken');
+    const cookieToken = parseCookies(document.cookie)['adminToken'];
+
+    if (cookieToken && !token) {
+        localStorage.setItem('adminToken', cookieToken);
+        localStorage.setItem('adminLoggedIn', 'true');
+        token = cookieToken;
+    } else if (token && !cookieToken) {
+        document.cookie = "adminToken=" + token + "; Path=/; Max-Age=86400; SameSite=Strict";
+        window.location.reload();
+        return;
+    }
+
+    async function checkAuthentication() {
+        // Scenario A: We are on the private Admin Panel page
+        if (adminContainer) {
+            if (!token) {
+                window.location.href = 'admin.html';
+                return;
             }
-        } catch (e) {
-            // Offline/Network fallback - trust local storage optimistic state
-            if (localStorage.getItem('adminLoggedIn') === 'true') {
-                loginOverlay.style.display = 'none';
-                if (adminContainer) adminContainer.style.display = 'block';
-                if (navbar) navbar.style.display = 'flex';
-            } else {
-                loginOverlay.style.display = 'flex';
-                if (adminContainer) adminContainer.style.display = 'none';
-                if (navbar) navbar.style.display = 'none';
+            try {
+                const res = await fetch('/api/check-auth', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (!res.ok) {
+                    localStorage.removeItem('adminLoggedIn');
+                    localStorage.removeItem('adminToken');
+                    document.cookie = "adminToken=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Strict";
+                    window.location.href = 'admin.html';
+                }
+            } catch (e) {
+                if (localStorage.getItem('adminLoggedIn') !== 'true') {
+                    window.location.href = 'admin.html';
+                }
+            }
+        }
+        
+        // Scenario B: We are on the Login page
+        if (loginOverlay && token) {
+            try {
+                const res = await fetch('/api/check-auth', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (res.ok) {
+                    window.location.href = 'admin.html';
+                    return;
+                } else {
+                    localStorage.removeItem('adminLoggedIn');
+                    localStorage.removeItem('adminToken');
+                    document.cookie = "adminToken=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Strict";
+                }
+            } catch (e) {
+                if (localStorage.getItem('adminLoggedIn') === 'true') {
+                    window.location.href = 'admin.html';
+                    return;
+                }
             }
         }
     }
