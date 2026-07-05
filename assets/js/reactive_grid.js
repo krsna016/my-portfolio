@@ -63,10 +63,14 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Track hovered elements
     let activeTargets = new Map();
-    let pulses = [];
     
     let mouseX = -1000;
     let mouseY = -1000;
+    
+    // Track if we are hovering readable content so we can dim the grid glow
+    let isHoveringContent = false;
+    let targetGlowAlpha = 1;
+    let currentGlowAlpha = 1;
     
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
@@ -80,90 +84,33 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const interactiveSelectors = 'a, button, .card, .glass, .project-card, .certificate-card, .game-card, .article-card, .timeline-content, .ide-tab, [onclick], .social-link, .dsa-container, .contact-container, .hero-visual';
 
-    function spawnPulse(el) {
-        if (prefersReducedMotion) return;
-        const rect = el.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + rect.height / 2;
-        
-        const startX = Math.round(cx / GRID_MINOR) * GRID_MINOR;
-        const startY = Math.round(cy / GRID_MINOR) * GRID_MINOR;
-        
-        // Random 1-2 pulses
-        const count = 1 + Math.floor(Math.random() * 2);
-        
-        for (let i = 0; i < count; i++) {
-            const dir = Math.floor(Math.random() * 4);
-            let vx = 0, vy = 0;
-            const speed = 40 + Math.random() * 20;
-            
-            if (dir === 0) vy = -speed;
-            if (dir === 1) vx = speed;
-            if (dir === 2) vy = speed;
-            if (dir === 3) vx = -speed;
-            
-            pulses.push({
-                x: startX,
-                y: startY,
-                vx: vx,
-                vy: vy,
-                life: 0,
-                maxLife: 0.5 + Math.random() * 0.4,
-                length: 40 + Math.random() * 30
-            });
-        }
-    }
-
     document.addEventListener('mouseover', (e) => {
+        if (e.target.closest(interactiveSelectors)) {
+            isHoveringContent = true;
+            targetGlowAlpha = 0.1; // Dim glow significantly over cards
+        }
+        
         const target = e.target.closest(interactiveSelectors);
         if (target && !activeTargets.has(target)) {
             activeTargets.set(target, {
                 intensity: 0,
                 targetIntensity: 1
             });
-            spawnPulse(target);
         }
     }, {passive: true});
     
     document.addEventListener('mouseout', (e) => {
+        if (e.target.closest(interactiveSelectors)) {
+            isHoveringContent = false;
+            targetGlowAlpha = 1; // Restore glow
+        }
+        
         const target = e.target.closest(interactiveSelectors);
         if (target) {
             const data = activeTargets.get(target);
             if (data) data.targetIntensity = 0;
         }
     }, {passive: true});
-
-    // Timeline periodic pulses
-    let timelineNodes = [];
-    setInterval(() => {
-        if (prefersReducedMotion) return;
-        
-        if (timelineNodes.length === 0) {
-            timelineNodes = Array.from(document.querySelectorAll('.timeline-content'));
-        }
-        
-        if (timelineNodes.length > 0) {
-            const node = timelineNodes[Math.floor(Math.random() * timelineNodes.length)];
-            const rect = node.getBoundingClientRect();
-            
-            if (rect.top > -100 && rect.bottom < height + 100) {
-                const cx = rect.left + rect.width / 2;
-                const cy = rect.top + rect.height / 2;
-                const startX = Math.round(cx / GRID_MINOR) * GRID_MINOR;
-                const startY = Math.round(cy / GRID_MINOR) * GRID_MINOR;
-                
-                pulses.push({
-                    x: startX,
-                    y: startY,
-                    vx: 0,
-                    vy: 35 + Math.random() * 15, // Downward
-                    life: 0,
-                    maxLife: 1.5 + Math.random(),
-                    length: 60
-                });
-            }
-        }
-    }, 4500);
 
     let lastTime = performance.now();
     
@@ -234,41 +181,6 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.strokeStyle = gradMajor;
             ctx.lineWidth = 1.5;
             ctx.stroke(majorGridPath);
-        }
-        
-        // Draw Pulses
-        for (let i = pulses.length - 1; i >= 0; i--) {
-            const p = pulses[i];
-            p.life += dt;
-            if (p.life >= p.maxLife) {
-                pulses.splice(i, 1);
-                continue;
-            }
-            
-            p.x += p.vx * dt;
-            p.y += p.vy * dt;
-            
-            let progress = p.life / p.maxLife;
-            let currentAlpha = Math.sin(progress * Math.PI) * 0.8;
-            
-            let tailX = p.x - (p.vx === 0 ? 0 : Math.sign(p.vx) * p.length);
-            let tailY = p.y - (p.vy === 0 ? 0 : Math.sign(p.vy) * p.length);
-            
-            let grad = ctx.createLinearGradient(tailX, tailY, p.x, p.y);
-            grad.addColorStop(0, `rgba(34, 211, 238, 0)`);
-            grad.addColorStop(1, `rgba(34, 211, 238, ${currentAlpha})`);
-            
-            ctx.beginPath();
-            ctx.moveTo(tailX, tailY);
-            ctx.lineTo(p.x, p.y);
-            ctx.strokeStyle = grad;
-            ctx.lineWidth = 1.5;
-            ctx.stroke();
-            
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 255, 255, ${currentAlpha * 0.8})`;
-            ctx.fill();
         }
         
         // Draw Cursor Glow (Green)
