@@ -2978,6 +2978,317 @@ body.focus-mode-active .interactive-bg {
 }
 
 /* ================================================================
+   THEMED MARKDOWN BODY — Cyberpunk colour system
+   No gradients. Pure flat colours from the site palette.
+   Colour roles:
+     #ffffff / #e8e8e8  — body text / headings
+     var(--primary-color) / #2ed573  — neon green (accents, H2, links)
+     #ff4757  — red (warnings, H4 "Important")
+     #aaa / #666  — grey (meta, subtle, H3)
+     #1a1a2e / #12122a  — dark surfaces (code blocks, table rows)
+   ================================================================ */
+
+/* Base body text */
+#reader-content.markdown-body {
+    color: #d8d8d8;
+    font-size: calc(1.05rem * var(--blog-scale, 1));
+    line-height: 1.85;
+    font-family: 'Space Grotesk', 'Outfit', sans-serif;
+    padding: 2rem 0;
+}
+
+/* ── Headings ─────────────────────────────────────────────── */
+
+/* H1 — Article title, pure white, large */
+#reader-content.markdown-body h1 {
+    color: #ffffff;
+    font-size: calc(2.4rem * var(--blog-scale, 1));
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin: 0 0 1.8rem 0;
+    padding-bottom: 0.6rem;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+/* H2 — Section titles, neon green */
+#reader-content.markdown-body h2 {
+    color: var(--primary-color, #2ed573);
+    font-size: calc(1.65rem * var(--blog-scale, 1));
+    font-weight: 600;
+    margin: 2.5rem 0 1rem 0;
+    padding-left: 0.8rem;
+    border-left: 3px solid var(--primary-color, #2ed573);
+}
+
+/* H3 — Sub-sections, light grey */
+#reader-content.markdown-body h3 {
+    color: #b0b8c1;
+    font-size: calc(1.3rem * var(--blog-scale, 1));
+    font-weight: 600;
+    margin: 2rem 0 0.8rem 0;
+    letter-spacing: 0.2px;
+}
+
+/* H4 — "Important" markers, red */
+#reader-content.markdown-body h4 {
+    color: #ff4757;
+    font-size: calc(1.1rem * var(--blog-scale, 1));
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 1.8rem 0 0.6rem 0;
+}
+
+/* H5 — Notes, muted grey */
+#reader-content.markdown-body h5 {
+    color: #888;
+    font-size: calc(1rem * var(--blog-scale, 1));
+    font-weight: 500;
+    margin: 1.5rem 0 0.5rem 0;
+}
+
+/* H6 — Caption-level, dimmer grey */
+#reader-content.markdown-body h6 {
+    color: #666;
+    font-size: calc(0.9rem * var(--blog-scale, 1));
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin: 1.2rem 0 0.4rem 0;
+}
+
+/* ── Body text elements ───────────────────────────────────── */
+
+#reader-content.markdown-body p {
+    margin: 0 0 1.2rem 0;
+    color: #d0d0d0;
+}
+
+/* Bold — bright white so it POPS */
+#reader-content.markdown-body strong {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* Italic — soft green tint */
+#reader-content.markdown-body em {
+    color: #8be9a0;
+    font-style: italic;
+}
+
+/* Strikethrough — muted red */
+#reader-content.markdown-body del {
+    color: #ff6b81;
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+/* ── Links ────────────────────────────────────────────────── */
+#reader-content.markdown-body a {
+    color: var(--primary-color, #2ed573);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
+}
+#reader-content.markdown-body a:hover {
+    color: #ffffff;
+    border-bottom-color: var(--primary-color, #2ed573);
+}
+
+/* ── Lists ────────────────────────────────────────────────── */
+#reader-content.markdown-body ul {
+    list-style: none;
+    padding-left: 1.2rem;
+    margin: 0.8rem 0 1.2rem 0;
+}
+#reader-content.markdown-body ul li {
+    position: relative;
+    padding-left: 1.2rem;
+    margin-bottom: 0.45rem;
+    color: #d0d0d0;
+}
+#reader-content.markdown-body ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color, #2ed573);
+    font-size: 0.85em;
+    top: 0.1em;
+}
+#reader-content.markdown-body ul ul li::before {
+    content: '–';
+    color: #888;
+}
+
+#reader-content.markdown-body ol {
+    padding-left: 1.8rem;
+    margin: 0.8rem 0 1.2rem 0;
+    counter-reset: list-counter;
+    list-style: none;
+}
+#reader-content.markdown-body ol li {
+    counter-increment: list-counter;
+    position: relative;
+    padding-left: 0.4rem;
+    margin-bottom: 0.45rem;
+    color: #d0d0d0;
+}
+#reader-content.markdown-body ol li::before {
+    content: counter(list-counter) '.';
+    position: absolute;
+    left: -1.8rem;
+    color: var(--primary-color, #2ed573);
+    font-weight: 600;
+    font-size: 0.9em;
+    width: 1.6rem;
+    text-align: right;
+}
+
+/* ── Blockquotes — 3 flavours by nesting ─────────────────── */
+
+/* Default blockquote — grey left-bar (general notes) */
+#reader-content.markdown-body blockquote {
+    margin: 1.5rem 0;
+    padding: 1rem 1.4rem;
+    border-left: 4px solid #555;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 0 8px 8px 0;
+    color: #aaa;
+}
+#reader-content.markdown-body blockquote p {
+    margin: 0;
+    color: #aaa;
+    font-style: italic;
+}
+
+/* Nested blockquote (>> text) — green = tip/info */
+#reader-content.markdown-body blockquote blockquote {
+    border-left-color: var(--primary-color, #2ed573);
+    background: rgba(46, 213, 115, 0.06);
+    color: #8be9a0;
+}
+#reader-content.markdown-body blockquote blockquote p {
+    color: #8be9a0;
+}
+
+/* Triple-nested (>>> text) — red = warning/important */
+#reader-content.markdown-body blockquote blockquote blockquote {
+    border-left-color: #ff4757;
+    background: rgba(255, 71, 87, 0.07);
+    color: #ff8089;
+}
+#reader-content.markdown-body blockquote blockquote blockquote p {
+    color: #ff8089;
+}
+
+/* ── Inline code ──────────────────────────────────────────── */
+#reader-content.markdown-body code {
+    font-family: 'IBM Plex Mono', 'Fira Code', monospace;
+    font-size: 0.88em;
+    color: var(--primary-color, #2ed573);
+    background: rgba(46, 213, 115, 0.1);
+    border: 1px solid rgba(46, 213, 115, 0.2);
+    border-radius: 4px;
+    padding: 0.15em 0.45em;
+}
+
+/* ── Code blocks ──────────────────────────────────────────── */
+#reader-content.markdown-body pre {
+    background: #0d0d1a;
+    border: 1px solid #1e1e3a;
+    border-radius: 10px;
+    padding: 1.4rem 1.6rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+#reader-content.markdown-body pre code {
+    color: #e0e0e0;
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-size: 0.9em;
+    line-height: 1.7;
+}
+
+/* ── Tables ───────────────────────────────────────────────── */
+#reader-content.markdown-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95em;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #1e1e3a;
+}
+#reader-content.markdown-body thead tr {
+    background: #12122a;
+    color: var(--primary-color, #2ed573);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.82em;
+}
+#reader-content.markdown-body th {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 2px solid var(--primary-color, #2ed573);
+}
+#reader-content.markdown-body td {
+    padding: 0.65rem 1rem;
+    color: #c8c8c8;
+    border-bottom: 1px solid #1a1a2e;
+}
+#reader-content.markdown-body tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.025);
+}
+#reader-content.markdown-body tbody tr:hover {
+    background: rgba(46, 213, 115, 0.05);
+}
+
+/* ── Horizontal rule ──────────────────────────────────────── */
+#reader-content.markdown-body hr {
+    border: none;
+    height: 1px;
+    background: #1e1e3a;
+    margin: 2.5rem 0;
+    position: relative;
+}
+#reader-content.markdown-body hr::after {
+    content: '◆';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--primary-color, #2ed573);
+    font-size: 0.7rem;
+    background: var(--dark-bg, #0a0a0f);
+    padding: 0 0.5rem;
+}
+
+/* ── Images ───────────────────────────────────────────────── */
+#reader-content.markdown-body img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin: 1rem 0;
+    border: 1px solid #1e1e3a;
+}
+
+/* ── Keyboard / abbr ──────────────────────────────────────── */
+#reader-content.markdown-body kbd {
+    display: inline-block;
+    padding: 2px 8px;
+    background: #1a1a2e;
+    border: 1px solid #333;
+    border-bottom-width: 2px;
+    border-radius: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8em;
+    color: #ddd;
+}
+
+
+/* ================================================================
    2. READER VIEW — Full-page article reader (no TOC)
    #post-reader is teleported to <body> by JS in reader mode.
    ================================================================ */
@@ -3011,7 +3322,7 @@ body.reader-open > #post-reader .post-reader-top-bar {
     box-sizing: border-box !important;
 }
 
-/* Article content — full-width with side padding */
+/* Article content — centred readable column */
 body.reader-open > #post-reader .post-reader-layout {
     display: block !important;
     max-width: 100% !important;
@@ -3019,248 +3330,6 @@ body.reader-open > #post-reader .post-reader-layout {
     padding: 0 clamp(2rem, 5vw, 5rem) !important;
     width: 100% !important;
     box-sizing: border-box !important;
-}
-
-/* ================================================================
-   3. THEMED MARKDOWN BODY — Cyberpunk Blog Styling
-   Colors: purple #6c63ff | cyan #00d4ff | accent #ff6b9d (pink)
-   ================================================================ */
-
-/* Base text */
-body.reader-open #reader-content.markdown-body {
-    color: #d4d4e8;
-    line-height: 1.85;
-    font-size: calc(1.05rem * var(--blog-scale, 1));
-}
-
-/* ── Headings ── */
-body.reader-open #reader-content.markdown-body h1 {
-    font-size: calc(2.6rem * var(--blog-scale, 1));
-    font-weight: 800;
-    margin: 0 0 1.8rem;
-    background: linear-gradient(135deg, #ffffff 0%, #a9a4ff 50%, #00d4ff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-}
-
-body.reader-open #reader-content.markdown-body h2 {
-    font-size: calc(1.75rem * var(--blog-scale, 1));
-    font-weight: 700;
-    margin: 3rem 0 1.2rem;
-    color: #a9a4ff;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid rgba(108, 99, 255, 0.3);
-    position: relative;
-}
-
-body.reader-open #reader-content.markdown-body h2::before {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 60px;
-    height: 2px;
-    background: linear-gradient(90deg, #6c63ff, #00d4ff);
-    border-radius: 2px;
-}
-
-body.reader-open #reader-content.markdown-body h3 {
-    font-size: calc(1.3rem * var(--blog-scale, 1));
-    font-weight: 700;
-    margin: 2.2rem 0 0.8rem;
-    color: #00d4ff;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-}
-
-body.reader-open #reader-content.markdown-body h3::before {
-    content: '▸';
-    color: #6c63ff;
-    font-size: 0.9em;
-    flex-shrink: 0;
-}
-
-body.reader-open #reader-content.markdown-body h4 {
-    font-size: calc(1.1rem * var(--blog-scale, 1));
-    font-weight: 700;
-    margin: 1.8rem 0 0.6rem;
-    color: #7ee8fa;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-}
-
-/* ── Paragraphs ── */
-body.reader-open #reader-content.markdown-body p {
-    margin: 0 0 1.4rem;
-    color: #c8c8de;
-}
-
-/* ── Links ── */
-body.reader-open #reader-content.markdown-body a {
-    color: #00d4ff;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(0, 212, 255, 0.3);
-    transition: color 0.2s, border-color 0.2s, text-shadow 0.2s;
-}
-
-body.reader-open #reader-content.markdown-body a:hover {
-    color: #6c63ff;
-    border-bottom-color: #6c63ff;
-    text-shadow: 0 0 12px rgba(108, 99, 255, 0.5);
-}
-
-/* ── Inline code ── */
-body.reader-open #reader-content.markdown-body code:not(pre code) {
-    background: rgba(108, 99, 255, 0.12);
-    border: 1px solid rgba(108, 99, 255, 0.35);
-    color: #a9a4ff;
-    padding: 0.15em 0.5em;
-    border-radius: 5px;
-    font-size: 0.88em;
-    font-family: 'IBM Plex Mono', monospace;
-    white-space: nowrap;
-}
-
-/* ── Code blocks ── */
-body.reader-open #reader-content.markdown-body pre {
-    background: rgba(10, 10, 20, 0.85) !important;
-    border: 1px solid rgba(108, 99, 255, 0.2);
-    border-left: 3px solid #6c63ff;
-    border-radius: 10px;
-    padding: 1.5rem 1.5rem 1.5rem 1.5rem;
-    margin: 1.5rem 0;
-    overflow-x: auto;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(108, 99, 255, 0.1);
-}
-
-body.reader-open #reader-content.markdown-body pre code {
-    background: none !important;
-    border: none !important;
-    color: #c9d1d9;
-    font-size: calc(0.9rem * var(--blog-scale, 1));
-    font-family: 'IBM Plex Mono', monospace;
-    line-height: 1.7;
-    padding: 0;
-    white-space: pre;
-}
-
-/* ── Blockquotes ── */
-body.reader-open #reader-content.markdown-body blockquote {
-    border-left: 3px solid #00d4ff;
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.06) 0%, rgba(108, 99, 255, 0.04) 100%);
-    margin: 1.8rem 0;
-    padding: 1.2rem 1.5rem;
-    border-radius: 0 10px 10px 0;
-    color: #9eb8cc;
-    font-style: italic;
-    position: relative;
-}
-
-body.reader-open #reader-content.markdown-body blockquote::before {
-    content: '"';
-    position: absolute;
-    top: -0.5rem;
-    left: 1rem;
-    font-size: 3rem;
-    color: rgba(0, 212, 255, 0.2);
-    font-style: normal;
-    line-height: 1;
-    pointer-events: none;
-}
-
-body.reader-open #reader-content.markdown-body blockquote p {
-    margin: 0;
-    color: inherit;
-}
-
-/* ── Horizontal rule ── */
-body.reader-open #reader-content.markdown-body hr {
-    border: none;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(108, 99, 255, 0.4), rgba(0, 212, 255, 0.4), transparent);
-    margin: 2.5rem 0;
-}
-
-/* ── Lists ── */
-body.reader-open #reader-content.markdown-body ul,
-body.reader-open #reader-content.markdown-body ol {
-    margin: 0 0 1.4rem 1.5rem;
-    color: #c8c8de;
-}
-
-body.reader-open #reader-content.markdown-body li {
-    margin-bottom: 0.5rem;
-    line-height: 1.75;
-}
-
-body.reader-open #reader-content.markdown-body ul li::marker {
-    color: #6c63ff;
-}
-
-body.reader-open #reader-content.markdown-body ol li::marker {
-    color: #00d4ff;
-    font-weight: 700;
-}
-
-/* ── Tables ── */
-body.reader-open #reader-content.markdown-body table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1.8rem 0;
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid rgba(108, 99, 255, 0.2);
-}
-
-body.reader-open #reader-content.markdown-body th {
-    background: rgba(108, 99, 255, 0.2);
-    color: #a9a4ff;
-    font-weight: 700;
-    padding: 0.8rem 1rem;
-    text-align: left;
-    font-size: 0.9em;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-bottom: 1px solid rgba(108, 99, 255, 0.35);
-}
-
-body.reader-open #reader-content.markdown-body td {
-    padding: 0.7rem 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    color: #c8c8de;
-}
-
-body.reader-open #reader-content.markdown-body tr:nth-child(even) td {
-    background: rgba(255, 255, 255, 0.02);
-}
-
-body.reader-open #reader-content.markdown-body tr:hover td {
-    background: rgba(108, 99, 255, 0.07);
-    transition: background 0.15s;
-}
-
-/* ── Bold & Italic accents ── */
-body.reader-open #reader-content.markdown-body strong {
-    color: #e8e8ff;
-    font-weight: 700;
-}
-
-body.reader-open #reader-content.markdown-body em {
-    color: #b8d4e8;
-    font-style: italic;
-}
-
-/* ── Images ── */
-body.reader-open #reader-content.markdown-body img {
-    max-width: 100%;
-    border-radius: 10px;
-    border: 1px solid rgba(108, 99, 255, 0.2);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-    margin: 1rem 0;
 }
 
 /* 3. Sepia Mode Styles */
