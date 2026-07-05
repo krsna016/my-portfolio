@@ -237,6 +237,18 @@
             </div>
         </div>
 
+        <!-- SYNCHRONIZATION STATUS WARNING -->
+        <div id="sync-warning-box" class="glass" style="display: none; padding: 1.5rem; margin-bottom: 2rem; border-radius: 12px; border: 1px dashed #ff4757; background: rgba(255, 71, 87, 0.08); color: #ff6b81; font-weight: 500;">
+            <h4 style="margin-bottom: 0.5rem; color: #ff4757; display: flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-triangle-exclamation"></i> GitHub Sync Inactive!
+            </h4>
+            <p style="margin: 0; line-height: 1.5; font-size: 0.95rem;">
+                Your live website server is not authorized to push files to GitHub. Any changes you make will only exist temporarily in the server's RAM/ephemeral disk and <strong>will be lost</strong> next time the server redeploys or restarts.
+                <br><br>
+                <strong>To resolve this:</strong> Go to the <strong>Settings</strong> tab and enter your GitHub Personal Access Token (PAT) and repository details, or define the <code>GITHUB_TOKEN</code> and <code>GITHUB_REPO</code> environment variables in your hosting dashboard (e.g., Railway).
+            </p>
+        </div>
+
         <!-- INSTRUCTIONS BOX -->
         <div class="glass" style="padding: 1.5rem; margin-bottom: 2rem; border-radius: 12px; user-select: none;">
             <h4 style="margin-bottom: 0.5rem; color: var(--primary-color);"><i class="fa-solid fa-circle-info"></i> How

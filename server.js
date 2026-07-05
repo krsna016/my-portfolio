@@ -371,6 +371,15 @@ app.get('/api/check-auth', authenticateToken, (req, res) => {
     res.json({ authenticated: true });
 });
 
+// Check GitHub sync variables state (Protected or Public check)
+app.get('/api/sync-status', (req, res) => {
+    res.json({
+        githubSyncActive: !!(process.env.GITHUB_TOKEN && process.env.GITHUB_REPO),
+        repo: process.env.GITHUB_REPO || null,
+        branch: process.env.GITHUB_BRANCH || "master"
+    });
+});
+
 // Get all posts (Public) - Microsecond Response via RAM Cache
 app.get('/api/data', (req, res) => {
     res.json(blogDataCache);

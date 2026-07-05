@@ -102,6 +102,18 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('gh-branch').value = localStorage.getItem('ghBranch') || 'master';
         document.getElementById('gh-token').value = localStorage.getItem('ghToken') || '';
 
+        // Verify if GitHub Auto-Sync is active
+        fetch('/api/sync-status')
+            .then(res => res.json())
+            .then(status => {
+                const hasLocalToken = !!localStorage.getItem('ghToken');
+                if (!status.githubSyncActive && !hasLocalToken) {
+                    const warningBox = document.getElementById('sync-warning-box');
+                    if (warningBox) warningBox.style.display = 'block';
+                }
+            })
+            .catch(() => {});
+
         settingsForm.addEventListener('submit', (e) => {
             e.preventDefault();
             let repoVal = document.getElementById('gh-repo').value.trim();

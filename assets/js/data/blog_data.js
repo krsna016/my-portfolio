@@ -1,6 +1,14 @@
 const blogData = {
     "posts": [
         {
+            "id": "web-security",
+            "title": "Web Security",
+            "category": "Web Security",
+            "date": "2026-07-05",
+            "summary": "Exploring essential web application security principles, vulnerabilities, and defenses.",
+            "file": "blogs/web-security.md"
+        },
+        {
             "id": "intro-to-dp",
             "title": "Introduction to Dynamic Programming",
             "category": "Algorithms",
@@ -13,6 +21,7 @@ const blogData = {
         "DSA",
         "Algorithms",
         "System Design",
-        "Web Dev"
+        "Web Dev",
+        "Web Security"
     ]
 };
