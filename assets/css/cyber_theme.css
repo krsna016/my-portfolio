@@ -8,7 +8,7 @@
 
 :root {
     --bg-color: #060606;
-    --glass-bg: #111111;
+    --glass-bg: rgba(255, 255, 255, 0.02);
     --text-color: #F5F5F5;
     --primary-color: #F5F5F5;
     --secondary-color: #9A9A9A;
