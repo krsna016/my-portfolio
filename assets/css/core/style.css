@@ -2977,24 +2977,29 @@ body.focus-mode-active .interactive-bg {
     transition: opacity 0.6s ease;
 }
 
-/* 2. Reader View 2-Column Grid & TOC */
+/* 2. Reader View Layout & TOC */
 .post-reader-layout {
-    display: flex;
-    gap: 3rem;
-    align-items: flex-start;
+    display: block;
     margin-top: 1.5rem;
+    /* Right margin to leave room for fixed TOC */
+    padding-right: 290px;
 }
 
+/* Fixed sidebar TOC — bypasses all ancestor overflow/containment issues */
 .reader-toc {
-    width: 250px;
-    position: sticky;
+    width: 260px;
+    position: fixed;
     top: 120px;
+    right: 24px;
     padding: 1.5rem;
     border-radius: 12px;
     max-height: calc(100vh - 160px);
     overflow-y: auto;
-    flex-shrink: 0;
+    z-index: 200;
     user-select: none;
+    /* Subtle scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) transparent;
 }
 
 .reader-toc h4 {
@@ -3031,15 +3036,12 @@ body.focus-mode-active .interactive-bg {
     color: var(--primary-color);
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
     .post-reader-layout {
-        flex-direction: column;
-        gap: 2rem;
+        padding-right: 0 !important;
     }
     .reader-toc {
-        width: 100%;
-        position: static;
-        max-height: none;
+        display: none !important; /* Hide fixed TOC on smaller screens */
     }
 }
 
