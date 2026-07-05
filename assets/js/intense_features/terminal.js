@@ -35,6 +35,18 @@ function initQuakeTerm() {
             </div>
         </div>
     `;
+    
+    // Add modal overlay for consistency
+    const termOverlay = document.createElement('div');
+    termOverlay.className = 'modal'; 
+    termOverlay.id = 'quake-terminal-overlay';
+    termOverlay.style.zIndex = '999999'; 
+    termOverlay.style.cursor = 'pointer';
+    
+    // Clicking overlay closes terminal
+    termOverlay.addEventListener('click', toggleTerm);
+
+    document.body.appendChild(termOverlay);
     document.body.appendChild(termHUD);
 
     const input = document.getElementById('term-input');
@@ -91,8 +103,13 @@ function initQuakeTerm() {
     function toggleTerm() {
         termHUD.classList.toggle('open');
         if (termHUD.classList.contains('open')) {
+            termOverlay.classList.add('show');
+            termOverlay.style.display = 'flex';
             setTimeout(() => input.focus(), 100);
             if (window.CyberSound) window.CyberSound.playBlip();
+        } else {
+            termOverlay.classList.remove('show');
+            termOverlay.style.display = 'none';
         }
     }
 
