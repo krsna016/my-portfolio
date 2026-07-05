@@ -3202,13 +3202,16 @@ body.focus-mode-active .interactive-bg {
     margin: 1.5rem 0;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
+#reader-content.markdown-body pre::first-line {
+    line-height: 2.2 !important;
+}
 #reader-content.markdown-body pre code {
     color: #e0e0e0;
     background: transparent;
     border: none;
     padding: 0;
     font-size: 0.9em;
-    line-height: 1.7;
+    line-height: 1.75;
 }
 
 /* ── Tables ───────────────────────────────────────────────── */
