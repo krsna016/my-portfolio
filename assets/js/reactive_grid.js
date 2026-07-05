@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         zIndex: '-2',
         pointerEvents: 'none'
     });
-    document.documentElement.appendChild(canvas);
+    document.body.appendChild(canvas);
     
     const ctx = canvas.getContext('2d', { alpha: true });
     let width, height;
