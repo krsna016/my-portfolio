@@ -113,6 +113,33 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         });
 
+        // Force hover styles dynamically via JS to guarantee white background/black text on hover
+        [decBtn, incBtn].forEach(btn => {
+            if (btn) {
+                btn.addEventListener('mouseenter', () => {
+                    if (!btn.disabled) {
+                        btn.style.setProperty('background', '#ffffff', 'important');
+                        btn.style.setProperty('background-color', '#ffffff', 'important');
+                        btn.style.setProperty('color', '#000000', 'important');
+                    }
+                });
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.removeProperty('background');
+                    btn.style.removeProperty('background-color');
+                    btn.style.removeProperty('color');
+                });
+                // Also remove hover styles if button gets disabled dynamically
+                const observer = new MutationObserver(() => {
+                    if (btn.disabled) {
+                        btn.style.removeProperty('background');
+                        btn.style.removeProperty('background-color');
+                        btn.style.removeProperty('color');
+                    }
+                });
+                observer.observe(btn, { attributes: true, attributeFilter: ['disabled'] });
+            }
+        });
+
         // Restore saved settings on boot
         updateFontSize(currentSize, false);
 

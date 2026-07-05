@@ -3007,13 +3007,13 @@ body.focus-mode-active .interactive-bg {
 
 /* H1 — Article title, pure white, large */
 #reader-content.markdown-body h1 {
-    color: #ffffff;
+    color: #00ff66 !important; /* Neon hack green text */
     font-size: calc(2.4rem * var(--blog-scale, 1));
     font-weight: 700;
     letter-spacing: -0.5px;
     margin: 0 0 1.8rem 0;
     padding-bottom: 0.6rem;
-    border-bottom: 2px solid var(--primary-color);
+    border-bottom: 2px solid #ffffff !important; /* Main white horizontal line */
 }
 
 /* H2 — Section titles, neon green */
