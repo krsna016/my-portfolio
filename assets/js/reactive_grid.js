@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         left: '0',
         width: '100vw',
         height: '100vh',
-        zIndex: '-2',
+        zIndex: '0',
         pointerEvents: 'none'
     });
     document.body.appendChild(canvas);
@@ -181,11 +181,11 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Minor lines
         ctx.lineWidth = 1;
-        ctx.strokeStyle = `rgba(255, 255, 255, ${0.03 + currentScrollIntensity})`;
+        ctx.strokeStyle = `rgba(255, 255, 255, ${0.05 + currentScrollIntensity})`;
         ctx.stroke(minorGridPath);
         
         // Major lines
-        ctx.strokeStyle = `rgba(255, 255, 255, ${0.12 + currentScrollIntensity})`;
+        ctx.strokeStyle = `rgba(255, 255, 255, ${0.15 + currentScrollIntensity})`;
         ctx.stroke(majorGridPath);
         
         // Draw Radial Glows
