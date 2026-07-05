@@ -682,7 +682,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                 metaBadge = document.createElement('div');
                 metaBadge.id = 'intense-meta-badge';
                 metaBadge.className = 'intense-meta-badge fade-in-up';
-                readerContent.parentNode.insertBefore(metaBadge, readerContent);
+                
+                const layoutWrapper = postReader.querySelector('.post-reader-layout');
+                if (layoutWrapper) {
+                    postReader.insertBefore(metaBadge, layoutWrapper);
+                } else {
+                    readerContent.parentNode.insertBefore(metaBadge, readerContent);
+                }
             }
             metaBadge.innerHTML = `
                 <span><i class="fa-regular fa-clock"></i> ${readTime} min read</span>
