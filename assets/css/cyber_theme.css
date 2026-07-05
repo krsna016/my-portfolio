@@ -1110,10 +1110,10 @@ body .glass:not(.timeline-content)::after, body .card:not(.timeline-content)::af
     border-radius: inherit;
     z-index: 10;
     background-image: 
-        repeating-linear-gradient(to right, var(--primary-color) 0, var(--primary-color) 4px, transparent 4px, transparent 8px),
-        repeating-linear-gradient(to bottom, var(--primary-color) 0, var(--primary-color) 4px, transparent 4px, transparent 8px),
-        repeating-linear-gradient(to left, var(--primary-color) 0, var(--primary-color) 4px, transparent 4px, transparent 8px),
-        repeating-linear-gradient(to top, var(--primary-color) 0, var(--primary-color) 4px, transparent 4px, transparent 8px) !important;
+        repeating-linear-gradient(to right, #00ff66 0, #00ff66 4px, transparent 4px, transparent 8px),
+        repeating-linear-gradient(to bottom, #00ff66 0, #00ff66 4px, transparent 4px, transparent 8px),
+        repeating-linear-gradient(to left, #00ff66 0, #00ff66 4px, transparent 4px, transparent 8px),
+        repeating-linear-gradient(to top, #00ff66 0, #00ff66 4px, transparent 4px, transparent 8px) !important;
     background-repeat: no-repeat !important;
     background-size: 0 2px, 2px 0, 0 2px, 2px 0 !important;
     background-position: 0 0, 100% 0, 100% 100%, 0 100% !important;
