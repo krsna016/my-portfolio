@@ -232,6 +232,7 @@
                     <button class="btn secondary tab-btn" data-tab="projects"><i class="fa-solid fa-briefcase"></i> Projects</button>
                     <button class="btn secondary tab-btn" data-tab="blog"><i class="fa-solid fa-newspaper"></i> Blog Posts</button>
                     <button class="btn secondary tab-btn" data-tab="settings"><i class="fa-solid fa-gear"></i> Settings</button>
+                    <button class="btn secondary tab-btn" data-tab="docs"><i class="fa-solid fa-book"></i> Help Docs</button>
                 </div>
             </div>
         </div>
@@ -494,6 +495,86 @@
                 </form>
                 <div id="settings-success" style="color: #4cd137; font-size: 0.9rem; margin-top: 15px; display: none; text-align: center;">
                     Settings saved successfully! Auto-Sync is now active.
+                </div>
+            </div>
+        </div>
+
+        <!-- DOCUMENTATION TAB -->
+        <div id="tab-docs" class="admin-grid tab-content" style="display: none; grid-template-columns: 1fr;">
+            <div class="editor-panel glass" style="max-width: 900px; margin: 0 auto; padding: 2rem;">
+                <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; color: var(--primary-color);">
+                    <i class="fa-solid fa-book"></i> Interactive Help & Documentation
+                </h3>
+                
+                <div style="line-height: 1.6; color: #eee; font-size: 0.95rem;">
+                    <section style="margin-bottom: 2rem;">
+                        <h4 style="color: #00d2ff; margin-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem;">
+                            1. How Auto-Saving Works ⚡
+                        </h4>
+                        <p>
+                            All sections of your website (<strong>Certificates, Technical Skills, Projects, and Blog Posts</strong>) now support real-time automatic saving to the live backend server.
+                        </p>
+                        <ul>
+                            <li><strong>Forms</strong>: When you submit any edit form or click "Save to List", the data is immediately sent to the API, writing the changes to disk.</li>
+                            <li><strong>Reordering & Deletion</strong>: Clicking the <strong>Up / Down arrows</strong> to change layout hierarchy or clicking <strong>Delete</strong> instantly updates the server files.</li>
+                            <li><strong>GitHub Sync</strong>: If you have GitHub Auto-Sync configured (via settings or server environment variables), the backend immediately commits and pushes the updated configuration files to your GitHub repository in the background.</li>
+                        </ul>
+                    </section>
+
+                    <section style="margin-bottom: 2rem;">
+                        <h4 style="color: #00d2ff; margin-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem;">
+                            2. GitHub Integration Setup ⚙️
+                        </h4>
+                        <p>
+                            To make sure changes appear on your live site, you have two options to authorize the backend server to write to GitHub:
+                        </p>
+                        <ol>
+                            <li><strong>Option A (Recommended for Multi-Device Sync)</strong>: In your Railway Dashboard variables, set:
+                                <ul>
+                                    <li><code>GITHUB_TOKEN</code> = Your Personal Access Token (PAT).</li>
+                                    <li><code>GITHUB_REPO</code> = <code>krsna016/my-portfolio</code>.</li>
+                                    <li><code>GITHUB_BRANCH</code> = <code>master</code>.</li>
+                                </ul>
+                                This lets you write blogs and update listings from any phone or browser.
+                            </li>
+                            <li><strong>Option B (Local Browser Sync)</strong>: Navigate to the <strong>Settings</strong> tab here in the admin panel and save your PAT credentials. This stores the details in your current browser's local storage.</li>
+                        </ol>
+                    </section>
+
+                    <section style="margin-bottom: 2rem;">
+                        <h4 style="color: #00d2ff; margin-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem;">
+                            3. Manual Backups (Download Config & Markdown) 💾
+                        </h4>
+                        <p>
+                            Under each editor panel tab, there are fallback buttons (e.g. <strong>Download Config</strong> / <strong>Download Markdown</strong>):
+                        </p>
+                        <ul>
+                            <li><strong>Download Config</strong>: Generates and downloads the Javascript files (e.g. <code>certificates_data.js</code>) containing the raw array structure. You can use these to manually restore your site if the server is offline.</li>
+                            <li><strong>Download Markdown</strong>: Downloads the compiled markdown text file of your blog articles.</li>
+                        </ul>
+                    </section>
+
+                    <section style="margin-bottom: 2rem;">
+                        <h4 style="color: #00d2ff; margin-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem;">
+                            4. Writing Blogs with Markdown 📝
+                        </h4>
+                        <p>
+                            The blog composer uses standard markdown. You can format text using headers, lists, code snippets, and custom styles:
+                        </p>
+                        <pre style="background: rgba(0,0,0,0.4); padding: 1rem; border-radius: 6px; border: 1px solid #333; font-family: monospace; font-size: 0.85rem; color: #00d2ff;">
+# Header 1
+## Header 2
+
+* **Bold Text** and *Italics*
+* [Link Text](https://example.com)
+
+\`\`\`javascript
+// Programming code blocks will get syntax highlighting
+// and dynamic Copy buttons automatically!
+const message = "Hello World";
+\`\`\`
+                        </pre>
+                    </section>
                 </div>
             </div>
         </div>

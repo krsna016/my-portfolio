@@ -317,6 +317,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Unified Config Auto-Saver ---
+    async function saveConfigToServer(type, data) {
+        const token = localStorage.getItem('adminToken');
+        if (!token) return;
+
+        try {
+            const res = await fetch('/api/save-config', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ type, data })
+            });
+            if (res.ok) {
+                console.log(`${type} auto-saved successfully`);
+            } else {
+                console.error(`Failed to auto-save ${type}`, await res.text());
+                alert(`Failed to save ${type} changes to live server!`);
+            }
+        } catch (e) {
+            console.error(`Connection error auto-saving ${type}`, e);
+            alert(`Error connecting to live server while saving ${type}!`);
+        }
+    }
+
     // --- Tab Switching Logic ---
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
@@ -453,6 +479,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             renderCertList();
+            saveConfigToServer('certificates', currentCertificates);
             resetForm();
         });
     }
@@ -499,6 +526,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (confirm('Are you sure you want to delete this certificate?')) {
             currentCertificates.splice(index, 1);
             renderCertList();
+            saveConfigToServer('certificates', currentCertificates);
         }
     };
 
@@ -507,6 +535,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (newIndex >= 0 && newIndex < currentCertificates.length) {
             [currentCertificates[index], currentCertificates[newIndex]] = [currentCertificates[newIndex], currentCertificates[index]];
             renderCertList();
+            saveConfigToServer('certificates', currentCertificates);
         }
     };
 
@@ -558,6 +587,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             renderSkillList();
+            saveConfigToServer('skills', currentSkills);
             resetSkillForm();
         });
     }
@@ -585,6 +615,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (confirm('Are you sure you want to delete this skill?')) {
             currentSkills.splice(index, 1);
             renderSkillList();
+            saveConfigToServer('skills', currentSkills);
         }
     };
 
@@ -593,6 +624,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (newIndex >= 0 && newIndex < currentSkills.length) {
             [currentSkills[index], currentSkills[newIndex]] = [currentSkills[newIndex], currentSkills[index]];
             renderSkillList();
+            saveConfigToServer('skills', currentSkills);
         }
     };
 
@@ -643,6 +675,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             renderProjectList();
+            saveConfigToServer('projects', currentProjects);
             resetProjectForm();
         });
     }
@@ -670,6 +703,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (confirm('Are you sure you want to delete this project?')) {
             currentProjects.splice(index, 1);
             renderProjectList();
+            saveConfigToServer('projects', currentProjects);
         }
     };
 
@@ -678,6 +712,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (newIndex >= 0 && newIndex < currentProjects.length) {
             [currentProjects[index], currentProjects[newIndex]] = [currentProjects[newIndex], currentProjects[index]];
             renderProjectList();
+            saveConfigToServer('projects', currentProjects);
         }
     };
 
