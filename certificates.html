@@ -97,17 +97,18 @@
     <div id="pdf-modal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <div class="modal-header">
+            <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
                 <h3 id="modal-title">Certificate Title</h3>
-
+                <a id="modal-download-btn" href="#" download class="btn primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;"><i class="fa-solid fa-download"></i> Download PDF</a>
             </div>
-            <div class="pdf-viewer-container">
-                <iframe id="pdf-frame" src="" frameborder="0"></iframe>
+            <div class="pdf-viewer-container" id="pdf-viewer-container" style="overflow-y: auto; text-align: center; background: #222; padding: 1rem; border-radius: 8px;">
+                <canvas id="pdf-canvas" style="max-width: 100%; height: auto; box-shadow: 0 4px 15px rgba(0,0,0,0.5);"></canvas>
             </div>
         </div>
     </div>
 
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
     <script src="assets/js/certificates_data.js"></script>
     <script src="assets/js/certificates.js"></script>
 

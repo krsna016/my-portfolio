@@ -16,16 +16,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Modal Elements
     const modal = document.getElementById('pdf-modal');
     const modalTitle = document.getElementById('modal-title');
-
-    const pdfFrame = document.getElementById('pdf-frame');
+    const modalDownload = document.getElementById('modal-download-btn');
+    const pdfCanvas = document.getElementById('pdf-canvas');
     const closeModal = document.querySelector('.close-modal');
+
+    let currentRenderTask = null;
 
     // Close Modal
     closeModal.addEventListener('click', () => {
         modal.classList.remove('show');
         setTimeout(() => {
             modal.style.display = 'none';
-            pdfFrame.src = ''; // Clear source to stop playing/loading
+            if (currentRenderTask) {
+                currentRenderTask.cancel();
+            }
+            const ctx = pdfCanvas.getContext('2d');
+            ctx.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
         }, 300);
     });
 
@@ -35,7 +41,11 @@ document.addEventListener('DOMContentLoaded', () => {
             modal.classList.remove('show');
             setTimeout(() => {
                 modal.style.display = 'none';
-                pdfFrame.src = '';
+                if (currentRenderTask) {
+                    currentRenderTask.cancel();
+                }
+                const ctx = pdfCanvas.getContext('2d');
+                ctx.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
             }, 300);
         }
     });
@@ -73,17 +83,45 @@ document.addEventListener('DOMContentLoaded', () => {
         link.innerHTML = 'View Certificate <i class="fa-solid fa-eye"></i>';
 
         // Open Modal on Click
-        link.addEventListener('click', (e) => {
+        link.addEventListener('click', async (e) => {
             e.preventDefault();
             modalTitle.textContent = cert.title;
 
-            pdfFrame.src = certificatesPath + cert.file;
-
+            const fileUrl = certificatesPath + cert.file;
+            modalDownload.href = fileUrl;
+            
             modal.style.display = 'flex';
-            // Small delay to allow display:flex to apply before adding opacity class
             setTimeout(() => {
                 modal.classList.add('show');
             }, 10);
+
+            try {
+                if (typeof pdfjsLib !== 'undefined') {
+                    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+                }
+                
+                const loadingTask = pdfjsLib.getDocument(fileUrl);
+                const pdf = await loadingTask.promise;
+                const page = await pdf.getPage(1); // Certificates are usually 1 page
+                
+                const scale = 2.5; // High resolution
+                const viewport = page.getViewport({ scale: scale });
+                
+                pdfCanvas.width = viewport.width;
+                pdfCanvas.height = viewport.height;
+                
+                const renderContext = {
+                    canvasContext: pdfCanvas.getContext('2d'),
+                    viewport: viewport
+                };
+                
+                currentRenderTask = page.render(renderContext);
+                await currentRenderTask.promise;
+            } catch (err) {
+                if (err.name !== 'RenderingCancelledException') {
+                    console.error('Error rendering PDF:', err);
+                }
+            }
         });
 
         info.appendChild(title);
