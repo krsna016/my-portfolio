@@ -739,7 +739,7 @@ button.ide-run-btn:hover svg[class*="fa-"] path {
    BUTTON VISIBILITY & MONOCHROME VERTICAL BARS
    ========================================================================== */
 /* Ensure buttons do not look like they are floating in air by adding a clean, visible light background and border */
-.btn:not(.chat-send-btn):not(.ide-run-btn),
+.btn:not(.ide-run-btn),
 .tool-btn,
 .tab-btn,
 .read-more,
@@ -753,7 +753,7 @@ button.ide-run-btn:hover svg[class*="fa-"] path {
 .submit-btn,
 .category-list li,
 #hero-cli-trigger,
-button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links button) {
+button:not(.ide-run-btn):not(.hamburger):not(.nav-links button) {
     background: rgba(255, 255, 255, 0.03) !important;
     border: none !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
@@ -763,7 +763,7 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links butt
 }
 
 /* Hover state for buttons */
-.btn:not(.chat-send-btn):not(.ide-run-btn):hover,
+.btn:not(.ide-run-btn):hover,
 .tool-btn:hover,
 .tab-btn:hover,
 .read-more:hover,
@@ -777,7 +777,7 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links butt
 .submit-btn:hover,
 .category-list li:hover,
 #hero-cli-trigger:hover,
-button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links button):hover {
+button:not(.ide-run-btn):not(.hamburger):not(.nav-links button):hover {
     background: rgba(255, 255, 255, 0.18) !important;
     border: none !important;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4) !important;
@@ -1314,47 +1314,41 @@ body .glass:not(.timeline-content):hover::after, body .card:not(.timeline-conten
 /* ==========================================================================
    ABSOLUTE BULLETPROOF OVERRIDE FOR CHAT SEND BUTTON & ICON GLOW
    ========================================================================== */
-/* ABSOLUTE OVERRIDE: Remove all backgrounds, borders, outlines, shadows, and glows from chat send button & icon in ALL states */
+/* Style chat send button as a clean little glassmorphic button like other buttons across the site */
 button.chat-send-btn,
 button.btn.chat-send-btn,
 button.btn.primary.chat-send-btn,
 .chat-input-bar .chat-send-btn,
 .chat-input-bar button.chat-send-btn,
 .chat-input-bar button[type="submit"],
-.chat-send-btn,
-button.chat-send-btn:hover,
-button.btn.chat-send-btn:hover,
-button.btn.primary.chat-send-btn:hover,
-.chat-input-bar .chat-send-btn:hover,
-.chat-input-bar button.chat-send-btn:hover,
-.chat-input-bar button[type="submit"]:hover,
-button.chat-send-btn:focus,
-button.chat-send-btn:active,
-.chat-send-btn:focus,
-.chat-send-btn:active,
-.chat-input-bar:hover .chat-send-btn,
-.chat-input-bar:focus-within .chat-send-btn,
+.chat-send-btn {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    color: #FFFFFF !important;
+    border-radius: 12px !important;
+    padding: 10px 18px !important;
+    margin: 0 0 0 8px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease-out !important;
+}
+
+/* Remove glow/shadow from icon inside send button only */
 button.chat-send-btn i,
 button.chat-send-btn svg,
 button.chat-send-btn:hover i,
 button.chat-send-btn:hover svg,
 .chat-input-bar .chat-send-btn i,
-.chat-input-bar .chat-send-btn:hover i,
-.contact-container:hover .chat-send-btn i,
-.contact-container:hover .chat-send-btn svg {
+.chat-input-bar .chat-send-btn:hover i {
     background: transparent !important;
-    background-color: transparent !important;
     border: none !important;
-    border-color: transparent !important;
     box-shadow: none !important;
-    outline: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
     text-shadow: none !important;
     filter: none !important;
-    padding: 0 10px !important;
-    margin: 0 !important;
-    border-radius: 0 !important;
+    color: #FFFFFF !important;
+    fill: #FFFFFF !important;
 }
 
 /* Breathing animation ONLY when hovering directly over the send button itself with minimal growth */
@@ -1369,8 +1363,11 @@ button.btn.chat-send-btn:hover,
 button.btn.primary.chat-send-btn:hover,
 .chat-input-bar button.chat-send-btn:hover,
 .chat-input-bar button[type="submit"]:hover {
+    background: rgba(255, 255, 255, 0.18) !important;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4) !important;
     animation: sendBtnComeUp 1.6s ease-in-out infinite !important;
     transform: scale(1.03) !important;
     transform-origin: center center !important;
     cursor: pointer !important;
+    color: #FFFFFF !important;
 }
