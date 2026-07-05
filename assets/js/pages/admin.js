@@ -15,11 +15,52 @@ document.addEventListener('DOMContentLoaded', () => {
     const passwordInput = document.getElementById('admin-password');
     const loginError = document.getElementById('login-error');
     const logoutBtn = document.getElementById('logout-btn');
+    const adminContainer = document.querySelector('.admin-container');
+    const navbar = document.querySelector('.navbar');
 
-    // Check if already logged in
-    if (localStorage.getItem('adminLoggedIn') === 'true') {
-        loginOverlay.style.display = 'none';
+    async function checkAuthentication() {
+        const token = localStorage.getItem('adminToken');
+        if (!token) {
+            loginOverlay.style.display = 'flex';
+            if (adminContainer) adminContainer.style.display = 'none';
+            if (navbar) navbar.style.display = 'none';
+            return;
+        }
+
+        try {
+            const res = await fetch('/api/check-auth', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (res.ok) {
+                localStorage.setItem('adminLoggedIn', 'true');
+                loginOverlay.style.display = 'none';
+                if (adminContainer) adminContainer.style.display = 'block';
+                if (navbar) navbar.style.display = 'flex';
+            } else {
+                // Expired or invalid token -> Force logout
+                localStorage.removeItem('adminLoggedIn');
+                localStorage.removeItem('adminToken');
+                loginOverlay.style.display = 'flex';
+                if (adminContainer) adminContainer.style.display = 'none';
+                if (navbar) navbar.style.display = 'none';
+            }
+        } catch (e) {
+            // Offline/Network fallback - trust local storage optimistic state
+            if (localStorage.getItem('adminLoggedIn') === 'true') {
+                loginOverlay.style.display = 'none';
+                if (adminContainer) adminContainer.style.display = 'block';
+                if (navbar) navbar.style.display = 'flex';
+            } else {
+                loginOverlay.style.display = 'flex';
+                if (adminContainer) adminContainer.style.display = 'none';
+                if (navbar) navbar.style.display = 'none';
+            }
+        }
     }
+
+    // Run verification immediately
+    checkAuthentication();
+
     const biometricBtn = document.getElementById('biometric-btn');
 
     // --- Settings Auto-Sync Logic ---
@@ -799,6 +840,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                     if (res.ok) {
                         setTimeout(() => alert("Saved to live server! You can still download files if you want."), 10);
+                    } else if (res.status === 401) {
+                        alert("Session expired. Please log in again.");
+                        localStorage.removeItem('adminLoggedIn');
+                        localStorage.removeItem('adminToken');
+                        window.location.reload();
                     } else {
                         setTimeout(() => alert("Failed to save to live server! Please click BOTH download buttons to save manually."), 10);
                     }
