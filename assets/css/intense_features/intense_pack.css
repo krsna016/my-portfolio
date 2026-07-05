@@ -1035,29 +1035,34 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
     box-shadow: none !important;
 }
 
-/* Strictly remove all solid backgrounds from buttons, cards, etc. globally */
-.btn,
+/* Clearly visible glassmorphic buttons globally */
+.btn:not(.ide-run-btn),
 .play-btn,
 .cert-link,
 .read-more,
-button,
+button:not(.ide-run-btn),
 .tab-btn {
-    background: rgba(255, 255, 255, 0.02) !important;
+    background: rgba(255, 255, 255, 0.10) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
     backdrop-filter: blur(8px) !important;
     -webkit-backdrop-filter: blur(8px) !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    color: #FFFFFF !important;
 }
 
-.btn:hover,
+.btn:not(.ide-run-btn):hover,
 .play-btn:hover,
 .cert-link:hover,
 .read-more:hover,
-button:hover,
+button:not(.ide-run-btn):hover,
 .tab-btn.active,
 .tab-btn:hover,
 .category-list li.active,
 .category-list li:hover {
-    background: rgba(255, 255, 255, 0.1) !important;
+    background: rgba(255, 255, 255, 0.22) !important;
+    border: 1px solid rgba(255, 255, 255, 0.28) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    color: #FFFFFF !important;
 }
 
 .game-card,

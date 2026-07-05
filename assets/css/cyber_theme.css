@@ -764,11 +764,11 @@ button.ide-run-btn:hover svg[class*="fa-"] path {
 .category-list li,
 #hero-cli-trigger,
 button:not(.ide-run-btn):not(.hamburger):not(.nav-links button) {
-    background: rgba(255, 255, 255, 0.03) !important;
-    border: none !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
-    backdrop-filter: blur(2px) !important;
-    -webkit-backdrop-filter: blur(2px) !important;
+    background: rgba(255, 255, 255, 0.10) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
     color: #FFFFFF !important;
 }
 
@@ -788,9 +788,9 @@ button:not(.ide-run-btn):not(.hamburger):not(.nav-links button) {
 .category-list li:hover,
 #hero-cli-trigger:hover,
 button:not(.ide-run-btn):not(.hamburger):not(.nav-links button):hover {
-    background: rgba(255, 255, 255, 0.18) !important;
-    border: none !important;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4) !important;
+    background: rgba(255, 255, 255, 0.22) !important;
+    border: 1px solid rgba(255, 255, 255, 0.28) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
     color: #FFFFFF !important;
 }
 
@@ -989,17 +989,12 @@ button.btn.primary.chat-send-btn:hover svg path,
 .read-more,
 .cert-link,
 .play-btn,
-.drawing-controls .btn,
-.drawing-controls .btn.active-tool,
-.drawing-controls button,
-.drawing-controls button.active-tool,
 .control-group button,
 .control-group a.btn,
 .category-list li,
 #hero-cli-trigger,
 button:not(.ide-run-btn):not(.hamburger):not(.nav-links button),
 a.btn:not(.ide-run-btn) {
-    border: none !important;
     outline: none !important;
 }
 
@@ -1013,10 +1008,6 @@ a.btn:not(.ide-run-btn) {
 .read-more:hover,
 .cert-link:hover,
 .play-btn:hover,
-.drawing-controls .btn:hover,
-.drawing-controls .btn.active-tool:hover,
-.drawing-controls button:hover,
-.drawing-controls button.active-tool:hover,
 .control-group button:hover,
 .control-group a.btn:hover,
 .category-list li:hover,
@@ -1024,7 +1015,6 @@ a.btn:not(.ide-run-btn) {
 #hero-cli-trigger:hover,
 button:not(.ide-run-btn):not(.hamburger):not(.nav-links button):hover,
 a.btn:not(.ide-run-btn):hover {
-    border: none !important;
     outline: none !important;
 }
 
@@ -1332,9 +1322,9 @@ button.btn.primary.chat-send-btn,
 .chat-input-bar button.chat-send-btn,
 .chat-input-bar button[type="submit"],
 .chat-send-btn {
-    background: rgba(255, 255, 255, 0.03) !important;
-    border: none !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+    background: rgba(255, 255, 255, 0.10) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
     backdrop-filter: blur(8px) !important;
     -webkit-backdrop-filter: blur(8px) !important;
     color: #FFFFFF !important;
@@ -1373,11 +1363,51 @@ button.btn.chat-send-btn:hover,
 button.btn.primary.chat-send-btn:hover,
 .chat-input-bar button.chat-send-btn:hover,
 .chat-input-bar button[type="submit"]:hover {
-    background: rgba(255, 255, 255, 0.18) !important;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4) !important;
+    background: rgba(255, 255, 255, 0.22) !important;
+    border: 1px solid rgba(255, 255, 255, 0.28) !important;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5) !important;
     animation: sendBtnComeUp 1.6s ease-in-out infinite !important;
     transform: scale(1.03) !important;
     transform-origin: center center !important;
     cursor: pointer !important;
+    color: #FFFFFF !important;
+}
+
+/* ==========================================================================
+   DRAWING CONTROLS DOCK & NAVBAR: CLEARLY VISIBLE MATTE BACKGROUND & GLASS BUTTONS
+   ========================================================================== */
+.drawing-controls {
+    background: rgba(22, 22, 26, 0.75) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+    border-radius: 50px !important;
+}
+
+.drawing-controls .btn,
+.drawing-controls button {
+    background: rgba(255, 255, 255, 0.10) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border-radius: 12px !important;
+}
+
+.drawing-controls .btn:hover,
+.drawing-controls button:hover {
+    background: rgba(255, 255, 255, 0.22) !important;
+    border: 1px solid rgba(255, 255, 255, 0.28) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5) !important;
+    color: #FFFFFF !important;
+}
+
+.drawing-controls .btn.active-tool,
+.drawing-controls button.active-tool {
+    background: rgba(0, 210, 255, 0.25) !important;
+    border: 1px solid #00d2ff !important;
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.5) !important;
     color: #FFFFFF !important;
 }

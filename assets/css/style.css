@@ -2079,11 +2079,13 @@ footer {
     margin-bottom: clamp(1rem, 4vw, 2rem);
     position: relative;
     z-index: 100;
-    background: rgba(255, 255, 255, 0.015);
-    padding: 0.6rem 1rem !important;
+    background: rgba(22, 22, 26, 0.75) !important;
+    padding: 0.8rem 1.4rem !important;
     border-radius: 50px !important;
-    backdrop-filter: blur(2px);
-    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
     max-width: 98% !important;
     width: fit-content !important;
     margin-left: auto;
@@ -2099,38 +2101,48 @@ footer {
 }
 
 .control-group.properties {
-    border-left: 1px solid var(--glass-border);
-    border-right: 1px solid var(--glass-border);
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
     padding: 0 0.8rem !important;
     flex-shrink: 0;
 }
 
 /* Tool Buttons */
 .drawing-controls .btn {
-    padding: 0.4rem 0.8rem !important;
+    padding: 0.5rem 1rem !important;
     font-size: 0.85rem !important;
     min-width: auto;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
     gap: 0.4rem !important;
-    height: 36px !important;
+    height: 38px !important;
     line-height: 1 !important;
     transform: none !important;
     white-space: nowrap !important;
     flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.10) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 12px !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
 }
 
 .drawing-controls .btn:hover {
     transform: translateY(0px) !important;
-    background: rgba(255, 255, 255, 0.15) !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+    background: rgba(255, 255, 255, 0.22) !important;
+    border: 1px solid rgba(255, 255, 255, 0.28) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5) !important;
+    color: #FFFFFF !important;
 }
 
 .drawing-controls .btn.active-tool {
-    background: var(--primary-color) !important;
-    box-shadow: 0 0 15px var(--primary-color) !important;
-    border-color: var(--primary-color) !important;
+    background: rgba(0, 210, 255, 0.25) !important;
+    border: 1px solid #00d2ff !important;
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.5) !important;
+    color: #FFFFFF !important;
 }
 
 /* Color Picker */
