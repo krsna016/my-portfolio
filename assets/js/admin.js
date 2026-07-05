@@ -575,22 +575,37 @@ document.addEventListener('DOMContentLoaded', () => {
     // Async data loader for admin
     async function loadAdminBlogData() {
         try {
-            let res = await fetch('/api/data?t=' + Date.now()).catch(() => null);
-            if (res && res.ok) {
-                const data = await res.json();
-                currentBlogPosts = data.posts || [];
-                currentBlogCategories = data.categories || [];
-            } else {
-                await new Promise(resolve => {
-                    const script = document.createElement('script');
-                    script.src = 'assets/js/blog_data.js?t=' + Date.now();
-                    script.onload = resolve;
-                    script.onerror = resolve;
-                    document.head.appendChild(script);
-                });
-                if (typeof blogData !== 'undefined') {
-                    currentBlogPosts = blogData.posts ? [...blogData.posts] : [];
-                    currentBlogCategories = blogData.categories ? [...blogData.categories] : [];
+            let useOptimistic = false;
+            const optRaw = localStorage.getItem('optimisticBlogData');
+            if (optRaw) {
+                try {
+                    const optData = JSON.parse(optRaw);
+                    if (Date.now() - optData.timestamp < 3 * 60 * 1000) { // 3 minutes
+                        currentBlogPosts = optData.posts;
+                        currentBlogCategories = optData.categories;
+                        useOptimistic = true;
+                    }
+                } catch(e) {}
+            }
+
+            if (!useOptimistic) {
+                let res = await fetch('/api/data?t=' + Date.now()).catch(() => null);
+                if (res && res.ok) {
+                    const data = await res.json();
+                    currentBlogPosts = data.posts || [];
+                    currentBlogCategories = data.categories || [];
+                } else {
+                    await new Promise(resolve => {
+                        const script = document.createElement('script');
+                        script.src = 'assets/js/blog_data.js?t=' + Date.now();
+                        script.onload = resolve;
+                        script.onerror = resolve;
+                        document.head.appendChild(script);
+                    });
+                    if (typeof blogData !== 'undefined') {
+                        currentBlogPosts = blogData.posts ? [...blogData.posts] : [];
+                        currentBlogCategories = blogData.categories ? [...blogData.categories] : [];
+                    }
                 }
             }
         } catch(e) {
@@ -659,6 +674,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
             renderBlogList();
             resetBlogForm();
+
+            // Save optimistic state locally to mask GitHub deployment delay
+            localStorage.setItem('optimisticBlogData', JSON.stringify({
+                timestamp: Date.now(),
+                posts: currentBlogPosts,
+                categories: currentBlogCategories
+            }));
+            localStorage.setItem(`optimisticBlog_${id}`, JSON.stringify({
+                timestamp: Date.now(),
+                content: content
+            }));
             
             // Try GitHub API Auto-Sync first
             if (localStorage.getItem('ghToken')) {

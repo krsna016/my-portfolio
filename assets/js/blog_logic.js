@@ -300,30 +300,48 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
-    try {
-        let res = await fetch('/api/data?t=' + Date.now()).catch(() => null);
-        if (res && res.ok) {
-            const data = await res.json();
-            blogPosts = data.posts || [];
-            blogCategories = data.categories || [];
-        } else {
-            await new Promise(resolve => {
-                const script = document.createElement('script');
-                script.src = 'assets/js/blog_data.js?t=' + Date.now();
-                script.onload = resolve;
-                script.onerror = resolve;
-                document.head.appendChild(script);
-            });
-            if (typeof blogData !== 'undefined') {
-                blogPosts = blogData.posts || [];
-                blogCategories = blogData.categories || [];
+    async function fetchBlogData() {
+        let useOptimistic = false;
+        const optRaw = localStorage.getItem('optimisticBlogData');
+        if (optRaw) {
+            try {
+                const optData = JSON.parse(optRaw);
+                if (Date.now() - optData.timestamp < 3 * 60 * 1000) { // 3 minutes
+                    blogPosts = optData.posts || [];
+                    blogCategories = optData.categories || [];
+                    useOptimistic = true;
+                }
+            } catch(e) {}
+        }
+
+        if (!useOptimistic) {
+            try {
+                let res = await fetch('/api/data?t=' + Date.now()).catch(() => null);
+                if (res && res.ok) {
+                    const data = await res.json();
+                    blogPosts = data.posts || [];
+                    blogCategories = data.categories || [];
+                } else {
+                    await new Promise(resolve => {
+                        const script = document.createElement('script');
+                        script.src = 'assets/js/blog_data.js?t=' + Date.now();
+                        script.onload = resolve;
+                        script.onerror = resolve;
+                        document.head.appendChild(script);
+                    });
+                    if (typeof blogData !== 'undefined') {
+                        blogPosts = blogData.posts || [];
+                        blogCategories = blogData.categories || [];
+                    }
+                }
+            } catch(e) {
+                console.error("Failed to load blog data", e);
             }
         }
-    } catch(e) {
-        console.error("Failed to load blog data", e);
-    }
 
-    updateAdminUI();
+        updateAdminUI();
+    }
+    fetchBlogData();
 
     // Populate Categories
     try {
@@ -494,11 +512,26 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     async function loadPost(post) {
         try {
-            const isLocal = window.location.protocol === 'file:';
-            const fetchUrl = isLocal ? post.file : `${post.file}?t=${Date.now()}`;
-            const response = await fetch(fetchUrl);
-            if (!response.ok) throw new Error('Network response was not ok');
-            const markdownContent = await response.text();
+            let markdownContent = null;
+            let useOptimisticContent = false;
+            const optContentRaw = localStorage.getItem(`optimisticBlog_${post.id}`);
+            if (optContentRaw) {
+                try {
+                    const optData = JSON.parse(optContentRaw);
+                    if (Date.now() - optData.timestamp < 3 * 60 * 1000) { // 3 minutes
+                        markdownContent = optData.content;
+                        useOptimisticContent = true;
+                    }
+                } catch(e) {}
+            }
+
+            if (!useOptimisticContent) {
+                const isLocal = window.location.protocol === 'file:';
+                const fetchUrl = isLocal ? post.file : `${post.file}?t=${Date.now()}`;
+                const response = await fetch(fetchUrl);
+                if (!response.ok) throw new Error('Network response was not ok');
+                markdownContent = await response.text();
+            }
             const rawHtml = marked.parse(markdownContent);
             const safeHtml = DOMPurify.sanitize(rawHtml);
             
