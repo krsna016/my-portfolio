@@ -338,7 +338,7 @@ textarea {
 
 .btn.primary,
 .btn.secondary {
-    background: rgba(255, 255, 255, 0.50);
+    background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: none;
@@ -355,7 +355,7 @@ textarea {
 .btn.primary:hover,
 .btn.secondary:hover {
     transform: translateY(-5px) scale(1.02);
-    background: rgba(255, 255, 255, 0.65);
+    background: rgba(255, 255, 255, 0.15);
     /* Slight lighten on hover */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
@@ -2755,7 +2755,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
         padding: 14px 24px !important;
         border-radius: 12px !important;
         font-size: 1.05rem !important;
-        background: rgba(255, 255, 255, 0.50) !important;
+        background: rgba(255, 255, 255, 0.08) !important;
         border: none !important;
         backdrop-filter: blur(10px) !important;
         -webkit-backdrop-filter: blur(10px) !important;
