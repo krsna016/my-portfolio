@@ -1185,3 +1185,18 @@ html body .social-links a:hover {
     background: transparent !important;
     background-color: transparent !important;
 }
+
+/* MAKE AUDIO PILL SOLID WHITE WITH BLACK TEXT ON HOVER */
+html body .hud-audio-pill:hover {
+    background: #FFFFFF !important;
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4) !important;
+}
+
+html body .hud-audio-pill:hover i,
+html body .hud-audio-pill:hover svg {
+    color: #000000 !important;
+    fill: #000000 !important;
+    filter: none !important;
+}
