@@ -455,7 +455,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <div class="blog-meta">
                         <span class="blog-category">${escapeHTML(post.category || "Uncategorized")}</span>
                         <span class="blog-date">${escapeHTML(post.date || "")}</span>
-                        <span class="blog-card-read-time" id="read-time-${post.id}" style="margin-left: 8px; opacity: 0.8;"><i class="fa-regular fa-clock"></i> ...</span>
+                        <span class="blog-card-read-time" id="read-time-${post.id}" style="margin-left: 8px; opacity: 0.8;"><i class="fa-regular fa-clock"></i> 5 min</span>
                     </div>
                     <h3 class="blog-title">${escapeHTML(post.title || "Untitled Post")}</h3>
                     <p class="blog-summary">${escapeHTML(post.summary || "Read more about this topic...")}</p>
@@ -476,7 +476,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     return;
                 }
                 try {
-                    const res = await fetch(fileUrl);
+                    const res = await fetch(`/${fileUrl}`);
                     if (res.ok) {
                         const text = await res.text();
                         const words = text.trim().split(/\s+/).length;
