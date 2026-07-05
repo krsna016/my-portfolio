@@ -1381,25 +1381,3 @@ button.chat-send-btn:hover svg,
     transform-origin: center center !important;
     filter: drop-shadow(0 4px 8px rgba(0, 210, 255, 0.5)) !important;
 }
-
-/* ==========================================================================
-   ELASTIC FABRIC CONTAINER FOR TECHNICAL SKILLS SECTION
-   ========================================================================== */
-#skills-container,
-#skills-container.skills-wrapper,
-#skills-container.glass {
-    background: transparent !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    box-shadow: none !important;
-    border: none !important;
-    position: relative !important;
-    z-index: 1 !important;
-}
-#skills-container::before,
-#skills-container::after,
-#skills-container.glass::before,
-#skills-container.glass::after {
-    display: none !important;
-    content: none !important;
-}
