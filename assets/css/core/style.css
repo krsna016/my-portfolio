@@ -2395,6 +2395,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .blog-meta {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 12px;
     margin-bottom: 16px;
 }
@@ -2414,6 +2415,8 @@ input[type="range"]::-webkit-slider-thumb:hover {
     color: #888;
     font-size: clamp(0.75rem, 1.5vw, 0.85rem);
     font-family: 'Fira Code', monospace;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .blog-title {
