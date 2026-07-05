@@ -2512,8 +2512,11 @@ input[type="range"]::-webkit-slider-thumb:hover {
     min-width: 32px;
 }
 
+html body .font-ctrl-btn:hover:not(:disabled),
+html body button.font-ctrl-btn:hover:not(:disabled),
 .font-ctrl-btn:hover:not(:disabled) {
     background: #ffffff !important;
+    background-color: #ffffff !important;
     color: #000000 !important;
 }
 
