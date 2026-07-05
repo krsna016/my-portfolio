@@ -8,16 +8,54 @@ const minifyHTML = require('html-minifier').minify;
 const CleanCSS = require('clean-css');
 const uglifyJS = require('uglify-js');
 
+const crypto = require('crypto');
+
 const app = express();
 const PORT = process.env.PORT || 8000;
-const JWT_SECRET = process.env.JWT_SECRET || 'super-secret-key-change-this-in-production';
+const JWT_SECRET = process.env.JWT_SECRET || crypto.randomBytes(64).toString('hex');
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
 
-if (JWT_SECRET === 'super-secret-key-change-this-in-production') {
-    console.warn("⚠️ SECURITY WARNING: Using fallback default JWT_SECRET. Set JWT_SECRET in production environment variables!");
+if (!process.env.JWT_SECRET) {
+    console.warn("⚠️ SECURITY WARNING: JWT_SECRET environment variable is missing. Generated a cryptographically secure random secret key in memory.");
 }
 if (ADMIN_PASSWORD === 'admin123') {
     console.warn("⚠️ SECURITY WARNING: Using fallback default ADMIN_PASSWORD ('admin123'). Set ADMIN_PASSWORD in production environment variables!");
+}
+
+// In-memory rate limiting map for login
+const loginAttempts = {};
+
+// Clean up expired rate limiter entries every 10 minutes
+setInterval(() => {
+    const now = Date.now();
+    for (const ip in loginAttempts) {
+        if (now > loginAttempts[ip].resetTime) {
+            delete loginAttempts[ip];
+        }
+    }
+}, 10 * 60 * 1000);
+
+function rateLimitLogin(req, res, next) {
+    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'unknown';
+    const now = Date.now();
+
+    if (!loginAttempts[ip]) {
+        loginAttempts[ip] = { count: 1, resetTime: now + 15 * 60 * 1000 }; // 15 mins block
+    } else {
+        if (now > loginAttempts[ip].resetTime) {
+            // Reset block window
+            loginAttempts[ip] = { count: 1, resetTime: now + 15 * 60 * 1000 };
+        } else {
+            loginAttempts[ip].count++;
+        }
+    }
+
+    if (loginAttempts[ip].count > 5) {
+        const minutesLeft = Math.ceil((loginAttempts[ip].resetTime - now) / (60 * 1000));
+        return res.status(429).send(`Too many login attempts. Please try again in ${minutesLeft} minutes.`);
+    }
+
+    next();
 }
 
 // --- Optimizations ---
@@ -108,6 +146,19 @@ const assetCache = {};
 
 // On-The-Fly Minification Middleware
 app.use((req, res, next) => {
+    // Only process allowed public assets and pages
+    const allowedHtmlPages = [
+        'index', 'articles', 'resume', 'certificates', 'contact', 'games', 'snake', 'trex', 'wp-admin'
+    ];
+    const isAllowedAsset = req.path.startsWith('/assets/') || 
+                           req.path.startsWith('/blogs/') || 
+                           req.path === '/' || 
+                           allowedHtmlPages.some(page => req.path === `/${page}` || req.path === `/${page}.html` || req.path === `/${page}/`);
+
+    if (!isAllowedAsset) {
+        return next();
+    }
+
     let filePath = path.join(__dirname, req.path === '/' ? 'index.html' : req.path);
     
     // If it's a directory request, try to serve index.html
@@ -167,18 +218,78 @@ app.use((req, res, next) => {
     }
 });
 
-// Serve static files with HTML extensions (pretty URLs) AND 1 year caching for CSS/JS/Images
-const cacheOptions = {
-    extensions: ['html'],
-    maxAge: '1y', // Heavily cache static assets (super fast load times)
-    etag: true
-};
-app.use(express.static(__dirname, cacheOptions));
+// Serve static folders specifically (CSS, JS, media assets)
+app.use('/assets', express.static(path.join(__dirname, 'assets'), { maxAge: '1y', etag: true }));
+app.use('/blogs', express.static(path.join(__dirname, 'blogs'), { maxAge: '1y', etag: true }));
+
+// Serve config and asset files explicitly with correct caching controls
+app.get('/manifest.json', (req, res) => res.sendFile(path.join(__dirname, 'manifest.json')));
+app.get('/robots.txt', (req, res) => res.sendFile(path.join(__dirname, 'robots.txt')));
+app.get('/sitemap.xml', (req, res) => res.sendFile(path.join(__dirname, 'sitemap.xml')));
+app.get('/sw.js', (req, res) => {
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.sendFile(path.join(__dirname, 'sw.js'));
+});
+
+// Explicit allowed public HTML pages (Pretty URLs support)
+const allowedHtmlPages = [
+    'index', 'articles', 'resume', 'certificates', 'contact', 'games', 'snake', 'trex', 'wp-admin'
+];
+
+allowedHtmlPages.forEach(page => {
+    app.get([`/${page}`, `/${page}.html`], (req, res) => {
+        res.sendFile(path.join(__dirname, `${page}.html`));
+    });
+});
+
+// Parse cookies helper
+function parseCookies(cookieHeader) {
+    const list = {};
+    if (!cookieHeader) return list;
+    cookieHeader.split(';').forEach(cookie => {
+        let parts = cookie.split('=');
+        list[parts.shift().trim()] = decodeURI(parts.join('='));
+    });
+    return list;
+}
+
+// Secure Admin Routing (serve dashboard only to validated session tokens)
+app.get(['/admin', '/admin.html'], (req, res) => {
+    let isAuthenticated = false;
+    if (req.headers.cookie) {
+        const cookies = parseCookies(req.headers.cookie);
+        const token = cookies['adminToken'];
+        if (token) {
+            try {
+                jwt.verify(token, JWT_SECRET);
+                isAuthenticated = true;
+            } catch (err) {}
+        }
+    }
+    
+    if (isAuthenticated) {
+        res.sendFile(path.join(__dirname, 'admin_panel.html'));
+    } else {
+        res.sendFile(path.join(__dirname, 'admin.html'));
+    }
+});
+
+// Serve index.html at root
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 // --- Auth Middleware ---
 function authenticateToken(req, res, next) {
+    // 1. Check Authorization header
     const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
+    let token = authHeader && authHeader.split(' ')[1];
+    
+    // 2. Fallback to adminToken cookie
+    if (!token && req.headers.cookie) {
+        const cookies = parseCookies(req.headers.cookie);
+        token = cookies['adminToken'];
+    }
     
     if (token == null) return res.sendStatus(401);
 
@@ -245,7 +356,7 @@ async function pushToGitHub(filePath, contentStr, commitMessage, isDelete = fals
 // --- API Endpoints ---
 
 // Login Endpoint
-app.post('/api/login', (req, res) => {
+app.post('/api/login', rateLimitLogin, (req, res) => {
     const { password } = req.body;
     if (password === ADMIN_PASSWORD) {
         const token = jwt.sign({ admin: true }, JWT_SECRET, { expiresIn: '24h' });
@@ -380,7 +491,7 @@ app.delete('/api/posts/:id', authenticateToken, async (req, res) => {
 });
 
 // GitHub Diagnostic Endpoint
-app.get('/api/github-test', async (req, res) => {
+app.get('/api/github-test', authenticateToken, async (req, res) => {
     const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
     const GITHUB_REPO = process.env.GITHUB_REPO;
     

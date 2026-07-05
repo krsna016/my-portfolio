@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f0c29">
+            <meta property="og:type" content="website">
+    <title>AP@root | Admin Control Panel</title>
+
+    <!-- Intense Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://kit.fontawesome.com https://ka-f.fontawesome.com https://frontend-cdn.perplexity.ai https://cdn.jsdelivr.net blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://kit.fontawesome.com https://ka-f.fontawesome.com https://frontend-cdn.perplexity.ai https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://kit.fontawesome.com https://ka-f.fontawesome.com https://frontend-cdn.perplexity.ai; img-src 'self' data: blob: https:; connect-src 'self' https://cdnjs.cloudflare.com https://kit.fontawesome.com https://ka-f.fontawesome.com https://frontend-cdn.perplexity.ai https://cdn.jsdelivr.net; worker-src 'self' blob: https://cdnjs.cloudflare.com https://kit.fontawesome.com https://ka-f.fontawesome.com https://frontend-cdn.perplexity.ai; object-src 'self' data: blob:;">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=()">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="assets/css/core/style.css?v=1360">
+    <link rel="stylesheet" href="assets/css/features/intense_pack.css?v=1360">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <style>
+        .admin-container {
+            padding-top: 120px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 50px;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 0 2rem;
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .editor-panel,
+        .preview-panel {
+
+            padding: 2rem;
+            height: fit-content;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        
+
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+            gap: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 0.5rem;
+        }
+
+        .icon-option {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1.2rem;
+            color: #aaa;
+        }
+
+        .icon-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .icon-option.selected {
+            background: var(--primary-color);
+            color: #fff;
+            box-shadow: 0 0 10px var(--primary-color);
+        }
+
+        .cert-list {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .cert-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            transition: 0.3s;
+        }
+
+        .cert-item-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .cert-item-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .admin-action-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            padding: 0;
+        }
+
+        .admin-action-btn:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .admin-action-btn i {
+            margin: 0 !important;
+            font-size: 1rem;
+        }
+
+        /* Preview Card Styles Override for Admin */
+        .preview-area .certificate-card {
+            max-width: 350px;
+            margin: 0 auto;
+        }
+
+        /* Fix for Admin Header Underline */
+        .admin-header .section-title::after {
+            left: 0;
+            transform: none;
+        }
+
+        /* Login Overlay */
+        #login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .login-box {
+            padding: 2.5rem;
+            text-align: center;
+            width: 420px;
+            max-width: 90%;
+        }
+
+        /* Fix for color input */
+        .form-group input[type="color"] {
+            padding: 2px;
+            height: 50px;
+            cursor: pointer;
+        }
+    </style>
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Intensive Metadata Hacks -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://krsna016.github.io/my-portfolio/">
+    <meta property="og:title" content="Anurag Pareek - Data Analyst & Developer">
+    <meta property="og:description" content="Data Analyst with hands-on experience in data cleaning, analysis, and visualization using Excel, SQL, Power BI, and Python.">
+    <meta property="og:image" content="https://krsna016.github.io/my-portfolio/assets/images/profile.webp">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://krsna016.github.io/my-portfolio/">
+    <meta property="twitter:title" content="Anurag Pareek - Data Analyst & Developer">
+    <meta property="twitter:description" content="Data Analyst with hands-on experience in data cleaning, analysis, and visualization using Excel, SQL, Power BI, and Python.">
+    <meta property="twitter:image" content="https://krsna016.github.io/my-portfolio/assets/images/profile.webp">
+
+    <link rel="stylesheet" href="assets/css/core/cyber_theme.css?v=1360">
+</head>
+
+<body>
+    <div class="background-glow"></div>
+
+
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">AP@<span style="color: #00ff41; -webkit-text-fill-color: #00ff41 !important; background: none !important; -webkit-background-clip: initial !important; background-clip: initial !important;">root</span></a>
+        <ul class="nav-links">
+            <li><a href="games.html">Arcade</a></li>
+            <li><a href="index.html">Back to Site</a></li>
+            <li><a href="#" id="logout-btn" style="color: #ff6b6b;">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="admin-container">
+        <div class="admin-header">
+            <div>
+                <h2 class="section-title" style="margin-bottom: 1.5rem; text-align: left;">Content Manager</h2>
+                <div class="tab-buttons" style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                    <button class="btn primary tab-btn active" data-tab="certificates">Certificates</button>
+                    <button class="btn secondary tab-btn" data-tab="skills">Technical Skills</button>
+                    <button class="btn secondary tab-btn" data-tab="projects"><i class="fa-solid fa-briefcase"></i> Projects</button>
+                    <button class="btn secondary tab-btn" data-tab="blog"><i class="fa-solid fa-newspaper"></i> Blog Posts</button>
+                    <button class="btn secondary tab-btn" data-tab="settings"><i class="fa-solid fa-gear"></i> Settings</button>
+                </div>
+            </div>
+            <div>
+                <button id="load-json-btn" class="btn secondary">Reset / Reload</button>
+            </div>
+        </div>
+
+        <!-- INSTRUCTIONS BOX -->
+        <div class="glass" style="padding: 1.5rem; margin-bottom: 2rem; border-radius: 12px; user-select: none;">
+            <h4 style="margin-bottom: 0.5rem; color: var(--primary-color);"><i class="fa-solid fa-circle-info"></i> How
+                to Update Your Site</h4>
+            <ol style="margin-left: 1.5rem; color: #ccc; line-height: 1.6; user-select: none;">
+                <li>Make your changes in the editor below (Add, Edit, Delete).</li>
+                <li>Click the <strong>"Download Config"</strong> (and/or <strong>"Markdown"</strong> for blogs) button in the respective tab.</li>
+                <li>A file (<code>certificates_data.js</code>, <code>skills_data.js</code>, <code>projects_data.js</code>, or <code>blog_data.js</code>) will download.</li>
+                <li><strong>Replace</strong> the existing file in your project folder: <code>assets/js/</code> with this new one (and place markdown files in <code>blogs/</code>).</li>
+                <li>Refresh your portfolio website to see the changes!</li>
+            </ol>
+        </div>
+
+        <!-- CERTIFICATES TAB -->
+        <div id="tab-certificates" class="admin-grid tab-content">
+            <!-- Editor Panel -->
+            <div class="editor-panel glass">
+                <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <h3 style="margin: 0;">Add / Edit Certificate</h3>
+                    <button id="save-certs-btn" class="btn primary" style="padding: 0.5rem 1rem; font-size: 0.9rem; white-space: nowrap;">
+                        <i class="fa-solid fa-download"></i> Download Config
+                    </button>
+                </div>
+                <form id="cert-form">
+                    <input type="hidden" id="edit-index" value="-1">
+
+                    <div class="form-group">
+                        <label>Certificate Title</label>
+                        <input type="text" id="cert-title" required placeholder="e.g. Advanced Python Course">
+                    </div>
+
+                    <div class="form-group">
+                        <label>PDF Filename</label>
+                        <input type="text" id="cert-file" required placeholder="e.g. python_cert.pdf">
+                        <small style="color: #888; display: block; margin-top: 5px;">
+                            * Make sure to upload this file to the <code>Certificates/</code> folder manually.
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Color Theme</label>
+                        <input type="color" id="cert-color" value="#6c63ff">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select Icon</label>
+                        <input type="text" id="icon-search" placeholder="Search icons..."
+                            style="margin-bottom: 0.5rem;">
+                        <div class="icon-grid glass" id="icon-grid">
+                            <!-- Icons injected by JS -->
+                        </div>
+                        <input type="hidden" id="selected-icon" required>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                        <button type="submit" class="btn primary" style="flex: 1;">Save to List</button>
+                        <button type="button" id="clear-form" class="btn secondary">Clear</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- List & Preview Panel -->
+            <div class="preview-panel glass">
+                <h3 style="margin-bottom: 1.5rem;">Current Certificates</h3>
+
+                <div class="cert-list" id="cert-list">
+                    <!-- List items injected by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- SKILLS TAB -->
+        <div id="tab-skills" class="admin-grid tab-content" style="display: none;">
+            <!-- Editor Panel -->
+            <div class="editor-panel glass">
+                <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <h3 style="margin: 0;">Add / Edit Skill</h3>
+                    <button id="save-skills-btn" class="btn primary" style="padding: 0.5rem 1rem; font-size: 0.9rem; white-space: nowrap;">
+                        <i class="fa-solid fa-download"></i> Download Config
+                    </button>
+                </div>
+                <form id="skill-form">
+                    <input type="hidden" id="skill-edit-index" value="-1">
+
+                    <div class="form-group">
+                        <label>Skill Name</label>
+                        <input type="text" id="skill-name" required placeholder="e.g. Python">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="skill-desc" rows="3" required
+                            placeholder="e.g. Primary language for Data Analysis..."></textarea>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                        <button type="submit" class="btn primary" style="flex: 1;">Save to List</button>
+                        <button type="button" id="clear-skill-form" class="btn secondary">Clear</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- List Panel -->
+            <div class="preview-panel glass">
+                <h3 style="margin-bottom: 1.5rem;">Current Skills</h3>
+                <div class="cert-list" id="skill-list">
+                    <!-- List items injected by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- PROJECTS TAB -->
+        <div id="tab-projects" class="admin-grid tab-content" style="display: none;">
+            <!-- Editor Panel -->
+            <div class="editor-panel glass">
+                <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <h3 style="margin: 0;">Add / Edit Project</h3>
+                    <button id="save-projects-btn" class="btn primary" style="padding: 0.5rem 1rem; font-size: 0.9rem; white-space: nowrap;">
+                        <i class="fa-solid fa-download"></i> Download Config
+                    </button>
+                </div>
+                <form id="project-form">
+                    <input type="hidden" id="project-edit-index" value="-1">
+
+                    <div class="form-group">
+                        <label>Project Title</label>
+                        <input type="text" id="project-title" required placeholder="e.g. Gita AI API">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="project-desc" rows="3" required
+                            placeholder="e.g. Secure Flask-based NLP system..."></textarea>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                        <button type="submit" class="btn primary" style="flex: 1;">Save to List</button>
+                        <button type="button" id="clear-project-form" class="btn secondary">Clear</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- List Panel -->
+            <div class="preview-panel glass">
+                <h3 style="margin-bottom: 1.5rem;">Current Projects</h3>
+                <div class="cert-list" id="project-list">
+                    <!-- List items injected by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOG POSTS TAB -->
+        <div id="tab-blog" class="admin-grid tab-content" style="display: none;">
+            <!-- Editor Panel -->
+            <div class="editor-panel glass">
+                <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <h3 style="margin: 0;">Add / Edit Blog Post</h3>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button id="save-blog-json-btn" class="btn primary" style="padding: 0.5rem 1rem; font-size: 0.9rem; white-space: nowrap;">
+                            <i class="fa-solid fa-download"></i> Config
+                        </button>
+                        <button id="save-blog-md-btn" class="btn primary" style="padding: 0.5rem 1rem; font-size: 0.9rem; white-space: nowrap;">
+                            <i class="fa-solid fa-download"></i> Markdown
+                        </button>
+                    </div>
+                </div>
+                <form id="blog-form">
+                    <input type="hidden" id="blog-edit-index" value="-1">
+
+                    <div class="form-group">
+                        <label>Slug / ID</label>
+                        <input type="text" id="blog-id" required placeholder="e.g. blog-1">
+                        <small style="color: #888; display: block; margin-top: 5px;">
+                            * This will be the filename (e.g., blogs/blog-1.md).
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="blog-title" required placeholder="Post Title">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Category</label>
+                        <input type="text" id="blog-category" required placeholder="e.g. DSA">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Summary</label>
+                        <textarea id="blog-summary" rows="2"
+                            placeholder="Short summary..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Content (Markdown)</label>
+                        <textarea id="blog-content" rows="10" required
+                            placeholder="Write your markdown here..."
+                            style="font-family: 'Fira Code', monospace;"></textarea>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                        <button type="submit" class="btn primary" style="flex: 1;">Save to List</button>
+                        <button type="button" id="clear-blog-form" class="btn secondary">Clear</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- List Panel -->
+            <div class="preview-panel glass">
+                <h3 style="margin-bottom: 1.5rem;">Current Blog Posts</h3>
+                <div class="cert-list" id="blog-list" style="margin-bottom: 3rem;">
+                    <!-- List items injected by JS -->
+                </div>
+
+                <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-tags" style="color: var(--primary-color);"></i> Manage Categories
+                </h3>
+                <div class="cert-list" id="category-manager-list">
+                    <!-- Categories injected by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- SETTINGS TAB -->
+        <div id="tab-settings" class="admin-grid tab-content" style="display: none; grid-template-columns: 1fr;">
+            <div class="editor-panel glass" style="max-width: 600px; margin: 0 auto;">
+                <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;">
+                    <i class="fa-solid fa-cloud-arrow-up" style="color: #00d4ff;"></i> GitHub Auto-Sync
+                </h3>
+                <p style="color: #ccc; margin-bottom: 1.5rem; font-size: 0.95rem;">
+                    Enter your GitHub Personal Access Token (PAT) and repository details to automatically save changes directly to your live website without downloading files manually.
+                </p>
+                <div style="background: rgba(0, 210, 255, 0.1); border: 1px dashed #00d2ff; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; font-size: 0.85rem; line-height: 1.5; color: #eee; user-select: none;">
+                    <strong>💡 Pro Tip (Multi-Device Sync):</strong> Browser settings are stored locally. To save blogs from <em>any</em> device (mobile, tablet, secondary PC) and keep them permanently, set these variables in your <strong>Railway Project Dashboard</strong> under variables:
+                    <br>• <code>GITHUB_TOKEN</code> = your GitHub PAT
+                    <br>• <code>GITHUB_REPO</code> = <code>krsna016/my-portfolio</code>
+                    <br>• <code>GITHUB_BRANCH</code> = <code>master</code>
+                </div>
+                <form id="settings-form">
+                    <div class="form-group">
+                        <label>GitHub Repository</label>
+                        <input type="text" id="gh-repo" placeholder="e.g. krsna016/my-portfolio" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Branch</label>
+                        <input type="text" id="gh-branch" placeholder="e.g. master or main" value="master" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Personal Access Token (Classic)</label>
+                        <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxxxxx" required>
+                        <small style="color: #888; display: block; margin-top: 5px;">
+                            * Stored securely in your browser's local storage. Needs 'repo' scope.
+                        </small>
+                    </div>
+                    <button type="submit" class="btn primary" style="width: 100%; margin-top: 1rem;">Save Settings</button>
+                </form>
+                <div id="settings-success" style="color: #4cd137; font-size: 0.9rem; margin-top: 15px; display: none; text-align: center;">
+                    Settings saved successfully! Auto-Sync is now active.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="assets/js/data/projects_data.js"></script>
+    <script src="assets/js/data/skills_data.js"></script>
+    <script src="assets/js/data/certificates_data.js"></script>
+    <script src="assets/js/core/script.js"></script>
+    <script src="assets/js/pages/admin.js"></script>
+
+    <script src="assets/js/ui/reactive_grid.js?v=1360" defer></script>
+    <script src="assets/js/ui/cyber_ui.js"></script>
+    <script src="assets/js/ui/radar_cursor.js?v=1360" defer></script>
+</body>
+
+</html>

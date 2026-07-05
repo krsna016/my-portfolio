@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Expired or invalid token -> Force logout
                 localStorage.removeItem('adminLoggedIn');
                 localStorage.removeItem('adminToken');
+                document.cookie = "adminToken=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Strict";
                 loginOverlay.style.display = 'flex';
                 if (adminContainer) adminContainer.style.display = 'none';
                 if (navbar) navbar.style.display = 'none';
@@ -173,6 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     localStorage.setItem('adminPasswordCache', password);
                     if (data && data.token) {
                         localStorage.setItem('adminToken', data.token);
+                        document.cookie = "adminToken=" + data.token + "; Path=/; Max-Age=86400; SameSite=Strict";
                     }
                     loginOverlay.style.display = 'none';
                     passwordInput.value = '';
@@ -244,13 +246,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (credential) {
                     localStorage.setItem('adminLoggedIn', 'true');
-                    fetch('/api/login', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ password: savedPassword })
-                    }).then(res => res.ok ? res.json() : null)
-                      .then(data => { if(data && data.token) localStorage.setItem('adminToken', data.token); })
-                      .catch(err => console.log('No backend API found, biometric authentication running locally.'));
+                    try {
+                        const res = await fetch('/api/login', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ password: savedPassword })
+                        });
+                        if (res.ok) {
+                            const data = await res.json();
+                            if (data && data.token) {
+                                localStorage.setItem('adminToken', data.token);
+                                document.cookie = "adminToken=" + data.token + "; Path=/; Max-Age=86400; SameSite=Strict";
+                            }
+                        }
+                    } catch (err) {
+                        console.log('No backend API found, biometric authentication running locally.', err);
+                    }
 
                     loginOverlay.style.display = 'none';
                     loginError.style.display = 'none';
@@ -270,6 +281,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             localStorage.removeItem('adminLoggedIn');
             localStorage.removeItem('adminToken');
+            document.cookie = "adminToken=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Strict";
             window.location.reload();
         });
     }
@@ -846,6 +858,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         alert("Session expired. Please log in again.");
                         localStorage.removeItem('adminLoggedIn');
                         localStorage.removeItem('adminToken');
+                        document.cookie = "adminToken=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Strict";
                         window.location.reload();
                     } else {
                         setTimeout(() => alert("Failed to save category changes to live server!"), 10);
@@ -945,6 +958,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         alert("Session expired. Please log in again.");
                         localStorage.removeItem('adminLoggedIn');
                         localStorage.removeItem('adminToken');
+                        document.cookie = "adminToken=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Strict";
                         window.location.reload();
                     } else {
                         setTimeout(() => alert("Failed to save to live server! Please click BOTH download buttons to save manually."), 10);
