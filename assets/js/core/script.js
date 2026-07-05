@@ -105,6 +105,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
             lastScrollY = currentScrollY;
         });
+
+        // Reader-mode navbar hide/show on scroll
+        const postReader = document.getElementById('post-reader');
+        let lastReaderScrollY = 0;
+        if (postReader) {
+            postReader.addEventListener('scroll', () => {
+                const currentScrollY = postReader.scrollTop;
+                if (currentScrollY > lastReaderScrollY && currentScrollY > 0) {
+                    if (!navbar.classList.contains('hidden')) {
+                        navbar.classList.add('hidden');
+                    }
+                } else {
+                    if (navbar.classList.contains('hidden')) {
+                        navbar.classList.remove('hidden');
+                    }
+                }
+                lastReaderScrollY = currentScrollY;
+            });
+        }
     } else {
         console.error('Navbar not found!');
     }
