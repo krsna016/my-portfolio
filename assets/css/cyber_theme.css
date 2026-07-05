@@ -229,7 +229,8 @@ input[type="range"]::-webkit-slider-thumb {
 /* Cybernetic Crosshair Overlay */
 .cyber-crosshair-x, .cyber-crosshair-y {
     position: fixed;
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(0, 255, 102, 0.35);
+    box-shadow: 0 0 8px rgba(0, 255, 102, 0.4);
     pointer-events: none;
     z-index: 9998;
 }
@@ -247,7 +248,8 @@ input[type="range"]::-webkit-slider-thumb {
 }
 .cyber-coords {
     position: fixed;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(0, 255, 102, 0.8);
+    text-shadow: 0 0 5px rgba(0, 255, 102, 0.5);
     font-family: var(--font-primary);
     font-size: 10px;
     pointer-events: none;
