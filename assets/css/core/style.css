@@ -2374,7 +2374,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
     padding: 24px;
     border-radius: 16px;
     background: rgba(255, 255, 255, 0.03);
-    border: 2px dotted var(--primary-color, #2ed573) !important; /* Dotted green outline */
+    border: 2px dotted #00ff66 !important; /* Dotted green outline */
     backdrop-filter: blur(2px);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -2995,7 +2995,7 @@ body.focus-mode-active .interactive-bg {
     font-family: 'Space Grotesk', 'Outfit', sans-serif;
     padding: 3rem clamp(1.5rem, 5vw, 4rem) !important;
     background: rgba(10, 10, 15, 0.7) !important;
-    border: 2px dotted var(--primary-color, #2ed573) !important;
+    border: 2px dotted #00ff66 !important;
     border-radius: 16px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
     margin-top: 1rem;
