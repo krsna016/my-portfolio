@@ -8,7 +8,7 @@
 
 :root {
     --bg-color: #000000;
-    --glass-bg: rgba(22, 22, 26, 0.8);
+    --glass-bg: rgba(22, 22, 26, 0.92);
     --text-color: #F5F5F5;
     --primary-color: #F5F5F5;
     --secondary-color: #9A9A9A;
@@ -1089,8 +1089,8 @@ a.btn:not(.ide-run-btn):hover {
 .certificates-page .certificate-card, .games-page .game-card,
 body .glass, body .card, body .certificate-card, body .game-card, body .contact-container, .contact-page .contact-container {
     background-color: var(--glass-bg) !important;
-    backdrop-filter: blur(2px) !important;
-    -webkit-backdrop-filter: blur(2px) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
     border: none !important;
     transition: all 0.3s ease-out !important;
     position: relative; /* For pseudo-element */

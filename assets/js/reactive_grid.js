@@ -187,9 +187,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Draw Base Grid
         ctx.globalCompositeOperation = 'source-over';
         
-        // Minor lines
+        // Minor lines (Invisible by default, only shown via glows)
         ctx.lineWidth = 1;
-        ctx.strokeStyle = `rgba(255, 255, 255, ${0.05 + currentScrollIntensity})`;
+        ctx.strokeStyle = `rgba(255, 255, 255, 0)`;
         ctx.stroke(minorGridPath);
         
         // Major lines
