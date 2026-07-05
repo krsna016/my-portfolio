@@ -21,7 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         settingsForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            localStorage.setItem('ghRepo', document.getElementById('gh-repo').value.trim());
+            let repoVal = document.getElementById('gh-repo').value.trim();
+            // Sanitize in case they pasted the full URL
+            repoVal = repoVal.replace(/^https?:\/\/(www\.)?github\.com\//, '').replace(/\/$/, '');
+            document.getElementById('gh-repo').value = repoVal;
+
+            localStorage.setItem('ghRepo', repoVal);
             localStorage.setItem('ghBranch', document.getElementById('gh-branch').value.trim());
             localStorage.setItem('ghToken', document.getElementById('gh-token').value.trim());
             const successMsg = document.getElementById('settings-success');
@@ -53,10 +58,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
                 body: JSON.stringify(body)
             });
-            return commitRes.ok;
+            if (!commitRes.ok) {
+                const errData = await commitRes.json().catch(() => ({}));
+                console.error("GitHub API Error:", errData);
+                return { ok: false, error: errData.message || 'Unknown Error' };
+            }
+            return { ok: true };
         } catch (e) {
             console.error(e);
-            return false;
+            return { ok: false, error: e.message };
         }
     };
 
@@ -688,15 +698,16 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Try GitHub API Auto-Sync first
             if (localStorage.getItem('ghToken')) {
-                const mdSuccess = await window.pushToGitHub(`blogs/${id}.md`, content, `docs: update blog ${id}.md`);
+                const mdRes = await window.pushToGitHub(`blogs/${id}.md`, content, `docs: update blog ${id}.md`);
                 const cleanPosts = currentBlogPosts.map(p => { const { _mdContent, ...rest } = p; return rest; });
-                const jsonSuccess = await window.pushToGitHub(`assets/js/blog_data.js`, "const blogData = " + JSON.stringify({ posts: cleanPosts, categories: currentBlogCategories }, null, 4) + ";", `docs: update blog config`);
+                const jsonRes = await window.pushToGitHub(`assets/js/blog_data.js`, "const blogData = " + JSON.stringify({ posts: cleanPosts, categories: currentBlogCategories }, null, 4) + ";", `docs: update blog config`);
                 
-                if (mdSuccess && jsonSuccess) {
+                if (mdRes.ok && jsonRes.ok) {
                     setTimeout(() => alert("Saved directly to GitHub! Your live site will update in a minute."), 10);
                     return;
                 } else {
-                    setTimeout(() => alert("Failed to save to GitHub. Check token permissions. You can still save manually."), 10);
+                    const errorMsg = (!mdRes.ok ? mdRes.error : '') + " " + (!jsonRes.ok ? jsonRes.error : '');
+                    setTimeout(() => alert(`Failed to save to GitHub: ${errorMsg}. Please check your token permissions or repository name in Settings. You can still save manually by downloading.`), 10);
                 }
             }
 
