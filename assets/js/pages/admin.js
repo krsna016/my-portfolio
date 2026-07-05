@@ -170,6 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (res.ok) {
                     const data = await res.json();
                     localStorage.setItem('adminLoggedIn', 'true');
+                    localStorage.setItem('adminPasswordCache', password);
                     if (data && data.token) {
                         localStorage.setItem('adminToken', data.token);
                     }
@@ -214,6 +215,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert("Biometrics not supported on this device/browser.");
                 return;
             }
+
+            const savedPassword = localStorage.getItem('adminPasswordCache');
+            if (!savedPassword) {
+                alert("Please log in with your password once first to register this device for biometric login.");
+                return;
+            }
+
             try {
                 // Generate a dummy challenge to trigger native OS Biometric prompt
                 const challenge = new Uint8Array(32);
@@ -239,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     fetch('/api/login', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ password: 'admin123' }) // Assuming default backend password for biometric success
+                        body: JSON.stringify({ password: savedPassword })
                     }).then(res => res.ok ? res.json() : null)
                       .then(data => { if(data && data.token) localStorage.setItem('adminToken', data.token); })
                       .catch(err => console.log('No backend API found, biometric authentication running locally.'));
