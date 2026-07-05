@@ -9,17 +9,17 @@ const PRECACHE_ASSETS = [
     '/contact.html',
     '/games.html',
     '/admin.html',
-    '/assets/css/style.css',
-    '/assets/css/intense_features/intense_pack.css',
-    '/assets/js/script.js',
-    '/assets/js/particles.js',
-    '/assets/js/intense_features/terminal.js',
-    '/assets/js/intense_features/sound_haptics.js',
-    '/assets/js/resume.js',
-    '/assets/js/resume_data.js',
-    '/assets/css/cyber_theme.css',
-    '/assets/js/cyber_ui.js',
-    '/assets/js/evervault_portrait.js',
+    '/assets/css/core/style.css',
+    '/assets/css/features/intense_pack.css',
+    '/assets/js/core/script.js',
+    '/assets/js/core/particles.js',
+    '/assets/js/features/terminal.js',
+    '/assets/js/features/sound_haptics.js',
+    '/assets/js/pages/resume.js',
+    '/assets/js/data/resume_data.js',
+    '/assets/css/core/cyber_theme.css',
+    '/assets/js/ui/cyber_ui.js',
+    '/assets/js/ui/evervault_portrait.js',
     '/manifest.json'
 ];
 
@@ -44,16 +44,27 @@ self.addEventListener('activate', event => {
     );
 });
 
-// Caching Strategy
+// Smart Caching Strategy
 self.addEventListener('fetch', event => {
     if (event.request.method !== 'GET') return;
     if (event.request.url.includes('/api/')) return;
 
-    const url = event.request.url;
-    const isDynamicContent = url.endsWith('.json') || url.endsWith('.md') || url.includes('/blogs/');
+    const url = new URL(event.request.url);
+    const pathname = url.pathname;
+    const lastSlash = pathname.lastIndexOf('/');
+    const lastDot = pathname.lastIndexOf('.');
+    const hasExtension = lastDot !== -1 && lastDot > lastSlash;
 
-    if (isDynamicContent) {
-        // Network-First for blogs/data (forces latest version, falls back to offline cache)
+    // Detect if request is for HTML page (including pretty URLs) or dynamic content
+    const isHtmlOrDynamic = event.request.mode === 'navigate' ||
+                            !hasExtension ||
+                            pathname.endsWith('.html') ||
+                            pathname.endsWith('.json') ||
+                            pathname.endsWith('.md') ||
+                            pathname.includes('/blogs/');
+
+    if (isHtmlOrDynamic) {
+        // Network-First strategy: Fetch fresh content from network, update cache, fallback to cache if offline
         event.respondWith(
             fetch(event.request, { cache: 'no-cache' }).then(networkResponse => {
                 if (networkResponse && networkResponse.status === 200) {
@@ -62,34 +73,32 @@ self.addEventListener('fetch', event => {
                 }
                 return networkResponse;
             }).catch(() => {
-                return caches.match(event.request);
+                return caches.match(event.request).then(cachedResponse => {
+                    if (cachedResponse) return cachedResponse;
+                    // Fallback for navigation if offline and cache is empty
+                    if (event.request.mode === 'navigate') {
+                        return caches.match('/index.html');
+                    }
+                    return new Response('Offline content unavailable.', { status: 503, headers: { 'Content-Type': 'text/plain' } });
+                });
             })
         );
-        return;
-    }
-
-    // Use Network-First strategy with { cache: 'no-cache' } for everything to bypass HTTP cache and ensure immediate updates.
-    // Falls back to offline cache if network fails.
-    event.respondWith(
-        fetch(event.request, { cache: 'no-cache' }).then(networkResponse => {
-            if (networkResponse && networkResponse.status === 200 && (networkResponse.type === 'basic' || networkResponse.type === 'cors')) {
-                const responseClone = networkResponse.clone();
-                caches.open(CACHE_NAME).then(cache => {
-                    cache.put(event.request, responseClone);
+    } else {
+        // Stale-While-Revalidate strategy for static assets (CSS, JS, images, fonts)
+        event.respondWith(
+            caches.open(CACHE_NAME).then(cache => {
+                return cache.match(event.request).then(cachedResponse => {
+                    const fetchPromise = fetch(event.request).then(networkResponse => {
+                        if (networkResponse && networkResponse.status === 200 && (networkResponse.type === 'basic' || networkResponse.type === 'cors')) {
+                            cache.put(event.request, networkResponse.clone());
+                        }
+                        return networkResponse;
+                    }).catch(() => {
+                        // Suppress background fetch errors when offline
+                    });
+                    return cachedResponse || fetchPromise;
                 });
-            }
-            return networkResponse;
-        }).catch(() => {
-            return caches.match(event.request).then(cachedResponse => {
-                if (cachedResponse) {
-                    return cachedResponse;
-                }
-                // Fallback for navigation requests
-                if (event.request.mode === 'navigate') {
-                    return caches.match('/index.html');
-                }
-                return new Response('Network error happened and no cache available', { status: 408, headers: { 'Content-Type': 'text/plain' } });
-            });
-        })
-    );
+            })
+        );
+    }
 });

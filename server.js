@@ -13,15 +13,34 @@ const PORT = process.env.PORT || 8000;
 const JWT_SECRET = process.env.JWT_SECRET || 'super-secret-key-change-this-in-production';
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
 
+if (JWT_SECRET === 'super-secret-key-change-this-in-production') {
+    console.warn("⚠️ SECURITY WARNING: Using fallback default JWT_SECRET. Set JWT_SECRET in production environment variables!");
+}
+if (ADMIN_PASSWORD === 'admin123') {
+    console.warn("⚠️ SECURITY WARNING: Using fallback default ADMIN_PASSWORD ('admin123'). Set ADMIN_PASSWORD in production environment variables!");
+}
+
 // --- Optimizations ---
 // Compress all HTTP responses (Gzip/Brotli)
 app.use(compression());
+
+// Browser & HTTP Security Headers Middleware (Production Hardening)
+app.use((req, res, next) => {
+    res.setHeader('X-Frame-Options', 'DENY');
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
+    res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+    res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), payment=(), usb=()');
+    res.setHeader('X-XSS-Protection', '1; mode=block');
+    res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://kit.fontawesome.com https://ka-f.fontawesome.com https://cdn.jsdelivr.net blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://kit.fontawesome.com https://ka-f.fontawesome.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://kit.fontawesome.com https://ka-f.fontawesome.com; img-src 'self' data: blob: https:; connect-src 'self' https://cdnjs.cloudflare.com https://kit.fontawesome.com https://ka-f.fontawesome.com https://cdn.jsdelivr.net; worker-src 'self' blob: https://cdnjs.cloudflare.com; object-src 'self' data: blob:;");
+    next();
+});
 
 // Middleware to parse JSON bodies
 app.use(express.json({ limit: '10mb' }));
 
 // Paths
-const DATA_FILE = path.join(__dirname, 'assets', 'js', 'blog_data.json');
+const DATA_FILE = path.join(__dirname, 'assets', 'js', 'data', 'blog_data.json');
 const BLOGS_DIR = path.join(__dirname, 'blogs');
 
 // Ensure directories exist
@@ -35,9 +54,30 @@ function loadBlogDataCache() {
     if (fs.existsSync(DATA_FILE)) {
         try {
             blogDataCache = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
-            console.log("Blog data loaded into memory cache.");
+            console.log("Blog data loaded into memory cache from JSON.");
         } catch (e) {
-            console.error("Error loading blog data cache:", e);
+            console.error("Error loading blog data cache from JSON:", e);
+        }
+    } else {
+        // Fallback: parse from assets/js/data/blog_data.js if JSON doesn't exist yet
+        const jsFile = path.join(__dirname, 'assets', 'js', 'data', 'blog_data.js');
+        if (fs.existsSync(jsFile)) {
+            try {
+                let jsContent = fs.readFileSync(jsFile, 'utf8').trim();
+                // Strip "const blogData = " and trailing semicolon
+                if (jsContent.startsWith('const blogData =')) {
+                    jsContent = jsContent.replace(/^const blogData\s*=\s*/, '');
+                }
+                if (jsContent.endsWith(';')) {
+                    jsContent = jsContent.slice(0, -1);
+                }
+                blogDataCache = JSON.parse(jsContent);
+                console.log("Blog data loaded into memory cache from fallback JS.");
+                // Write it to JSON to persist it
+                fs.writeFileSync(DATA_FILE, JSON.stringify(blogDataCache, null, 4), 'utf8');
+            } catch(e) {
+                console.error("Error parsing fallback blog_data.js:", e);
+            }
         }
     }
 }
@@ -46,14 +86,18 @@ loadBlogDataCache();
 
 // Smart Caching Strategy for Maximum Performance (Must be before send)
 app.use((req, res, next) => {
-    // Prevent caching for HTML pages, API routes, and Blog Data to ensure fresh content
-    if (req.path.endsWith('.html') || req.path === '/' || req.path.startsWith('/api/') || req.path.endsWith('.md') || req.path.endsWith('.json')) {
+    const ext = path.extname(req.path);
+    // Prevent caching for HTML pages (including extensionless pretty URLs), API routes, and Blog Data to ensure fresh content
+    const isHtmlRoute = !ext || ext === '.html' || req.path === '/';
+    const isApiOrDataRoute = req.path.startsWith('/api/') || ext === '.md' || ext === '.json';
+
+    if (isHtmlRoute || isApiOrDataRoute) {
         res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
         res.setHeader('Pragma', 'no-cache');
         res.setHeader('Expires', '0');
         res.setHeader('Surrogate-Control', 'no-store');
     } else {
-        // Cache static assets for 1 year
+        // Cache static assets for 1 year (CSS, JS, images, fonts)
         res.setHeader('Cache-Control', 'public, max-age=31536000');
     }
     next();
@@ -85,14 +129,16 @@ app.use((req, res, next) => {
         }
     }
 
-    // Serve from cache if available
-    if (assetCache[filePath]) {
-        res.setHeader('Content-Type', ext === '.css' ? 'text/css' : ext === '.js' ? 'application/javascript' : 'text/html');
-        // Let it fall through to cache control headers
-        return res.send(assetCache[filePath]);
-    }
-
     try {
+        const stats = fs.statSync(filePath);
+        const mtime = stats.mtimeMs;
+
+        // Serve from cache if available and not modified on disk
+        if (assetCache[filePath] && assetCache[filePath].mtime === mtime) {
+            res.setHeader('Content-Type', ext === '.css' ? 'text/css' : ext === '.js' ? 'application/javascript' : 'text/html');
+            return res.send(assetCache[filePath].code);
+        }
+
         let content = fs.readFileSync(filePath, 'utf8');
         let minified = content;
 
@@ -110,8 +156,8 @@ app.use((req, res, next) => {
             if (!result.error) minified = result.code;
         }
 
-        // Cache the minified version in RAM
-        assetCache[filePath] = minified;
+        // Cache the minified version in RAM with mtime
+        assetCache[filePath] = { code: minified, mtime: mtime };
         
         res.setHeader('Content-Type', ext === '.css' ? 'text/css' : ext === '.js' ? 'application/javascript' : 'text/html');
         return res.send(minified);
@@ -183,6 +229,7 @@ async function pushToGitHub(filePath, contentStr, commitMessage, isDelete = fals
             headers: {
                 'Authorization': `Bearer ${GITHUB_TOKEN}`,
                 'Accept': 'application/vnd.github.v3+json',
+                'Content-Type': 'application/json',
                 'User-Agent': 'Live-CMS-Robot'
             },
             body: JSON.stringify(body)
@@ -226,6 +273,11 @@ app.post('/api/posts', authenticateToken, async (req, res) => {
         return res.status(400).send("Missing required fields");
     }
 
+    const idRegex = /^[a-zA-Z0-9_-]+$/;
+    if (!idRegex.test(id)) {
+        return res.status(400).send("Invalid post ID slug format. Only alphanumeric, dashes, and underscores allowed.");
+    }
+
     // Write markdown file
     const mdFilePath = path.join(BLOGS_DIR, `${id}.md`);
     fs.writeFileSync(mdFilePath, content, 'utf8');
@@ -255,10 +307,16 @@ app.post('/api/posts', authenticateToken, async (req, res) => {
 
     const jsonData = JSON.stringify(dataObj, null, 4);
     fs.writeFileSync(DATA_FILE, jsonData, 'utf8');
+
+    // Also write to fallback assets/js/data/blog_data.js to keep static hosting fallbacks in sync
+    const jsDataFile = path.join(__dirname, 'assets', 'js', 'data', 'blog_data.js');
+    const jsContent = `const blogData = ${jsonData};\n`;
+    fs.writeFileSync(jsDataFile, jsContent, 'utf8');
     
     // Push changes to GitHub asynchronously
     pushToGitHub(`blogs/${id}.md`, content, `cms: add/update blog post ${id}`);
-    pushToGitHub(`assets/js/blog_data.json`, jsonData, `cms: update blog config for ${id}`);
+    pushToGitHub(`assets/js/data/blog_data.json`, jsonData, `cms: update blog config (JSON) for ${id}`);
+    pushToGitHub(`assets/js/data/blog_data.js`, jsContent, `cms: update blog config (JS) for ${id}`);
 
     res.send("Success");
 });
@@ -266,6 +324,11 @@ app.post('/api/posts', authenticateToken, async (req, res) => {
 // Delete a post (Protected)
 app.delete('/api/posts/:id', authenticateToken, async (req, res) => {
     const { id } = req.params;
+
+    const idRegex = /^[a-zA-Z0-9_-]+$/;
+    if (!idRegex.test(id)) {
+        return res.status(400).send("Invalid post ID slug format");
+    }
     
     const mdFilePath = path.join(BLOGS_DIR, `${id}.md`);
     if (fs.existsSync(mdFilePath)) {
@@ -279,9 +342,15 @@ app.delete('/api/posts/:id', authenticateToken, async (req, res) => {
     const jsonData = JSON.stringify(blogDataCache, null, 4);
     fs.writeFileSync(DATA_FILE, jsonData, 'utf8');
 
+    // Also write to fallback assets/js/data/blog_data.js to keep static hosting fallbacks in sync
+    const jsDataFile = path.join(__dirname, 'assets', 'js', 'data', 'blog_data.js');
+    const jsContent = `const blogData = ${jsonData};\n`;
+    fs.writeFileSync(jsDataFile, jsContent, 'utf8');
+
     // Push deletions to GitHub asynchronously
     pushToGitHub(`blogs/${id}.md`, "", `cms: delete blog post ${id}`, true);
-    pushToGitHub(`assets/js/blog_data.json`, jsonData, `cms: update blog config after deleting ${id}`);
+    pushToGitHub(`assets/js/data/blog_data.json`, jsonData, `cms: update blog config after deleting ${id}`);
+    pushToGitHub(`assets/js/data/blog_data.js`, jsContent, `cms: update blog config (JS) after deleting ${id}`);
 
     res.send("Deleted");
 });

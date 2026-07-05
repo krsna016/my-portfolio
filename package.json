@@ -16,10 +16,7 @@
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "html-minifier": "^4.0.0",
-    "jsdom": "^29.1.1",
     "jsonwebtoken": "^9.0.3",
-    "puppeteer": "^25.3.0",
-    "sharp": "^0.35.2",
     "uglify-js": "^3.19.3"
   }
 }
