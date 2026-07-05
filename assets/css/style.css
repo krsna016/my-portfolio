@@ -2668,7 +2668,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
     top: 12px;
     right: 12px;
     background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    border: none;
     color: #dcdde1;
     padding: 5px 12px;
     border-radius: 6px;
