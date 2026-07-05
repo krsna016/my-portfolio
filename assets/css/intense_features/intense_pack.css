@@ -1067,7 +1067,7 @@ button:not(.chat-send-btn):hover,
 .about-card,
 .timeline-content,
 .card {
-    background: rgba(255, 255, 255, 0.02) !important;
+    background: rgba(22, 22, 26, 0.60) !important;
     backdrop-filter: blur(12px) !important;
 }
 
