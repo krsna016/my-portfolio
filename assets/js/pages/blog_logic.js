@@ -15,6 +15,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     const readerContent = document.getElementById('reader-content');
     const backButton = document.getElementById('back-button');
     
+    // Self-healing Layout: Force tab-buttons to center container level (fixes old HTML caches)
+    const tabButtons = document.querySelector('.tab-buttons');
+    const container = document.querySelector('.container');
+    if (tabButtons && container && tabButtons.parentNode !== container) {
+        container.insertBefore(tabButtons, container.querySelector('.tab-content'));
+        tabButtons.style.display = 'flex';
+        tabButtons.style.flexDirection = 'row';
+        tabButtons.style.justifyContent = 'center';
+        tabButtons.style.width = '100%';
+        tabButtons.style.margin = '0 auto 2rem auto';
+    }
+    
     // --- Setup Reading Font Size Bar ---
     function setupFontSizeBar() {
         if (!postReader || !readerContent) return;
