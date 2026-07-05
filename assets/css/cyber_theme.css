@@ -1308,7 +1308,7 @@ body .glass:not(.timeline-content):hover::after, body .card:not(.timeline-conten
 .chat-input-bar:focus-within {
     background: rgba(30, 30, 36, 0.82) !important;
     border: none !important;
-    box-shadow: 0 0 15px rgba(0, 210, 255, 0.3) !important;
+    box-shadow: none !important;
 }
 
 /* ==========================================================================
@@ -1353,5 +1353,40 @@ button.chat-send-btn:hover svg,
     filter: none !important;
     color: var(--primary-color) !important;
     fill: var(--primary-color) !important;
-    transform: none !important;
+}
+
+/* Breathing animation for send button when hovered */
+@keyframes sendBtnBreath {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+button.chat-send-btn:hover,
+.chat-input-bar button.chat-send-btn:hover,
+button.chat-send-btn:hover i,
+button.chat-send-btn:hover svg {
+    animation: sendBtnBreath 1.6s ease-in-out infinite !important;
+    transform-origin: center center !important;
+}
+
+/* ==========================================================================
+   ELASTIC FABRIC CONTAINER FOR TECHNICAL SKILLS SECTION
+   ========================================================================== */
+#skills-container,
+#skills-container.skills-wrapper,
+#skills-container.glass {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+#skills-container::before,
+#skills-container::after,
+#skills-container.glass::before,
+#skills-container.glass::after {
+    display: none !important;
+    content: none !important;
 }
