@@ -49,11 +49,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <span id="font-size-display" class="font-size-display" role="button" tabindex="0" aria-label="Current font size 100%, click to reset" title="Click to reset (Ctrl/Cmd + 0)">100%</span>
                 <button id="font-inc-btn" class="font-ctrl-btn" aria-label="Increase font size" title="Increase size (Ctrl/Cmd + +)">A+</button>
             </div>
-            <div class="font-bar-themes" style="display: flex; gap: 6px; margin-left: 12px; border-left: 1px solid rgba(255,255,255,0.15); padding-left: 12px; align-items: center;">
-                <button id="theme-dark-btn" class="theme-ctrl-btn active" title="Default Dark Theme"><i class="fa-solid fa-moon"></i></button>
-                <button id="theme-sepia-btn" class="theme-ctrl-btn" title="Sepia Eye-Care Mode"><i class="fa-solid fa-book-open"></i></button>
-                <button id="theme-focus-btn" class="theme-ctrl-btn" title="Focus Mode (Dim Background)"><i class="fa-solid fa-eye"></i></button>
-            </div>
         `;
 
         const topBar = document.createElement('div');
@@ -93,9 +88,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         const decBtn = fontBar.querySelector('#font-dec-btn');
         const incBtn = fontBar.querySelector('#font-inc-btn');
         const display = fontBar.querySelector('#font-size-display');
-        const darkThemeBtn = fontBar.querySelector('#theme-dark-btn');
-        const sepiaThemeBtn = fontBar.querySelector('#theme-sepia-btn');
-        const focusToggleBtn = fontBar.querySelector('#theme-focus-btn');
 
         let toastTimer = null;
         function showToast(message) {
@@ -132,48 +124,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         });
 
-        // Theme and Focus Toggles
-        darkThemeBtn.addEventListener('click', () => {
-            postReader.classList.remove('reader-sepia');
-            darkThemeBtn.classList.add('active');
-            sepiaThemeBtn.classList.remove('active');
-            localStorage.setItem('blogTheme', 'dark');
-            showToast('<i class="fa-solid fa-moon"></i> Cyber Dark theme active');
-        });
-
-        sepiaThemeBtn.addEventListener('click', () => {
-            postReader.classList.add('reader-sepia');
-            darkThemeBtn.classList.remove('active');
-            sepiaThemeBtn.classList.add('active');
-            localStorage.setItem('blogTheme', 'sepia');
-            showToast('<i class="fa-solid fa-book-open"></i> Sepia Eye-Care mode active');
-        });
-
-        focusToggleBtn.addEventListener('click', () => {
-            const isActive = document.body.classList.toggle('focus-mode-active');
-            focusToggleBtn.classList.toggle('active', isActive);
-            localStorage.setItem('blogFocus', isActive ? 'on' : 'off');
-            showToast(isActive 
-                ? '<i class="fa-solid fa-eye-slash"></i> Focus Mode enabled (Background animations dimmed)' 
-                : '<i class="fa-solid fa-eye"></i> Focus Mode disabled'
-            );
-        });
-
         // Restore saved settings on boot
         updateFontSize(currentSize, false);
-
-        const savedTheme = localStorage.getItem('blogTheme') || 'dark';
-        if (savedTheme === 'sepia') {
-            postReader.classList.add('reader-sepia');
-            darkThemeBtn.classList.remove('active');
-            sepiaThemeBtn.classList.add('active');
-        }
-
-        const savedFocus = localStorage.getItem('blogFocus') || 'off';
-        if (savedFocus === 'on') {
-            document.body.classList.add('focus-mode-active');
-            focusToggleBtn.classList.add('active');
-        }
 
         window.addEventListener('keydown', (e) => {
             if (postReader.style.display !== 'block') return;
