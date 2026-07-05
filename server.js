@@ -321,6 +321,30 @@ app.post('/api/posts', authenticateToken, async (req, res) => {
     res.send("Success");
 });
 
+// Update bulk blog config (Protected)
+app.post('/api/blog-config', authenticateToken, (req, res) => {
+    const { posts, categories } = req.body;
+    if (!posts || !categories) {
+        return res.status(400).send("Missing required fields");
+    }
+
+    const dataObj = { posts, categories };
+    blogDataCache = dataObj; // update RAM cache
+
+    const jsonData = JSON.stringify(dataObj, null, 4);
+    fs.writeFileSync(DATA_FILE, jsonData, 'utf8');
+
+    const jsDataFile = path.join(__dirname, 'assets', 'js', 'data', 'blog_data.js');
+    const jsContent = `const blogData = ${jsonData};\n`;
+    fs.writeFileSync(jsDataFile, jsContent, 'utf8');
+
+    // Push to GitHub
+    pushToGitHub(`assets/js/data/blog_data.json`, jsonData, `cms: update bulk blog config (JSON)`);
+    pushToGitHub(`assets/js/data/blog_data.js`, jsContent, `cms: update bulk blog config (JS)`);
+
+    res.send("Success");
+});
+
 // Delete a post (Protected)
 app.delete('/api/posts/:id', authenticateToken, async (req, res) => {
     const { id } = req.params;

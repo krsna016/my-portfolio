@@ -699,6 +699,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentBlogPosts = [];
     let currentBlogCategories = [];
     const blogList = document.getElementById('blog-list');
+    const categoryManagerList = document.getElementById('category-manager-list');
     const blogForm = document.getElementById('blog-form');
     const blogEditIndexInput = document.getElementById('blog-edit-index');
     const clearBlogFormBtn = document.getElementById('clear-blog-form');
@@ -743,6 +744,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error(e);
         }
         renderBlogList();
+        renderCategoryManagerList();
     }
     loadAdminBlogData();
 
@@ -769,6 +771,94 @@ document.addEventListener('DOMContentLoaded', () => {
             blogList.appendChild(item);
         });
     }
+
+    function renderCategoryManagerList() {
+        if (!categoryManagerList) return;
+        categoryManagerList.innerHTML = '';
+        currentBlogCategories.forEach((cat, index) => {
+            const item = document.createElement('div');
+            item.className = 'cert-item glass';
+            item.innerHTML = `
+                <div class="cert-item-info">
+                    <div>
+                        <h4 style="margin: 0;">${escapeHTML(cat)}</h4>
+                    </div>
+                </div>
+                <div class="cert-item-actions">
+                    <button class="admin-action-btn" style="color: #ff6b6b;" onclick="deleteCategory(${index})" title="Delete Category"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            `;
+            categoryManagerList.appendChild(item);
+        });
+    }
+
+    window.deleteCategory = async function (index) {
+        const categoryName = currentBlogCategories[index];
+        if (confirm(`Are you sure you want to delete the category '${categoryName}'? All blog posts in this category will be changed to 'Uncategorized'.`)) {
+            // Remove from categories list
+            currentBlogCategories.splice(index, 1);
+            
+            // Update posts categories
+            currentBlogPosts.forEach(post => {
+                if (post.category === categoryName) {
+                    post.category = 'Uncategorized';
+                }
+            });
+
+            // Save optimistic state locally
+            localStorage.setItem('optimisticBlogData', JSON.stringify({
+                timestamp: Date.now(),
+                posts: currentBlogPosts,
+                categories: currentBlogCategories
+            }));
+
+            // Sync to GitHub first
+            if (localStorage.getItem('ghToken')) {
+                const configObj = { posts: currentBlogPosts.map(p => { const { _mdContent, ...rest } = p; return rest; }), categories: currentBlogCategories };
+                const jsRes = await window.pushToGitHub(`assets/js/data/blog_data.js`, "const blogData = " + JSON.stringify(configObj, null, 4) + ";", `docs: delete category ${categoryName} (JS)`);
+                const jsonRes = await window.pushToGitHub(`assets/js/data/blog_data.json`, JSON.stringify(configObj, null, 4), `docs: delete category ${categoryName} (JSON)`);
+                if (jsRes.ok && jsonRes.ok) {
+                    setTimeout(() => alert("Category deleted directly from GitHub!"), 10);
+                } else {
+                    const errorMsg = (!jsRes.ok ? jsRes.error : '') + " " + (!jsonRes.ok ? jsonRes.error : '');
+                    setTimeout(() => alert(`Failed to delete category from GitHub: ${errorMsg}.`), 10);
+                }
+            }
+
+            // Sync to Railway live server bulk API
+            const token = localStorage.getItem('adminToken');
+            if (token) {
+                try {
+                    const res = await fetch('/api/blog-config', {
+                        method: 'POST',
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify({
+                            posts: currentBlogPosts.map(p => { const { _mdContent, ...rest } = p; return rest; }),
+                            categories: currentBlogCategories
+                        })
+                    });
+                    if (res.ok) {
+                        setTimeout(() => alert("Saved category changes to live server!"), 10);
+                    } else if (res.status === 401) {
+                        alert("Session expired. Please log in again.");
+                        localStorage.removeItem('adminLoggedIn');
+                        localStorage.removeItem('adminToken');
+                        window.location.reload();
+                    } else {
+                        setTimeout(() => alert("Failed to save category changes to live server!"), 10);
+                    }
+                } catch(err) {
+                    setTimeout(() => alert("Live server unreachable for category update."), 10);
+                }
+            }
+
+            renderCategoryManagerList();
+            renderBlogList();
+        }
+    };
 
     if (blogForm) {
         blogForm.addEventListener('submit', async (e) => {
@@ -804,6 +894,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             renderBlogList();
+            renderCategoryManagerList();
             resetBlogForm();
 
             // Save optimistic state locally to mask GitHub deployment delay
