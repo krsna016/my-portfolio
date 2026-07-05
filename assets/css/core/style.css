@@ -3311,6 +3311,14 @@ body.reader-open {
     overflow: hidden !important;
 }
 
+/* Hide cyber HUD status and coordinate overlays while reading */
+body.reader-open .system-status,
+body.reader-open .cyber-coords,
+body.reader-open .cyber-crosshair-x,
+body.reader-open .cyber-crosshair-y {
+    display: none !important;
+}
+
 /* Full-page scrollable reader overlay */
 body.reader-open > #post-reader {
     position: fixed !important;
