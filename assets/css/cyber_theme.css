@@ -1085,3 +1085,10 @@ a.btn:not(.ide-run-btn):hover {
     opacity: 1 !important;
     filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6)) !important;
 }
+
+/* GLOBAL CARD TRANSPARENCY ENFORCEMENT */
+.glass, .card, .exec-card, .project-card, .cert-card, .game-card, .article-card, .resume-card, .about-card, .terminal-card, .timeline-content, .contact-container, .modal-content, .dsa-container {
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+}
