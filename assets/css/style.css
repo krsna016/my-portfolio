@@ -154,9 +154,9 @@ textarea {
 }
 
 .welcome-text {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: var(--font-main);
     font-size: clamp(1rem, 2.5vw, 1.25rem);
-    color: #00d2ff;
+    color: #00ff66;
     font-weight: 600;
     text-shadow: none;
 }
@@ -166,7 +166,7 @@ textarea {
     display: inline-block;
     width: 2px;
     height: 1.2em;
-    background-color: var(--secondary-color);
+    background-color: #00ff66;
     margin-left: 2px;
     animation: blink 1s step-end infinite;
     vertical-align: middle;
