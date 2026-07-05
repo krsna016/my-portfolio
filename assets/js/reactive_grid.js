@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         left: '0',
         width: '100vw',
         height: '100vh',
-        zIndex: '0',
+        zIndex: '-1',
         pointerEvents: 'none'
     });
     document.body.appendChild(canvas);
