@@ -152,8 +152,8 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Minor grid glow - boosted
             let grad = ctx.createRadialGradient(x, y, 0, x, y, radius);
-            grad.addColorStop(0, `rgba(, ${0.15 * data.intensity})`);
-            grad.addColorStop(1, 'rgba(, 0)');
+            grad.addColorStop(0, `rgba(${themeColor}, ${0.15 * data.intensity})`);
+            grad.addColorStop(1, `rgba(${themeColor}, 0)`);
             
             ctx.strokeStyle = grad;
             ctx.lineWidth = 1;
@@ -161,8 +161,8 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Major grid glow - boosted
             let gradMajor = ctx.createRadialGradient(x, y, 0, x, y, radius);
-            gradMajor.addColorStop(0, `rgba(, ${0.30 * data.intensity})`);
-            gradMajor.addColorStop(1, 'rgba(, 0)');
+            gradMajor.addColorStop(0, `rgba(${themeColor}, ${0.30 * data.intensity})`);
+            gradMajor.addColorStop(1, `rgba(${themeColor}, 0)`);
             
             ctx.strokeStyle = gradMajor;
             ctx.lineWidth = 1.5;

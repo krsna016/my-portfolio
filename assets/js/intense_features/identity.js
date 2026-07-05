@@ -16,11 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="id-coord-label id-coord-1">x:438 y:214</div>
         <div class="id-coord-label id-coord-2">ID:AP-001</div>
         <div class="identity-name-container">
-            <span class="id-bracket left">[</span>
+            <span class="id-bracket left" style="color: #00FF41 !important;">[</span>
             <div id="id-name-chars" style="display:flex; align-items:baseline; position:relative;">
                 <div class="id-scan-line"></div>
             </div>
-            <span class="id-bracket right">]</span>
+            <span class="id-bracket right" style="color: #00FF41 !important;">]</span>
         </div>
         <div class="id-auth-labels" id="id-auth-labels"></div>
         <div class="id-particles" id="id-particles"></div>
