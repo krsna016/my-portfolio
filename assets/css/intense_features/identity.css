@@ -116,7 +116,7 @@
     position: absolute;
     font-family: monospace;
     font-size: 0.5rem;
-    color: rgba(0, 255, 102, 0.7); /* Changed to neon green */
+    color: rgba(255, 255, 255, 0.7);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.4s ease;
@@ -170,11 +170,11 @@
     background: #ffaa00; box-shadow: 0 0 5px #ffaa00;
 }
 .hero-identity-wrapper.detecting .id-status-text {
-    color: #ffaa00;
+    color: #ffffff;
 }
 
 .hero-identity-wrapper.hovering .id-bracket {
-    color: rgba(0, 255, 102, 0.8); /* Changed to neon green */
+    color: rgba(255, 255, 255, 0.8);
     transform: translateX(0);
 }
 .hero-identity-wrapper.hovering .id-coord-label {
@@ -198,7 +198,7 @@
     background: #00ff66; box-shadow: 0 0 8px #00ff66;
 }
 .hero-identity-wrapper.verified .id-status-text {
-    color: #00ff66;
+    color: #ffffff;
 }
 
 /* REDUCED MOTION */
@@ -269,7 +269,7 @@
     position: absolute;
     inset: 0;
     border-radius: 50% !important;
-    background: linear-gradient(135deg, rgba(0, 240, 255, 0.7) 0%, rgba(59, 130, 246, 0.5) 50%, rgba(138, 43, 226, 0.7) 100%);
+    background: transparent;
     mix-blend-mode: color;
     pointer-events: none;
 }
@@ -279,7 +279,7 @@
     position: absolute;
     inset: 0;
     border-radius: 50% !important;
-    background: radial-gradient(circle at center, rgba(0, 240, 255, 0.15), rgba(15, 12, 41, 0.45));
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0.45));
     mix-blend-mode: overlay;
 }
 
@@ -291,7 +291,7 @@
         0deg,
         transparent,
         transparent 2px,
-        rgba(0, 240, 255, 0.12) 3px,
+        rgba(255, 255, 255, 0.12) 3px,
         rgba(0, 0, 0, 0.22) 4px
     );
     pointer-events: none;

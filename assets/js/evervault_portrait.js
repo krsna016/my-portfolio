@@ -43,10 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Character pool for hacker terminal stream
     const symbols = ['0', '1', 'A', 'B', 'C', 'D', 'E', 'F', '<', '>', '{', '}', '/', '#', '$', '0x', '::', '//', '&&', '||'];
     const colors = [
-        'rgba(0, 240, 255, 0.8)',   // Cyan
-        'rgba(59, 130, 246, 0.8)',  // Blue
-        'rgba(168, 85, 247, 0.8)',  // Violet
-        'rgba(0, 240, 255, 0.95)'   // Bright Cyan
+        'rgba(255, 255, 255, 0.8)',   // White
+        'rgba(200, 200, 200, 0.8)',  // Light Gray
+        'rgba(150, 150, 150, 0.8)',  // Gray
+        'rgba(255, 255, 255, 0.95)'   // Bright White
     ];
 
     const charCount = 35;
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
             vx: (Math.random() - 0.5) * 0.5,
             vy: -(Math.random() * 0.5 + 0.2),
             radius: Math.random() * 1.5 + 0.8,
-            color: Math.random() > 0.4 ? 'rgba(0, 240, 255, 0.6)' : 'rgba(168, 85, 247, 0.6)'
+            color: Math.random() > 0.4 ? 'rgba(255, 255, 255, 0.6)' : 'rgba(150, 150, 150, 0.6)'
         });
     }
 
