@@ -13,6 +13,16 @@ document.addEventListener('DOMContentLoaded', () => {
         .custom-cursor-enabled, .custom-cursor-enabled * {
             cursor: none !important;
         }
+        ${window.location.pathname.includes('snake') ? `
+            .radar-spotlight { background: radial-gradient(circle, rgba(0, 255, 65, 0.08) 0%, transparent 70%) !important; }
+            .radar-caret { box-shadow: 0 0 6px rgba(0, 255, 65, 0.6) !important; }
+            .radar-svg { filter: drop-shadow(0 0 4px rgba(0, 255, 65, 0.3)) !important; }
+            .radar-hover .radar-ring { stroke: #00FF41 !important; }
+            .radar-hover .radar-dot { fill: #00FF41 !important; filter: drop-shadow(0 0 4px #00FF41) !important; }
+            .radar-hover .radar-sweep path:first-child { stroke: #00FF41 !important; }
+            .radar-hover .radar-sweep path:last-child { fill: rgba(0, 255, 65, 0.25) !important; }
+            .radar-click-pulse { border-color: #00FF41 !important; }
+        ` : ''}
     `;
     document.head.appendChild(style);
     document.body.classList.add('custom-cursor-enabled');
