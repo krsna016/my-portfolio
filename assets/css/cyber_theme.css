@@ -1086,11 +1086,28 @@ a.btn:not(.ide-run-btn):hover {
     filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6)) !important;
 }
 
-/* GLOBAL CARD TRANSPARENCY ENFORCEMENT & HACKER TRACE EFFECT */
+/* GLOBAL CARD TRANSPARENCY ENFORCEMENT */
 .glass, .card, .exec-card, .project-card, .certificate-card, .cert-card, .game-card, .article-card, .resume-card, .about-card, .terminal-card, .timeline-content, .contact-container, .modal-content, .dsa-container,
 .certificates-page .certificate-card, .games-page .game-card,
 body .glass, body .card, body .certificate-card, body .game-card, body .contact-container, .contact-page .contact-container {
     background-color: var(--glass-bg) !important;
+    backdrop-filter: blur(2px) !important;
+    -webkit-backdrop-filter: blur(2px) !important;
+    border: none !important;
+    transition: all 0.3s ease-out !important;
+    position: relative; /* For pseudo-element */
+}
+
+/* Hacker Trace Effect Pseudo-element */
+.glass::after, .card::after, .exec-card::after, .project-card::after, .certificate-card::after, .cert-card::after, .game-card::after, .article-card::after, .resume-card::after, .about-card::after, .terminal-card::after, .timeline-content::after, .contact-container::after, .modal-content::after, .dsa-container::after,
+.certificates-page .certificate-card::after, .games-page .game-card::after,
+body .glass::after, body .card::after, body .certificate-card::after, body .game-card::after, body .contact-container::after, .contact-page .contact-container::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 10;
     background-image: 
         linear-gradient(var(--primary-color), var(--primary-color)),
         linear-gradient(var(--primary-color), var(--primary-color)),
@@ -1099,16 +1116,13 @@ body .glass, body .card, body .certificate-card, body .game-card, body .contact-
     background-repeat: no-repeat !important;
     background-size: 0 2px, 2px 0, 0 2px, 2px 0 !important;
     background-position: 0 0, 100% 0, 100% 100%, 0 100% !important;
-    backdrop-filter: blur(2px) !important;
-    -webkit-backdrop-filter: blur(2px) !important;
-    border: none !important;
-    transition: all 0.3s ease-out, background-size 0.2s ease-out, box-shadow 0.2s ease-out !important;
+    transition: background-size 0.2s ease-out !important;
 }
 
 /* Neon Wireframe Trace Hover Activation */
-.glass:hover, .card:hover, .exec-card:hover, .project-card:hover, .certificate-card:hover, .cert-card:hover, .game-card:hover, .article-card:hover, .resume-card:hover, .about-card:hover, .terminal-card:hover, .timeline-content:hover, .contact-container:hover, .modal-content:hover, .dsa-container:hover,
-.certificates-page .certificate-card:hover, .games-page .game-card:hover,
-body .glass:hover, body .card:hover, body .certificate-card:hover, body .game-card:hover, body .contact-container:hover, .contact-page .contact-container:hover {
+.glass:hover::after, .card:hover::after, .exec-card:hover::after, .project-card:hover::after, .certificate-card:hover::after, .cert-card:hover::after, .game-card:hover::after, .article-card:hover::after, .resume-card:hover::after, .about-card:hover::after, .terminal-card:hover::after, .timeline-content:hover::after, .contact-container:hover::after, .modal-content:hover::after, .dsa-container:hover::after,
+.certificates-page .certificate-card:hover::after, .games-page .game-card:hover::after,
+body .glass:hover::after, body .card:hover::after, body .certificate-card:hover::after, body .game-card:hover::after, body .contact-container:hover::after, .contact-page .contact-container:hover::after {
     background-size: 100% 2px, 2px 100%, 100% 2px, 2px 100% !important;
 }
 
