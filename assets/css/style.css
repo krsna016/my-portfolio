@@ -2966,3 +2966,20 @@ input[type="range"]::-webkit-slider-thumb:hover {
         border-radius: 8px;
     }
 }
+
+/* Make hero CTA buttons thicker like the tab buttons */
+.cta-buttons .btn,
+.cta-buttons button,
+.cta-buttons a.btn {
+    background: rgba(255, 255, 255, 0.25) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid transparent !important;
+    color: #FFFFFF !important;
+}
+
+.cta-buttons .btn:hover,
+.cta-buttons button:hover,
+.cta-buttons a.btn:hover {
+    background: rgba(255, 255, 255, 0.35) !important;
+}
