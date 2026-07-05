@@ -273,7 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Draw Cursor Glow (Green)
         if (mouseX > -500 && mouseY > -500) {
-            const cursorRadius = 350;
+            const cursorRadius = 200;
             
             // Minor grid glow for cursor
             let cursorGrad = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, cursorRadius);
