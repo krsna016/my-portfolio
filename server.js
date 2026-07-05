@@ -519,9 +519,15 @@ app.get('/api/github-test', authenticateToken, async (req, res) => {
     }
 });
 
-// Fallback to index.html for other routes
+// Fallback to index.html for other navigation routes (SPA routing)
 app.use((req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    // Only serve index.html for page navigation requests (no extension, no API, accepts HTML)
+    const isNavigation = req.accepts('html') && req.method === 'GET' && !req.path.includes('.') && !req.path.startsWith('/api/');
+    if (isNavigation) {
+        res.sendFile(path.join(__dirname, 'index.html'));
+    } else {
+        res.status(404).send("File not found");
+    }
 });
 
 app.listen(PORT, '0.0.0.0', () => {
