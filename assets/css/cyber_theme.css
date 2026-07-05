@@ -144,9 +144,9 @@ h1, h2, h3, h4, h5, h6, .logo, .section-title, .hero-content h1 {
 
 /* Navbar */
 .navbar {
-    background: rgba(6, 6, 6, 0.4) !important;
+    background: rgba(0, 0, 0, 0.1) !important;
     border-bottom: none !important;
-    backdrop-filter: blur(10px) !important;
+    backdrop-filter: blur(2px) !important;
 }
 .nav-links a {
     font-family: var(--font-primary) !important;
@@ -175,7 +175,7 @@ h1, h2, h3, h4, h5, h6, .logo, .section-title, .hero-content h1 {
 
 /* Forms */
 input:not([type="range"]):not([type="color"]), textarea {
-    background: rgba(0, 0, 0, 0.5) !important;
+    background: rgba(0, 0, 0, 0.1) !important;
     border: none !important;
     border-radius: 12px !important;
     font-family: var(--font-primary) !important;
@@ -215,7 +215,7 @@ input[type="range"]::-webkit-slider-thumb {
 
 /* Tags / Pills */
 .skill-tag, .exec-tag {
-    background: rgba(0, 0, 0, 0.5) !important;
+    background: rgba(0, 0, 0, 0.1) !important;
     border: none !important;
     border-radius: 12px !important;
     font-family: var(--font-primary) !important;
@@ -325,8 +325,8 @@ input[type="range"]::-webkit-slider-thumb {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
     cursor: pointer !important;
     z-index: 999999 !important;
-    backdrop-filter: blur(16px) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
+    backdrop-filter: blur(3px) !important;
+    -webkit-backdrop-filter: blur(3px) !important;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
@@ -430,7 +430,7 @@ input[type="range"]::-webkit-slider-thumb {
     transform: none !important;
 }
 .ide-code-area {
-    background: rgba(0, 0, 0, 0.5) !important;
+    background: rgba(0, 0, 0, 0.1) !important;
     border-bottom-left-radius: 16px !important;
     border-bottom-right-radius: 16px !important;
 }
@@ -454,14 +454,14 @@ input[type="range"]::-webkit-slider-thumb {
 
 /* Hacker Theme Modal Overrides */
 .modal-content {
-    background: rgba(5, 5, 5, 0.5) !important;
+    background: rgba(0, 0, 0, 0.1) !important;
     border: none !important;
     border-radius: 16px !important;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.8) !important;
     height: 85vh !important;
 }
 .modal-header {
-    background: rgba(17, 17, 17, 0.5) !important;
+    background: rgba(0, 0, 0, 0.1) !important;
     border-bottom: none !important;
     padding: 0.8rem 1rem !important;
     display: flex !important;
@@ -497,7 +497,7 @@ input[type="range"]::-webkit-slider-thumb {
 .pdf-viewer-container {
     border-bottom-left-radius: 16px !important;
     border-bottom-right-radius: 16px !important;
-    background: rgba(0, 0, 0, 0.5) !important;
+    background: rgba(0, 0, 0, 0.1) !important;
     padding: 2px !important; /* Tiny border gap */
 }
 .pdf-viewer-container iframe {
@@ -759,8 +759,8 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links butt
     background: rgba(255, 255, 255, 0.03) !important;
     border: none !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
+    backdrop-filter: blur(2px) !important;
+    -webkit-backdrop-filter: blur(2px) !important;
     color: #FFFFFF !important;
 }
 
@@ -900,7 +900,7 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links butt
     color: #FFFFFF !important;
     border: none !important;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
-    backdrop-filter: blur(8px) !important;
+    backdrop-filter: blur(2px) !important;
     font-family: monospace !important;
     padding: 5px 14px !important;
     font-size: 0.84rem !important;
@@ -1032,8 +1032,8 @@ a.btn:not(.ide-run-btn):hover {
     color: #FFFFFF !important;
     border: none !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
+    backdrop-filter: blur(2px) !important;
+    -webkit-backdrop-filter: blur(2px) !important;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
     text-decoration: none !important;
 }
