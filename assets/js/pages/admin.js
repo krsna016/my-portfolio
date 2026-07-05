@@ -821,15 +821,17 @@ document.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('ghToken')) {
                 const mdRes = await window.pushToGitHub(`blogs/${id}.md`, content, `docs: update blog ${id}.md`);
                 const cleanPosts = currentBlogPosts.map(p => { const { _mdContent, ...rest } = p; return rest; });
-                const jsonRes = await window.pushToGitHub(`assets/js/data/blog_data.js`, "const blogData = " + JSON.stringify({ posts: cleanPosts, categories: currentBlogCategories }, null, 4) + ";", `docs: update blog config`);
+                const configObj = { posts: cleanPosts, categories: currentBlogCategories };
+                const jsRes = await window.pushToGitHub(`assets/js/data/blog_data.js`, "const blogData = " + JSON.stringify(configObj, null, 4) + ";", `docs: update blog config (JS)`);
+                const jsonRes = await window.pushToGitHub(`assets/js/data/blog_data.json`, JSON.stringify(configObj, null, 4), `docs: update blog config (JSON)`);
                 
-                if (mdRes.ok && jsonRes.ok) {
+                if (mdRes.ok && jsRes.ok && jsonRes.ok) {
                     setTimeout(() => alert("Saved directly to GitHub! Your live site will update in a minute."), 10);
                     if (!localStorage.getItem('adminToken')) {
                         return;
                     }
                 } else {
-                    const errorMsg = (!mdRes.ok ? mdRes.error : '') + " " + (!jsonRes.ok ? jsonRes.error : '');
+                    const errorMsg = (!mdRes.ok ? mdRes.error : '') + " " + (!jsRes.ok ? jsRes.error : '') + " " + (!jsonRes.ok ? jsonRes.error : '');
                     setTimeout(() => alert(`Failed to save to GitHub: ${errorMsg}. Please check your token permissions or repository name in Settings. You can still save manually by downloading.`), 10);
                 }
             }
@@ -918,15 +920,17 @@ document.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('ghToken')) {
                 const mdRes = await window.deleteFromGitHub(`blogs/${post.id}.md`);
                 const cleanPosts = currentBlogPosts.map(p => { const { _mdContent, ...rest } = p; return rest; });
-                const jsonRes = await window.pushToGitHub(`assets/js/data/blog_data.js`, "const blogData = " + JSON.stringify({ posts: cleanPosts, categories: currentBlogCategories }, null, 4) + ";", `docs: delete blog config for ${post.id}`);
+                const configObj = { posts: cleanPosts, categories: currentBlogCategories };
+                const jsRes = await window.pushToGitHub(`assets/js/data/blog_data.js`, "const blogData = " + JSON.stringify(configObj, null, 4) + ";", `docs: delete blog config for ${post.id} (JS)`);
+                const jsonRes = await window.pushToGitHub(`assets/js/data/blog_data.json`, JSON.stringify(configObj, null, 4), `docs: delete blog config for ${post.id} (JSON)`);
                 
-                if (mdRes.ok && jsonRes.ok) {
+                if (mdRes.ok && jsRes.ok && jsonRes.ok) {
                     setTimeout(() => alert("Deleted directly from GitHub!"), 10);
                     if (!localStorage.getItem('adminToken')) {
                         return; // Only return early if not running in live server API mode
                     }
                 } else {
-                    const errorMsg = (!mdRes.ok ? mdRes.error : '') + " " + (!jsonRes.ok ? jsonRes.error : '');
+                    const errorMsg = (!mdRes.ok ? mdRes.error : '') + " " + (!jsRes.ok ? jsRes.error : '') + " " + (!jsonRes.ok ? jsonRes.error : '');
                     setTimeout(() => alert(`Failed to delete from GitHub: ${errorMsg}. Please check settings.`), 10);
                 }
             }
