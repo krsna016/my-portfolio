@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ap-portfolio-v141-god-mode';
+const CACHE_NAME = 'ap-portfolio-v142-god-mode';
 
 const PRECACHE_ASSETS = [
     '/',
@@ -48,6 +48,9 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
     if (event.request.method !== 'GET') return;
     if (event.request.url.includes('/api/')) return;
+    
+    // Bypass Google Fonts to prevent CORS/opaque response loading conflicts
+    if (event.request.url.includes('fonts.googleapis.com') || event.request.url.includes('fonts.gstatic.com')) return;
 
     const url = new URL(event.request.url);
     const pathname = url.pathname;
