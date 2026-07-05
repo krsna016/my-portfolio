@@ -8,7 +8,7 @@
 
 :root {
     --bg-color: #000000;
-    --glass-bg: rgba(0, 0, 0, 0.5);
+    --glass-bg: rgba(22, 22, 26, 0.8);
     --text-color: #F5F5F5;
     --primary-color: #F5F5F5;
     --secondary-color: #9A9A9A;
@@ -1093,5 +1093,5 @@ body .glass, body .card, body .certificate-card, body .game-card, body .contact-
     background: var(--glass-bg) !important;
     backdrop-filter: blur(2px) !important;
     -webkit-backdrop-filter: blur(2px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border: none !important;
 }
