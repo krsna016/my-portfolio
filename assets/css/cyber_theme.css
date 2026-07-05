@@ -8,7 +8,7 @@
 
 :root {
     --bg-color: #000000;
-    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-bg: rgba(0, 0, 0, 0.5);
     --text-color: #F5F5F5;
     --primary-color: #F5F5F5;
     --secondary-color: #9A9A9A;
@@ -1089,14 +1089,9 @@ a.btn:not(.ide-run-btn):hover {
 /* GLOBAL CARD TRANSPARENCY ENFORCEMENT */
 .glass, .card, .exec-card, .project-card, .certificate-card, .cert-card, .game-card, .article-card, .resume-card, .about-card, .terminal-card, .timeline-content, .contact-container, .modal-content, .dsa-container,
 .certificates-page .certificate-card, .games-page .game-card,
-body .glass, body .card, body .certificate-card, body .game-card {
+body .glass, body .card, body .certificate-card, body .game-card, body .contact-container, .contact-page .contact-container {
     background: var(--glass-bg) !important;
     backdrop-filter: blur(2px) !important;
     -webkit-backdrop-filter: blur(2px) !important;
-}
-
-body .contact-container, .contact-page .contact-container, .contact-container {
-    background: rgba(255, 255, 255, 0.3) !important;
-    backdrop-filter: blur(2px) !important;
-    -webkit-backdrop-filter: blur(2px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
 }
