@@ -322,7 +322,7 @@
 
 .ai-msg.bot {
     align-self: flex-start;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.15);
     color: #e1e1e6;
     border-bottom-left-radius: 2px;
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -339,7 +339,7 @@
     display: flex;
     padding: 10px;
     background: rgba(0, 0, 0, 0.4);
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .ai-input-field {
@@ -616,7 +616,7 @@
     background: rgba(255, 255, 255, 0.05);
     padding: 5px 12px;
     border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .exec-desc {
@@ -872,7 +872,7 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
     margin: 0.5rem auto 1rem auto !important;
     background: rgba(255, 255, 255, 0.04) !important;
     border-radius: 14px !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
     font-size: 1.8rem !important;
     background-image: none !important;
     color: var(--primary-color) !important;
@@ -902,7 +902,7 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
 .games-page .play-btn {
     margin-top: auto !important;
     padding: 0.55rem 1rem !important;
-    background: rgba(255, 255, 255, 0.08) !important;
+    background: rgba(255, 255, 255, 0.15) !important;
     backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(10px) !important;
     color: #fff !important;
@@ -925,7 +925,7 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
 
 .games-page .play-btn:hover,
 .games-page .game-card:hover .play-btn {
-    background: rgba(255, 255, 255, 0.15) !important;
+    background: rgba(255, 255, 255, 0.25) !important;
     border: 1px solid rgba(255, 255, 255, 0.3) !important;
     outline: none !important;
     color: #fff !important;
@@ -971,7 +971,7 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
     justify-content: center !important;
     background: rgba(255, 255, 255, 0.04) !important;
     border-radius: 14px !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
     margin: 0.5rem auto 1rem auto !important;
     padding: 0 !important;
     box-shadow: none !important;
@@ -1012,7 +1012,7 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
 .certificates-page .cert-link {
     margin-top: auto !important;
     padding: 0.55rem 1rem !important;
-    background: rgba(255, 255, 255, 0.08) !important;
+    background: rgba(255, 255, 255, 0.15) !important;
     backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(10px) !important;
     color: #fff !important;
@@ -1035,7 +1035,7 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
 
 .certificates-page .cert-link:hover,
 .certificates-page .certificate-card:hover .cert-link {
-    background: rgba(255, 255, 255, 0.15) !important;
+    background: rgba(255, 255, 255, 0.25) !important;
     border: 1px solid rgba(255, 255, 255, 0.3) !important;
     outline: none !important;
     color: #fff !important;
@@ -1055,8 +1055,8 @@ button:not(.ide-run-btn):not(.chat-send-btn),
 .skill-tag,
 .exec-tag,
 .tag {
-    background: rgba(255, 255, 255, 0.08) !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
     outline: none !important;
     backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(10px) !important;
@@ -1078,7 +1078,7 @@ button:not(.ide-run-btn):not(.chat-send-btn):hover,
 .skill-tag:hover,
 .exec-tag:hover,
 .tag:hover {
-    background: rgba(255, 255, 255, 0.15) !important;
+    background: rgba(255, 255, 255, 0.25) !important;
     border: 1px solid rgba(255, 255, 255, 0.3) !important;
     outline: none !important;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;

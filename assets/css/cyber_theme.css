@@ -13,7 +13,7 @@
     --primary-color: #F5F5F5;
     --secondary-color: #9A9A9A;
     --accent-color: #F3EAD8;
-    --border-color: rgba(255, 255, 255, 0.08);
+    --border-color: rgba(255, 255, 255, 0.15);
     --font-primary: 'IBM Plex Mono', monospace;
     --font-heading: 'Space Grotesk', sans-serif;
 }
@@ -773,8 +773,8 @@ button.ide-run-btn:hover svg[class*="fa-"] path {
 .category-list li,
 #hero-cli-trigger,
 button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger) {
-    background: rgba(255, 255, 255, 0.08) !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
     outline: none !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
     backdrop-filter: blur(10px) !important;
@@ -798,7 +798,7 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger) {
 .category-list li:hover,
 #hero-cli-trigger:hover,
 button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):hover {
-    background: rgba(255, 255, 255, 0.15) !important;
+    background: rgba(255, 255, 255, 0.25) !important;
     border: 1px solid rgba(255, 255, 255, 0.3) !important;
     outline: none !important;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
@@ -808,7 +808,7 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):hover {
 /* Active tab button */
 .tab-btn.active,
 .category-list li.active {
-    background: rgba(255, 255, 255, 0.15) !important;
+    background: rgba(255, 255, 255, 0.25) !important;
     border: 1px solid rgba(255, 255, 255, 0.3) !important;
     outline: none !important;
     color: #FFFFFF !important;
@@ -916,7 +916,7 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):hover {
 .tag,
 .role-badge,
 .intern-badge {
-    background: rgba(255, 255, 255, 0.08) !important;
+    background: rgba(255, 255, 255, 0.15) !important;
     color: #FFFFFF !important;
     border: none !important;
     outline: none !important;
@@ -949,7 +949,7 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):hover {
 .exec-tag:hover,
 .skill-tag:hover,
 .tag:hover {
-    background: rgba(255, 255, 255, 0.15) !important;
+    background: rgba(255, 255, 255, 0.25) !important;
     color: #FFFFFF !important;
     border: none !important;
     outline: none !important;
@@ -1411,8 +1411,8 @@ button.btn.primary.chat-send-btn:hover,
 
 .drawing-controls .btn,
 .drawing-controls button {
-    background: rgba(255, 255, 255, 0.08) !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
     outline: none !important;
     color: #FFFFFF !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
@@ -1423,7 +1423,7 @@ button.btn.primary.chat-send-btn:hover,
 
 .drawing-controls .btn:hover,
 .drawing-controls button:hover {
-    background: rgba(255, 255, 255, 0.15) !important;
+    background: rgba(255, 255, 255, 0.25) !important;
     border: 1px solid rgba(255, 255, 255, 0.3) !important;
     outline: none !important;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
@@ -1465,8 +1465,8 @@ button.btn.primary.chat-send-btn:hover,
 .tag,
 button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger),
 a.btn:not(.ide-run-btn):not(.chat-send-btn) {
-    background: rgba(255, 255, 255, 0.08) !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
     outline: none !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
     backdrop-filter: blur(10px) !important;
@@ -1498,7 +1498,7 @@ a.btn:not(.ide-run-btn):not(.chat-send-btn) {
 .tag:hover,
 button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):hover,
 a.btn:not(.ide-run-btn):not(.chat-send-btn):hover {
-    background: rgba(255, 255, 255, 0.15) !important;
+    background: rgba(255, 255, 255, 0.25) !important;
     border: 1px solid rgba(255, 255, 255, 0.3) !important;
     outline: none !important;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
