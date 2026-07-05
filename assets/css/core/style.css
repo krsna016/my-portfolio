@@ -3006,7 +3006,7 @@ body.reader-open > #post-reader .post-reader-top-bar {
     flex-wrap: wrap !important;
     gap: 1rem !important;
     margin-bottom: 2rem !important;
-    padding: 0 clamp(1.5rem, 5vw, 4rem) !important;
+    padding: 0 clamp(2rem, 5vw, 5rem) !important;
     width: 100% !important;
     box-sizing: border-box !important;
 }
@@ -3014,9 +3014,9 @@ body.reader-open > #post-reader .post-reader-top-bar {
 /* Article content — centred readable column */
 body.reader-open > #post-reader .post-reader-layout {
     display: block !important;
-    max-width: 1100px !important;
-    margin: 0 auto !important;
-    padding: 0 clamp(1.5rem, 5vw, 3rem) !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 clamp(2rem, 5vw, 5rem) !important;
     width: 100% !important;
     box-sizing: border-box !important;
 }
