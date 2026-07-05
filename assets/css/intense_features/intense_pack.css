@@ -1129,7 +1129,10 @@ html body .read-more.read-more.read-more:hover,
 html body .cert-link.cert-link.cert-link:hover,
 html body #hero-cli-trigger:hover,
 html body .ide-run-btn.ide-run-btn.ide-run-btn:hover,
-html body .chat-send-btn.chat-send-btn.chat-send-btn:hover {
+html body .chat-send-btn.chat-send-btn.chat-send-btn:hover,
+html body .category-list li.category-list li:hover,
+html body .category-list li:hover,
+html body #back-button:hover {
     background: #ffffff !important;
     background-color: #ffffff !important;
     color: #000000 !important;
@@ -1157,7 +1160,9 @@ html body #hero-cli-trigger:hover i,
 html body #hero-cli-trigger:hover svg,
 html body .ide-run-btn.ide-run-btn:hover i,
 html body .chat-send-btn.chat-send-btn:hover i,
-html body .chat-send-btn.chat-send-btn:hover svg {
+html body .chat-send-btn.chat-send-btn:hover svg,
+html body .category-list li:hover i,
+html body #back-button:hover i {
     color: #000000 !important;
     fill: #000000 !important;
 }
