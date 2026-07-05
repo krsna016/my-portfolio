@@ -28,6 +28,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     
     let activeTocObserver = null;
+    // Teleport state — save original parent so we can restore on back
+    let postReaderOriginalParent = null;
+    let postReaderOriginalNextSibling = null;
 
     // --- Setup Reading Preferences Bar (Size, Sepia theme, Focus mode) ---
     function setupFontSizeBar() {
@@ -755,6 +758,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         document.body.classList.remove('reader-open');
 
+        // Restore #post-reader to its original DOM position
+        if (postReaderOriginalParent) {
+            if (postReaderOriginalNextSibling && postReaderOriginalNextSibling.parentNode === postReaderOriginalParent) {
+                postReaderOriginalParent.insertBefore(postReader, postReaderOriginalNextSibling);
+            } else {
+                postReaderOriginalParent.appendChild(postReader);
+            }
+        }
+
         document.title = "Articles & Blog | Anurag Pareek";
         const scrollBar = document.getElementById('neon-scroll-progress');
         if (scrollBar) scrollBar.style.opacity = '0';
@@ -778,6 +790,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (wrapper) wrapper.classList.add('reader-active');
 
         document.body.classList.add('reader-open');
+
+        // Teleport #post-reader to <body> to escape section/container nesting
+        // This eliminates the coordinate mismatch between fixed TOC and padded content
+        if (!postReaderOriginalParent) {
+            postReaderOriginalParent = postReader.parentNode;
+            postReaderOriginalNextSibling = postReader.nextSibling;
+        }
+        document.body.appendChild(postReader);
     }
 
     backButton.addEventListener('click', () => {

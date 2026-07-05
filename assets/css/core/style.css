@@ -2977,70 +2977,82 @@ body.focus-mode-active .interactive-bg {
     transition: opacity 0.6s ease;
 }
 
-/* 2. Reader View Layout & TOC */
+/* ================================================================
+   2. READER VIEW — Teleport Layout
+   #post-reader is moved to <body> by JS in reader mode.
+   body.reader-open > #post-reader targets it directly,
+   bypassing ALL section / container / wrapper nesting.
+   ================================================================ */
 
-/* === STEP 1: Strip section side-padding when reader is open === */
-body.reader-open .section.games-page {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+/* Full-page scrollable reader overlay */
+body.reader-open > #post-reader {
+    position: fixed !important;
+    top: 70px;                  /* below navbar (~64px) */
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    overflow-y: auto !important;
+    z-index: 100 !important;
+    background: var(--dark-bg, #0a0a0f) !important;
+    /* Left padding reserves the 280px TOC column */
+    padding: 2rem 3rem 4rem 300px !important;
+    box-sizing: border-box !important;
+    display: block !important;
+    /* Remove margins that applied when nested */
+    margin: 0 !important;
 }
 
-/* Remove negative margin hacks — no longer needed */
-.pinned-section-wrapper.reader-active {
-    margin-left: 0;
-    margin-right: 0;
+/* Top bar — spans the article column (to the right of TOC) */
+body.reader-open > #post-reader .post-reader-top-bar {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 1rem !important;
+    margin-bottom: 2rem !important;
+    padding: 0 !important;
+    width: 100% !important;
 }
 
-/* Reset any previous padding on #post-reader */
-#post-reader {
-    padding: 0;
-    box-sizing: border-box;
+/* Article content layout */
+body.reader-open > #post-reader .post-reader-layout {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
 }
 
-/* === STEP 2: Shift top-bar and article content to the RIGHT of the fixed TOC ===
-   TOC: position:fixed, left:16px, width:260px → occupies viewport x=16 to x=276
-   We use margin-left on the direct children so they visually start after the TOC.
-   margin-left on a block element shifts IT rightward without affecting its own width. */
-
-#post-reader .post-reader-top-bar {
-    padding-left: 290px;    /* Indent content past the fixed TOC without overflowing */
-    padding-right: 1rem;
-    box-sizing: border-box; /* width:100% from inline CSS stays at 100%, no overflow */
-}
-
-/* Layout inside #post-reader */
-#post-reader .post-reader-layout {
-    display: block;
-    margin-top: 1.5rem;
-    margin-left: 290px;  /* same as top-bar, clears fixed TOC */
-    margin-right: 1rem;
-}
-
-/* === STEP 3: Fixed LEFT sidebar TOC — viewport-anchored === */
+/* === FIXED LEFT SIDEBAR TOC ===
+   position:fixed is relative to viewport, NOT to #post-reader
+   (overflow:auto on parent does not create containing block for fixed)  */
 .reader-toc {
-    width: 260px;
     position: fixed;
-    top: 120px;
-    left: 16px;
-    padding: 1.5rem;
-    border-radius: 12px;
-    max-height: calc(100vh - 160px);
+    top: 70px;
+    left: 0;
+    width: 280px;
+    height: calc(100vh - 70px);
     overflow-y: auto;
-    z-index: 200;
-    user-select: none;
+    z-index: 101;
+    padding: 2rem 1.5rem;
+    border-right: 1px solid var(--glass-border);
+    background: rgba(10, 10, 15, 0.97);
+    backdrop-filter: blur(8px);
+    border-radius: 0;
     scrollbar-width: thin;
     scrollbar-color: var(--primary-color) transparent;
+    user-select: none;
+    box-sizing: border-box;
 }
 
 .reader-toc h4 {
     margin-top: 0;
     margin-bottom: 1.2rem;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     color: var(--primary-color);
     border-bottom: 1px solid var(--glass-border);
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.6rem;
 }
 
 .reader-toc ul {
@@ -3050,44 +3062,27 @@ body.reader-open .section.games-page {
 }
 
 .reader-toc li {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     line-height: 1.4;
 }
 
 .reader-toc a {
     color: #888;
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     transition: color 0.2s, font-weight 0.2s;
     display: block;
+    padding: 2px 0;
 }
 
 .reader-toc a:hover {
     color: var(--primary-color);
 }
 
-/* Layout inside #post-reader (top-bar + content both inherit parent padding) */
-#post-reader .post-reader-layout {
-    display: block;
-    margin-top: 1.5rem;
-}
-
-/* === Responsive: hide TOC and restore normal layout on small screens === */
-@media (max-width: 1200px) {
-    body.reader-open .section.games-page {
-        padding-left: 1rem !important;
-        padding-right: 1rem !important;
-    }
-    #post-reader {
-        padding: 0 !important;
-    }
-    #post-reader .post-reader-top-bar {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
-    #post-reader .post-reader-layout {
-        margin-left: 0 !important;
-        margin-right: 0 !important;
+/* === Responsive: collapse TOC on small screens === */
+@media (max-width: 1100px) {
+    body.reader-open > #post-reader {
+        padding: 1.5rem 1.5rem 4rem 1.5rem !important;
     }
     .reader-toc {
         display: none !important;
