@@ -2991,7 +2991,7 @@ body.reader-open > #post-reader {
     bottom: 0 !important;
     overflow-y: auto !important;
     z-index: 100 !important;
-    background: var(--dark-bg, #0a0a0f) !important;
+    background: transparent !important;
     padding: 2rem 0 4rem 0 !important;
     box-sizing: border-box !important;
     display: block !important;
@@ -3014,7 +3014,7 @@ body.reader-open > #post-reader .post-reader-top-bar {
 /* Article content — centred readable column */
 body.reader-open > #post-reader .post-reader-layout {
     display: block !important;
-    max-width: 780px !important;
+    max-width: 1100px !important;
     margin: 0 auto !important;
     padding: 0 clamp(1.5rem, 5vw, 3rem) !important;
     width: 100% !important;
