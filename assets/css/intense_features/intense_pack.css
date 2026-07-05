@@ -684,7 +684,7 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
 }
 
 /* Subtle luxury hover on buttons, cards, tags, and pills */
-.btn:hover, .btn.primary:hover, .btn.secondary:hover,
+.btn:not(.chat-send-btn):hover, .btn.primary:not(.chat-send-btn):hover, .btn.secondary:hover,
 .tool-btn:hover, .tool-btn.active,
 .footer-socials a:hover,
 .exec-tag:hover,
@@ -1036,11 +1036,11 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
 }
 
 /* Strictly remove all solid backgrounds from buttons, cards, etc. globally */
-.btn,
+.btn:not(.chat-send-btn),
 .play-btn,
 .cert-link,
 .read-more,
-button,
+button:not(.chat-send-btn),
 .tab-btn {
     background: rgba(255, 255, 255, 0.02) !important;
     backdrop-filter: blur(8px) !important;
@@ -1048,11 +1048,11 @@ button,
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
 }
 
-.btn:hover,
+.btn:not(.chat-send-btn):hover,
 .play-btn:hover,
 .cert-link:hover,
 .read-more:hover,
-button:hover,
+button:not(.chat-send-btn):hover,
 .tab-btn.active,
 .tab-btn:hover,
 .category-list li.active,
@@ -1069,4 +1069,36 @@ button:hover,
 .card {
     background: rgba(255, 255, 255, 0.02) !important;
     backdrop-filter: blur(12px) !important;
+}
+
+/* ABSOLUTE OVERRIDE: Remove all background, blur, and shadows from chat send button */
+button.chat-send-btn,
+button.btn.chat-send-btn,
+.chat-input-bar .chat-send-btn,
+.chat-input-bar button.chat-send-btn,
+.chat-send-btn,
+.chat-send-btn:hover,
+.chat-send-btn:focus,
+.chat-send-btn:active,
+.chat-input-bar:hover .chat-send-btn,
+.chat-input-bar:focus-within .chat-send-btn,
+button.chat-send-btn i,
+button.chat-send-btn svg,
+button.chat-send-btn:hover i,
+button.chat-send-btn:hover svg,
+.chat-input-bar .chat-send-btn i,
+.chat-input-bar .chat-send-btn:hover i,
+.contact-container:hover .chat-send-btn i,
+.contact-container:hover .chat-send-btn svg {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    transform: none !important;
 }
