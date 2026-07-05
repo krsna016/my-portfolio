@@ -3257,22 +3257,7 @@ body.focus-mode-active .interactive-bg {
 
 /* ── Horizontal rule ──────────────────────────────────────── */
 #reader-content.markdown-body hr {
-    border: none;
-    height: 1px;
-    background: #1e1e3a;
-    margin: 2.5rem 0;
-    position: relative;
-}
-#reader-content.markdown-body hr::after {
-    content: '◆';
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    color: var(--primary-color, #2ed573);
-    font-size: 0.7rem;
-    background: var(--dark-bg, #0a0a0f);
-    padding: 0 0.5rem;
+    display: none !important;
 }
 
 /* ── Images ───────────────────────────────────────────────── */
