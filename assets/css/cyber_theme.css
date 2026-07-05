@@ -13,7 +13,7 @@
     --primary-color: #F5F5F5;
     --secondary-color: #9A9A9A;
     --accent-color: #F3EAD8;
-    --border-color: rgba(255, 255, 255, 0.08);
+    --border-color: rgba(255, 255, 255, 0.03);
     --font-primary: 'IBM Plex Mono', monospace;
     --font-heading: 'Space Grotesk', sans-serif;
 }
@@ -111,7 +111,7 @@ h1, h2, h3, h4, h5, h6, .logo, .section-title, .hero-content h1 {
 }
 
 .btn:hover, .tool-btn:hover, button:hover {
-    background: rgba(255, 255, 255, 0.05) !important;
+    background: rgba(255, 255, 255, 0.015) !important;
     border-color: var(--secondary-color) !important;
     transform: none !important;
 }
@@ -144,7 +144,7 @@ h1, h2, h3, h4, h5, h6, .logo, .section-title, .hero-content h1 {
 
 /* Navbar */
 .navbar {
-    background: rgba(6, 6, 6, 0.9) !important;
+    background: rgba(6, 6, 6, 0.4) !important;
     border-bottom: none !important;
     backdrop-filter: blur(10px) !important;
 }
@@ -175,7 +175,7 @@ h1, h2, h3, h4, h5, h6, .logo, .section-title, .hero-content h1 {
 
 /* Forms */
 input:not([type="range"]):not([type="color"]), textarea {
-    background: #000 !important;
+    background: rgba(0, 0, 0, 0.5) !important;
     border: none !important;
     border-radius: 12px !important;
     font-family: var(--font-primary) !important;
@@ -215,7 +215,7 @@ input[type="range"]::-webkit-slider-thumb {
 
 /* Tags / Pills */
 .skill-tag, .exec-tag {
-    background: #000 !important;
+    background: rgba(0, 0, 0, 0.5) !important;
     border: none !important;
     border-radius: 12px !important;
     font-family: var(--font-primary) !important;
@@ -227,7 +227,7 @@ input[type="range"]::-webkit-slider-thumb {
 /* Cybernetic Crosshair Overlay */
 .cyber-crosshair-x, .cyber-crosshair-y {
     position: fixed;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
     pointer-events: none;
     z-index: 9998;
 }
@@ -319,7 +319,7 @@ input[type="range"]::-webkit-slider-thumb {
     align-items: center !important;
     justify-content: center !important;
     font-size: 1.15rem !important;
-    background: rgba(255, 255, 255, 0.08) !important;
+    background: rgba(255, 255, 255, 0.03) !important;
     border: none !important;
     color: #aaaaaa !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
@@ -430,7 +430,7 @@ input[type="range"]::-webkit-slider-thumb {
     transform: none !important;
 }
 .ide-code-area {
-    background: #000 !important;
+    background: rgba(0, 0, 0, 0.5) !important;
     border-bottom-left-radius: 16px !important;
     border-bottom-right-radius: 16px !important;
 }
@@ -454,14 +454,14 @@ input[type="range"]::-webkit-slider-thumb {
 
 /* Hacker Theme Modal Overrides */
 .modal-content {
-    background: #050505 !important;
+    background: rgba(5, 5, 5, 0.5) !important;
     border: none !important;
     border-radius: 16px !important;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.8) !important;
     height: 85vh !important;
 }
 .modal-header {
-    background: #111 !important;
+    background: rgba(17, 17, 17, 0.5) !important;
     border-bottom: none !important;
     padding: 0.8rem 1rem !important;
     display: flex !important;
@@ -497,7 +497,7 @@ input[type="range"]::-webkit-slider-thumb {
 .pdf-viewer-container {
     border-bottom-left-radius: 16px !important;
     border-bottom-right-radius: 16px !important;
-    background: #000 !important;
+    background: rgba(0, 0, 0, 0.5) !important;
     padding: 2px !important; /* Tiny border gap */
 }
 .pdf-viewer-container iframe {
@@ -756,7 +756,7 @@ button.ide-run-btn:hover svg[class*="fa-"] path {
 .category-list li,
 #hero-cli-trigger,
 button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links button) {
-    background: rgba(255, 255, 255, 0.08) !important;
+    background: rgba(255, 255, 255, 0.03) !important;
     border: none !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
     backdrop-filter: blur(10px) !important;
@@ -896,7 +896,7 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):not(.nav-links butt
 .tag,
 .role-badge,
 .intern-badge {
-    background: rgba(255, 255, 255, 0.08) !important;
+    background: rgba(255, 255, 255, 0.03) !important;
     color: #FFFFFF !important;
     border: none !important;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
@@ -1028,7 +1028,7 @@ a.btn:not(.ide-run-btn):hover {
 .social-links a,
 .footer-socials a,
 .project-links a {
-    background: rgba(255, 255, 255, 0.08) !important;
+    background: rgba(255, 255, 255, 0.03) !important;
     color: #FFFFFF !important;
     border: none !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
