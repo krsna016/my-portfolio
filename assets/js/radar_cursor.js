@@ -43,12 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="radar-main" id="radar-cursor-main">
             <div class="radar-caret"></div>
             <svg class="radar-svg" viewBox="0 0 32 32" width="32" height="32">
-                <circle cx="16" cy="16" r="1.5" class="radar-dot" fill="" />
-                <path d="M16 4 L16 8 M16 24 L16 28 M4 16 L8 16 M24 16 L28 16" stroke="" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
-                <circle cx="16" cy="16" r="7" stroke="" stroke-width="1" fill="none" opacity="0.4" class="radar-ring" />
+                <circle cx="16" cy="16" r="1.5" class="radar-dot" fill="${dotColor}" />
+                <path d="M16 4 L16 8 M16 24 L16 28 M4 16 L8 16 M24 16 L28 16" stroke="${lineColor}" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
+                <circle cx="16" cy="16" r="7" stroke="${lineColor}" stroke-width="1" fill="none" opacity="0.4" class="radar-ring" />
                 <g class="radar-sweep">
-                    <path d="M16 16 L16 9" stroke="" stroke-width="1" opacity="0.9"/>
-                    <path d="M16 16 L16 9 A 7 7 0 0 1 20.9 11.0 Z" fill="" />
+                    <path d="M16 16 L16 9" stroke="${sweepColor}" stroke-width="1" opacity="0.9"/>
+                    <path d="M16 16 L16 9 A 7 7 0 0 1 20.9 11.0 Z" fill="${fillGlow}" />
                 </g>
             </svg>
         </div>
