@@ -3303,6 +3303,11 @@ body.focus-mode-active .interactive-bg {
    #post-reader is teleported to <body> by JS in reader mode.
    ================================================================ */
 
+/* Disable background body scrollbar when reader is active */
+body.reader-open {
+    overflow: hidden !important;
+}
+
 /* Full-page scrollable reader overlay */
 body.reader-open > #post-reader {
     position: fixed !important;
