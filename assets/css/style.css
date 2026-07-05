@@ -338,10 +338,12 @@ textarea {
 
 .btn.primary,
 .btn.secondary {
-    background: var(--glass-bg);
-    backdrop-filter: blur(2px);
+    background: rgba(255, 255, 255, 0.50);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: none;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    outline: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     border-radius: 16px;
     /* Match card radius */
     color: #fff;
@@ -353,9 +355,9 @@ textarea {
 .btn.primary:hover,
 .btn.secondary:hover {
     transform: translateY(-5px) scale(1.02);
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.65);
     /* Slight lighten on hover */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
 /* Chat Interface */
@@ -403,47 +405,79 @@ textarea {
     box-shadow: 0 0 15px rgba(108, 99, 255, 0.3);
 }
 
+button.chat-send-btn,
+button.btn.chat-send-btn,
+button.btn.primary.chat-send-btn,
+.chat-input-bar button.chat-send-btn,
+.chat-input-bar button[type="submit"],
 .chat-send-btn {
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: auto !important;
+    height: auto !important;
+    padding: 6px 12px !important;
+    margin: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
     background: transparent !important;
+    background-color: transparent !important;
     border: none !important;
+    border-color: transparent !important;
     box-shadow: none !important;
-    flex-shrink: 0;
-    cursor: pointer;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-radius: 0 !important;
+    flex-shrink: 0 !important;
+    cursor: pointer !important;
     outline: none !important;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transform: none !important;
 }
 
+button.chat-send-btn:hover,
+button.btn.chat-send-btn:hover,
+button.btn.primary.chat-send-btn:hover,
+button.chat-send-btn:focus,
+button.chat-send-btn:active,
+.chat-input-bar button.chat-send-btn:hover,
+.chat-input-bar button[type="submit"]:hover,
 .chat-send-btn:hover,
 .chat-send-btn:focus,
 .chat-send-btn:active {
     background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    outline: none !important;
+    transform: scale(1.15) !important;
+    /* Minimal grow of logo only */
+}
+
+button.chat-send-btn i,
+button.chat-send-btn svg,
+.chat-send-btn i,
+.chat-send-btn svg {
+    font-size: clamp(1.3rem, 3.5vw, 1.6rem) !important;
+    color: #FFFFFF !important;
+    fill: #FFFFFF !important;
+    margin: 0 !important;
+    background: transparent !important;
     border: none !important;
     box-shadow: none !important;
-    transform: none;
-    /* Removed scale */
-    outline: none !important;
+    text-shadow: none !important;
+    filter: none !important;
 }
 
-.chat-send-btn:hover {
-    transform: none !important;
-    /* Override .btn.primary:hover */
-}
-
-.chat-send-btn:hover i {
-    text-shadow: 0 0 10px #00d4ff;
-    /* Subtle glow on hover */
-}
-
-.chat-send-btn i {
-    font-size: clamp(1.3rem, 3.5vw, 1.6rem);
-    color: #00d4ff;
-    /* Neon Cyan */
-    margin-left: -2px;
+button.chat-send-btn:hover i,
+button.chat-send-btn:hover svg,
+.chat-send-btn:hover i,
+.chat-send-btn:hover svg {
+    color: #FFFFFF !important;
+    fill: #FFFFFF !important;
+    text-shadow: none !important;
+    filter: none !important;
 }
 
 .hero-visual {
@@ -2721,8 +2755,11 @@ input[type="range"]::-webkit-slider-thumb:hover {
         padding: 14px 24px !important;
         border-radius: 12px !important;
         font-size: 1.05rem !important;
-        background: rgba(255, 255, 255, 0.03) !important; /* Force visibility */
-        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        background: rgba(255, 255, 255, 0.50) !important;
+        border: none !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
         color: #fff !important;
     }
 

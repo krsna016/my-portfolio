@@ -758,7 +758,7 @@ button.ide-run-btn:hover svg[class*="fa-"] path {
    BUTTON VISIBILITY & MONOCHROME VERTICAL BARS
    ========================================================================== */
 /* Ensure buttons do not look like they are floating in air by adding a clean, visible light background and border */
-.btn:not(.ide-run-btn),
+.btn:not(.ide-run-btn):not(.chat-send-btn),
 .tool-btn,
 .tab-btn,
 .read-more,
@@ -772,17 +772,18 @@ button.ide-run-btn:hover svg[class*="fa-"] path {
 .submit-btn,
 .category-list li,
 #hero-cli-trigger,
-button:not(.ide-run-btn):not(.hamburger):not(.nav-links button) {
-    background: rgba(255, 255, 255, 0.10) !important;
+button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger) {
+    background: rgba(255, 255, 255, 0.50) !important;
     border: none !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
-    backdrop-filter: blur(8px) !important;
-    -webkit-backdrop-filter: blur(8px) !important;
+    outline: none !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
     color: #FFFFFF !important;
 }
 
 /* Hover state for buttons */
-.btn:not(.ide-run-btn):hover,
+.btn:not(.ide-run-btn):not(.chat-send-btn):hover,
 .tool-btn:hover,
 .tab-btn:hover,
 .read-more:hover,
@@ -796,20 +797,22 @@ button:not(.ide-run-btn):not(.hamburger):not(.nav-links button) {
 .submit-btn:hover,
 .category-list li:hover,
 #hero-cli-trigger:hover,
-button:not(.ide-run-btn):not(.hamburger):not(.nav-links button):hover {
-    background: rgba(255, 255, 255, 0.22) !important;
+button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):hover {
+    background: rgba(255, 255, 255, 0.65) !important;
     border: none !important;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    outline: none !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
     color: #FFFFFF !important;
 }
 
 /* Active tab button */
 .tab-btn.active,
 .category-list li.active {
-    background: rgba(255, 255, 255, 0.22) !important;
+    background: rgba(255, 255, 255, 0.65) !important;
     border: none !important;
+    outline: none !important;
     color: #FFFFFF !important;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3) !important;
 }
 
 /* Sleek monochrome vertical bar for section headings (About, Experience, Skills, Projects) */
@@ -913,11 +916,13 @@ button:not(.ide-run-btn):not(.hamburger):not(.nav-links button):hover {
 .tag,
 .role-badge,
 .intern-badge {
-    background: rgba(255, 255, 255, 0.03) !important;
+    background: rgba(255, 255, 255, 0.50) !important;
     color: #FFFFFF !important;
     border: none !important;
+    outline: none !important;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
-    backdrop-filter: blur(2px) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
     font-family: monospace !important;
     padding: 5px 14px !important;
     font-size: 0.84rem !important;
@@ -944,9 +949,10 @@ button:not(.ide-run-btn):not(.hamburger):not(.nav-links button):hover {
 .exec-tag:hover,
 .skill-tag:hover,
 .tag:hover {
-    background: rgba(255, 255, 255, 0.2) !important;
+    background: rgba(255, 255, 255, 0.65) !important;
     color: #FFFFFF !important;
     border: none !important;
+    outline: none !important;
     transform: translateY(-2px) scale(1.03) !important;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4) !important;
 }
@@ -973,7 +979,13 @@ button.btn.primary.chat-send-btn:active,
     box-shadow: none !important;
     outline: none !important;
     backdrop-filter: none !important;
-    transform: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+button.btn.primary.chat-send-btn:hover,
+.chat-input-bar button.chat-send-btn:hover,
+.chat-send-btn:hover {
+    transform: scale(1.15) !important;
 }
 
 /* Reduce glow on contact send button icon to very minimal on hover */
@@ -983,8 +995,8 @@ button.btn.primary.chat-send-btn:hover svg path,
 .chat-input-bar button.chat-send-btn:hover i,
 .chat-input-bar button.chat-send-btn:hover svg,
 .chat-input-bar button.chat-send-btn:hover svg path {
-    text-shadow: 0 0 3px rgba(255, 255, 255, 0.15) !important;
-    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.15)) !important;
+    text-shadow: none !important;
+    filter: none !important;
 }
 
 /* ==========================================================================
@@ -1002,7 +1014,7 @@ button.btn.primary.chat-send-btn:hover svg path,
 .control-group a.btn,
 .category-list li,
 #hero-cli-trigger,
-button:not(.ide-run-btn):not(.hamburger):not(.nav-links button),
+button:not(.ide-run-btn):not(.hamburger),
 a.btn:not(.ide-run-btn) {
     outline: none !important;
 }
@@ -1022,7 +1034,7 @@ a.btn:not(.ide-run-btn) {
 .category-list li:hover,
 .category-list li.active,
 #hero-cli-trigger:hover,
-button:not(.ide-run-btn):not(.hamburger):not(.nav-links button):hover,
+button:not(.ide-run-btn):not(.hamburger):hover,
 a.btn:not(.ide-run-btn):hover {
     outline: none !important;
 }
@@ -1323,7 +1335,7 @@ body .glass:not(.timeline-content):hover::after, body .card:not(.timeline-conten
 /* ==========================================================================
    ABSOLUTE BULLETPROOF OVERRIDE FOR CHAT SEND BUTTON & ICON GLOW
    ========================================================================== */
-/* Style chat send button as a clean little glassmorphic button like other buttons across the site */
+/* Style chat send button as logo only without any square or background */
 button.chat-send-btn,
 button.btn.chat-send-btn,
 button.btn.primary.chat-send-btn,
@@ -1331,17 +1343,22 @@ button.btn.primary.chat-send-btn,
 .chat-input-bar button.chat-send-btn,
 .chat-input-bar button[type="submit"],
 .chat-send-btn {
+    width: auto !important;
+    height: auto !important;
     background: transparent !important;
+    background-color: transparent !important;
     border: none !important;
+    border-color: transparent !important;
     box-shadow: none !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     color: #FFFFFF !important;
     border-radius: 0 !important;
-    padding: 8px 12px !important;
-    margin: 0 0 0 8px !important;
+    padding: 6px 12px !important;
+    margin: 0 !important;
     cursor: pointer !important;
-    transition: all 0.3s ease-out !important;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transform: none !important;
 }
 
 /* Remove glow/shadow from icon inside send button only */
@@ -1360,25 +1377,21 @@ button.chat-send-btn:hover svg,
     fill: #FFFFFF !important;
 }
 
-/* Breathing animation ONLY when hovering directly over the send button itself with minimal growth */
-@keyframes sendBtnComeUp {
-    0% { transform: scale(1.03); }
-    50% { transform: scale(1.08); }
-    100% { transform: scale(1.03); }
-}
-
+/* Minimal grow of logo ONLY when hovering directly over the send button itself */
 button.chat-send-btn:hover,
 button.btn.chat-send-btn:hover,
 button.btn.primary.chat-send-btn:hover,
 .chat-input-bar button.chat-send-btn:hover,
 .chat-input-bar button[type="submit"]:hover {
     background: transparent !important;
+    background-color: transparent !important;
     border: none !important;
+    border-color: transparent !important;
     box-shadow: none !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-    animation: sendBtnComeUp 1.6s ease-in-out infinite !important;
-    transform: scale(1.1) !important;
+    animation: none !important;
+    transform: scale(1.15) !important;
     transform-origin: center center !important;
     cursor: pointer !important;
     color: #FFFFFF !important;
@@ -1398,27 +1411,96 @@ button.btn.primary.chat-send-btn:hover,
 
 .drawing-controls .btn,
 .drawing-controls button {
-    background: rgba(255, 255, 255, 0.10) !important;
+    background: rgba(255, 255, 255, 0.50) !important;
     border: none !important;
+    outline: none !important;
     color: #FFFFFF !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
-    backdrop-filter: blur(8px) !important;
-    -webkit-backdrop-filter: blur(8px) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
     border-radius: 12px !important;
 }
 
 .drawing-controls .btn:hover,
 .drawing-controls button:hover {
-    background: rgba(255, 255, 255, 0.22) !important;
+    background: rgba(255, 255, 255, 0.65) !important;
     border: none !important;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5) !important;
+    outline: none !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
     color: #FFFFFF !important;
 }
 
 .drawing-controls .btn.active-tool,
 .drawing-controls button.active-tool {
-    background: rgba(0, 210, 255, 0.25) !important;
-    border: 1px solid #00d2ff !important;
+    background: rgba(0, 210, 255, 0.65) !important;
+    border: none !important;
+    outline: none !important;
     box-shadow: 0 0 15px rgba(0, 210, 255, 0.5) !important;
+    color: #FFFFFF !important;
+}
+
+/* ==========================================================================
+   GLOBAL BULLETPROOF BUTTON CONSISTENCY OVERRIDE (50% TRANSPARENT MATTE GLASS)
+   ========================================================================== */
+.btn:not(.ide-run-btn):not(.chat-send-btn),
+.btn.primary:not(.ide-run-btn):not(.chat-send-btn),
+.btn.secondary:not(.ide-run-btn):not(.chat-send-btn),
+.cta-buttons .btn:not(.ide-run-btn):not(.chat-send-btn),
+.cta-buttons button:not(.ide-run-btn):not(.chat-send-btn),
+.cta-buttons a:not(.ide-run-btn):not(.chat-send-btn),
+.tool-btn,
+.tab-btn,
+.read-more,
+.cert-link,
+.certificates-page .cert-link,
+.certificates-page .certificate-card .cert-link,
+.play-btn,
+.games-page .play-btn,
+.games-page .game-card .play-btn,
+.contact-btn,
+.submit-btn,
+#hero-cli-trigger,
+.skill-tag,
+.exec-tag,
+.tag,
+button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger),
+a.btn:not(.ide-run-btn):not(.chat-send-btn) {
+    background: rgba(255, 255, 255, 0.50) !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    color: #FFFFFF !important;
+}
+
+.btn:not(.ide-run-btn):not(.chat-send-btn):hover,
+.btn.primary:not(.ide-run-btn):not(.chat-send-btn):hover,
+.btn.secondary:not(.ide-run-btn):not(.chat-send-btn):hover,
+.cta-buttons .btn:not(.ide-run-btn):not(.chat-send-btn):hover,
+.cta-buttons button:not(.ide-run-btn):not(.chat-send-btn):hover,
+.cta-buttons a:not(.ide-run-btn):not(.chat-send-btn):hover,
+.tool-btn:hover,
+.tab-btn:hover,
+.tab-btn.active,
+.read-more:hover,
+.cert-link:hover,
+.certificates-page .cert-link:hover,
+.certificates-page .certificate-card:hover .cert-link,
+.play-btn:hover,
+.games-page .play-btn:hover,
+.games-page .game-card:hover .play-btn,
+.contact-btn:hover,
+.submit-btn:hover,
+#hero-cli-trigger:hover,
+.skill-tag:hover,
+.exec-tag:hover,
+.tag:hover,
+button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):hover,
+a.btn:not(.ide-run-btn):not(.chat-send-btn):hover {
+    background: rgba(255, 255, 255, 0.65) !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
     color: #FFFFFF !important;
 }

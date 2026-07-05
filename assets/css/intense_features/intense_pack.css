@@ -902,9 +902,12 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
 .games-page .play-btn {
     margin-top: auto !important;
     padding: 0.55rem 1rem !important;
-    background: transparent !important;
+    background: rgba(255, 255, 255, 0.50) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
     color: #fff !important;
     border: none !important;
+    outline: none !important;
     border-radius: 8px !important;
     font-weight: 500 !important;
     font-size: 0.85rem !important;
@@ -917,16 +920,17 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
     width: 100% !important;
     transition: background 0.2s ease, border-color 0.2s ease !important;
     transform: none !important;
-    box-shadow: none !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
 }
 
 .games-page .play-btn:hover,
 .games-page .game-card:hover .play-btn {
-    background: rgba(255, 255, 255, 0.16) !important;
-    border-color: rgba(255, 255, 255, 0.28) !important;
+    background: rgba(255, 255, 255, 0.65) !important;
+    border: none !important;
+    outline: none !important;
     color: #fff !important;
     transform: none !important;
-    box-shadow: none !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
 }
 
 /* Strictly Scoped Compact Executive Cards for Certifications Page */
@@ -1008,9 +1012,12 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
 .certificates-page .cert-link {
     margin-top: auto !important;
     padding: 0.55rem 1rem !important;
-    background: transparent !important;
+    background: rgba(255, 255, 255, 0.50) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
     color: #fff !important;
     border: none !important;
+    outline: none !important;
     border-radius: 8px !important;
     font-weight: 500 !important;
     font-size: 0.85rem !important;
@@ -1023,45 +1030,58 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
     width: 100% !important;
     transition: background 0.2s ease, border-color 0.2s ease !important;
     transform: none !important;
-    box-shadow: none !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
 }
 
 .certificates-page .cert-link:hover,
 .certificates-page .certificate-card:hover .cert-link {
-    background: rgba(255, 255, 255, 0.16) !important;
-    border-color: rgba(255, 255, 255, 0.28) !important;
+    background: rgba(255, 255, 255, 0.65) !important;
+    border: none !important;
+    outline: none !important;
     color: #fff !important;
     transform: none !important;
-    box-shadow: none !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
 }
 
 /* Clearly visible glassmorphic buttons globally */
-.btn:not(.ide-run-btn),
+.btn:not(.ide-run-btn):not(.chat-send-btn),
+.btn.primary:not(.ide-run-btn):not(.chat-send-btn),
+.btn.secondary:not(.ide-run-btn):not(.chat-send-btn),
 .play-btn,
 .cert-link,
 .read-more,
-button:not(.ide-run-btn),
-.tab-btn {
-    background: rgba(255, 255, 255, 0.10) !important;
+button:not(.ide-run-btn):not(.chat-send-btn),
+.tab-btn,
+.skill-tag,
+.exec-tag,
+.tag {
+    background: rgba(255, 255, 255, 0.50) !important;
     border: none !important;
-    backdrop-filter: blur(8px) !important;
-    -webkit-backdrop-filter: blur(8px) !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    outline: none !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
     color: #FFFFFF !important;
 }
 
-.btn:not(.ide-run-btn):hover,
+.btn:not(.ide-run-btn):not(.chat-send-btn):hover,
+.btn.primary:not(.ide-run-btn):not(.chat-send-btn):hover,
+.btn.secondary:not(.ide-run-btn):not(.chat-send-btn):hover,
 .play-btn:hover,
 .cert-link:hover,
 .read-more:hover,
-button:not(.ide-run-btn):hover,
+button:not(.ide-run-btn):not(.chat-send-btn):hover,
 .tab-btn.active,
 .tab-btn:hover,
 .category-list li.active,
-.category-list li:hover {
-    background: rgba(255, 255, 255, 0.22) !important;
+.category-list li:hover,
+.skill-tag:hover,
+.exec-tag:hover,
+.tag:hover {
+    background: rgba(255, 255, 255, 0.65) !important;
     border: none !important;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    outline: none !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
     color: #FFFFFF !important;
 }
 

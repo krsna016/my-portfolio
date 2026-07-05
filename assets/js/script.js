@@ -9,23 +9,6 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-// Disable right-click
-document.addEventListener('contextmenu', (e) => e.preventDefault());
-
-// Disable copy
-document.addEventListener('copy', (e) => {
-    e.preventDefault();
-    return false;
-});
-
-// Disable selection (extra layer)
-document.addEventListener('selectstart', (e) => {
-    // Allow selection in inputs/textareas
-    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
-        return true;
-    }
-    e.preventDefault();
-});
 
 document.addEventListener('DOMContentLoaded', () => {
     // Typing Animation
@@ -496,41 +479,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// 2. Anti-Tamper DOM Mutation Observer (Self-Healing DOM)
-(function() {
-    // Only strictly allow known domains
-    const allowedDomains = [
-        window.location.origin,
-        'https://fonts.googleapis.com',
-        'https://fonts.gstatic.com',
-        'https://cdnjs.cloudflare.com'
-    ];
 
-    const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            mutation.addedNodes.forEach((node) => {
-                if (node.tagName === 'SCRIPT' || node.tagName === 'IFRAME') {
-                    const src = node.src || node.href;
-                    if (src) {
-                        const isAllowed = allowedDomains.some(domain => src.startsWith(domain));
-                        if (!isAllowed) {
-                            node.parentNode.removeChild(node);
-                            console.warn("%c[SECURITY SHIELD] Blocked unauthorized DOM injection:", "color: #ff0055; font-weight: bold;", src);
-                        }
-                    } else if (node.tagName === 'SCRIPT' && !node.innerHTML.includes('Intense Security Hacks')) {
-                        // Some inline scripts might be okay, but we watch for suspicious ones
-                        if (node.innerHTML.includes('eval(') || node.innerHTML.includes('document.write')) {
-                            node.parentNode.removeChild(node);
-                            console.warn("%c[SECURITY SHIELD] Blocked suspicious inline script.", "color: #ff0055; font-weight: bold;");
-                        }
-                    }
-                }
-            });
-        });
-    });
-
-    observer.observe(document.documentElement, {
-        childList: true,
-        subtree: true
-    });
-})();
