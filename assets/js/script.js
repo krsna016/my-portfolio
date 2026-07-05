@@ -192,6 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
             item.innerHTML = `
                 <div class="timeline-dot-connector"></div>
                 <div class="timeline-content exec-card glass">
+                    <div class="neon-trace"></div>
                     <div class="exec-card-header">
                         <div class="exec-role-group">
                             <div class="exec-icon"><i class="${exp.icon || 'fa-solid fa-briefcase'}"></i></div>
