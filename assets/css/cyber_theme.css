@@ -412,20 +412,27 @@ input[type="range"]::-webkit-slider-thumb {
     font-size: 0.8rem !important;
 }
 .ide-run-btn {
-    background: var(--primary-color) !important;
-    color: #000 !important;
-    border-top-right-radius: 16px !important;
+    background: #2ed573 !important;
     border: none !important;
-    text-transform: uppercase !important;
-    font-weight: bold !important;
-    box-shadow: none !important;
+    color: #000000 !important;
+    padding: 5px 14px !important;
+    border-radius: 6px !important;
+    font-size: 0.85rem !important;
+    font-weight: 800 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    box-shadow: 0 0 10px rgba(46, 213, 115, 0.3) !important;
     font-family: var(--font-primary) !important;
+    text-transform: none !important;
 }
 .ide-run-btn:hover {
-    background: #e0e0e0 !important;
-    color: #000 !important;
-    box-shadow: none !important;
-    transform: none !important;
+    transform: scale(1.05) !important;
+    background: #26b160 !important;
+    color: #000000 !important;
+    box-shadow: 0 4px 15px rgba(46, 213, 115, 0.5) !important;
 }
 .ide-code-area {
     background: rgba(0, 0, 0, 0.1) !important;
@@ -671,12 +678,15 @@ svg[class*="icon"]:hover path {
     box-shadow: none !important;
 }
 
-/* Ensure run button icon stays visible on light grey hover */
+/* Ensure run button icon stays visible in black in all states */
+button.ide-run-btn i,
+button.ide-run-btn svg,
+button.ide-run-btn svg[class*="fa-"] path,
 button.ide-run-btn:hover i,
 button.ide-run-btn:hover svg,
 button.ide-run-btn:hover svg[class*="fa-"] path {
-    color: #000 !important;
-    fill: #000 !important;
+    color: #000000 !important;
+    fill: #000000 !important;
     text-shadow: none !important;
     filter: none !important;
 }
