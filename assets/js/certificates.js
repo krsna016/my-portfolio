@@ -89,6 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const fileUrl = certificatesPath + cert.file;
             modalDownload.href = fileUrl;
+            modalDownload.setAttribute('download', cert.file || 'Certificate.pdf');
+            modalDownload.setAttribute('target', '_blank');
             
             modal.style.display = 'flex';
             setTimeout(() => {

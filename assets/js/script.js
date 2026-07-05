@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mobile Menu Toggle logic moved to end of DOMContentLoaded to ensure elements exist
 
     // Smooth Scroll for Anchor Links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    document.querySelectorAll('a[href^="#"]:not([download]):not([href="#"])').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
