@@ -753,16 +753,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         const wrapper = postReader.closest('.pinned-section-wrapper');
         if (wrapper) wrapper.classList.remove('reader-active');
 
-        // RESTORE section padding and remove reader offset
-        const gamesSection = document.querySelector('.section.games-page');
-        if (gamesSection) {
-            gamesSection.style.removeProperty('padding-left');
-            gamesSection.style.removeProperty('padding-right');
-        }
-        postReader.style.removeProperty('padding-left');
-        postReader.style.removeProperty('padding-right');
-        postReader.style.removeProperty('box-sizing');
-
         document.body.classList.remove('reader-open');
 
         document.title = "Articles & Blog | Anurag Pareek";
@@ -787,20 +777,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         const wrapper = postReader.closest('.pinned-section-wrapper');
         if (wrapper) wrapper.classList.add('reader-active');
 
-        // CRITICAL: Remove section's 10% horizontal padding so content fills full width.
-        // Then push #post-reader 290px right so content clears the fixed 260px TOC.
-        const gamesSection = document.querySelector('.section.games-page');
-        if (gamesSection) {
-            gamesSection.style.setProperty('padding-left', '0px', 'important');
-            gamesSection.style.setProperty('padding-right', '0px', 'important');
-        }
-        postReader.style.setProperty('padding-left', '290px', 'important');
-        postReader.style.setProperty('padding-right', '2rem', 'important');
-        postReader.style.setProperty('box-sizing', 'border-box', 'important');
-
         document.body.classList.add('reader-open');
     }
-
 
     backButton.addEventListener('click', () => {
         showListView();
