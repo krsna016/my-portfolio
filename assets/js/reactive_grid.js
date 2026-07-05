@@ -118,13 +118,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Draw Base Grid
         ctx.globalCompositeOperation = 'source-over';
         
-        // Minor lines
+        // Minor lines (small grids) - boosted visibility
         ctx.lineWidth = 1;
-        ctx.strokeStyle = `rgba(255, 255, 255, ${0.05 + currentScrollIntensity})`;
+        ctx.strokeStyle = `rgba(255, 255, 255, ${0.12 + currentScrollIntensity})`;
         ctx.stroke(minorGridPath);
         
-        // Major lines
-        ctx.strokeStyle = `rgba(255, 255, 255, ${0.15 + currentScrollIntensity})`;
+        // Major lines (big grids) - boosted visibility
+        ctx.strokeStyle = `rgba(255, 255, 255, ${0.25 + currentScrollIntensity})`;
         ctx.stroke(majorGridPath);
         
         // Draw Radial Glows
@@ -148,18 +148,18 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const radius = Math.max(250, rect.width * 0.6);
             
-            // Minor grid glow
+            // Minor grid glow - boosted
             let grad = ctx.createRadialGradient(x, y, 0, x, y, radius);
-            grad.addColorStop(0, `rgba(34, 211, 238, ${0.08 * data.intensity})`);
+            grad.addColorStop(0, `rgba(34, 211, 238, ${0.15 * data.intensity})`);
             grad.addColorStop(1, 'rgba(34, 211, 238, 0)');
             
             ctx.strokeStyle = grad;
             ctx.lineWidth = 1;
             ctx.stroke(minorGridPath);
             
-            // Major grid glow
+            // Major grid glow - boosted
             let gradMajor = ctx.createRadialGradient(x, y, 0, x, y, radius);
-            gradMajor.addColorStop(0, `rgba(34, 211, 238, ${0.15 * data.intensity})`);
+            gradMajor.addColorStop(0, `rgba(34, 211, 238, ${0.30 * data.intensity})`);
             gradMajor.addColorStop(1, 'rgba(34, 211, 238, 0)');
             
             ctx.strokeStyle = gradMajor;
