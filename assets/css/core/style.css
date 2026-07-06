@@ -3321,7 +3321,7 @@ body.reader-open .cyber-crosshair-y {
 }
 
 /* Full-page scrollable reader overlay */
-body.reader-open > #post-reader {
+#post-reader {
     position: fixed !important;
     top: 70px !important;
     left: 0 !important;
@@ -3332,12 +3332,12 @@ body.reader-open > #post-reader {
     background: transparent !important;
     padding: 2rem 0 12rem 0 !important;
     box-sizing: border-box !important;
-    display: block !important;
+    display: none; /* Controlled by JS */
     margin: 0 !important;
 }
 
 /* Top bar — back button, metadata, size controls in one line */
-body.reader-open > #post-reader .post-reader-top-bar {
+#post-reader .post-reader-top-bar {
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
@@ -3350,7 +3350,7 @@ body.reader-open > #post-reader .post-reader-top-bar {
 }
 
 /* Article content — centred readable column */
-body.reader-open > #post-reader .post-reader-layout {
+#post-reader .post-reader-layout {
     display: block !important;
     max-width: 100% !important;
     margin: 0 !important;
