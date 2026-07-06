@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ap-portfolio-v248-god-mode';
+const CACHE_NAME = 'ap-portfolio-v250-god-mode';
 
 const PRECACHE_ASSETS = [
     '/',
@@ -66,7 +66,8 @@ self.addEventListener('fetch', event => {
                             pathname.endsWith('.html') ||
                             pathname.endsWith('.json') ||
                             pathname.endsWith('.md') ||
-                            pathname.includes('/blogs/');
+                            pathname.includes('/blogs/') ||
+                            pathname.includes('_data');
 
     if (isHtmlOrDynamic) {
         // Network-First strategy: Fetch fresh content from network, update cache, fallback to cache if offline
