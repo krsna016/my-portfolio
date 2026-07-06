@@ -53,8 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </svg>
         </div>
     `;
-    wrapper.style.zIndex = '10000001';
-    document.body.appendChild(wrapper);
+    document.documentElement.appendChild(wrapper);
 
     const cursorMain = document.getElementById('radar-cursor-main');
 
