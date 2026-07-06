@@ -3549,6 +3549,87 @@ body.reader-open .cyber-crosshair-y {
 #post-reader.reader-forest .intense-meta-badge .meta-category {
     color: var(--theme-heading-color) !important;
 }
+
+#post-reader.reader-dark .markdown-body h1,
+#post-reader.reader-dark .markdown-body h2,
+#post-reader.reader-dark .markdown-body h3,
+#post-reader.reader-dark .markdown-body h4,
+#post-reader.reader-sepia .markdown-body h1,
+#post-reader.reader-sepia .markdown-body h2,
+#post-reader.reader-sepia .markdown-body h3,
+#post-reader.reader-sepia .markdown-body h4,
+#post-reader.reader-slate .markdown-body h1,
+#post-reader.reader-slate .markdown-body h2,
+#post-reader.reader-slate .markdown-body h3,
+#post-reader.reader-slate .markdown-body h4,
+#post-reader.reader-forest .markdown-body h1,
+#post-reader.reader-forest .markdown-body h2,
+#post-reader.reader-forest .markdown-body h3,
+#post-reader.reader-forest .markdown-body h4 {
+    color: var(--theme-heading-color) !important;
+    border-bottom-color: var(--theme-hr) !important;
+    transition: color 0.3s ease, border-color 0.3s ease !important;
+}
+
+#post-reader.reader-sepia .markdown-body a {
+    color: #b87333 !important;
+}
+
+#post-reader.reader-sepia .markdown-body code {
+    background: rgba(139, 90, 43, 0.08) !important;
+    color: #8b5a2b !important;
+    border: 1px solid rgba(139, 90, 43, 0.15) !important;
+}
+
+/* Theme controls pill selector styles with light border outline */
+.theme-pill-btn {
+    width: 24px !important;
+    height: 24px !important;
+    border-radius: 50% !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 2px solid rgba(255, 255, 255, 0.2) !important; /* Visual boundary border */
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s !important;
+    outline: none !important;
+    box-sizing: border-box !important;
+}
+
+.theme-pill-btn:hover {
+    transform: scale(1.15) !important;
+}
+
+.theme-pill-btn.active {
+    transform: scale(1.15) !important;
+    border-color: var(--primary-color) !important; /* Neon green active indicator border */
+    box-shadow: 0 0 10px rgba(0, 255, 102, 0.4) !important;
+}
+
+.theme-controls {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important; /* Increased gap */
+}
+
+.theme-bar-section {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+.font-bar-section {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+#post-reader .blog-font-bar {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 1.5rem !important;
+}
+
 /* Full page width expansion for post reader */
 .pinned-section-wrapper.reader-active {
     gap: 0 !important;
