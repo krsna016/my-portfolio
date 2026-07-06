@@ -3410,6 +3410,21 @@ body.reader-open .cyber-crosshair-y {
     --theme-heading-color: #ffffff;
     --theme-meta-text: #e0e0e0;
     --theme-hr: rgba(255, 255, 255, 0.08);
+    --theme-body-text: #d0d0d0;
+    --theme-list-text: #d0d0d0;
+    --theme-strong-text: #ffffff;
+    --theme-em-text: #8be9a0;
+    --theme-bq-border: #555;
+    --theme-bq-bg: rgba(255, 255, 255, 0.03);
+    --theme-bq-text: #aaa;
+    --theme-table-head-bg: #12122a;
+    --theme-table-head-text: #ffffff;
+    --theme-table-row-alt: rgba(255, 255, 255, 0.02);
+    --theme-table-border: rgba(255, 255, 255, 0.07);
+    --theme-table-text: #d0d0d0;
+    --theme-hr-line: rgba(255, 255, 255, 0.08);
+    --theme-inline-code-bg: rgba(46, 213, 115, 0.1);
+    --theme-inline-code-text: var(--primary-color, #2ed573);
     --theme-h1-bg: #161622;
     --theme-h1-text: #00ff66;
     --theme-h1-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
@@ -3427,17 +3442,32 @@ body.reader-open .cyber-crosshair-y {
     --theme-bg: #f9f6ed; /* Premium warm paper */
     --theme-text: #2d2b2a; /* High readability soft black */
     --theme-hdr-bg: #f2ece0; /* Blended top bar background */
-    --theme-hdr-text: #7c7365;
-    --theme-btn-bg: rgba(124, 115, 101, 0.08);
-    --theme-btn-border: rgba(124, 115, 101, 0.2);
-    --theme-btn-text: #7c7365;
-    --theme-btn-hover-bg: rgba(124, 115, 101, 0.18);
-    --theme-btn-hover-text: #2d2b2a;
-    --theme-code-bg: #ece5d8;
+    --theme-hdr-text: #5a5248;
+    --theme-btn-bg: rgba(124, 115, 101, 0.12);
+    --theme-btn-border: rgba(124, 115, 101, 0.3);
+    --theme-btn-text: #4a4540;
+    --theme-btn-hover-bg: rgba(124, 115, 101, 0.25);
+    --theme-btn-hover-text: #1a1816;
+    --theme-code-bg: #e8e0d0;
     --theme-code-text: #2d2b2a;
     --theme-heading-color: #2d2b2a;
-    --theme-meta-text: #7c7365;
+    --theme-meta-text: #6a6258;
     --theme-hr: rgba(124, 115, 101, 0.15);
+    --theme-body-text: #2d2b2a;
+    --theme-list-text: #3a3632;
+    --theme-strong-text: #1a1816;
+    --theme-em-text: #6b4f2c;
+    --theme-bq-border: #c4b49a;
+    --theme-bq-bg: rgba(124, 115, 101, 0.07);
+    --theme-bq-text: #5a5248;
+    --theme-table-head-bg: #e0d8c8;
+    --theme-table-head-text: #2d2b2a;
+    --theme-table-row-alt: rgba(124, 115, 101, 0.04);
+    --theme-table-border: rgba(124, 115, 101, 0.18);
+    --theme-table-text: #2d2b2a;
+    --theme-hr-line: rgba(124, 115, 101, 0.2);
+    --theme-inline-code-bg: rgba(139, 90, 43, 0.08);
+    --theme-inline-code-text: #7a4f2b;
     --theme-h1-bg: #ece5d8;
     --theme-h1-text: #2d2b2a;
     --theme-h1-shadow: 0 8px 20px rgba(124, 115, 101, 0.08);
@@ -3466,6 +3496,21 @@ body.reader-open .cyber-crosshair-y {
     --theme-heading-color: #ffffff;
     --theme-meta-text: #94a3b8;
     --theme-hr: rgba(148, 163, 184, 0.15);
+    --theme-body-text: #cbd5e1;
+    --theme-list-text: #cbd5e1;
+    --theme-strong-text: #ffffff;
+    --theme-em-text: #93c5fd;
+    --theme-bq-border: #475569;
+    --theme-bq-bg: rgba(148, 163, 184, 0.06);
+    --theme-bq-text: #94a3b8;
+    --theme-table-head-bg: #232c39;
+    --theme-table-head-text: #e2e8f0;
+    --theme-table-row-alt: rgba(148, 163, 184, 0.04);
+    --theme-table-border: rgba(148, 163, 184, 0.12);
+    --theme-table-text: #cbd5e1;
+    --theme-hr-line: rgba(148, 163, 184, 0.15);
+    --theme-inline-code-bg: rgba(0, 210, 255, 0.08);
+    --theme-inline-code-text: #00d2ff;
     --theme-h1-bg: #28313e;
     --theme-h1-text: #00d2ff;
     --theme-h1-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
@@ -3494,6 +3539,21 @@ body.reader-open .cyber-crosshair-y {
     --theme-heading-color: #ffffff;
     --theme-meta-text: #87998e;
     --theme-hr: rgba(135, 153, 142, 0.15);
+    --theme-body-text: #ccd4cf;
+    --theme-list-text: #ccd4cf;
+    --theme-strong-text: #ffffff;
+    --theme-em-text: #86efac;
+    --theme-bq-border: #3d5244;
+    --theme-bq-bg: rgba(135, 153, 142, 0.07);
+    --theme-bq-text: #9db5a8;
+    --theme-table-head-bg: #1f2b24;
+    --theme-table-head-text: #e0ebe4;
+    --theme-table-row-alt: rgba(135, 153, 142, 0.04);
+    --theme-table-border: rgba(135, 153, 142, 0.15);
+    --theme-table-text: #ccd4cf;
+    --theme-hr-line: rgba(135, 153, 142, 0.15);
+    --theme-inline-code-bg: rgba(98, 233, 185, 0.08);
+    --theme-inline-code-text: #62e9b9;
     --theme-h1-bg: #242f29;
     --theme-h1-text: #62e9b9;
     --theme-h1-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
@@ -3598,35 +3658,132 @@ body.reader-open .cyber-crosshair-y {
     color: var(--theme-heading-color) !important;
 }
 
-#post-reader.reader-dark .markdown-body h1,
-#post-reader.reader-dark .markdown-body h2,
-#post-reader.reader-dark .markdown-body h3,
-#post-reader.reader-dark .markdown-body h4,
-#post-reader.reader-sepia .markdown-body h1,
-#post-reader.reader-sepia .markdown-body h2,
-#post-reader.reader-sepia .markdown-body h3,
-#post-reader.reader-sepia .markdown-body h4,
-#post-reader.reader-slate .markdown-body h1,
-#post-reader.reader-slate .markdown-body h2,
-#post-reader.reader-slate .markdown-body h3,
-#post-reader.reader-slate .markdown-body h4,
-#post-reader.reader-forest .markdown-body h1,
-#post-reader.reader-forest .markdown-body h2,
-#post-reader.reader-forest .markdown-body h3,
-#post-reader.reader-forest .markdown-body h4 {
-    color: var(--theme-heading-color) !important;
-    border-bottom-color: var(--theme-hr) !important;
-    transition: color 0.3s ease, border-color 0.3s ease !important;
+/* ── Per-theme body text, lists, emphasis, blockquotes, tables ──────────── */
+
+#post-reader.reader-dark .markdown-body p,
+#post-reader.reader-sepia .markdown-body p,
+#post-reader.reader-slate .markdown-body p,
+#post-reader.reader-forest .markdown-body p {
+    color: var(--theme-body-text) !important;
+    transition: color 0.3s ease !important;
 }
 
-#post-reader.reader-sepia .markdown-body a {
-    color: #b87333 !important;
+#post-reader.reader-dark .markdown-body ul li,
+#post-reader.reader-sepia .markdown-body ul li,
+#post-reader.reader-slate .markdown-body ul li,
+#post-reader.reader-forest .markdown-body ul li,
+#post-reader.reader-dark .markdown-body ol li,
+#post-reader.reader-sepia .markdown-body ol li,
+#post-reader.reader-slate .markdown-body ol li,
+#post-reader.reader-forest .markdown-body ol li {
+    color: var(--theme-list-text) !important;
+    transition: color 0.3s ease !important;
 }
 
-#post-reader.reader-sepia .markdown-body code {
-    background: rgba(139, 90, 43, 0.08) !important;
-    color: #8b5a2b !important;
-    border: 1px solid rgba(139, 90, 43, 0.15) !important;
+#post-reader.reader-dark .markdown-body strong,
+#post-reader.reader-sepia .markdown-body strong,
+#post-reader.reader-slate .markdown-body strong,
+#post-reader.reader-forest .markdown-body strong {
+    color: var(--theme-strong-text) !important;
+    transition: color 0.3s ease !important;
+}
+
+#post-reader.reader-dark .markdown-body em,
+#post-reader.reader-sepia .markdown-body em,
+#post-reader.reader-slate .markdown-body em,
+#post-reader.reader-forest .markdown-body em {
+    color: var(--theme-em-text) !important;
+    transition: color 0.3s ease !important;
+}
+
+#post-reader.reader-dark .markdown-body blockquote,
+#post-reader.reader-sepia .markdown-body blockquote,
+#post-reader.reader-slate .markdown-body blockquote,
+#post-reader.reader-forest .markdown-body blockquote {
+    border-left-color: var(--theme-bq-border) !important;
+    background: var(--theme-bq-bg) !important;
+    color: var(--theme-bq-text) !important;
+    transition: all 0.3s ease !important;
+}
+
+#post-reader.reader-dark .markdown-body blockquote p,
+#post-reader.reader-sepia .markdown-body blockquote p,
+#post-reader.reader-slate .markdown-body blockquote p,
+#post-reader.reader-forest .markdown-body blockquote p {
+    color: var(--theme-bq-text) !important;
+}
+
+#post-reader.reader-dark .markdown-body code,
+#post-reader.reader-sepia .markdown-body code,
+#post-reader.reader-slate .markdown-body code,
+#post-reader.reader-forest .markdown-body code {
+    background: var(--theme-inline-code-bg) !important;
+    color: var(--theme-inline-code-text) !important;
+    border: none !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Table theming */
+#post-reader.reader-dark .markdown-body thead tr,
+#post-reader.reader-sepia .markdown-body thead tr,
+#post-reader.reader-slate .markdown-body thead tr,
+#post-reader.reader-forest .markdown-body thead tr {
+    background: var(--theme-table-head-bg) !important;
+    color: var(--theme-table-head-text) !important;
+    transition: all 0.3s ease !important;
+}
+
+#post-reader.reader-dark .markdown-body thead th,
+#post-reader.reader-sepia .markdown-body thead th,
+#post-reader.reader-slate .markdown-body thead th,
+#post-reader.reader-forest .markdown-body thead th {
+    color: var(--theme-table-head-text) !important;
+    border-bottom-color: var(--theme-table-border) !important;
+}
+
+#post-reader.reader-dark .markdown-body tbody tr,
+#post-reader.reader-sepia .markdown-body tbody tr,
+#post-reader.reader-slate .markdown-body tbody tr,
+#post-reader.reader-forest .markdown-body tbody tr {
+    background: transparent !important;
+}
+
+#post-reader.reader-dark .markdown-body tbody tr:nth-child(even),
+#post-reader.reader-sepia .markdown-body tbody tr:nth-child(even),
+#post-reader.reader-slate .markdown-body tbody tr:nth-child(even),
+#post-reader.reader-forest .markdown-body tbody tr:nth-child(even) {
+    background: var(--theme-table-row-alt) !important;
+}
+
+#post-reader.reader-dark .markdown-body td,
+#post-reader.reader-sepia .markdown-body td,
+#post-reader.reader-slate .markdown-body td,
+#post-reader.reader-forest .markdown-body td {
+    color: var(--theme-table-text) !important;
+    border-bottom-color: var(--theme-table-border) !important;
+}
+
+#post-reader.reader-dark .markdown-body hr,
+#post-reader.reader-sepia .markdown-body hr,
+#post-reader.reader-slate .markdown-body hr,
+#post-reader.reader-forest .markdown-body hr {
+    border-color: var(--theme-hr-line) !important;
+    transition: border-color 0.3s ease !important;
+}
+
+/* ── Per-theme heading overrides (specific h1/h2/h3/h4 colors) ─────────── */
+/* Note: h1, h2, h3, h4 already use --theme-h1/h2/h3/h4-* vars from the base rules.
+   This block only sets h5/h6 and ensures content color matches theme text */
+#post-reader.reader-dark .markdown-body h5,
+#post-reader.reader-sepia .markdown-body h5,
+#post-reader.reader-slate .markdown-body h5,
+#post-reader.reader-forest .markdown-body h5,
+#post-reader.reader-dark .markdown-body h6,
+#post-reader.reader-sepia .markdown-body h6,
+#post-reader.reader-slate .markdown-body h6,
+#post-reader.reader-forest .markdown-body h6 {
+    color: var(--theme-meta-text) !important;
+    transition: color 0.3s ease !important;
 }
 
 /* Theme controls pill selector styles with light border outline */
@@ -3717,3 +3874,64 @@ body.reader-open .grid-line {
     filter: blur(2px);
     transition: opacity 0.5s ease, filter 0.5s ease;
 }
+
+/* ── Theme pill accent dot ─────────────────────────────────── */
+/* Small inner circle showing each theme's accent colour */
+.theme-pill-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+}
+
+.theme-dot-accent {
+    display: block !important;
+    width: 7px !important;
+    height: 7px !important;
+    border-radius: 50% !important;
+    opacity: 0.9 !important;
+    flex-shrink: 0 !important;
+    pointer-events: none !important;
+}
+
+/* ── Sepia: font-bar buttons must be legible on cream bg ───── */
+#post-reader.reader-sepia .blog-font-bar .font-ctrl-btn {
+    color: var(--theme-btn-text, #4a4540) !important;
+    background: var(--theme-btn-bg, rgba(124, 115, 101, 0.12)) !important;
+    border: 1px solid var(--theme-btn-border, rgba(124, 115, 101, 0.3)) !important;
+}
+
+#post-reader.reader-sepia .blog-font-bar .font-ctrl-btn:hover {
+    background: var(--theme-btn-hover-bg, rgba(124, 115, 101, 0.25)) !important;
+    color: var(--theme-btn-hover-text, #1a1816) !important;
+}
+
+/* Override the global white-on-hover for font buttons inside sepia reader */
+#post-reader.reader-sepia #font-dec-btn:hover,
+#post-reader.reader-sepia #font-inc-btn:hover {
+    background: rgba(124, 115, 101, 0.3) !important;
+    background-color: rgba(124, 115, 101, 0.3) !important;
+    color: #1a1816 !important;
+}
+
+/* ── Sepia terminal / code block override ─────────────────── */
+/* Make the terminal pre block warmer and visible on cream background */
+#post-reader.reader-sepia .markdown-body pre {
+    background: #e4dcd0 !important;
+    border: 1px solid rgba(124, 115, 101, 0.2) !important;
+    box-shadow: 0 2px 12px rgba(124, 115, 101, 0.12) !important;
+}
+
+#post-reader.reader-sepia .markdown-body pre code {
+    color: #2d2b2a !important;
+    background: transparent !important;
+}
+
+/* ── Sepia list bullet / counter colours ──────────────────── */
+#post-reader.reader-sepia .markdown-body ul li::before {
+    color: #b87333 !important;
+}
+#post-reader.reader-sepia .markdown-body ol li::before {
+    color: #b87333 !important;
+}
+
