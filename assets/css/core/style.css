@@ -3330,7 +3330,7 @@ body.reader-open > #post-reader {
     overflow-y: auto !important;
     z-index: 100 !important;
     background: transparent !important;
-    padding: 2rem 0 4rem 0 !important;
+    padding: 2rem 0 12rem 0 !important;
     box-sizing: border-box !important;
     display: block !important;
     margin: 0 !important;
