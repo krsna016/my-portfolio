@@ -58,6 +58,12 @@ function rateLimitLogin(req, res, next) {
     next();
 }
 
+// Request logger
+app.use((req, res, next) => {
+    console.log(`Incoming request: ${req.method} ${req.url}`);
+    next();
+});
+
 // --- Optimizations ---
 // Compress all HTTP responses (Gzip/Brotli)
 app.use(compression());
@@ -294,7 +300,10 @@ function authenticateToken(req, res, next) {
     if (token == null) return res.sendStatus(401);
 
     jwt.verify(token, JWT_SECRET, (err, user) => {
-        if (err) return res.sendStatus(403);
+        if (err) {
+            console.error("JWT Verification failed in API:", err.message);
+            return res.sendStatus(403);
+        }
         req.user = user;
         next();
     });
