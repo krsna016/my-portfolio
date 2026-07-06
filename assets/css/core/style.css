@@ -4093,3 +4093,44 @@ body.reader-open .grid-line {
     color: #3a3632 !important;
     font-weight: 600 !important;
 }
+
+/* ==========================================================================
+   PORTFOLIO CARDS PAPERCLIP FEATURE
+   ========================================================================== */
+.about-card,
+.timeline-content.exec-card,
+.certificate-card,
+.game-card {
+    position: relative !important;
+}
+
+.about-card::before,
+.timeline-content.exec-card::before,
+.certificate-card::before,
+.game-card::before {
+    content: "\f0c6" !important;
+    font-family: "Font Awesome 6 Free" !important;
+    font-weight: 900 !important;
+    position: absolute !important;
+    top: -14px !important;
+    left: 12px !important;
+    font-size: 1.55rem !important;
+    color: #e5e7eb !important; /* Silver metallic paperclip */
+    opacity: 0.8 !important;
+    transform: rotate(-35deg) !important;
+    z-index: 10 !important;
+    text-shadow: 2px 3px 5px rgba(0, 0, 0, 0.5) !important;
+    pointer-events: none !important;
+    transition: color 0.3s ease, transform 0.3s ease, opacity 0.3s ease !important;
+}
+
+.about-card:hover::before,
+.timeline-content.exec-card:hover::before,
+.certificate-card:hover::before,
+.game-card:hover::before {
+    color: #00ff66 !important; /* Neon green interactive glow */
+    opacity: 1 !important;
+    transform: rotate(-35deg) scale(1.1) !important;
+    text-shadow: 0 0 8px rgba(0, 255, 102, 0.6) !important;
+}
+
