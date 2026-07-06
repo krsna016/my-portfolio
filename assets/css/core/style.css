@@ -3333,7 +3333,7 @@ body.reader-open > #post-reader {
     border-radius: 16px !important;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.85) !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    padding: 2rem 0 !important;
+    padding: 2.5rem clamp(2rem, 5vw, 5rem) !important; /* Unified padding on all sides */
     box-sizing: border-box !important;
     display: block !important;
     margin: 0 !important;
@@ -3346,7 +3346,7 @@ body.reader-open > #post-reader {
         left: 3vw !important;
         right: 3vw !important;
         border-radius: 12px !important;
-        padding: 1.5rem 0 !important;
+        padding: 1.5rem clamp(1rem, 3vw, 2rem) !important;
     }
 }
 
@@ -3358,7 +3358,7 @@ body.reader-open > #post-reader .post-reader-top-bar {
     flex-wrap: wrap !important;
     gap: 1rem !important;
     margin-bottom: 2rem !important;
-    padding: 0 clamp(2rem, 5vw, 5rem) !important;
+    padding: 0 !important; /* Inherits from parent container */
     width: 100% !important;
     box-sizing: border-box !important;
 }
@@ -3368,7 +3368,7 @@ body.reader-open > #post-reader .post-reader-layout {
     display: block !important;
     max-width: 100% !important;
     margin: 0 !important;
-    padding: 0 clamp(2rem, 5vw, 5rem) !important;
+    padding: 0 !important; /* Inherits from parent container */
     width: 100% !important;
     box-sizing: border-box !important;
 }
