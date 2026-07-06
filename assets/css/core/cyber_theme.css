@@ -1176,7 +1176,7 @@ body .glass:not(.timeline-content):hover::after, body .card:not(.timeline-conten
     top: 0;
     left: 0;
     pointer-events: none;
-    z-index: 10001;
+    z-index: 10000001;
     will-change: transform;
 }
 

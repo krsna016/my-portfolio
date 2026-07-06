@@ -2556,7 +2556,8 @@ html body button.font-ctrl-btn:hover,
 .font-size-toast {
     position: fixed;
     bottom: 30px;
-    right: 30px;
+    left: 50%;
+    right: auto;
     background: rgba(22, 22, 30, 0.88);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -2569,7 +2570,7 @@ html body button.font-ctrl-btn:hover,
     font-size: clamp(0.85rem, 2vw, 1rem);
     z-index: 10000;
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateX(-50%) translateY(20px);
     transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     pointer-events: none;
     display: flex;
@@ -2580,8 +2581,9 @@ html body button.font-ctrl-btn:hover,
 
 .font-size-toast.show {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
 }
+
 
 /* Additional Dynamic Scale rules for H4-H6 */
 .markdown-body h4 { font-size: calc(1.3rem * var(--blog-scale, 1)); transition: font-size 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
