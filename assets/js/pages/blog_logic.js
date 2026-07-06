@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         let currentSize = 100;
         const savedSize = localStorage.getItem('blogFontSize');
         if (savedSize && !isNaN(savedSize)) {
-            currentSize = Math.min(150, Math.max(80, parseInt(savedSize, 10)));
+            currentSize = Math.min(200, Math.max(80, parseInt(savedSize, 10)));
         }
 
         const decBtn = fontBar.querySelector('#font-dec-btn');
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         function updateFontSize(newSize, notify = true) {
-            currentSize = Math.min(150, Math.max(80, newSize));
+            currentSize = Math.min(200, Math.max(80, newSize));
             localStorage.setItem('blogFontSize', currentSize);
             display.textContent = `${currentSize}%`;
             display.setAttribute('aria-label', `Current font size ${currentSize}%, click to reset`);
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             readerContent.style.setProperty('--blog-scale', currentSize / 100);
             
             decBtn.disabled = currentSize <= 80;
-            incBtn.disabled = currentSize >= 150;
+            incBtn.disabled = currentSize >= 200;
 
             if (notify) showToast(`<i class="fa-solid fa-text-height"></i> Reading Size: ${currentSize}%`);
         }
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (e.ctrlKey || e.metaKey) {
                 if (e.key === '=' || e.key === '+') {
                     e.preventDefault();
-                    if (currentSize < 150) updateFontSize(currentSize + 5);
+                    if (currentSize < 200) updateFontSize(currentSize + 5);
                 } else if (e.key === '-') {
                     e.preventDefault();
                     if (currentSize > 80) updateFontSize(currentSize - 5);
