@@ -4024,3 +4024,67 @@ body.reader-open .grid-line {
     color: #b87333 !important;
 }
 
+/* ══ Sepia theme: full font-bar / top-bar visibility fixes ══ */
+
+/* The dark pill container wrapping A−, size, A+ */
+#post-reader.reader-sepia .font-bar-controls {
+    background: rgba(124, 115, 101, 0.14) !important;
+    border: 1px solid rgba(124, 115, 101, 0.28) !important;
+    box-shadow: none !important;
+}
+
+/* Size percentage display "200%" */
+#post-reader.reader-sepia .blog-font-bar .font-size-display,
+#post-reader.reader-sepia #font-size-display {
+    color: #3a3632 !important;
+    background: transparent !important;
+}
+
+/* "Size" label + icon */
+#post-reader.reader-sepia .blog-font-bar .font-bar-left,
+#post-reader.reader-sepia .blog-font-bar .font-bar-left span,
+#post-reader.reader-sepia .blog-font-bar .font-bar-left i {
+    color: #5a5248 !important;
+}
+
+/* "Theme" label + palette icon */
+#post-reader.reader-sepia .blog-font-bar .theme-bar-section .font-bar-left,
+#post-reader.reader-sepia .blog-font-bar .theme-bar-section .font-bar-left span,
+#post-reader.reader-sepia .blog-font-bar .theme-bar-section .font-bar-left i {
+    color: #5a5248 !important;
+}
+
+/* A- and A+ buttons — warm visible brown-grey */
+#post-reader.reader-sepia .blog-font-bar .font-ctrl-btn {
+    color: #3a3632 !important;
+    background: rgba(124, 115, 101, 0.15) !important;
+    border: 1px solid rgba(124, 115, 101, 0.3) !important;
+    box-shadow: none !important;
+}
+
+/* A- and A+ hover state — clearly darker on cream */
+#post-reader.reader-sepia .blog-font-bar .font-ctrl-btn:hover,
+#post-reader.reader-sepia #font-dec-btn:hover,
+#post-reader.reader-sepia #font-inc-btn:hover {
+    background: rgba(124, 115, 101, 0.32) !important;
+    background-color: rgba(124, 115, 101, 0.32) !important;
+    color: #1a1816 !important;
+    border-color: rgba(124, 115, 101, 0.5) !important;
+    box-shadow: none !important;
+}
+
+/* Disabled A- or A+ on sepia */
+#post-reader.reader-sepia .blog-font-bar .font-ctrl-btn:disabled {
+    color: rgba(60, 54, 50, 0.3) !important;
+}
+
+/* Meta badge text on sepia top bar */
+#post-reader.reader-sepia .intense-meta-badge,
+#post-reader.reader-sepia .intense-meta-badge span,
+#post-reader.reader-sepia .intense-meta-badge i {
+    color: #6a6258 !important;
+}
+#post-reader.reader-sepia .intense-meta-badge .meta-category {
+    color: #3a3632 !important;
+    font-weight: 600 !important;
+}

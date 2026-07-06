@@ -1581,3 +1581,29 @@ html body #post-reader .markdown-body pre code {
     color: inherit !important;
 }
 
+/* ── IDE Hero Card: Neon Trace Border Override ────────────── */
+#ide-hero-sandbox.ide-hero-card {
+    position: relative !important;
+    overflow: visible !important;
+}
+
+#ide-hero-sandbox.ide-hero-card::after {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    pointer-events: none !important;
+    border-radius: inherit !important;
+    z-index: 10 !important;
+    border: 2px dashed #00ff66 !important;
+    -webkit-mask: conic-gradient(from 0deg at 50% 50%, #fff 0deg, #fff var(--trace-angle), transparent var(--trace-angle), transparent 360deg);
+    mask: conic-gradient(from 0deg at 50% 50%, #fff 0deg, #fff var(--trace-angle), transparent var(--trace-angle), transparent 360deg);
+    --trace-angle: 0deg;
+    transition: --trace-angle 0.35s linear, opacity 0.3s ease-out !important;
+    opacity: 0 !important;
+}
+
+#ide-hero-sandbox.ide-hero-card:hover::after {
+    --trace-angle: 360deg !important;
+    opacity: 1 !important;
+}
+
