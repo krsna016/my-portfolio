@@ -3332,13 +3332,13 @@ body.reader-open .cyber-crosshair-y {
     overflow-y: auto !important;
     z-index: 100 !important;
     background: transparent !important;
-    padding: 0 0 4rem 0 !important; /* Top padding moved to sticky header */
+    padding: 0 clamp(2rem, 5vw, 5rem) 4rem clamp(2rem, 5vw, 5rem) !important; /* Symmetrical side padding on parent overlay */
     box-sizing: border-box !important;
     display: none; /* Controlled by JS show/hide */
     margin: 0 !important;
 }
 
-/* Top bar — back button, metadata, size controls in one line (sticky header) */
+/* Top bar — back button, metadata, size controls in one line (sticky header matching blog width) */
 #post-reader .post-reader-top-bar {
     position: sticky !important;
     top: 0 !important;
@@ -3349,10 +3349,8 @@ body.reader-open .cyber-crosshair-y {
     flex-wrap: wrap !important;
     gap: 1rem !important;
     margin-bottom: 2rem !important;
-    padding: 1rem clamp(2rem, 5vw, 5rem) !important; /* Compact vertical padding */
-    background: rgba(10, 10, 15, 0.95) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
+    padding: 1rem 0 !important; /* Compact vertical padding, horizontal inherited from parent */
+    background: #0a0a0f !important; /* Blends with body background to cover scrolling content */
     border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
     width: 100% !important;
     box-sizing: border-box !important;
@@ -3363,7 +3361,7 @@ body.reader-open .cyber-crosshair-y {
     display: block !important;
     max-width: 100% !important;
     margin: 0 !important;
-    padding: 0 clamp(2rem, 5vw, 5rem) !important;
+    padding: 0 !important; /* Inherits horizontal constraints from parent container */
     width: 100% !important;
     box-sizing: border-box !important;
 }
