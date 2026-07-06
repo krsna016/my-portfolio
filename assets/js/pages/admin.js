@@ -281,19 +281,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     passwordInput.classList.add('shake');
                     setTimeout(() => passwordInput.classList.remove('shake'), 500);
                 } else {
-                    // Network / connection error -> Fallback to client-side static mode password check
-                    if (password === 'admin123') {
-                        console.warn("Running in Static Preview Mode. Authenticated client-side.");
-                        localStorage.setItem('adminLoggedIn', 'true');
-                        loginOverlay.style.display = 'none';
-                        passwordInput.value = '';
-                        window.location.reload();
-                    } else {
-                        loginError.textContent = "Incorrect password (Static Preview Mode).";
-                        loginError.style.display = 'block';
-                        passwordInput.classList.add('shake');
-                        setTimeout(() => passwordInput.classList.remove('shake'), 500);
-                    }
+                    loginError.textContent = "Server connection error. Please try again later.";
+                    loginError.style.display = 'block';
+                    passwordInput.classList.add('shake');
+                    setTimeout(() => passwordInput.classList.remove('shake'), 500);
                 }
             }
         });

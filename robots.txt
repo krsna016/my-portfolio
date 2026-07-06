@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://krsna016.github.io/my-portfolio/sitemap.xml
+Sitemap: https://anuragpareek016.engineer/sitemap.xml

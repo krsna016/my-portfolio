@@ -36,6 +36,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    min-height: 100dvh;
 }
 
 main {
@@ -254,6 +255,7 @@ textarea {
 /* Hero Section */
 .hero {
     height: 100vh;
+    height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -262,7 +264,7 @@ textarea {
 }
 
 .hero-content {
-    width: 100%; max-width: 600px;
+    width: 100%; width: min(95%, 600px); max-width: none;
 }
 
 .greeting {
@@ -339,8 +341,8 @@ textarea {
 .btn.primary,
 .btn.secondary {
     background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
     border: 1px solid transparent;
     outline: none;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
@@ -903,7 +905,7 @@ button.chat-send-btn:hover svg,
 /* Timeline */
 .timeline {
     position: relative;
-    width: 100%; max-width: 800px;
+    width: 100%; width: min(90%, 800px); max-width: none;
     margin: 0 auto;
 }
 
@@ -1174,7 +1176,7 @@ button.chat-send-btn:hover svg,
 /* Contact */
 .contact-wrapper {
     text-align: center;
-    width: 100%; max-width: 600px;
+    width: 100%; width: min(95%, 600px); max-width: none;
     margin: 0 auto;
 }
 
@@ -1337,13 +1339,14 @@ footer {
     padding-top: 120px;
     /* Account for fixed navbar */
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .contact-container {
-    width: 100%; max-width: 600px;
+    width: 100%; width: min(95%, 600px); max-width: none;
     margin: 0 auto;
     /* Match .glass styles exactly */
     background: var(--glass-bg);
@@ -1563,6 +1566,7 @@ footer {
 .games-page {
     padding-top: 120px;
     min-height: 100vh;
+    min-height: 100dvh;
 }
 
 .games-intro {
@@ -1589,7 +1593,7 @@ footer {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    width: 100%; max-width: 1000px;
+    width: 100%; width: min(92%, 1000px); max-width: none;
     margin: 0;
 }
 
@@ -1657,6 +1661,7 @@ footer {
 .certificates-page {
     padding-top: 120px;
     min-height: 100vh;
+    min-height: 100dvh;
 }
 
 .certificates-grid {
@@ -1771,8 +1776,9 @@ footer {
     border: 1px solid var(--glass-border);
     border-radius: 16px;
     width: 90%;
-    width: 100%; max-width: 1000px;
+    width: 100%; width: min(92%, 1000px); max-width: none;
     height: 90vh;
+    height: 90dvh;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -1895,6 +1901,7 @@ footer {
         top: 0;
         right: -100%;
         height: 100vh;
+    height: 100dvh;
         width: 70%;
         background: rgba(10, 10, 10, 0.98);
         backdrop-filter: blur(4px);
@@ -1948,6 +1955,7 @@ footer {
         padding-top: 100px;
         height: auto;
         min-height: 100vh;
+    min-height: 100dvh;
     }
 
     .hero-content {
@@ -2116,10 +2124,10 @@ footer {
     background: rgba(22, 22, 26, 0.75) !important;
     padding: 0.8rem 1.4rem !important;
     border-radius: 50px !important;
-    backdrop-filter: blur(16px) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
+    backdrop-filter: blur(3px) !important;
+    -webkit-backdrop-filter: blur(3px) !important;
     border: none !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
     max-width: 98% !important;
     width: fit-content !important;
     margin-left: auto;
@@ -2160,15 +2168,15 @@ footer {
     border-radius: 12px !important;
     color: #FFFFFF !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
-    backdrop-filter: blur(8px) !important;
-    -webkit-backdrop-filter: blur(8px) !important;
+    backdrop-filter: blur(2px) !important;
+    -webkit-backdrop-filter: blur(2px) !important;
 }
 
 .drawing-controls .btn:hover {
     transform: translateY(0px) !important;
     background: rgba(255, 255, 255, 0.22) !important;
     border: none !important;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1) !important;
     color: #FFFFFF !important;
 }
 
@@ -2314,7 +2322,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 /* Resume Skeleton Loader */
 .resume-skeleton {
     width: 100%;
-    width: 100%; max-width: 800px;
+    width: 100%; width: min(90%, 800px); max-width: none;
     /* Match typical resume width */
     aspect-ratio: 1 / 1.414;
     /* A4 Aspect Ratio */
@@ -2615,11 +2623,11 @@ html body button.font-ctrl-btn:hover,
     flex-wrap: wrap;
     align-items: center;
     gap: 12px;
-    margin-bottom: 2rem;
+    margin-bottom: clamp(1rem, 4vw, 2rem);
     padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
     color: #aaa;
-    font-size: 0.9rem;
+    font-size: clamp(0.85rem, 2vw, 1rem);
 }
 
 .intense-meta-badge span {
@@ -2730,6 +2738,7 @@ html body button.font-ctrl-btn:hover,
         padding: 80px 16px 40px 16px !important;
         height: auto !important;
         min-height: 100vh !important;
+    min-height: 100dvh !important;
         justify-content: center !important;
         align-items: center !important;
         flex-direction: column !important; /* Stack normally, text first */
@@ -2759,8 +2768,8 @@ html body button.font-ctrl-btn:hover,
         font-size: 1.05rem !important;
         background: rgba(255, 255, 255, 0.15) !important;
         border: none !important;
-        backdrop-filter: blur(10px) !important;
-        -webkit-backdrop-filter: blur(10px) !important;
+        backdrop-filter: blur(2px) !important;
+        -webkit-backdrop-filter: blur(2px) !important;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
         color: #fff !important;
     }
@@ -2785,6 +2794,7 @@ html body button.font-ctrl-btn:hover,
         right: -100% !important;
         width: 100vw !important;
         height: 100vh !important;
+    height: 100dvh !important;
         background: rgba(10, 10, 10, 0.95) !important;
         backdrop-filter: blur(4px) !important;
         flex-direction: column !important;
@@ -3434,7 +3444,7 @@ body.reader-open .cyber-crosshair-y {
     background: #121218 !important; /* Matte grey background matching card style */
     border: none !important; /* Removed border outline */
     border-radius: 8px !important; /* Curved corners */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
     width: 100% !important;
     box-sizing: border-box !important;
 }
@@ -3477,8 +3487,8 @@ body.reader-open .cyber-crosshair-y {
     --theme-text: #d8d8d8;
     --theme-hdr-bg: #121218;
     --theme-hdr-text: #ffffff;
-    --theme-btn-bg: rgba(255, 255, 255, 0.05);
-    --theme-btn-border: rgba(255, 255, 255, 0.1);
+    --theme-btn-bg: rgba(255, 255, 255, 0.015);
+    --theme-btn-border: rgba(255, 255, 255, 0.04);
     --theme-btn-text: #ffffff;
     --theme-btn-hover-bg: rgba(255, 255, 255, 0.15);
     --theme-btn-hover-text: #ffffff;
@@ -3486,7 +3496,7 @@ body.reader-open .cyber-crosshair-y {
     --theme-code-text: #f8f8f2;
     --theme-heading-color: #ffffff;
     --theme-meta-text: #e0e0e0;
-    --theme-hr: rgba(255, 255, 255, 0.08);
+    --theme-hr: rgba(255, 255, 255, 0.03);
     --theme-body-text: #d0d0d0;
     --theme-list-text: #d0d0d0;
     --theme-strong-text: #ffffff;
@@ -3499,7 +3509,7 @@ body.reader-open .cyber-crosshair-y {
     --theme-table-row-alt: rgba(255, 255, 255, 0.02);
     --theme-table-border: rgba(255, 255, 255, 0.07);
     --theme-table-text: #d0d0d0;
-    --theme-hr-line: rgba(255, 255, 255, 0.08);
+    --theme-hr-line: rgba(255, 255, 255, 0.03);
     --theme-inline-code-bg: rgba(46, 213, 115, 0.1);
     --theme-inline-code-text: var(--primary-color, #2ed573);
     --theme-h1-bg: #161622;
@@ -3952,7 +3962,7 @@ body.reader-open .cyber-crosshair-y {
 /* Ambient Focus Blur for reading view */
 body.reader-open #particle-canvas {
     opacity: 0.05 !important;
-    filter: blur(8px);
+    filter: blur(2px);
     transition: opacity 0.5s ease, filter 0.5s ease;
 }
 

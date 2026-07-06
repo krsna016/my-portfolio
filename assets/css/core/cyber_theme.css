@@ -234,6 +234,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 .cyber-crosshair-y {
     height: 100vh;
+    height: 100dvh;
     width: 1px;
     top: 0;
     left: -100px;
@@ -467,6 +468,7 @@ input[type="range"]::-webkit-slider-thumb {
     border-radius: 16px !important;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.8) !important;
     height: 85vh !important;
+    height: 85dvh !important;
 }
 .modal-header {
     background: rgba(0, 0, 0, 0.1) !important;
@@ -777,8 +779,8 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger) {
     border: 1px solid transparent !important;
     outline: none !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
+    backdrop-filter: blur(2px) !important;
+    -webkit-backdrop-filter: blur(2px) !important;
     color: #FFFFFF !important;
 }
 
@@ -921,8 +923,8 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):hover {
     border: none !important;
     outline: none !important;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
+    backdrop-filter: blur(2px) !important;
+    -webkit-backdrop-filter: blur(2px) !important;
     font-family: monospace !important;
     padding: 5px 14px !important;
     font-size: 0.84rem !important;
@@ -1403,9 +1405,9 @@ button.btn.primary.chat-send-btn:hover,
 .drawing-controls {
     background: rgba(22, 22, 26, 0.75) !important;
     border: none !important;
-    backdrop-filter: blur(16px) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+    backdrop-filter: blur(3px) !important;
+    -webkit-backdrop-filter: blur(3px) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
     border-radius: 50px !important;
 }
 
@@ -1416,8 +1418,8 @@ button.btn.primary.chat-send-btn:hover,
     outline: none !important;
     color: #FFFFFF !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
+    backdrop-filter: blur(2px) !important;
+    -webkit-backdrop-filter: blur(2px) !important;
     border-radius: 12px !important;
 }
 
@@ -1469,8 +1471,8 @@ a.btn:not(.ide-run-btn):not(.chat-send-btn) {
     border: 1px solid transparent !important;
     outline: none !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
+    backdrop-filter: blur(2px) !important;
+    -webkit-backdrop-filter: blur(2px) !important;
     color: #FFFFFF !important;
 }
 

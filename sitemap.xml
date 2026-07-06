@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://krsna016.github.io/my-portfolio/</loc>
+        <loc>https://anuragpareek016.engineer/</loc>
         <lastmod>2026-07-05</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://krsna016.github.io/my-portfolio/resume</loc>
+        <loc>https://anuragpareek016.engineer/resume</loc>
         <lastmod>2026-07-05</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://krsna016.github.io/my-portfolio/articles</loc>
+        <loc>https://anuragpareek016.engineer/articles</loc>
         <lastmod>2026-07-05</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://krsna016.github.io/my-portfolio/certificates</loc>
+        <loc>https://anuragpareek016.engineer/certificates</loc>
         <lastmod>2026-07-05</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://krsna016.github.io/my-portfolio/games</loc>
+        <loc>https://anuragpareek016.engineer/games</loc>
         <lastmod>2026-07-05</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://krsna016.github.io/my-portfolio/contact</loc>
+        <loc>https://anuragpareek016.engineer/contact</loc>
         <lastmod>2026-07-05</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>

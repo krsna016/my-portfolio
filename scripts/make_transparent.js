@@ -24,6 +24,8 @@ function makeTransparent(file) {
     console.log('Processed', file);
 }
 
-makeTransparent('assets/css/style.css');
-try { makeTransparent('assets/css/cyber_theme.css'); } catch(e) {}
-try { makeTransparent('assets/css/admin.css'); } catch(e) {}
+makeTransparent('assets/css/core/style.css');
+try { makeTransparent('assets/css/core/cyber_theme.css'); } catch(e) {}
+try { makeTransparent('assets/css/features/identity.css'); } catch(e) {}
+try { makeTransparent('assets/css/features/intense_pack.css'); } catch(e) {}
+
