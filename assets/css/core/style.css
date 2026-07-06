@@ -905,7 +905,7 @@ button.chat-send-btn:hover svg,
 /* Timeline */
 .timeline {
     position: relative;
-    width: 100%; width: min(90%, 800px); max-width: none;
+    width: 100%; width: min(92%, 1000px); max-width: none;
     margin: 0 auto;
 }
 

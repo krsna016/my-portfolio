@@ -1,0 +1,1207 @@
+/* ==========================================================================
+   HYPER-INTENSE AGENTIC ENGINEERING PACK STYLING
+   Modular Obsidian HUD, Cybermorphism & Terminal Aesthetics
+   ========================================================================== */
+
+/* --- 1. Dropdown Quake Hacker Terminal HUD --- */
+/* --- 1. Floating Hacker Terminal HUD --- */
+.quake-terminal-hud {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    width: 600px;
+    height: 400px;
+    max-width: 95vw;
+    max-height: 90vh;
+    max-height: 90dvh;
+    background: rgba(12, 12, 18, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.04) !important;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+    z-index: 1000000;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Courier New', Courier, monospace;
+    color: #00ff66;
+    backdrop-filter: blur(2px);
+    border-radius: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    resize: both;
+    overflow: visible;
+}
+
+/* Optional styling to make the drag handle more obvious */
+/* Neon trace border is now handled by the shared hover rule in cyber_theme.css */
+
+.quake-terminal-hud.open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+/* If JS applies inline transform, we override the default scale */
+.quake-terminal-hud.open.dragged {
+    transform: none !important;
+    transition: none !important;
+}
+
+.term-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.015);
+    border: none !important;
+    font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+    color: #e1e1e6;
+}
+
+.term-header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.term-traffic-lights {
+    display: flex;
+    gap: 6px;
+}
+
+.term-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.term-dot.red { background: #ff5f56; }
+.term-dot.yellow { background: #ffbd2e; }
+.term-dot.green { background: #27c93f; }
+
+.term-body {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.term-output {
+    margin-bottom: 15px;
+}
+
+.term-input-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.term-prompt {
+    color: #00d2ff;
+    font-weight: bold;
+}
+
+.term-input {
+    flex: 1;
+    background: transparent !important;
+    border: none !important;
+    color: #fff !important;
+    font-family: inherit;
+    font-size: inherit;
+    outline: none !important;
+    caret-color: #00ff66 !important;
+}
+
+/* --- 2. Live VS Code Sandbox Hero Editor --- */
+.ide-hero-card {
+    background: #1e1e24;
+    border: none !important;
+    border-radius: 12px;
+    overflow: visible;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 210, 255, 0.12);
+    margin-top: 25px;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: left;
+}
+
+.ide-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #18181c;
+    padding: 8px 16px;
+    border: none !important;
+}
+
+.ide-tabs {
+    display: flex;
+    gap: 2px;
+}
+
+.ide-tab {
+    padding: 6px 14px;
+    background: #1e1e24;
+    color: #00d2ff;
+    font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+    border-top: 2px solid #00d2ff;
+    border-radius: 4px 4px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ide-run-btn {
+    background: #2ed573 !important;
+    border: none !important;
+    color: #000 !important;
+    padding: 5px 14px !important;
+    border-radius: 6px !important;
+    font-size: 0.85rem !important;
+    font-weight: 800 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    box-shadow: 0 0 10px rgba(46, 213, 115, 0.3) !important;
+}
+
+.ide-run-btn:hover {
+    transform: scale(1.05) !important;
+    background: #26b160 !important;
+    box-shadow: 0 4px 15px rgba(46, 213, 115, 0.5) !important;
+}
+
+.ide-code-area {
+    padding: 16px;
+    background: #1e1e24;
+    color: #e1e1e6;
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    line-height: 1.5;
+}
+
+.ide-textarea {
+    width: 100%;
+    height: 110px;
+    background: #151518;
+    border: none !important;
+    border-radius: 6px;
+    color: #00ff66;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 12px;
+    resize: none;
+    outline: none;
+    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.6);
+}
+
+/* --- 3. Live Git Commit Ticker HUD --- */
+
+.git-ticker-hud {
+    background: rgba(15, 12, 41, 0.98);
+    border-bottom: 1px solid rgba(108, 92, 231, 0.5);
+    padding: 8px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.6);
+}
+
+.git-ticker-content {
+    display: inline-block;
+    animation: tickerScroll 25s linear infinite;
+    font-size: 0.88rem;
+    color: #c8d6e5;
+}
+
+.git-ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 40px;
+}
+
+.git-badge {
+    background: rgba(0, 210, 255, 0.2);
+    color: #00d2ff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.78rem;
+}
+
+@keyframes tickerScroll {
+    0% { transform: translateX(100vw); }
+    100% { transform: translateX(-100%); }
+}
+
+/* --- 4. Grill My AI Twin Recruiter Bot --- */
+.ai-twin-sidecar {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 99999;
+}
+
+.ai-twin-fab {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6c5ce7, #ff007a);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    font-size: clamp(1.3rem, 3.5vw, 1.6rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(255, 0, 122, 0.5);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.ai-twin-fab:hover {
+    transform: scale(1.15) rotate(5deg);
+}
+
+.ai-twin-window {
+    position: absolute;
+    bottom: 75px;
+    right: 0;
+    width: 340px;
+    height: 440px;
+    background: rgba(15, 15, 22, 0.96);
+    border: 1px solid #6c5ce7;
+    border-radius: 16px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.8);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    backdrop-filter: blur(4px);
+}
+
+.ai-twin-window.open {
+    display: flex;
+    animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes scaleUp {
+    from { opacity: 0; transform: scale(0.8) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.ai-win-header {
+    background: linear-gradient(90deg, #6c5ce7, #a29bfe);
+    padding: 14px 18px;
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ai-win-body {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.ai-msg {
+    max-width: 85%;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    line-height: 1.4;
+}
+
+.ai-msg.bot {
+    align-self: flex-start;
+    background: rgba(255, 255, 255, 0.15);
+    color: #e1e1e6;
+    border-bottom-left-radius: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.015);
+}
+
+.ai-msg.user {
+    align-self: flex-end;
+    background: #6c5ce7;
+    color: #fff;
+    border-bottom-right-radius: 2px;
+}
+
+.ai-win-input {
+    display: flex;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.ai-input-field {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #fff;
+    padding: 8px 12px;
+    outline: none;
+    font-size: clamp(0.85rem, 2vw, 1rem);
+}
+
+/* --- 5. Interactive DSA Visualizer Card --- */
+.dsa-engine-section {
+    margin: 60px 0;
+}
+
+.dsa-visualizer-box {
+    background: rgba(15, 15, 20, 0.85);
+    border: 1px solid rgba(0, 210, 255, 0.25);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.dsa-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.dsa-bars-container {
+    height: 180px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.dsa-bar {
+    flex: 1;
+    max-width: 25px;
+    background: #00d2ff;
+    border-radius: 4px 4px 0 0;
+    transition: height 0.15s ease, background 0.15s ease;
+}
+
+.dsa-bar.active { background: #ff007a; }
+.dsa-bar.sorted { background: #2ed573; }
+
+/* --- 6. Tactile Cyber-Sound HUD Toggle --- */
+/* --- 6. Professional Tactile Cyber-Sound HUD Pill --- */
+.hud-audio-pill {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    background: rgba(18, 18, 26, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.04) !important;
+    color: #8e9bb0;
+    padding: 7px 16px;
+    border-radius: 8px;
+    font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.hud-audio-pill:hover {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.25) !important;
+    background: rgba(26, 26, 38, 0.95);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+}
+
+.hud-audio-pill.enabled {
+    color: #ffffff;
+    border-color: rgba(46, 213, 115, 0.4) !important;
+    background: rgba(18, 28, 22, 0.9);
+}
+
+@media (max-width: 768px) {
+    .hud-audio-pill { bottom: 15px; left: 15px; padding: 6px 14px; font-size: 0.75rem; }
+    .hud-terminal-pill { bottom: 15px; right: 15px; padding: 6px 14px; font-size: 0.75rem; }
+    .ai-twin-window { width: 300px; height: 400px; bottom: 70px; right: -10px; }
+}
+
+/* ==========================================================================
+   EXECUTIVE 1-SIDED TIMELINE OVERHAUL (INTERNSHIP EXPERIENCE)
+   ========================================================================== */
+
+#experience .timeline {
+    position: relative;
+    padding-left: 35px !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+}
+
+/* Pinned metallic silver/grey/white vertical track */
+#experience .timeline::before {
+    left: 11px !important;
+    width: 4px !important;
+    background: linear-gradient(180deg, #FFFFFF 0%, #888888 50%, #444444 100%) !important;
+    background-size: 100% 100% !important;
+    animation: none !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4), inset 0 0 3px rgba(255, 255, 255, 0.5) !important;
+    transform: none !important;
+}
+
+@keyframes flowDataTrack {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 0% 200%; }
+}
+
+.pinned-heading .section-title::after {
+    background: #FFFFFF !important;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.4) !important;
+}
+
+#experience .timeline-item {
+    position: relative;
+    margin-bottom: 2.2rem !important;
+    width: 100% !important;
+}
+
+/* Cancel alternating odd/even floats */
+#experience .timeline-item:nth-child(odd) .timeline-content,
+#experience .timeline-item:nth-child(even) .timeline-content {
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+#experience .timeline-content::before,
+#experience .timeline-content::after {
+    display: none !important; /* Remove old broken dots/mirror years */
+}
+
+/* Glowing dot attached to vertical line (pure glow orb, solid white) */
+.timeline-dot-connector {
+    position: absolute;
+    left: -30px;
+    top: 28px;
+    width: 14px;
+    height: 14px;
+    background: #FFFFFF !important;
+    border: none !important;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8) !important;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+/* Horizontal trace connecting dot to card */
+.timeline-dot-connector::after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 12px;
+    width: 20px;
+    height: 2px;
+    background: linear-gradient(90deg, #FFFFFF, rgba(200, 200, 200, 0.2)) !important;
+}
+
+/* Universal Dark Obsidian Cards & Minimalistic Natural Drop-Shadows (Strictly No Borders) */
+.glass, .exec-card, .project-card, .about-card, .timeline-content, .card, .cert-card, .game-card, .article-card, .contact-container, .dsa-container {
+    background: rgba(18, 18, 28, 0.9) !important;
+    border: none !important;
+    border-radius: 14px !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6) !important;
+}
+
+.exec-card {
+    padding: 1.6rem 2rem !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.glass:hover, .exec-card:hover, .project-card:hover, .about-card:hover, .timeline-content:hover, .card:hover, .cert-card:hover, .game-card:hover, .article-card:hover, .contact-container:hover {
+    background: rgba(22, 22, 34, 0.96) !important;
+    box-shadow: 0 16px 42px rgba(0, 0, 0, 0.78) !important;
+}
+
+.exec-card:hover {
+    transform: translateX(8px) !important;
+}
+
+#experience .timeline-item:hover .timeline-dot-connector,
+#experience-container .timeline-item:hover .timeline-dot-connector,
+#experience .timeline-dot-connector:hover,
+#experience-container .timeline-dot-connector:hover,
+.exec-card:hover + .timeline-dot-connector,
+.timeline-item:hover .timeline-dot-connector {
+    background: #FFFFFF !important;
+    box-shadow: 0 0 5px #cbd5e1, 0 0 12px #94a3b8, 0 0 25px #64748b, 0 0 50px rgba(71, 85, 105, 0.85), 0 0 80px rgba(51, 65, 85, 0.7) !important;
+    transform: scale(1.25) !important;
+}
+
+.exec-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.1rem;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.exec-role-group {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.exec-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(0, 210, 255, 0.08);
+    border: 1px solid rgba(0, 210, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    color: #00d2ff;
+    box-shadow: none !important;
+}
+
+.exec-badge {
+    display: inline-block;
+    background: linear-gradient(90deg, rgba(108, 92, 231, 0.35), rgba(0, 210, 255, 0.25));
+    border: 1px solid rgba(108, 92, 231, 0.6);
+    color: #a29bfe;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 3px 12px;
+    border-radius: 20px;
+    margin-bottom: 5px;
+}
+
+.exec-company {
+    font-size: 1.4rem !important;
+    color: #ffffff !important;
+    margin: 0 !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.4px;
+    text-shadow: none !important;
+    transition: all 0.3s ease !important;
+}
+
+.exec-card:hover .exec-company,
+.timeline-item:hover .exec-company {
+    color: #00d2ff !important;
+    text-shadow: 0 0 6px rgba(0, 210, 255, 0.3) !important;
+}
+
+.exec-year {
+    font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+    color: #a4b0be;
+    font-family: monospace;
+    background: rgba(255, 255, 255, 0.015);
+    padding: 5px 12px;
+    border-radius: 8px;
+    border: none;
+}
+
+.exec-desc {
+    color: #dcdde1 !important;
+    font-size: 0.98rem !important;
+    line-height: 1.65 !important;
+    margin-bottom: 1.4rem !important;
+}
+
+.exec-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.exec-tag {
+    font-size: 0.78rem;
+    color: #00d2ff;
+    background: rgba(0, 210, 255, 0.06);
+    border: 1px solid rgba(0, 210, 255, 0.18);
+    padding: 4px 11px;
+    border-radius: 6px;
+    font-family: monospace;
+    transition: all 0.2s ease;
+}
+
+.exec-tag:hover {
+    background: rgba(0, 210, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+/* --- 7. Minimalistic Circular Photo Shadow & Luxury Overrides --- */
+.profile-image-container, .profile-img {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
+    border-radius: 50% !important;
+}
+
+.floating-wrapper {
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+.tool-btn.active, .btn:hover, .exec-tag {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* ==========================================================================
+   8. MASTER ULTRA-MINIMALISTIC LUXURY PROFESSIONAL OVERRIDE
+   Strips all heavy neon laser beams and diffuse cyber-glows site-wide
+   ========================================================================== */
+
+/* Standardize all typography and headings to clean zero text-shadow */
+h1, h2, h3, h4, .section-title, .pinned-heading h2 {
+    text-shadow: none !important;
+}
+
+/* Vertical timeline track and dot connectors */
+#experience .timeline::before,
+.timeline::before {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4), inset 0 0 3px rgba(255, 255, 255, 0.5) !important;
+}
+
+.timeline-dot-connector {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5), inset 0 0 3px rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Subtle luxury hover on buttons, cards, tags, and pills */
+.btn:hover, .btn.primary:hover, .btn.secondary:hover,
+.tool-btn:hover, .tool-btn.active,
+.footer-socials a:hover,
+.exec-tag:hover,
+.hud-audio-pill:hover, #hero-cli-trigger:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45) !important;
+}
+
+/* ==========================================================================
+   9. FLOATING LUXURY PILL DOCK NAVBAR (Matching User Screenshot)
+   ========================================================================== */
+.navbar {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 2.5rem !important;
+    padding: 10px 32px !important;
+    position: fixed !important;
+    width: auto !important;
+    max-width: 94vw !important;
+    top: 20px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 1000 !important;
+    background: rgba(18, 18, 26, 0.88) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border-radius: 50px !important;
+    border: none !important;
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.6) !important;
+}
+
+.navbar.hidden {
+    opacity: 0 !important;
+    transform: translate(-50%, -25px) !important;
+}
+
+.logo {
+    font-size: 2rem !important;
+    height: auto !important;
+    margin-right: 0.5rem;
+}
+
+.logo-dot {
+    color: #00ff00 !important;
+    -webkit-text-fill-color: #00ff00 !important; /* override the gradient text fill */
+    animation: blinkDot 1.5s infinite;
+}
+
+@keyframes blinkDot {
+    0%, 100% { opacity: 1; text-shadow: 0 0 10px rgba(0, 255, 0, 0.8); }
+    50% { opacity: 0.2; text-shadow: none; }
+}
+
+.nav-links {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.6rem !important;
+    margin: 0 !important;
+    list-style: none !important;
+}
+
+.nav-links li {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
+    color: #8e9bb0 !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    padding: 7px 16px !important;
+    border-radius: 30px !important;
+    transition: all 0.2s ease !important;
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: visible !important;
+}
+
+.nav-links a:hover {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Remove old underline effect */
+.nav-links a::after {
+    display: none !important;
+}
+
+/* Active Page Pill Indicator Notch */
+.nav-links a.active,
+.nav-links a.active-dock-link {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.12) !important;
+}
+
+.nav-links a.active::before,
+.nav-links a.active-dock-link::before {
+    content: '';
+    position: absolute;
+    top: -17px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: #ff1744 !important;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #ff1744, 0 0 16px rgba(255, 23, 68, 0.6) !important;
+    display: block !important;
+}
+
+@media (max-width: 850px) {
+    .navbar {
+        width: 92vw !important;
+        justify-content: space-between !important;
+        padding: 10px 22px !important;
+        gap: 1rem !important;
+    }
+    .nav-links {
+        display: none !important;
+    }
+    .hamburger {
+        display: flex !important;
+    }
+}
+
+/* Guarantee logo hover typing card appears cleanly to left of logo container without overlapping AP. */
+.logo-container {
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+}
+
+#welcome-card {
+    position: absolute !important;
+    left: auto !important;
+    right: 100% !important;
+    top: 50% !important;
+    margin: 0 !important;
+    transform: translateY(-50%) translateX(-25px) !important;
+}
+
+#welcome-card.visible {
+    transform: translateY(-50%) translateX(-45px) !important;
+}
+
+/* Strictly Scoped Compact Executive Cards for Arcade Page */
+.games-page .games-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 260px)) !important;
+    gap: 1.5rem !important;
+    justify-content: start !important;
+}
+
+.games-page .game-card {
+    padding: 1.4rem 1.2rem !important;
+    min-height: 240px !important;
+    border-radius: 16px !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+    backdrop-filter: blur(12px) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1) !important;
+    border: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    text-align: center !important;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease !important;
+}
+
+.games-page .game-card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6) !important;
+    border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+.games-page .game-card .game-icon {
+    width: 60px !important;
+    height: 60px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0.5rem auto 1rem auto !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    border-radius: 14px !important;
+    border: none !important;
+    font-size: 1.8rem !important;
+    background-image: none !important;
+    color: var(--primary-color) !important;
+    filter: none !important;
+    box-shadow: none !important;
+    transition: transform 0.3s ease !important;
+}
+
+.games-page .game-card:hover .game-icon {
+    transform: scale(1.06) !important;
+}
+
+.games-page .game-card h3 {
+    font-size: 1.15rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 0.5rem !important;
+    color: #fff !important;
+}
+
+.games-page .game-card p {
+    font-size: 0.82rem !important;
+    color: #aaa !important;
+    line-height: 1.4 !important;
+    margin-bottom: 1.4rem !important;
+}
+
+.games-page .play-btn {
+    margin-top: auto !important;
+    padding: 0.55rem 1rem !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(2px) !important;
+    -webkit-backdrop-filter: blur(2px) !important;
+    color: #fff !important;
+    border: none !important;
+    outline: none !important;
+    border-radius: 8px !important;
+    font-weight: 500 !important;
+    font-size: 0.85rem !important;
+    letter-spacing: 0.3px !important;
+    text-decoration: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.5rem !important;
+    width: 100% !important;
+    transition: background 0.2s ease, border-color 0.2s ease !important;
+    transform: none !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+.games-page .play-btn:hover,
+.games-page .game-card:hover .play-btn {
+    background: rgba(255, 255, 255, 0.25) !important;
+    border: 1px solid transparent !important;
+    outline: none !important;
+    color: #fff !important;
+    transform: none !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Strictly Scoped Compact Executive Cards for Certifications Page */
+.certificates-page .certificates-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 260px)) !important;
+    gap: 1.5rem !important;
+    justify-content: start !important;
+}
+
+.certificates-page .certificate-card {
+    padding: 1.4rem 1.2rem !important;
+    min-height: 240px !important;
+    border-radius: 16px !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+    backdrop-filter: blur(12px) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1) !important;
+    border: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    text-align: center !important;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease !important;
+}
+
+.certificates-page .certificate-card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6) !important;
+    border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+.certificates-page .cert-icon-container {
+    width: 60px !important;
+    height: 60px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    border-radius: 14px !important;
+    border: none !important;
+    margin: 0.5rem auto 1rem auto !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+}
+
+.certificates-page .cert-icon-container i {
+    font-size: 1.8rem !important;
+    filter: none !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    transition: transform 0.3s ease !important;
+}
+
+.certificates-page .certificate-card:hover .cert-icon-container i {
+    transform: scale(1.06) !important;
+    filter: none !important;
+}
+
+.certificates-page .cert-info {
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    flex: 1 !important;
+    margin-bottom: 0 !important;
+}
+
+.certificates-page .cert-info h3 {
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 1.2rem !important;
+    color: #fff !important;
+    line-height: 1.35 !important;
+}
+
+.certificates-page .cert-link {
+    margin-top: auto !important;
+    padding: 0.55rem 1rem !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(2px) !important;
+    -webkit-backdrop-filter: blur(2px) !important;
+    color: #fff !important;
+    border: none !important;
+    outline: none !important;
+    border-radius: 8px !important;
+    font-weight: 500 !important;
+    font-size: 0.85rem !important;
+    letter-spacing: 0.3px !important;
+    text-decoration: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.5rem !important;
+    width: 100% !important;
+    transition: background 0.2s ease, border-color 0.2s ease !important;
+    transform: none !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+.certificates-page .cert-link:hover,
+.certificates-page .certificate-card:hover .cert-link {
+    background: rgba(255, 255, 255, 0.25) !important;
+    border: 1px solid transparent !important;
+    outline: none !important;
+    color: #fff !important;
+    transform: none !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Clearly visible glassmorphic buttons globally */
+.btn:not(.ide-run-btn):not(.chat-send-btn),
+.btn.primary:not(.ide-run-btn):not(.chat-send-btn),
+.btn.secondary:not(.ide-run-btn):not(.chat-send-btn),
+.play-btn,
+.cert-link,
+.read-more,
+button:not(.ide-run-btn):not(.chat-send-btn),
+.tab-btn,
+.skill-tag,
+.exec-tag,
+.tag {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border: 1px solid transparent !important;
+    outline: none !important;
+    backdrop-filter: blur(2px) !important;
+    -webkit-backdrop-filter: blur(2px) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+    color: #FFFFFF !important;
+}
+
+.btn:not(.ide-run-btn):not(.chat-send-btn):hover,
+.btn.primary:not(.ide-run-btn):not(.chat-send-btn):hover,
+.btn.secondary:not(.ide-run-btn):not(.chat-send-btn):hover,
+.play-btn:hover,
+.cert-link:hover,
+.read-more:hover,
+button:not(.ide-run-btn):not(.chat-send-btn):hover,
+.tab-btn.active,
+.tab-btn:hover,
+.category-list li.active,
+.category-list li:hover,
+.skill-tag:hover,
+.exec-tag:hover,
+.tag:hover {
+    background: rgba(255, 255, 255, 0.25) !important;
+    border: 1px solid transparent !important;
+    outline: none !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
+    color: #FFFFFF !important;
+}
+
+.game-card,
+.certificate-card,
+.blog-card,
+.project-card,
+.about-card,
+.timeline-content,
+.card {
+    background: rgba(22, 22, 26, 0.60) !important;
+    backdrop-filter: blur(12px) !important;
+}
+
+/* Remove shadows and glows from chat send button icon only */
+button.chat-send-btn i,
+button.chat-send-btn svg,
+button.chat-send-btn:hover i,
+button.chat-send-btn:hover svg,
+.chat-input-bar .chat-send-btn i,
+.chat-input-bar .chat-send-btn:hover i {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+}
+
+
+/* GLOBAL HOVER OVERRIDE: All buttons turn solid white with black text */
+/* Using INSANE specificity by chaining classes to beat everything */
+html body .btn.btn.btn.btn.btn:hover,
+html body .btn.primary.primary.primary.primary:hover,
+html body .btn.secondary.secondary.secondary.secondary:hover,
+html body button.btn.btn.btn.btn.btn:hover,
+html body a.btn.btn.btn.btn.btn:hover,
+html body .cta-buttons .btn.btn.btn.btn:hover,
+html body .cta-buttons a.btn.btn.btn:hover,
+html body .cta-buttons button.btn.btn.btn:hover,
+html body .tab-btn.tab-btn.tab-btn.tab-btn:hover,
+html body .contact-btn.contact-btn.contact-btn:hover,
+html body .submit-btn.submit-btn.submit-btn:hover,
+html body .play-btn.play-btn.play-btn:hover,
+html body .read-more.read-more.read-more:hover,
+html body .cert-link.cert-link.cert-link:hover,
+html body #hero-cli-trigger:hover,
+html body .ide-run-btn.ide-run-btn.ide-run-btn:hover,
+html body .category-list li.category-list li:hover,
+html body .category-list li:hover,
+html body #back-button:hover {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+}
+
+/* Force icons inside buttons to also turn black on hover */
+html body .btn.btn.btn.btn.btn:hover i,
+html body .btn.btn.btn.btn.btn:hover svg,
+html body .btn.primary.primary.primary.primary:hover i,
+html body .btn.secondary.secondary.secondary.secondary:hover i,
+html body button.btn.btn.btn.btn:hover i,
+html body button.btn.btn.btn.btn:hover svg,
+html body a.btn.btn.btn.btn:hover i,
+html body a.btn.btn.btn.btn:hover svg,
+html body .cta-buttons .btn.btn.btn:hover i,
+html body .cta-buttons a.btn.btn.btn:hover i,
+html body .cta-buttons button.btn.btn:hover i,
+html body .tab-btn.tab-btn.tab-btn:hover i,
+html body .contact-btn.contact-btn:hover i,
+html body .submit-btn.submit-btn:hover i,
+html body .play-btn.play-btn:hover i,
+html body .read-more.read-more:hover i,
+html body .cert-link.cert-link:hover i,
+html body #hero-cli-trigger:hover i,
+html body #hero-cli-trigger:hover svg,
+html body .ide-run-btn.ide-run-btn:hover i,
+html body .category-list li:hover i,
+html body #back-button:hover i {
+    color: #000000 !important;
+    fill: #000000 !important;
+}
+
+html body .chat-send-btn.chat-send-btn:hover i,
+html body .chat-send-btn.chat-send-btn:hover svg {
+    color: #00ff66 !important;
+    fill: #00ff66 !important;
+}
+
+/* FINAL OVERRIDE FOR CONTACT BUTTONS */
+html body .contact-btn.contact-btn.contact-btn:hover {
+    background: #FFFFFF !important;
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+}
+
+html body .contact-btn.contact-btn.contact-btn:hover i {
+    color: #000000 !important;
+}
+
+/* KEEP ICON BUTTONS TRANSPARENT ON HOVER */
+html body .footer-socials a:hover,
+html body .contact-links a:hover,
+html body .chat-send-btn:hover,
+html body .social-links a:hover {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* MAKE AUDIO PILL SOLID WHITE WITH BLACK TEXT ON HOVER */
+html body button.hud-audio-pill.hud-audio-pill.hud-audio-pill:hover {
+    background: #FFFFFF !important;
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4) !important;
+}
+
+html body button.hud-audio-pill.hud-audio-pill.hud-audio-pill:hover i,
+html body button.hud-audio-pill.hud-audio-pill.hud-audio-pill:hover svg {
+    color: #000000 !important;
+    fill: #000000 !important;
+    filter: none !important;
+}
