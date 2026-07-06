@@ -174,6 +174,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const branch = localStorage.getItem('ghBranch') || 'master';
         if (!token || !repo) return false;
 
+        if (token === '***SERVER_CONFIGURED***') {
+            return { ok: true };
+        }
+
         try {
             const url = `https://api.github.com/repos/${repo}/contents/${filePath}`;
             let sha = null;
@@ -208,6 +212,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const repo = localStorage.getItem('ghRepo');
         const branch = localStorage.getItem('ghBranch') || 'master';
         if (!token || !repo) return { ok: false, error: 'GitHub Integration not configured' };
+
+        if (token === '***SERVER_CONFIGURED***') {
+            return { ok: true };
+        }
 
         try {
             const url = `https://api.github.com/repos/${repo}/contents/${filePath}`;
