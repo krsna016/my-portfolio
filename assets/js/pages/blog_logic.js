@@ -42,14 +42,28 @@ document.addEventListener('DOMContentLoaded', async () => {
         fontBar.setAttribute('role', 'toolbar');
         fontBar.setAttribute('aria-label', 'Blog reading preferences');
         fontBar.innerHTML = `
-            <div class="font-bar-left">
-                <i class="fa-solid fa-text-height" aria-hidden="true"></i>
-                <span>Size</span>
+            <div class="font-bar-section">
+                <div class="font-bar-left">
+                    <i class="fa-solid fa-text-height" aria-hidden="true"></i>
+                    <span>Size</span>
+                </div>
+                <div class="font-bar-controls">
+                    <button id="font-dec-btn" class="font-ctrl-btn" aria-label="Decrease font size" title="Decrease size (Ctrl/Cmd + -)">A−</button>
+                    <span id="font-size-display" class="font-size-display" role="button" tabindex="0" aria-label="Current font size 100%, click to reset" title="Click to reset (Ctrl/Cmd + 0)">100%</span>
+                    <button id="font-inc-btn" class="font-ctrl-btn" aria-label="Increase font size" title="Increase size (Ctrl/Cmd + +)">A+</button>
+                </div>
             </div>
-            <div class="font-bar-controls">
-                <button id="font-dec-btn" class="font-ctrl-btn" aria-label="Decrease font size" title="Decrease size (Ctrl/Cmd + -)">A−</button>
-                <span id="font-size-display" class="font-size-display" role="button" tabindex="0" aria-label="Current font size 100%, click to reset" title="Click to reset (Ctrl/Cmd + 0)">100%</span>
-                <button id="font-inc-btn" class="font-ctrl-btn" aria-label="Increase font size" title="Increase size (Ctrl/Cmd + +)">A+</button>
+            <div class="theme-bar-section">
+                <div class="font-bar-left">
+                    <i class="fa-solid fa-palette" aria-hidden="true"></i>
+                    <span>Theme</span>
+                </div>
+                <div class="theme-controls">
+                    <button class="theme-pill-btn active" data-theme="dark" title="Cyber Dark" style="background-color: #121218; border: 1px solid rgba(255, 255, 255, 0.25);"></button>
+                    <button class="theme-pill-btn" data-theme="sepia" title="Warm Sepia" style="background-color: #f4ecd8; border: 1px solid rgba(0, 0, 0, 0.15);"></button>
+                    <button class="theme-pill-btn" data-theme="slate" title="Muted Slate" style="background-color: #1e2530; border: 1px solid rgba(255, 255, 255, 0.15);"></button>
+                    <button class="theme-pill-btn" data-theme="forest" title="Dim Forest" style="background-color: #1b221e; border: 1px solid rgba(255, 255, 255, 0.15);"></button>
+                </div>
             </div>
         `;
 
@@ -129,8 +143,31 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         });
 
+        // Theme switching logic
+        const themeBtns = fontBar.querySelectorAll('.theme-pill-btn');
+        function applyTheme(themeName) {
+            themeBtns.forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-theme') === themeName);
+            });
+            // Clear existing themes
+            postReader.classList.remove('reader-dark', 'reader-sepia', 'reader-slate', 'reader-forest');
+            // Add selected theme
+            postReader.classList.add(`reader-${themeName}`);
+            localStorage.setItem('blogReaderTheme', themeName);
+        }
+
+        themeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const themeName = btn.getAttribute('data-theme');
+                applyTheme(themeName);
+                showToast(`<i class="fa-solid fa-palette"></i> Theme: ${btn.getAttribute('title')}`);
+            });
+        });
+
         // Restore saved settings on boot
         updateFontSize(currentSize, false);
+        const savedTheme = localStorage.getItem('blogReaderTheme') || 'dark';
+        applyTheme(savedTheme);
 
         window.addEventListener('keydown', (e) => {
             if (postReader.style.display !== 'block') return;
