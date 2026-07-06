@@ -59,10 +59,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <span>Theme</span>
                 </div>
                 <div class="theme-controls">
-                    <button class="theme-pill-btn active" data-theme="dark" title="Cyber Dark" style="background-color: #121218; border: 2px solid rgba(255, 255, 255, 0.2);"><span class="theme-dot-accent" style="background:#00ff66;"></span></button>
-                    <button class="theme-pill-btn" data-theme="sepia" title="Warm Paper" style="background-color: #f0e8d6; border: 2px solid rgba(124, 115, 101, 0.4);"><span class="theme-dot-accent" style="background:#b87333;"></span></button>
-                    <button class="theme-pill-btn" data-theme="slate" title="Muted Slate" style="background-color: #1e2530; border: 2px solid rgba(148, 163, 184, 0.3);"><span class="theme-dot-accent" style="background:#00d2ff;"></span></button>
-                    <button class="theme-pill-btn" data-theme="forest" title="Dim Forest" style="background-color: #1b221e; border: 2px solid rgba(135, 153, 142, 0.3);"><span class="theme-dot-accent" style="background:#62e9b9;"></span></button>
+                    <button class="theme-pill-btn active" data-theme="dark"   title="Cyber Dark"   style="background-color: #000000; border: 2px solid rgba(255,255,255,0.25);"><span class="theme-dot-accent" style="background:#00ff66;"></span></button>
+                    <button class="theme-pill-btn"        data-theme="sepia"  title="Warm Paper"   style="background-color: #c8a87a; border: 2px solid rgba(124,96,52,0.5);"><span class="theme-dot-accent" style="background:#fff8ee;"></span></button>
+                    <button class="theme-pill-btn"        data-theme="slate"  title="Muted Slate"  style="background-color: #1a3a5c; border: 2px solid rgba(0,180,255,0.35);"><span class="theme-dot-accent" style="background:#00d2ff;"></span></button>
+                    <button class="theme-pill-btn"        data-theme="forest" title="Dim Forest"   style="background-color: #1a3a22; border: 2px solid rgba(80,200,120,0.35);"><span class="theme-dot-accent" style="background:#62e9b9;"></span></button>
                 </div>
             </div>
         `;

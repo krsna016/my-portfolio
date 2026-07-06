@@ -392,6 +392,8 @@ input[type="range"]::-webkit-slider-thumb {
     border-radius: 16px !important;
     box-shadow: none !important;
     margin-left: 4px !important;
+    position: relative !important;
+    overflow: visible !important;
 }
 .ide-topbar {
     background: var(--glass-bg) !important;
