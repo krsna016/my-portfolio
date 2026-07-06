@@ -3338,24 +3338,23 @@ body.reader-open .cyber-crosshair-y {
     margin: 0 !important;
 }
 
-/* Top bar — back button, metadata, size controls in one line (sticky compact pill header) */
+/* Top bar — back button, metadata, size controls in one line (sticky header) */
 #post-reader .post-reader-top-bar {
     position: sticky !important;
-    top: 1rem !important; /* Floating sticky gap from the top of post-reader scroll area */
+    top: 0 !important;
     z-index: 100 !important;
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
     flex-wrap: wrap !important;
     gap: 1rem !important;
-    margin: 1rem clamp(2rem, 5vw, 5rem) 2rem clamp(2rem, 5vw, 5rem) !important; /* Floating margins matching article column */
-    padding: 0.75rem 2rem !important; /* Compact vertical and horizontal padding inside the pill */
-    background: rgba(18, 18, 24, 0.9) !important; /* Matte dark glassmorphic background */
-    backdrop-filter: blur(16px) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important; /* Curve frame border */
-    border-radius: 50px !important; /* Curvy pill edges */
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6) !important;
+    margin-bottom: 2rem !important;
+    padding: 1rem clamp(2rem, 5vw, 5rem) !important; /* Compact vertical padding */
+    background: rgba(10, 10, 15, 0.95) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    width: 100% !important;
     box-sizing: border-box !important;
 }
 
