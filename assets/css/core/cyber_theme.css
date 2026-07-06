@@ -1400,7 +1400,7 @@ button.btn.primary.chat-send-btn:hover,
    ========================================================================== */
 .drawing-controls {
     background: rgba(22, 22, 26, 0.75) !important;
-    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border: none !important;
     backdrop-filter: blur(16px) !important;
     -webkit-backdrop-filter: blur(16px) !important;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
