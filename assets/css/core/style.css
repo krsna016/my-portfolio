@@ -3011,49 +3011,52 @@ body.focus-mode-active .interactive-bg {
 
 /* H1 — Article title, pure white, large */
 #reader-content.markdown-body h1 {
-    color: #00ff66 !important; /* Neon hack green text */
+    color: var(--theme-h1-text, #00ff66) !important; /* Dynamically themed H1 text */
     font-size: calc(2.4rem * var(--blog-scale, 1));
     font-weight: 700;
     letter-spacing: -0.5px;
     margin: 0 0 2rem 0;
     padding: 1.5rem 2rem !important;
-    background: #161622 !important; /* Matte card background */
+    background: var(--theme-h1-bg, #161622) !important; /* Dynamically themed H1 background */
     border: none !important;
     border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    box-shadow: var(--theme-h1-shadow, 0 10px 25px rgba(0, 0, 0, 0.4)) !important;
+    transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease !important;
 }
 
 /* H2 — Section titles, white */
 #reader-content.markdown-body h2 {
-    color: #ffffff !important; /* Pure white text */
+    color: var(--theme-h2-text, #ffffff) !important; /* Dynamically themed H2 text */
     font-size: calc(1.65rem * var(--blog-scale, 1));
     font-weight: 600;
     margin: 2.5rem 0 1rem 0;
     padding: 0 0 0 0.8rem !important;
     background: transparent !important; /* No card background */
     border: none !important;
-    border-left: 3px solid #00ff66 !important; /* Green left accent */
+    border-left: 3px solid var(--theme-h2-border, #00ff66) !important; /* Dynamically themed left accent */
     border-radius: 0 !important;
     box-shadow: none !important;
+    transition: color 0.3s ease, border-color 0.3s ease !important;
 }
 
 /* H3 — Sub-sections, light grey */
 #reader-content.markdown-body h3 {
-    color: #b0b8c1;
+    color: var(--theme-h3-text, #b0b8c1) !important; /* Dynamically themed H3 text */
     font-size: calc(1.3rem * var(--blog-scale, 1));
     font-weight: 600;
     margin: 2.5rem 0 1rem 0;
     letter-spacing: 0.2px;
     padding: 0.8rem 1.2rem !important;
-    background: #181826 !important; /* Matte background, slightly different shade */
+    background: var(--theme-h3-bg, #181826) !important; /* Dynamically themed H3 background */
     border: none !important;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    box-shadow: var(--theme-h3-shadow, 0 4px 10px rgba(0, 0, 0, 0.25)) !important;
+    transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease !important;
 }
 
 /* H4 — "Important" markers, red */
 #reader-content.markdown-body h4 {
-    color: #ff4757;
+    color: var(--theme-h4-text, #ff4757) !important; /* Dynamically themed H4 text */
     font-size: calc(1.1rem * var(--blog-scale, 1));
     font-weight: 600;
     text-transform: uppercase;
@@ -3062,9 +3065,10 @@ body.focus-mode-active .interactive-bg {
     padding: 0.8rem 1.2rem !important;
     background: rgba(255, 71, 87, 0.05) !important; /* Subtle red matte background */
     border: none !important;
-    border-left: 4px solid #ff4757 !important;
+    border-left: 4px solid var(--theme-h4-text, #ff4757) !important;
     border-radius: 0 8px 8px 0;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    transition: color 0.3s ease, border-color 0.3s ease !important;
 }
 
 /* H5 — Notes, muted grey */
@@ -3113,14 +3117,14 @@ body.focus-mode-active .interactive-bg {
 
 /* ── Links ────────────────────────────────────────────────── */
 #reader-content.markdown-body a {
-    color: var(--primary-color, #2ed573);
+    color: var(--theme-link-color, var(--primary-color, #2ed573)) !important; /* Theme link color */
     text-decoration: none;
     border-bottom: 1px solid transparent;
     transition: border-color 0.2s, color 0.2s;
 }
 #reader-content.markdown-body a:hover {
-    color: #ffffff;
-    border-bottom-color: var(--primary-color, #2ed573);
+    color: var(--theme-link-hover-color, #ffffff) !important; /* Theme hover color */
+    border-bottom-color: var(--theme-link-color, var(--primary-color, #2ed573)) !important;
 }
 
 /* ── Lists ────────────────────────────────────────────────── */
@@ -3406,6 +3410,17 @@ body.reader-open .cyber-crosshair-y {
     --theme-heading-color: #ffffff;
     --theme-meta-text: #e0e0e0;
     --theme-hr: rgba(255, 255, 255, 0.08);
+    --theme-h1-bg: #161622;
+    --theme-h1-text: #00ff66;
+    --theme-h1-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    --theme-h2-text: #ffffff;
+    --theme-h2-border: #00ff66;
+    --theme-h3-bg: #181826;
+    --theme-h3-text: #b0b8c1;
+    --theme-h3-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    --theme-h4-text: #ff4757;
+    --theme-link-color: var(--primary-color, #2ed573);
+    --theme-link-hover-color: #ffffff;
 }
 
 #post-reader.reader-sepia {
@@ -3423,6 +3438,17 @@ body.reader-open .cyber-crosshair-y {
     --theme-heading-color: #2d2b2a;
     --theme-meta-text: #7c7365;
     --theme-hr: rgba(124, 115, 101, 0.15);
+    --theme-h1-bg: #ece5d8;
+    --theme-h1-text: #2d2b2a;
+    --theme-h1-shadow: 0 8px 20px rgba(124, 115, 101, 0.08);
+    --theme-h2-text: #2d2b2a;
+    --theme-h2-border: #7c7365;
+    --theme-h3-bg: #ece5d8;
+    --theme-h3-text: #2d2b2a;
+    --theme-h3-shadow: 0 4px 10px rgba(124, 115, 101, 0.05);
+    --theme-h4-text: #7c7365;
+    --theme-link-color: #b87333;
+    --theme-link-hover-color: #3d2314;
 }
 
 #post-reader.reader-slate {
@@ -3440,6 +3466,17 @@ body.reader-open .cyber-crosshair-y {
     --theme-heading-color: #ffffff;
     --theme-meta-text: #94a3b8;
     --theme-hr: rgba(148, 163, 184, 0.15);
+    --theme-h1-bg: #28313e;
+    --theme-h1-text: #00d2ff;
+    --theme-h1-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    --theme-h2-text: #ffffff;
+    --theme-h2-border: #00d2ff;
+    --theme-h3-bg: #232c37;
+    --theme-h3-text: #cbd5e1;
+    --theme-h3-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    --theme-h4-text: #00d2ff;
+    --theme-link-color: #00d2ff;
+    --theme-link-hover-color: #ffffff;
 }
 
 #post-reader.reader-forest {
@@ -3457,6 +3494,17 @@ body.reader-open .cyber-crosshair-y {
     --theme-heading-color: #ffffff;
     --theme-meta-text: #87998e;
     --theme-hr: rgba(135, 153, 142, 0.15);
+    --theme-h1-bg: #242f29;
+    --theme-h1-text: #62e9b9;
+    --theme-h1-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    --theme-h2-text: #ffffff;
+    --theme-h2-border: #62e9b9;
+    --theme-h3-bg: #202a24;
+    --theme-h3-text: #ccd4cf;
+    --theme-h3-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    --theme-h4-text: #62e9b9;
+    --theme-link-color: #62e9b9;
+    --theme-link-hover-color: #ffffff;
 }
 
 /* Theme variable overrides across UI elements */
