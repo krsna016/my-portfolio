@@ -3328,11 +3328,11 @@ body.reader-open .cyber-crosshair-y {
     top: 70px !important;
     left: 0 !important;
     right: 0 !important;
-    bottom: 0 !important;
+    bottom: 5vh !important; /* Fixed bottom margin from screen edge */
     overflow-y: auto !important;
     z-index: 100 !important;
     background: transparent !important;
-    padding: 2rem 0 10rem 0 !important; /* Bottom padding to ensure scroll spacing */
+    padding: 2rem 0 4rem 0 !important; /* Symmetrical scroll spacing inside box */
     box-sizing: border-box !important;
     display: none; /* Controlled by JS show/hide */
     margin: 0 !important;
