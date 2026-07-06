@@ -16,8 +16,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;500;700&display=swap">
-    <link rel="stylesheet" href="assets/css/core/style.css?v=9200">
-    <link rel="stylesheet" href="assets/css/features/intense_pack.css?v=9200">
+    <link rel="stylesheet" href="assets/css/core/style.css?v=9300">
+    <link rel="stylesheet" href="assets/css/features/intense_pack.css?v=9300">
     <!-- Marked.js for Markdown parsing -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <!-- DOMPurify for sanitizing HTML -->
@@ -136,58 +136,65 @@
         }
 
         .post-reader-top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            width: 100%;
+            display: grid !important;
+            grid-template-columns: 1fr auto 1fr !important;
+            align-items: center !important;
+            margin-bottom: 2.2rem !important;
+            gap: 1.5rem !important;
+            width: 100% !important;
+        }
+
+        #back-button {
+            justify-self: start !important;
+        }
+
+        .blog-font-bar {
+            justify-self: end !important;
         }
 
         .intense-meta-badge {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 12px;
-            color: #aaa;
-            font-size: 0.9rem;
-            margin: 0 auto;
+            display: flex !important;
+            justify-self: center !important;
+            align-items: center !important;
+            flex-wrap: wrap !important;
+            gap: 12px !important;
+            color: #aaa !important;
+            font-size: 0.9rem !important;
             border: none !important;
             padding: 0 !important;
+            margin: 0 !important;
         }
 
         .intense-meta-badge span {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 6px !important;
         }
 
         .intense-meta-badge .meta-divider {
-            color: #555;
-            user-select: none;
+            color: #555 !important;
+            user-select: none !important;
         }
 
         .intense-meta-badge .meta-category {
-            color: var(--primary-color);
-            font-weight: 500;
+            color: var(--primary-color) !important;
+            font-weight: 500 !important;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             .post-reader-top-bar {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 1rem;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 1.2rem !important;
+            }
+            #back-button, .intense-meta-badge, .blog-font-bar {
+                justify-self: center !important;
+                align-self: center !important;
+                text-align: center !important;
             }
             .intense-meta-badge {
-                margin: 0;
-                justify-content: center;
-            }
-            .blog-font-bar {
-                justify-content: center;
-            }
-            #back-button {
-                justify-content: center;
+                justify-content: center !important;
             }
         }
 
