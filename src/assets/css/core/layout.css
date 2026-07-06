@@ -1,0 +1,465 @@
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: color 0.3s;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.hamburger .line {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-color);
+    margin: 5px;
+    transition: 0.3s;
+}
+
+/* Typing Animation Cursor */
+.typing-cursor::after {
+    content: '|';
+    animation: blink 1s step-start infinite;
+    color: var(--primary-color);
+    margin-left: 5px;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+    border: none !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    outline: none !important;
+    transform: scale(1.15) !important;
+    /* Minimal grow of logo only */
+}
+
+button.chat-send-btn i,
+button.chat-send-btn svg,
+.chat-send-btn i,
+.chat-send-btn svg {
+    font-size: clamp(1.3rem, 3.5vw, 1.6rem) !important;
+    color: #FFFFFF !important;
+    fill: #FFFFFF !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+}
+
+button.chat-send-btn:hover i,
+button.chat-send-btn:hover svg,
+.chat-send-btn:hover i,
+.chat-send-btn:hover svg {
+    color: #FFFFFF !important;
+    fill: #FFFFFF !important;
+    text-shadow: none !important;
+    filter: none !important;
+}
+
+.hero-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+    /* Create 3D space */
+}
+
+.floating-wrapper {
+    animation: float 6s ease-in-out infinite;
+    transform-style: preserve-3d;
+    /* Preserve 3D for children */
+    margin-left: 150px;
+    /* Moved margin here */
+}
+
+.profile-image-container {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    position: relative;
+    /* Removed padding and background to remove the thick line */
+    box-shadow: 0 0 60px rgba(108, 99, 255, 0.6);
+    /* Enhanced glow intensity */
+    /* animation: float 6s ease-in-out infinite; MOVED TO WRAPPER */
+    /* margin-left: 150px; MOVED TO WRAPPER */
+    /* Shift rightward using margin */
+    transform-style: preserve-3d;
+    /* Enable 3D children */
+    transition: transform 0.1s ease-out;
+    /* Smooth movement */
+    will-change: transform;
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    background-color: var(--bg-color);
+    /* Prevent background bleed */
+    transition: transform 0.5s ease;
+    transform: translateZ(30px);
+    /* Increased from 20px */
+    /* Push forward slightly */
+}
+
+.profile-image-container:hover .profile-img {
+    transform: translateZ(30px) scale(1.05);
+    /* Match new Z value */
+}
+
+/* Optional: Add a rotating glow effect */
+.profile-image-container::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, transparent, var(--primary-color), transparent 30%);
+    animation: rotate 4s linear infinite;
+    z-index: -1;
+    transform: translateZ(-20px);
+    /* Increased depth from -10px */
+    /* Push background back */
+}
+
+/* Idea Bubbles (Icons Only) */
+.idea-bubble {
+    position: absolute;
+    z-index: 10;
+    white-space: nowrap;
+    animation: float 4s ease-in-out infinite;
+    animation: float-bubble 4s ease-in-out infinite;
+    /* Use specific animation */
+    /* Removed background, border, padding, and backdrop-filter */
+    cursor: grab;
+    user-select: none;
+    /* Prevent text selection while dragging */
+    transform: translateZ(80px);
+    /* Pop out more */
+}
+
+.idea-bubble:active {
+    cursor: grabbing;
+}
+
+.idea-bubble.dragging {
+    animation-play-state: paused;
+    z-index: 100;
+    cursor: grabbing;
+    transition: none;
+    /* Disable transition for smooth dragging */
+}
+
+.idea-bubble i {
+    font-size: clamp(2rem, 6vw, 3rem);
+    /* Increased icon size */
+    color: var(--secondary-color);
+    filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5));
+    /* Add glow to icons */
+    transition: transform 0.3s;
+}
+
+.idea-bubble:hover i {
+    transform: scale(1.2) rotate(10deg);
+    color: var(--primary-color);
+}
+
+.idea-bubble span {
+    font-weight: 600;
+    color: #fff;
+    font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+}
+
+/* Positioning Bubbles */
+/* Positioning Bubbles in an Arc */
+/* Center of container is at 50% 50% (175px, 175px) */
+/* Radius approx 260px */
+/* Offset by -25px to center the bubbles (approx 50px size) */
+
+.bubble-1 {
+    /* -80 deg */
+    left: 195px;
+    top: -106px;
+    right: auto;
+    bottom: auto;
+    animation-delay: 0s;
+}
+
+.bubble-2 {
+    /* -60 deg */
+    left: 280px;
+    top: -75px;
+    right: auto;
+    bottom: auto;
+    animation-delay: 1s;
+}
+
+.bubble-3 {
+    /* -40 deg */
+    left: 349px;
+    top: -17px;
+    right: auto;
+    bottom: auto;
+    animation-delay: 2s;
+}
+
+.bubble-4 {
+    /* -20 deg */
+    left: 394px;
+    top: 61px;
+    right: auto;
+    bottom: auto;
+    animation-delay: 1.5s;
+}
+
+.bubble-5 {
+    /* 0 deg */
+    left: 410px;
+    top: 150px;
+    right: auto;
+    bottom: auto;
+    animation-delay: 0.5s;
+}
+
+.bubble-6 {
+    /* 20 deg */
+    left: 394px;
+    top: 239px;
+    right: auto;
+    bottom: auto;
+    animation-delay: 2.5s;
+}
+
+.bubble-7 {
+    /* 40 deg */
+    left: 349px;
+    top: 317px;
+    right: auto;
+    bottom: auto;
+    animation-delay: 1.2s;
+}
+
+.bubble-8 {
+    /* 60 deg */
+    left: 280px;
+    top: 375px;
+    right: auto;
+    bottom: auto;
+    animation-delay: 2.8s;
+}
+
+.bubble-9 {
+    /* 80 deg */
+    left: 195px;
+    top: 406px;
+    right: auto;
+    bottom: auto;
+    animation-delay: 0.8s;
+}
+
+@keyframes spin-glow {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes float-bubble {
+
+    0%,
+    100% {
+        transform: translateY(0) translateZ(80px);
+        /* Increased from 50px */
+    }
+
+    50% {
+        transform: translateY(-20px) translateZ(80px);
+        /* Increased from 50px */
+    }
+}
+
+/* Sections */
+.section {
+    padding: 6rem 10%;
+    /* Performance optimization for offscreen rendering */
+    content-visibility: auto;
+    contain-intrinsic-size: 800px;
+}
+
+.section-title {
+    font-size: clamp(2rem, 6vw, 3rem);
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: var(--primary-color);
+    border-radius: 2px;
+}
+
+/* Pinned Section Layout */
+.pinned-section-wrapper {
+    display: flex;
+    gap: 4rem;
+    position: relative;
+    align-items: flex-start;
+    /* Ensure both columns start at the top */
+}
+
+.pinned-heading {
+    flex: 0 0 200px;
+    /* Fixed width for the heading column */
+    position: sticky;
+    top: 120px;
+    /* Adjust based on navbar height */
+    height: fit-content;
+    text-align: right;
+    padding-right: 2rem;
+    border-right: none;
+    /* Removed border */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin-top: 0;
+    /* Ensure no top margin */
+    padding-top: 0;
+    /* Ensure no top padding */
+}
+
+.pinned-heading .section-title {
+    text-align: right;
+    margin-bottom: 0;
+    margin-top: 0;
+    /* Ensure no top margin */
+    font-size: clamp(2rem, 6vw, 3rem);
+    position: relative;
+    line-height: 1.2;
+    /* Ensure consistent line height */
+}
+
+/* Override default section-title after for pinned layout */
+.pinned-heading .section-title::after {
+    right: -2.1rem;
+    /* Align with border */
+    left: auto;
+    transform: none;
+    width: 4px;
+    height: 100%;
+    top: 0;
+    background: var(--primary-color);
+    border-radius: 2px;
+    display: block;
+}
+
+.section-content {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Responsive Pinned Layout */
+@media (max-width: 900px) {
+    .pinned-section-wrapper {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .pinned-heading {
+        flex: none;
+        width: 100%;
+        position: sticky;
+        top: 70px;
+        /* Below navbar */
+        text-align: left;
+        padding-right: 0;
+        border-right: none;
+        border-bottom: 1px solid var(--glass-border);
+        padding-bottom: 1rem;
+        background: rgba(10, 10, 10, 0.95);
+        /* Background to cover content */
+        backdrop-filter: blur(2px);
+        z-index: 10;
+        margin-bottom: clamp(0.5rem, 2vw, 1rem);
+        align-items: flex-start;
+    }
+
+    .pinned-heading .section-title {
+        text-align: left;
+        font-size: clamp(1.6rem, 5vw, 2.2rem);
+        margin-bottom: 0;
+    }
+
+    .pinned-heading .section-title::after {
+        display: none;
+        /* Use border-bottom of container instead */
+    }
+}
+
+/* About Grid */
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}

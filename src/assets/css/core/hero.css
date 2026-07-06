@@ -1,0 +1,195 @@
+/* Hero Section */
+.hero {
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10%;
+    position: relative;
+}
+
+.hero-content {
+    width: 100%; width: min(95%, 600px); max-width: none;
+}
+
+.greeting {
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
+    color: var(--secondary-color);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.hero-content h1 {
+    font-size: clamp(2.8rem, 9vw, 5rem);
+    margin: 1rem 0;
+    background: linear-gradient(to right, #fff, #a5a5a5);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+    min-height: 1.2em;
+    width: fit-content;
+    /* Restrict hover area to text width */
+    transition: all 0.3s ease;
+    /* Smooth transition for hover effect */
+}
+
+.hero-content h1:hover {
+    cursor: default;
+}
+
+.hero-content h1:hover .typing-cursor::after {
+    content: '.';
+    animation: none;
+    /* Stop blinking on hover for a cleaner look */
+    opacity: 1;
+    color: var(--secondary-color);
+    /* Match the neon stroke */
+}
+
+.subtitle {
+    font-size: clamp(1.3rem, 3.5vw, 1.6rem);
+    font-weight: 300;
+    margin-bottom: clamp(0.8rem, 3vw, 1.5rem);
+}
+
+.highlight {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.hero-text {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: #aaa;
+    margin-bottom: clamp(1rem, 4vw, 2rem);
+}
+
+.cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+.btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn.primary,
+.btn.secondary {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    border: 1px solid transparent;
+    outline: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 16px;
+    /* Match card radius */
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.btn.primary:hover,
+.btn.secondary:hover {
+    transform: translateY(-5px) scale(1.02);
+    background: rgba(255, 255, 255, 0.25);
+    /* Slight lighten on hover */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Chat Interface */
+.chat-input-bar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.015);
+    /* Match input bg */
+    border-radius: 8px;
+    /* Match input radius */
+    padding-right: 0.5rem;
+    /* Space for button */
+    margin-top: 1rem;
+    /* Consistent spacing */
+    box-shadow: none;
+    /* Remove shadow to match inputs */
+}
+
+.chat-input-bar textarea {
+    flex: 1;
+    background: transparent !important;
+    /* Override generic input style */
+    border: none;
+    padding: clamp(0.5rem, 2vw, 1rem);
+    /* Match input padding */
+    height: auto;
+    resize: none;
+    color: var(--text-color);
+    font-family: var(--font-main);
+    font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+    line-height: 1.5;
+    box-shadow: none !important;
+}
+
+.chat-input-bar textarea:focus {
+    outline: none;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* Focus state for the container to mimic input focus */
+.chat-input-bar:focus-within {
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 0 15px rgba(108, 99, 255, 0.3);
+}
+
+button.chat-send-btn,
+button.btn.chat-send-btn,
+button.btn.primary.chat-send-btn,
+.chat-input-bar button.chat-send-btn,
+.chat-input-bar button[type="submit"],
+.chat-send-btn {
+    width: auto !important;
+    height: auto !important;
+    padding: 6px 12px !important;
+    margin: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-radius: 0 !important;
+    flex-shrink: 0 !important;
+    cursor: pointer !important;
+    outline: none !important;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transform: none !important;
+}
+
+button.chat-send-btn:hover,
+button.btn.chat-send-btn:hover,
+button.btn.primary.chat-send-btn:hover,
+button.chat-send-btn:focus,
+button.chat-send-btn:active,
+.chat-input-bar button.chat-send-btn:hover,
+.chat-input-bar button[type="submit"]:hover,
+.chat-send-btn:hover,
+.chat-send-btn:focus,
+.chat-send-btn:active {
+    background: transparent !important;
+    background-color: transparent !important;

@@ -55,8 +55,8 @@ function calibrateCSS(filePath) {
     console.log(`Calibrated: ${filePath}`);
 }
 
-calibrateCSS('assets/css/core/style.css');
-try { calibrateCSS('assets/css/core/cyber_theme.css'); } catch(e) {}
-try { calibrateCSS('assets/css/features/identity.css'); } catch(e) {}
-try { calibrateCSS('assets/css/features/intense_pack.css'); } catch(e) {}
+calibrateCSS('src/assets/css/core/style.css');
+try { calibrateCSS('src/assets/css/core/cyber_theme.css'); } catch(e) {}
+try { calibrateCSS('src/assets/css/features/identity.css'); } catch(e) {}
+try { calibrateCSS('src/assets/css/features/intense_pack.css'); } catch(e) {}
 

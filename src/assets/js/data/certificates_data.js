@@ -12,7 +12,7 @@ const certificatesData = [
         "desc": "Comprehensive job-ready data science curriculum."
     },
     {
-        "file": "introduction_to_data_sciecne_certificate.pdf",
+        "file": "introduction_to_data_science_certificate.pdf",
         "title": "Intro to Data Science",
         "icon": "fa-solid fa-chart-pie",
         "desc": "Fundamentals of data science and analytics."
