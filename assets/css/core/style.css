@@ -3,7 +3,7 @@
     --text-color: #e0e0e0;
     --primary-color: #6c63ff;
     --secondary-color: #00d4ff;
-    --glass-bg: rgba(255, 255, 255, 0.1); /* Optimized for sRGB displays */
+    --glass-bg: #1b221e; /* Matte forest background */
     /* More transparent dark glass */
     --glass-border: rgba(255, 255, 255, 0.07);
     --card-hover: rgba(255, 255, 255, 0.015);
