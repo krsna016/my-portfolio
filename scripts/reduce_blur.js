@@ -20,8 +20,8 @@ function reduceBlur(filePath) {
     console.log(`Reduced blur in: ${filePath}`);
 }
 
-reduceBlur('src/assets/css/core/style.css');
-try { reduceBlur('src/assets/css/core/cyber_theme.css'); } catch(e) {}
-try { reduceBlur('src/assets/css/features/identity.css'); } catch(e) {}
-try { reduceBlur('src/assets/css/features/intense_pack.css'); } catch(e) {}
+reduceBlur('assets/css/core/style.css');
+try { reduceBlur('assets/css/core/cyber_theme.css'); } catch(e) {}
+try { reduceBlur('assets/css/features/identity.css'); } catch(e) {}
+try { reduceBlur('assets/css/features/intense_pack.css'); } catch(e) {}
 
