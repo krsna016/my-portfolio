@@ -3350,7 +3350,7 @@ body.reader-open .cyber-crosshair-y {
     gap: 1rem !important;
     margin: 1rem 0 2rem 0 !important; /* Spaced from top and bottom content, fits container width exactly */
     padding: 1rem 2rem !important; /* Horizontal padding resolves button-touching edge issue */
-    background: #0d0d12 !important; /* Solid matte dark background matching card style */
+    background: #121218 !important; /* Matte grey background matching card style */
     border: none !important; /* Removed border outline */
     border-radius: 10px !important; /* Curved corners (little curves) */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
