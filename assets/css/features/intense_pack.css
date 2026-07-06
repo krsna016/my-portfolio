@@ -1158,12 +1158,16 @@ html body .cert-link.cert-link:hover i,
 html body #hero-cli-trigger:hover i,
 html body #hero-cli-trigger:hover svg,
 html body .ide-run-btn.ide-run-btn:hover i,
-html body .chat-send-btn.chat-send-btn:hover i,
-html body .chat-send-btn.chat-send-btn:hover svg,
 html body .category-list li:hover i,
 html body #back-button:hover i {
     color: #000000 !important;
     fill: #000000 !important;
+}
+
+html body .chat-send-btn.chat-send-btn:hover i,
+html body .chat-send-btn.chat-send-btn:hover svg {
+    color: #00ff66 !important;
+    fill: #00ff66 !important;
 }
 
 /* FINAL OVERRIDE FOR CONTACT BUTTONS */
