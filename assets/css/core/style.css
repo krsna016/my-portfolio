@@ -3003,6 +3003,8 @@ body.focus-mode-active .interactive-bg {
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
     margin-top: 1rem;
     box-sizing: border-box !important;
+    max-width: 100% !important;
+    width: 100% !important;
 }
 
 /* ── Headings ─────────────────────────────────────────────── */
@@ -3360,6 +3362,7 @@ body.reader-open .cyber-crosshair-y {
     margin-bottom: 2rem !important;
     padding: 0 clamp(2rem, 5vw, 5rem) !important; /* Symmetrical padding inside the child */
     box-sizing: border-box !important;
+    max-width: 100% !important;
 }
 
 /* Article content — centred readable column */
