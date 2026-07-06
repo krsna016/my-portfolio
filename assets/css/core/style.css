@@ -3320,20 +3320,34 @@ body.reader-open .cyber-crosshair-y {
     display: none !important;
 }
 
-/* Full-page scrollable reader overlay */
+/* Centered floating scrollable reader overlay with 4-side margin */
 body.reader-open > #post-reader {
     position: fixed !important;
-    top: 70px !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
+    top: 5vh !important;
+    bottom: 5vh !important;
+    left: 5vw !important;
+    right: 5vw !important;
     overflow-y: auto !important;
-    z-index: 100 !important;
-    background: transparent !important;
-    padding: 2rem 0 4rem 0 !important;
+    z-index: 1000 !important; /* Positioned above header nav */
+    background: #0d0d12 !important; /* Matte dark layout background */
+    border-radius: 16px !important;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.85) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 2rem 0 !important;
     box-sizing: border-box !important;
     display: block !important;
     margin: 0 !important;
+}
+
+@media (max-width: 768px) {
+    body.reader-open > #post-reader {
+        top: 2vh !important;
+        bottom: 2vh !important;
+        left: 3vw !important;
+        right: 3vw !important;
+        border-radius: 12px !important;
+        padding: 1.5rem 0 !important;
+    }
 }
 
 /* Top bar — back button, metadata, size controls in one line */
