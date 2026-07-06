@@ -1121,7 +1121,7 @@ body .glass, body .card, body .certificate-card, body .game-card, body .contact-
 .glass:hover, .card:hover, .exec-card:hover, .project-card:hover, .certificate-card:hover, .cert-card:hover, .game-card:hover, .article-card:hover, .resume-card:hover, .about-card:hover, .terminal-card:hover, .ide-hero-card:hover, .timeline-content:hover, .contact-container:hover, .modal-content:hover, .dsa-container:hover,
 .certificates-page .certificate-card:hover, .games-page .game-card:hover,
 body .glass:hover, body .card:hover, body .certificate-card:hover, body .game-card:hover, body .contact-container:hover, .contact-page .contact-container:hover {
-    background-color: #18201b !important;
+    background-color: #0a0e0c !important;
 }
 
 @property --trace-angle {
