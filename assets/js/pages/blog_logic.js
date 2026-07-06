@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 </div>
                 <div class="theme-controls">
                     <button class="theme-pill-btn active" data-theme="dark" title="Cyber Dark" style="background-color: #121218; border: 1px solid rgba(255, 255, 255, 0.25);"></button>
-                    <button class="theme-pill-btn" data-theme="sepia" title="Warm Sepia" style="background-color: #f4ecd8; border: 1px solid rgba(0, 0, 0, 0.15);"></button>
+                    <button class="theme-pill-btn" data-theme="sepia" title="Warm Paper" style="background-color: #f9f6ed; border: 1px solid rgba(0, 0, 0, 0.15);"></button>
                     <button class="theme-pill-btn" data-theme="slate" title="Muted Slate" style="background-color: #1e2530; border: 1px solid rgba(255, 255, 255, 0.15);"></button>
                     <button class="theme-pill-btn" data-theme="forest" title="Dim Forest" style="background-color: #1b221e; border: 1px solid rgba(255, 255, 255, 0.15);"></button>
                 </div>
