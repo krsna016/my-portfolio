@@ -28,13 +28,11 @@
     pointer-events: none;
     transition: opacity 0.3s ease, transform 0.3s ease;
     resize: both;
-    overflow: hidden;
+    overflow: visible;
 }
 
 /* Optional styling to make the drag handle more obvious */
-.quake-terminal-hud::after {
-    display: none;
-}
+/* Neon trace border is now handled by the shared hover rule in cyber_theme.css */
 
 .quake-terminal-hud.open {
     opacity: 1;
@@ -104,12 +102,13 @@
 
 .term-input {
     flex: 1;
-    background: transparent;
-    border: none;
-    color: #fff;
+    background: transparent !important;
+    border: none !important;
+    color: #fff !important;
     font-family: inherit;
     font-size: inherit;
-    outline: none;
+    outline: none !important;
+    caret-color: #00ff66 !important;
 }
 
 /* --- 2. Live VS Code Sandbox Hero Editor --- */
