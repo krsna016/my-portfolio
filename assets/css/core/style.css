@@ -3255,8 +3255,8 @@ body.focus-mode-active .interactive-bg {
 #post-reader .markdown-body pre .code-copy-btn,
 .code-copy-btn {
     position: absolute !important;
-    top: 0.55rem !important;
-    right: 0.75rem !important;
+    top: 0.42rem !important;          /* Sits in the terminal-dots row zone */
+    right: 1rem !important;
     background: transparent !important;
     background-color: transparent !important;
     border: none !important;
@@ -3265,25 +3265,28 @@ body.focus-mode-active .interactive-bg {
     box-shadow: none !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-    color: rgba(180, 180, 180, 0.55) !important;
-    font-size: 0.72rem !important;
+    color: rgba(180, 180, 180, 0.5) !important;
+    font-size: 0.78rem !important;    /* Bigger: was 0.72rem */
     font-family: 'IBM Plex Mono', monospace !important;
-    letter-spacing: 0.03em !important;
+    letter-spacing: 0.04em !important;
     text-transform: uppercase !important;
     cursor: pointer !important;
-    padding: 2px 6px !important;
-    border-radius: 4px !important;
+    padding: 4px 10px !important;     /* More padding: was 2px 6px */
+    border-radius: 5px !important;
     display: inline-flex !important;
     align-items: center !important;
-    gap: 4px !important;
-    opacity: 0 !important;                     /* Hidden until pre is hovered */
-    transition: opacity 0.2s ease, color 0.2s ease !important;
+    gap: 5px !important;
+    opacity: 0 !important;            /* Hidden until pre is hovered */
+    transition: opacity 0.18s ease, color 0.18s ease, background 0.18s ease !important;
     z-index: 10 !important;
-    line-height: 1 !important;
+    line-height: 1.2 !important;
     width: auto !important;
     height: auto !important;
     min-width: 0 !important;
     transform: none !important;
+    /* Prevents any inherited margin/offset from global rules */
+    margin: 0 !important;
+    vertical-align: unset !important;
 }
 
 /* Show the copy button only when hovering the code block */
@@ -3296,9 +3299,10 @@ body.focus-mode-active .interactive-bg {
 #reader-content.markdown-body pre .code-copy-btn:hover,
 #post-reader .markdown-body pre .code-copy-btn:hover {
     color: #ffffff !important;
-    background: rgba(255, 255, 255, 0.08) !important;
+    background: rgba(255, 255, 255, 0.12) !important;
     border: none !important;
     box-shadow: none !important;
+    /* Explicit: no border-radius change, stays contained as a pill */
 }
 
 /* Sepia copy button adjustments */
@@ -3789,6 +3793,23 @@ body.reader-open .cyber-crosshair-y {
     color: var(--theme-inline-code-text) !important;
     border: none !important;
     transition: all 0.3s ease !important;
+}
+
+/* ── Critical: pre code must NEVER get the inline code pill styling ── */
+/* This must come AFTER the inline code rule above to win the specificity race */
+#post-reader.reader-dark .markdown-body pre code,
+#post-reader.reader-sepia .markdown-body pre code,
+#post-reader.reader-slate .markdown-body pre code,
+#post-reader.reader-forest .markdown-body pre code,
+#reader-content.markdown-body pre code {
+    background: transparent !important;
+    background-color: transparent !important;
+    color: inherit !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    transition: none !important;
 }
 
 /* Table theming */
