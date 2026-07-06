@@ -380,6 +380,51 @@ app.get('/api/sync-status', (req, res) => {
     });
 });
 
+// Save GitHub sync variables directly to .env file (Protected)
+app.post('/api/save-github-settings', authenticateToken, (req, res) => {
+    const { repo, token, branch } = req.body;
+    if (!repo) {
+        return res.status(400).send("Repository name is required.");
+    }
+
+    try {
+        const envPath = path.join(__dirname, '.env');
+        let envContent = '';
+        if (fs.existsSync(envPath)) {
+            envContent = fs.readFileSync(envPath, 'utf8');
+        }
+
+        // Helper to replace or append environment variables
+        const updateEnvVar = (content, key, value) => {
+            const regex = new RegExp(`^${key}=.*$`, 'm');
+            if (regex.test(content)) {
+                return content.replace(regex, `${key}=${value}`);
+            } else {
+                return content + (content.endsWith('\n') ? '' : '\n') + `${key}=${value}\n`;
+            }
+        };
+
+        envContent = updateEnvVar(envContent, 'GITHUB_REPO', repo);
+        process.env.GITHUB_REPO = repo;
+
+        if (token && token !== '***SERVER_CONFIGURED***') {
+            envContent = updateEnvVar(envContent, 'GITHUB_TOKEN', token);
+            process.env.GITHUB_TOKEN = token;
+        }
+
+        envContent = updateEnvVar(envContent, 'GITHUB_BRANCH', branch || 'master');
+        process.env.GITHUB_BRANCH = branch || 'master';
+
+        fs.writeFileSync(envPath, envContent, 'utf8');
+
+        console.log("GitHub sync settings updated successfully in .env and memory.");
+        res.json({ success: true, message: "Settings saved permanently to .env file!" });
+    } catch (e) {
+        console.error("Error saving GitHub settings:", e);
+        res.status(500).send(`Server error saving settings: ${e.message}`);
+    }
+});
+
 // Get all posts (Public) - Microsecond Response via RAM Cache
 app.get('/api/data', (req, res) => {
     res.json(blogDataCache);

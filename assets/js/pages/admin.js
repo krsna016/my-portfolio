@@ -102,28 +102,66 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('gh-branch').value = localStorage.getItem('ghBranch') || 'master';
         document.getElementById('gh-token').value = localStorage.getItem('ghToken') || '';
 
-        // Verify if GitHub Auto-Sync is active
+        // Verify if GitHub Auto-Sync is active and populate from server if active
         fetch('/api/sync-status')
             .then(res => res.json())
             .then(status => {
-                const hasLocalToken = !!localStorage.getItem('ghToken');
-                if (!status.githubSyncActive && !hasLocalToken) {
+                if (status.githubSyncActive) {
+                    if (!localStorage.getItem('ghRepo') && status.repo) {
+                        localStorage.setItem('ghRepo', status.repo);
+                        document.getElementById('gh-repo').value = status.repo;
+                    }
+                    if (!localStorage.getItem('ghBranch') && status.branch) {
+                        localStorage.setItem('ghBranch', status.branch);
+                        document.getElementById('gh-branch').value = status.branch;
+                    }
+                    if (!localStorage.getItem('ghToken')) {
+                        localStorage.setItem('ghToken', '***SERVER_CONFIGURED***');
+                        document.getElementById('gh-token').value = '***SERVER_CONFIGURED***';
+                    }
                     const warningBox = document.getElementById('sync-warning-box');
-                    if (warningBox) warningBox.style.display = 'block';
+                    if (warningBox) warningBox.style.display = 'none';
+                } else {
+                    const hasLocalToken = !!localStorage.getItem('ghToken');
+                    if (!hasLocalToken) {
+                        const warningBox = document.getElementById('sync-warning-box');
+                        if (warningBox) warningBox.style.display = 'block';
+                    }
                 }
             })
             .catch(() => {});
 
-        settingsForm.addEventListener('submit', (e) => {
+        settingsForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             let repoVal = document.getElementById('gh-repo').value.trim();
             // Sanitize in case they pasted the full URL
             repoVal = repoVal.replace(/^https?:\/\/(www\.)?github\.com\//, '').replace(/\/$/, '');
             document.getElementById('gh-repo').value = repoVal;
 
+            const branchVal = document.getElementById('gh-branch').value.trim();
+            const tokenVal = document.getElementById('gh-token').value.trim();
+
             localStorage.setItem('ghRepo', repoVal);
-            localStorage.setItem('ghBranch', document.getElementById('gh-branch').value.trim());
-            localStorage.setItem('ghToken', document.getElementById('gh-token').value.trim());
+            localStorage.setItem('ghBranch', branchVal);
+            localStorage.setItem('ghToken', tokenVal);
+
+            // Save to server permanently
+            const adminToken = localStorage.getItem('adminToken');
+            if (adminToken) {
+                try {
+                    await fetch('/api/save-github-settings', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${adminToken}`
+                        },
+                        body: JSON.stringify({ repo: repoVal, branch: branchVal, token: tokenVal })
+                    });
+                } catch (err) {
+                    console.error("Error backing up settings to server:", err);
+                }
+            }
+
             const successMsg = document.getElementById('settings-success');
             successMsg.style.display = 'block';
             setTimeout(() => successMsg.style.display = 'none', 3000);
