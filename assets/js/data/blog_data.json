@@ -1,22 +1,5 @@
 {
-    "posts": [
-        {
-            "id": "web-security",
-            "title": "Web Security",
-            "category": "Web Security",
-            "date": "2026-07-05",
-            "summary": "Exploring essential web application security principles, vulnerabilities, and defenses.",
-            "file": "blogs/web-security.md"
-        },
-        {
-            "id": "intro-to-dp",
-            "title": "Introduction to Dynamic Programming",
-            "category": "Algorithms",
-            "date": "2026-07-05",
-            "summary": "Learn the core concepts of dynamic programming, memoization, and tabulation.",
-            "file": "blogs/intro-to-dp.md"
-        }
-    ],
+    "posts": [],
     "categories": [
         "DSA",
         "Algorithms",
