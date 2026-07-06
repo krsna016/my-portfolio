@@ -3321,7 +3321,7 @@ body.reader-open .cyber-crosshair-y {
 }
 
 /* Centered floating scrollable reader overlay with 4-side margin */
-body.reader-open > #post-reader {
+#post-reader {
     position: fixed !important;
     top: 5vh !important;
     bottom: 5vh !important;
@@ -3335,12 +3335,12 @@ body.reader-open > #post-reader {
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     padding: 2.5rem clamp(2rem, 5vw, 5rem) !important; /* Unified padding on all sides */
     box-sizing: border-box !important;
-    display: block !important;
+    display: none; /* Controlled by JS */
     margin: 0 !important;
 }
 
 @media (max-width: 768px) {
-    body.reader-open > #post-reader {
+    #post-reader {
         top: 2vh !important;
         bottom: 2vh !important;
         left: 3vw !important;
@@ -3351,7 +3351,7 @@ body.reader-open > #post-reader {
 }
 
 /* Top bar — back button, metadata, size controls in one line */
-body.reader-open > #post-reader .post-reader-top-bar {
+#post-reader .post-reader-top-bar {
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
@@ -3364,7 +3364,7 @@ body.reader-open > #post-reader .post-reader-top-bar {
 }
 
 /* Article content — centred readable column */
-body.reader-open > #post-reader .post-reader-layout {
+#post-reader .post-reader-layout {
     display: block !important;
     max-width: 100% !important;
     margin: 0 !important;
