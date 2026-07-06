@@ -3332,21 +3332,28 @@ body.reader-open .cyber-crosshair-y {
     overflow-y: auto !important;
     z-index: 100 !important;
     background: transparent !important;
-    padding: 2rem 0 4rem 0 !important; /* Symmetrical scroll spacing inside box */
+    padding: 0 0 4rem 0 !important; /* Top padding moved to sticky header */
     box-sizing: border-box !important;
     display: none; /* Controlled by JS show/hide */
     margin: 0 !important;
 }
 
-/* Top bar — back button, metadata, size controls in one line */
+/* Top bar — back button, metadata, size controls in one line (sticky header) */
 #post-reader .post-reader-top-bar {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 100 !important;
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
     flex-wrap: wrap !important;
     gap: 1rem !important;
     margin-bottom: 2rem !important;
-    padding: 0 clamp(2rem, 5vw, 5rem) !important;
+    padding: 2rem clamp(2rem, 5vw, 5rem) 1.5rem clamp(2rem, 5vw, 5rem) !important;
+    background: rgba(10, 10, 15, 0.95) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
     width: 100% !important;
     box-sizing: border-box !important;
 }
