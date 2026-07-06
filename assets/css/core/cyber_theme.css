@@ -1544,3 +1544,38 @@ html body button.font-ctrl-btn:hover,
     background-color: #ffffff !important;
     color: #000000 !important;
 }
+
+/* ==========================================================================
+   CODE COPY BUTTON — strip ALL global button styling, keep it ghost/minimal
+   ========================================================================== */
+html body .code-copy-btn,
+html body .markdown-body pre .code-copy-btn,
+html body #post-reader .code-copy-btn,
+.code-copy-btn,
+.code-copy-btn:hover,
+.code-copy-btn:focus,
+.code-copy-btn:active {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    transform: none !important;
+    text-transform: uppercase !important;
+}
+
+/* Fix: inline code inside pre should have NO box background */
+html body #reader-content.markdown-body pre code,
+html body #post-reader .markdown-body pre code {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    color: inherit !important;
+}
+
