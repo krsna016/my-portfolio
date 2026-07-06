@@ -301,21 +301,21 @@ function authenticateToken(req, res, next) {
 }
 
 // --- GitHub Auto-Commit Utility ---
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-const GITHUB_REPO = process.env.GITHUB_REPO;
-const GITHUB_BRANCH = process.env.GITHUB_BRANCH || "master";
-
 async function pushToGitHub(filePath, contentStr, commitMessage, isDelete = false) {
-    if (!GITHUB_TOKEN || !GITHUB_REPO) return; // Silent if not configured
+    const token = process.env.GITHUB_TOKEN;
+    const repo = process.env.GITHUB_REPO;
+    const branch = process.env.GITHUB_BRANCH || "master";
+
+    if (!token || !repo) return; // Silent if not configured
 
     try {
-        const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${filePath}`;
+        const url = `https://api.github.com/repos/${repo}/contents/${filePath}`;
         
         // 1. Get file SHA if it exists
         let sha = null;
         const getRes = await fetch(url, {
             headers: {
-                'Authorization': `Bearer ${GITHUB_TOKEN}`,
+                'Authorization': `Bearer ${token}`,
                 'Accept': 'application/vnd.github.v3+json',
                 'User-Agent': 'Live-CMS-Robot'
             }
@@ -330,7 +330,7 @@ async function pushToGitHub(filePath, contentStr, commitMessage, isDelete = fals
 
         // 2. Commit the file
         const method = isDelete ? 'DELETE' : 'PUT';
-        const body = { message: commitMessage, branch: GITHUB_BRANCH };
+        const body = { message: commitMessage, branch: branch };
         
         if (sha) body.sha = sha;
         if (!isDelete) body.content = Buffer.from(contentStr).toString('base64');
@@ -338,7 +338,7 @@ async function pushToGitHub(filePath, contentStr, commitMessage, isDelete = fals
         const commitRes = await fetch(url, {
             method: method,
             headers: {
-                'Authorization': `Bearer ${GITHUB_TOKEN}`,
+                'Authorization': `Bearer ${token}`,
                 'Accept': 'application/vnd.github.v3+json',
                 'Content-Type': 'application/json',
                 'User-Agent': 'Live-CMS-Robot'
@@ -479,10 +479,16 @@ app.post('/api/posts', authenticateToken, async (req, res) => {
     const jsContent = `const blogData = ${jsonData};\n`;
     fs.writeFileSync(jsDataFile, jsContent, 'utf8');
     
-    // Push changes to GitHub asynchronously
-    pushToGitHub(`blogs/${id}.md`, content, `cms: add/update blog post ${id}`);
-    pushToGitHub(`assets/js/data/blog_data.json`, jsonData, `cms: update blog config (JSON) for ${id}`);
-    pushToGitHub(`assets/js/data/blog_data.js`, jsContent, `cms: update blog config (JS) for ${id}`);
+    // Push changes to GitHub sequentially in the background to prevent reference SHA write conflicts
+    (async () => {
+        try {
+            await pushToGitHub(`blogs/${id}.md`, content, `cms: add/update blog post ${id}`);
+            await pushToGitHub(`assets/js/data/blog_data.json`, jsonData, `cms: update blog config (JSON) for ${id}`);
+            await pushToGitHub(`assets/js/data/blog_data.js`, jsContent, `cms: update blog config (JS) for ${id}`);
+        } catch (e) {
+            console.error("Error in sequential GitHub push:", e);
+        }
+    })();
 
     res.send("Success");
 });
@@ -504,9 +510,15 @@ app.post('/api/blog-config', authenticateToken, (req, res) => {
     const jsContent = `const blogData = ${jsonData};\n`;
     fs.writeFileSync(jsDataFile, jsContent, 'utf8');
 
-    // Push to GitHub
-    pushToGitHub(`assets/js/data/blog_data.json`, jsonData, `cms: update bulk blog config (JSON)`);
-    pushToGitHub(`assets/js/data/blog_data.js`, jsContent, `cms: update bulk blog config (JS)`);
+    // Push to GitHub sequentially to prevent reference SHA write conflicts
+    (async () => {
+        try {
+            await pushToGitHub(`assets/js/data/blog_data.json`, jsonData, `cms: update bulk blog config (JSON)`);
+            await pushToGitHub(`assets/js/data/blog_data.js`, jsContent, `cms: update bulk blog config (JS)`);
+        } catch (e) {
+            console.error("Error in sequential GitHub push:", e);
+        }
+    })();
 
     res.send("Success");
 });
@@ -577,10 +589,16 @@ app.delete('/api/posts/:id', authenticateToken, async (req, res) => {
     const jsContent = `const blogData = ${jsonData};\n`;
     fs.writeFileSync(jsDataFile, jsContent, 'utf8');
 
-    // Push deletions to GitHub asynchronously
-    pushToGitHub(`blogs/${id}.md`, "", `cms: delete blog post ${id}`, true);
-    pushToGitHub(`assets/js/data/blog_data.json`, jsonData, `cms: update blog config after deleting ${id}`);
-    pushToGitHub(`assets/js/data/blog_data.js`, jsContent, `cms: update blog config (JS) after deleting ${id}`);
+    // Push deletions to GitHub sequentially in the background to prevent reference SHA write conflicts
+    (async () => {
+        try {
+            await pushToGitHub(`blogs/${id}.md`, "", `cms: delete blog post ${id}`, true);
+            await pushToGitHub(`assets/js/data/blog_data.json`, jsonData, `cms: update blog config after deleting ${id}`);
+            await pushToGitHub(`assets/js/data/blog_data.js`, jsContent, `cms: update blog config (JS) after deleting ${id}`);
+        } catch (e) {
+            console.error("Error in sequential GitHub delete:", e);
+        }
+    })();
 
     res.send("Deleted");
 });
