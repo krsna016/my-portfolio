@@ -1,6 +1,14 @@
 const blogData = {
     "posts": [
         {
+            "id": "linux-1",
+            "title": "Linux Fundamentals - 1",
+            "category": "Linux",
+            "date": "2026-07-07",
+            "summary": "This is Part - 1",
+            "file": "blogs/linux-1.md"
+        },
+        {
             "id": "web-security-1",
             "title": "Web Security Fundamentals",
             "category": "Web Security",
@@ -14,6 +22,7 @@ const blogData = {
         "Algorithms",
         "System Design",
         "Web Dev",
-        "Web Security"
+        "Web Security",
+        "Linux"
     ]
 };
