@@ -253,4 +253,3 @@ The examples of the halo effect, resemblance, and availability are early, practi
 *   The "Halo Effect" is a major corporate trap. When a speaker is charming and confident, we automatically assume their strategy is brilliant. Always separate presentation style from actual business substance. 👔
 *   The availability heuristic proves that our brains confuse ease of memory with reality. If a rare event is dramatic and heavily reported by the media, we act as if it happens every day. 📺
 *   True intellect requires checking your ego at the door. Kahneman and Tversky won a Nobel Prize because they spent 14 years playfully exploring their own silliest mental mistakes. Normalize being wrong. 🚀
-</textarea>
