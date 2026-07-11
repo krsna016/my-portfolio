@@ -944,7 +944,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Sync to Railway live server bulk API
+            // Sync to live server bulk API (Render/Railway)
             const token = localStorage.getItem('adminToken');
             if (token) {
                 try {
@@ -1047,7 +1047,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Try to hit API if it exists (Railway), otherwise fallback to download
+            // Try to hit API if it exists (Render/Railway), otherwise fallback to download
             const token = localStorage.getItem('adminToken');
             if (token) {
                 try {

@@ -608,8 +608,8 @@ app.get('/api/github-test', authenticateToken, async (req, res) => {
     const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
     const GITHUB_REPO = process.env.GITHUB_REPO;
     
-    if (!GITHUB_TOKEN) return res.send("❌ Error: GITHUB_TOKEN is not set in Railway.");
-    if (!GITHUB_REPO) return res.send("❌ Error: GITHUB_REPO is not set in Railway.");
+    if (!GITHUB_TOKEN) return res.send("❌ Error: GITHUB_TOKEN is not set in Render environment variables.");
+    if (!GITHUB_REPO) return res.send("❌ Error: GITHUB_REPO is not set in Render environment variables.");
     
     try {
         const url = `https://api.github.com/repos/${GITHUB_REPO}`;
