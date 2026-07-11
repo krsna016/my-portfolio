@@ -1,6 +1,14 @@
 const blogData = {
     "posts": [
         {
+            "id": "code-1",
+            "title": "Before Computers, Learn the Language of Information",
+            "category": "CODE",
+            "date": "2026-07-11",
+            "summary": "A deep dive into Morse Code, Braille, Binary Thinking, and the fundamental ideas behind Charles Petzold’s Code.",
+            "file": "blogs/code-1.md"
+        },
+        {
             "id": "linux-1",
             "title": "Linux Fundamentals - 1",
             "category": "Linux",
@@ -24,6 +32,7 @@ const blogData = {
         "Web Dev",
         "Web Security",
         "Linux",
-        "Mind"
+        "Mind",
+        "CODE"
     ]
 };
