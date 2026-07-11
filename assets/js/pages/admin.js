@@ -166,6 +166,44 @@ document.addEventListener('DOMContentLoaded', () => {
             successMsg.style.display = 'block';
             setTimeout(() => successMsg.style.display = 'none', 3000);
         });
+
+        const testConnBtn = document.getElementById('test-connection-btn');
+        if (testConnBtn) {
+            testConnBtn.addEventListener('click', async () => {
+                const resultDiv = document.getElementById('connection-test-result');
+                if (!resultDiv) return;
+                
+                resultDiv.style.display = 'block';
+                resultDiv.style.color = '#ccc';
+                resultDiv.textContent = 'Testing connection, please wait...';
+                
+                const adminToken = localStorage.getItem('adminToken');
+                if (!adminToken) {
+                    resultDiv.style.color = '#ff4757';
+                    resultDiv.textContent = '❌ Authentication Error: You must be logged in to test the connection.';
+                    return;
+                }
+                
+                try {
+                    const res = await fetch('/api/github-test', {
+                        headers: {
+                            'Authorization': `Bearer ${adminToken}`
+                        }
+                    });
+                    const text = await res.text();
+                    
+                    if (text.includes('✅')) {
+                        resultDiv.style.color = '#2ed573';
+                    } else {
+                        resultDiv.style.color = '#ff4757';
+                    }
+                    resultDiv.textContent = text;
+                } catch (e) {
+                    resultDiv.style.color = '#ff4757';
+                    resultDiv.textContent = `❌ Request Error: ${e.message}`;
+                }
+            });
+        }
     }
 
     window.pushToGitHub = async function(filePath, contentStr, commitMessage) {
