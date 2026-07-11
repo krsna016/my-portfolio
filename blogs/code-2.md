@@ -1,40 +1,36 @@
-# Code Book Notes #2 — Understanding Electricity Through a Flashlight
-### *From Atoms to Binary Circuits*  
-*Based on Chapters 4 of **Code** by Charles Petzold*
+# Code Notes #2 — How a Flashlight Explains Electricity, Binary & the Birth of Computers
+
+> **Series:** Reading *Code* by Charles Petzold  
+> **Part:** 2  
+> **Description:** Learn how a simple flashlight explains electricity, batteries, voltage, current, resistance, power, and the binary foundation of modern computers.
 
 ---
 
 # Introduction
 
-If someone asked,
+When most people think about computers, they imagine CPUs, RAM, GPUs, or AI.
 
-> **"How does a computer work?"**
+Charles Petzold takes a completely different approach.
 
-most people would probably answer,
+Instead of opening a computer, he opens a **flashlight**.
 
-> "It runs on electricity."
+At first, this sounds strange.
 
-That's true—but it doesn't really explain anything.
+How can a flashlight explain a computer?
 
-Charles Petzold starts much deeper.
+The answer is simple:
 
-Instead of beginning with CPUs or transistors, he begins with something every child has used:
+> **A computer is ultimately made from billions of tiny electrical switches, and the flashlight is the simplest electrical circuit that demonstrates how electricity works.**
 
-> **A flashlight.**
-
-At first this seems strange.
-
-How can a flashlight explain a modern computer?
-
-As it turns out, **almost everything inside a computer is nothing more than billions of tiny electrical switches**, and a flashlight is the simplest circuit that demonstrates how electricity behaves.
-
-This chapter teaches us not just electricity, but also why computers use **binary (ON/OFF)** states.
+Before understanding computers, we must first understand electricity.
 
 ---
 
-# Anatomy of a Flashlight
+# Why a Flashlight?
 
-A simple flashlight contains only a few parts.
+A flashlight is one of the simplest electrical devices found in almost every home.
+
+It contains only a few components:
 
 ```
 Battery
@@ -43,86 +39,58 @@ Battery
    │
  Bulb
    │
- Back to Battery
+ Wire
 ```
 
-Every part has a specific purpose.
-
-| Component | Purpose |
-|-----------|---------|
-| Battery | Provides electrical energy |
-| Wire | Carries electrons |
-| Switch | Opens or closes the circuit |
-| Bulb | Converts electrical energy into light |
-
-Although this seems simple, these four components are enough to explain the foundation of all electronics.
+Despite its simplicity, every modern electronic device—from calculators to supercomputers—contains these same basic ideas.
 
 ---
 
 # What is an Electric Circuit?
 
-A circuit literally means **a complete circle**.
+The word **circuit** literally means **a complete circle or loop**.
 
-Electricity flows only when there is a complete path.
+Electricity flows only when there is a continuous path.
 
-Closed circuit:
+Closed Circuit:
 
 ```
 Battery → Wire → Bulb → Wire → Battery
 ```
 
-Bulb glows.
+The bulb glows because electrons have a complete path to travel.
 
-Open circuit:
+Open Circuit:
 
 ```
 Battery → Wire → X → Bulb
 ```
 
-One tiny break.
-
-No current flows.
-
-Bulb stays off.
-
-A switch simply creates or removes this break.
-
----
-
-# Why Does Electricity Need a Closed Path?
-
-Imagine water flowing in a circular pipe.
-
-```
-Pump
- │
- ▼
-Pipe → Pipe → Pipe
- ▲             │
- └─────────────┘
-```
-
-If the pipe is cut,
-
-water stops.
-
-Electricity behaves similarly.
-
-Electrons must have a complete loop.
-
-No loop.
+Even a tiny break stops the flow of electrons.
 
 No current.
 
+No light.
+
+This is exactly what a switch controls.
+
 ---
 
-# What is Electricity?
+# Understanding Electricity
 
-Electricity is **the movement of electrons.**
+Electricity is often thought of as some mysterious invisible force.
 
-Everything around us is made from atoms.
+In reality,
 
-An atom contains
+> **Electricity is simply the movement of electrons.**
+
+Everything around us is made of atoms.
+
+Each atom consists of:
+
+- Protons (+)
+- Neutrons (0)
+- Electrons (-)
 
 ```
           Electron
@@ -131,17 +99,16 @@ An atom contains
 
       ●             ●
 
-         Nucleus
+        Nucleus
 
-     Protons + Neutrons
+(Protons + Neutrons)
 ```
 
-Atoms normally contain
+Normally,
 
-- equal number of protons (+)
-- equal number of electrons (-)
+the number of electrons equals the number of protons.
 
-This balance keeps matter electrically neutral.
+This makes the atom electrically neutral.
 
 ---
 
@@ -151,93 +118,75 @@ Electrons carry **negative charge**.
 
 Protons carry **positive charge**.
 
-Opposite charges attract.
+Nature follows one simple rule:
 
-Like charges repel.
+- Opposite charges attract.
+- Like charges repel.
 
 ```
-+     -     → Attract
++  -   → Attract
 
--     -     → Repel
++  +   → Repel
 
-+     +     → Repel
+-  -   → Repel
 ```
 
-This simple rule explains almost every electrical phenomenon.
+Almost every electrical phenomenon can be explained using this rule.
 
 ---
 
 # Static Electricity
 
-Have you ever touched a metal doorknob and felt a tiny shock?
+Have you ever walked on a carpet and then touched a metal door handle?
 
-That is static electricity.
+You felt a tiny spark.
 
-Example:
+This is **static electricity**.
 
-Walking on carpet.
+Here's what happens:
 
-↓
+1. Your shoes rub against the carpet.
+2. Electrons move from one material to another.
+3. Your body accumulates excess electrons.
+4. When you touch metal, those electrons suddenly escape.
+5. The rapid movement of electrons produces a spark.
 
-Shoes rub against carpet.
-
-↓
-
-Electrons move.
-
-↓
-
-Your body accumulates excess electrons.
-
-↓
-
-Touch metal.
-
-↓
-
-Electrons suddenly escape.
-
-↓
-
-Spark.
-
-This happens because nature always tries to restore electrical balance.
+Nature always tries to restore electrical balance.
 
 ---
 
-# Lightning is Giant Static Electricity
+# Lightning: Static Electricity on a Massive Scale
+
+Lightning follows exactly the same principle.
 
 Clouds accumulate enormous amounts of charge.
 
 Eventually,
 
-the voltage becomes so high that air itself becomes conductive.
+the voltage becomes so large that even air can no longer resist it.
 
 Millions of electrons suddenly move.
 
-We call this
+The result is lightning.
 
-> **Lightning**
+The spark from your finger and a lightning bolt are fundamentally the same phenomenon.
 
-The tiny spark from your finger and a lightning bolt follow exactly the same principle.
-
-The only difference is scale.
+Only the scale is different.
 
 ---
 
-# The Role of the Battery
+# The Battery: Converting Chemistry into Electricity
 
-A battery does **not create electrons.**
+Many people believe batteries "store electricity."
 
-This is one of the biggest misconceptions.
+That is not entirely correct.
 
-Instead,
+A battery stores **chemical energy**.
 
-chemical reactions inside the battery
+Chemical reactions inside the battery create an imbalance:
 
-push electrons from one terminal
-
-and pull electrons toward the other.
+- One terminal gains excess electrons.
+- The other terminal lacks electrons.
 
 ```
 Negative Terminal
@@ -251,65 +200,45 @@ Positive Terminal
 Needs Electrons
 ```
 
-The battery creates an electrical imbalance.
+When a circuit is completed,
 
-Nature tries to correct that imbalance.
+electrons move through the external circuit,
 
-Current flows.
+while chemical reactions inside the battery continue to maintain this imbalance.
+
+This is how chemical energy becomes electrical energy.
 
 ---
 
-# Why Doesn't a Battery Discharge by Itself?
+# Why Doesn't a Battery Drain by Itself?
 
-Suppose a battery is lying on a table.
+A battery sitting on a table still has voltage.
 
-```
-+          -
+However,
 
-Nothing Connected
-```
-
-No complete circuit.
-
-No significant current.
+there is no complete path for electrons.
 
 Therefore,
 
-chemical reactions occur extremely slowly.
+almost no current flows,
 
-The battery lasts for months.
+and the battery lasts a long time.
 
-Once we connect a wire,
+The moment a circuit is completed,
 
-the reactions speed up dramatically.
+chemical reactions speed up,
 
----
-
-# Electrons Are Universal
-
-One beautiful insight from Petzold is:
-
-> **An electron is an electron.**
-
-There is no
-
-- copper electron
-- battery electron
-- wire electron
-
-Every electron in the universe is identical.
-
-This allows electrons inside the battery to seamlessly become electrons inside the wire.
+and the battery begins supplying current.
 
 ---
 
 # Conductors and Insulators
 
-Not every material carries electricity equally well.
+Not every material allows electrons to move equally well.
 
 ## Conductors
 
-These allow electrons to move easily.
+Materials that allow electrons to move easily.
 
 Examples:
 
@@ -317,84 +246,70 @@ Examples:
 - Silver
 - Gold
 
-Copper is the most commonly used because it is inexpensive and conducts electricity extremely well.
+Copper is widely used because it is inexpensive and highly conductive.
 
 ---
 
 ## Insulators
 
-These resist the movement of electrons.
+Materials that strongly resist electron movement.
 
 Examples:
 
-- Rubber
 - Plastic
+- Rubber
 - Glass
-- Dry wood
+- Dry Wood
 
-That is why electrical wires are coated with plastic.
+This is why electrical wires are coated with plastic.
 
-The electricity stays inside the copper wire.
+The current stays inside the copper wire instead of flowing into your hand.
 
 ---
 
 # Resistance
 
-Resistance means
+Resistance is the opposition to current flow.
 
-> **Opposition to current flow.**
+Imagine people trying to walk through a narrow crowded hallway.
 
-Imagine a crowded hallway.
+The crowd slows everyone down.
 
-People try to walk.
+Similarly,
 
-Crowding slows them down.
-
-Electricity behaves similarly.
-
-Electrons collide with atoms.
+electrons collide with atoms inside a conductor.
 
 These collisions convert electrical energy into heat.
+
+Resistance is measured in **Ohms (Ω)**.
 
 ---
 
 # Voltage
 
-Voltage is often misunderstood.
+Voltage is one of the most misunderstood electrical quantities.
 
-Voltage is **not current.**
+Voltage is **not electricity**.
 
-Voltage is
+Voltage is the **potential** to move electrons.
 
-> **Electrical potential**.
+Imagine lifting a brick.
 
-Think of a brick.
+On the ground,
 
-```
-Ground
+it has little potential energy.
 
-↓
+Lift it onto a roof,
 
-No potential
-```
+and it gains potential energy.
 
-Lift it to the roof.
+Nothing is moving,
 
-```
-Roof
+yet the potential exists.
 
-↓
+Voltage behaves exactly the same way.
 
-High potential
-```
-
-The brick hasn't moved.
-
-Yet it now has more potential energy.
-
-Voltage is exactly like that.
-
-A battery sitting on a table has voltage
+A battery sitting on a table has voltage,
 
 even though no current is flowing.
 
@@ -402,127 +317,108 @@ even though no current is flowing.
 
 # Current
 
-Current is
+Current is the actual movement of electrons.
 
-> **The flow of electrons.**
+It exists only when electrons flow.
 
-Current exists only when electrons actually move.
+Current is measured in **Amperes (A)**.
 
-Unit:
-
-Ampere (A)
-
-One ampere equals approximately
+One ampere corresponds to approximately
 
 ```
 6.24 × 10¹⁸
 
 electrons
 
-every second
+passing a point
+
+every second.
 ```
 
-An astonishing number.
+An unimaginably large number.
 
 ---
 
-# Resistance, Voltage and Current
+# Ohm's Law
 
-These three quantities are connected by
-
-## Ohm's Law
+One of the most important equations in electricity is:
 
 ```
 I = V / R
 ```
 
-Where
+Where:
 
-- I → Current
-- V → Voltage
-- R → Resistance
+- I = Current
+- V = Voltage
+- R = Resistance
 
-Increasing voltage increases current.
+This tells us:
 
-Increasing resistance decreases current.
+- Higher voltage produces more current.
+- Higher resistance reduces current.
 
 ---
 
-# Open Circuit
+# Open Circuit vs Short Circuit
+
+## Open Circuit
 
 ```
 Battery
 
-+ --------X--------- -
++ ------X------ -
 ```
 
-Resistance
+Resistance is extremely high.
 
-Very High
+Current is zero.
 
-Current
-
-Zero
+Nothing happens.
 
 ---
 
-# Short Circuit
+## Short Circuit
 
 ```
 Battery
 
-+ ------------------ -
++ ------------- -
 ```
 
-Resistance
+Resistance is almost zero.
 
-Almost Zero
+Current becomes extremely high.
 
-Current
-
-Very High
-
-This produces excessive heat.
-
-Short circuits are dangerous.
+This produces dangerous heating and can damage the battery or wires.
 
 ---
 
 # Why Does a Bulb Glow?
 
-Inside a bulb is an extremely thin tungsten filament.
+Inside every incandescent bulb is an extremely thin tungsten filament.
 
-```
-Current
+Current passes through the filament.
 
-↓
+Because the filament has significant resistance,
 
-Thin Tungsten Wire
+it becomes extremely hot.
 
-↓
-
-Heat
-
-↓
-
-Light
-```
-
-The filament has enough resistance to become extremely hot.
-
-Around
+At around
 
 ```
 2500–3000°C
 ```
 
-It glows white.
+the tungsten glows white,
+
+producing light.
 
 ---
 
 # Why Tungsten?
 
-Tungsten has one of the highest melting points of any metal.
+Tungsten has one of the highest melting points among all metals.
 
 Approximately
 
@@ -530,138 +426,109 @@ Approximately
 3422°C
 ```
 
-Other metals would melt.
-
-Tungsten glows instead.
+Most other metals would melt before producing useful light.
 
 ---
 
-# Why is the Bulb a Vacuum?
-
-Hot tungsten reacts with oxygen.
+# Why is There No Oxygen Inside the Bulb?
 
 If oxygen were present,
 
-the filament would burn.
+the hot tungsten would burn immediately.
 
 Therefore,
 
-the bulb contains
+the bulb contains either
 
-- vacuum
-- or inert gas
+- a vacuum
+- or an inert gas
 
-This prevents combustion.
+to protect the filament.
 
 ---
 
-# Power
+# Electrical Power
 
-Power tells us
+Power measures how quickly electrical energy is converted into another form.
 
-> **How fast energy is being converted.**
-
-Formula
+The equation is:
 
 ```
 P = V × I
 ```
 
-Power is measured in
+Where:
 
-Watts (W).
+- P = Power (Watts)
+- V = Voltage
+- I = Current
 
-Example
+Example:
 
-Flashlight
+Flashlight:
 
-```
-Voltage
+Voltage = 3V
 
-3 V
+Current = 0.75A
 
-Current
-
-0.75 A
-```
-
-Power
+Power:
 
 ```
 3 × 0.75
 
 =
 
-2.25 W
+2.25 Watts
 ```
 
-Meaning
-
-The bulb converts
-
-2.25 joules of energy every second.
+This means the flashlight converts **2.25 joules of energy every second**.
 
 ---
 
-# Why Home Bulbs Have Larger Resistance
+# Why Household Bulbs Have Higher Resistance
 
-Flashlight
+A flashlight bulb operates at only 3V.
 
-```
-3V
+A household bulb operates at around 120V (or 230V in many countries).
 
-4Ω
-```
+Higher voltage requires higher resistance to keep current within safe limits.
 
-House
-
-```
-120V
-
-144Ω
-```
-
-Higher voltage requires higher resistance
-
-to keep current under control.
+This is why household bulb filaments are designed differently.
 
 ---
 
-# Heat Loss
+# Heat Loss in Wires
 
-Electrical heating follows
+Whenever current flows through resistance,
+
+heat is produced.
+
+The relationship is:
 
 ```
 Heat ∝ I²R
 ```
 
-Current doubles.
+This means:
 
-Heat becomes four times larger.
+- Double the current → Four times more heating.
+- Triple the current → Nine times more heating.
 
-Current triples.
-
-Heat becomes nine times larger.
-
-This is why engineers try to reduce current in transmission lines.
+This is one reason power companies transmit electricity at very high voltages—to reduce current and therefore reduce heat losses.
 
 ---
 
-# The Most Important Component
+# The Most Important Component: The Switch
 
-Petzold suddenly says
+After explaining batteries, wires, bulbs, and electricity,
 
-> "We've forgotten the most important part."
-
-The answer is
+Petzold suddenly reminds us that we've forgotten the most important part:
 
 **The Switch.**
 
 Why?
 
-Because
-
-the switch has only
+Because a switch has only two states.
 
 ```
 ON
@@ -669,267 +536,501 @@ ON
 OFF
 ```
 
-Two states.
+Exactly like:
 
-Exactly like
+- Dot / Dash (Morse Code)
+- Raised / Flat (Braille)
 
-- Dot / Dash
-- Raised / Flat
-- Yes / No
-
-This is
-
-**Binary.**
+A switch naturally represents **binary information**.
 
 ---
 
-# The Beginning of Computers
+# The Bridge to Computers
 
 Imagine replacing one switch
 
-with
+with one billion tiny switches.
 
-one billion switches.
-
-Each switch stores
+Each switch represents:
 
 ```
-ON = 1
+ON  = 1
 
 OFF = 0
 ```
 
-Every image,
+These billions of binary switches form the transistors inside every modern computer.
 
-song,
+Everything you see on your screen—
 
-movie,
+text,
 
-game,
+music,
 
-website,
+images,
 
-and AI conversation
+videos,
 
-is ultimately built
+games,
 
-from billions of these tiny electrical switches.
+and artificial intelligence—
 
-This is the bridge between
-
-Electricity
-
-↓
-
-Binary
-
-↓
-
-Computers.
+is ultimately built from billions of tiny electrical switches rapidly changing between ON and OFF.
 
 ---
 
-# Key Takeaways
+# Final Thoughts
 
-- Electricity is the movement of electrons.
-- A circuit must be closed for current to flow.
-- Batteries create electrical potential using chemical reactions.
-- Conductors allow electrons to move easily.
-- Insulators resist electron movement.
-- Resistance converts electrical energy into heat.
-- Voltage is electrical potential.
-- Current is moving charge.
-- Ohm's Law connects voltage, current, and resistance.
-- A bulb glows because its tungsten filament becomes extremely hot.
-- A switch has only two states: ON and OFF.
-- Binary electrical switches form the foundation of modern computers.
+This chapter teaches much more than electricity.
 
----
+It teaches us that the digital world is built on remarkably simple ideas.
 
-# Revision Questions (30)
+Electricity moves because electrons move.
 
-### 1. What is electricity?
+Switches control that movement.
 
-Movement of electrons.
+Binary represents those switch positions.
+
+And from billions of binary switches,
+
+the modern computer is born.
 
 ---
 
-### 2. What is an electric circuit?
+> **"The computer is not built upon complexity. It is built upon billions of tiny decisions: ON or OFF."**
+>
+> *— Inspired by Charles Petzold's* **Code**
 
-A complete closed path for current.
-
----
-
-### 3. Why does current stop in an open circuit?
-
-Because the loop is broken.
+# Code Notes #2 — 30 Important Questions & Answers
+### *Revision & Interview Guide*
+*Based on Chapter 4 of **Code** by Charles Petzold*
 
 ---
 
-### 4. What is static electricity?
+# 1. Why did Charles Petzold choose a flashlight to explain electricity instead of starting with computers?
 
-Sudden movement of excess electrons.
+**Answer:**
 
----
+A flashlight is one of the simplest electrical devices. It contains the four basic components found in almost every electronic device:
 
-### 5. Why do we feel a spark?
+- Battery
+- Wires
+- Switch
+- Load (Bulb)
 
-Charge imbalance suddenly equalizes.
-
----
-
-### 6. Why is lightning similar to static electricity?
-
-Both involve rapid movement of electrons.
+Understanding how these interact provides the foundation for understanding transistors, logic gates, and eventually computers.
 
 ---
 
-### 7. Does a battery create electrons?
+# 2. What is an electric circuit?
+
+**Answer:**
+
+An electric circuit is a **closed path** that allows electrons to travel from one terminal of a power source, through electrical components, and back to the other terminal.
+
+Without a complete loop, current cannot flow.
+
+---
+
+# 3. Why does current stop immediately when a switch is opened?
+
+**Answer:**
+
+Opening the switch breaks the circuit.
+
+Once the path is broken,
+
+electrons can no longer complete the loop,
+
+so current becomes zero.
+
+---
+
+# 4. What actually moves inside a wire?
+
+**Answer:**
+
+Electrons move.
+
+The copper atoms remain fixed in place.
+
+Only their outer electrons slowly drift through the conductor while carrying electrical energy.
+
+---
+
+# 5. Does a battery create electrons?
+
+**Answer:**
 
 No.
 
-It moves existing electrons using chemical reactions.
+A battery never creates electrons.
+
+Electrons already exist inside the battery and wires.
+
+The battery simply uses chemical reactions to push electrons away from one terminal and pull them toward the other, creating a voltage difference.
 
 ---
 
-### 8. Why doesn't an unused battery discharge quickly?
+# 6. Why doesn't a battery discharge rapidly when it is not connected to anything?
 
-No complete circuit exists.
+**Answer:**
 
----
+Because no complete circuit exists.
 
-### 9. What is a conductor?
+Without a path,
 
-Material that allows electrons to move easily.
+electrons cannot circulate,
 
----
-
-### 10. Name three good conductors.
-
-Copper, Silver, Gold.
+so the chemical reactions proceed extremely slowly.
 
 ---
 
-### 11. What is an insulator?
+# 7. Why are all electrons considered identical?
 
-Material that strongly resists current.
+**Answer:**
+
+Every electron has exactly the same:
+
+- Charge
+- Mass
+- Spin
+
+There is no such thing as a copper electron or a battery electron.
+
+This allows electricity to flow seamlessly between different materials.
 
 ---
 
-### 12. Why are wires coated with plastic?
+# 8. What is static electricity?
+
+**Answer:**
+
+Static electricity is the accumulation of excess electric charge on an object's surface.
+
+When that charge suddenly finds a path to another object,
+
+a spark occurs.
+
+---
+
+# 9. Why do we sometimes get shocked after walking on a carpet?
+
+**Answer:**
+
+Friction transfers electrons between your shoes and the carpet.
+
+Your body accumulates excess charge.
+
+Touching a conductor suddenly equalizes the charge,
+
+creating a spark.
+
+---
+
+# 10. How is lightning related to static electricity?
+
+**Answer:**
+
+Lightning is simply static electricity on a massive scale.
+
+Clouds accumulate enormous charge differences.
+
+Eventually,
+
+the voltage becomes so large that air breaks down,
+
+allowing billions of electrons to move at once.
+
+---
+
+# 11. What is a conductor?
+
+**Answer:**
+
+A conductor is a material whose electrons can move easily.
+
+Examples:
+
+- Copper
+- Silver
+- Gold
+
+Conductors have very low resistance.
+
+---
+
+# 12. Why is copper used instead of silver in electrical wiring?
+
+**Answer:**
+
+Silver is a slightly better conductor,
+
+but it is much more expensive.
+
+Copper provides an excellent balance between conductivity, cost, strength, and durability.
+
+---
+
+# 13. What is an insulator?
+
+**Answer:**
+
+An insulator strongly resists the movement of electrons.
+
+Examples include:
+
+- Plastic
+- Rubber
+- Glass
+- Dry wood
+
+---
+
+# 14. Why are electrical wires coated with plastic?
+
+**Answer:**
 
 Plastic is an insulator.
 
----
-
-### 13. What is resistance?
-
-Opposition to current flow.
+It prevents electricity from escaping the copper wire and protects people from electric shock.
 
 ---
 
-### 14. What causes resistance?
+# 15. What is electrical resistance?
 
-Electron collisions with atoms.
+**Answer:**
 
----
+Resistance is the opposition offered to the flow of electric current.
 
-### 15. What is voltage?
-
-Electrical potential difference.
+Greater resistance means electrons encounter more difficulty moving through a material.
 
 ---
 
-### 16. Can voltage exist without current?
+# 16. Why does resistance produce heat?
 
-Yes.
+**Answer:**
 
-Example: battery lying on a table.
+Moving electrons collide with atoms inside the conductor.
 
----
+These collisions convert electrical energy into thermal energy.
 
-### 17. What is current?
-
-Flow of electric charge.
+This process is called **Joule Heating**.
 
 ---
 
-### 18. What is the SI unit of current?
+# 17. What is voltage?
 
-Ampere.
+**Answer:**
+
+Voltage is the electrical potential difference between two points.
+
+It represents the ability to push electric charge through a circuit.
+
+Voltage can exist even when current is zero.
 
 ---
 
-### 19. State Ohm's Law.
+# 18. What is current?
 
+**Answer:**
+
+Current is the rate at which electric charge flows through a conductor.
+
+It is measured in amperes (A).
+
+---
+
+# 19. State Ohm's Law.
+
+**Answer:**
+
+```
 I = V / R
+```
+
+Current equals Voltage divided by Resistance.
 
 ---
 
-### 20. What happens if voltage increases while resistance stays constant?
+# 20. What happens if voltage increases while resistance remains constant?
 
-Current increases.
+**Answer:**
+
+Current increases proportionally.
+
+Greater electrical pressure pushes more electrons through the circuit.
 
 ---
 
-### 21. What happens if resistance increases while voltage stays constant?
+# 21. What happens if resistance increases while voltage remains constant?
+
+**Answer:**
 
 Current decreases.
 
----
-
-### 22. What is a short circuit?
-
-A path with extremely low resistance.
+Greater opposition makes it harder for electrons to move.
 
 ---
 
-### 23. Why is a short circuit dangerous?
+# 22. What is an open circuit?
 
-It causes very high current and heating.
+**Answer:**
 
----
+An open circuit has a break in its path.
 
-### 24. Why does a bulb glow?
+Resistance becomes extremely high,
 
-Its filament becomes extremely hot.
-
----
-
-### 25. Why is tungsten used?
-
-It has a very high melting point.
+so no current flows.
 
 ---
 
-### 26. Why is there vacuum inside a bulb?
+# 23. What is a short circuit?
 
-To prevent tungsten from burning.
+**Answer:**
 
----
+A short circuit is a path with extremely low resistance.
 
-### 27. What is electrical power?
+It allows very large current to flow,
 
-Rate of energy conversion.
-
----
-
-### 28. State the power formula.
-
-P = VI
+which can overheat wires, damage batteries, or start fires.
 
 ---
 
-### 29. Why is a switch important?
+# 24. Why does a tungsten filament glow instead of melting immediately?
 
-It controls current using only two states.
+**Answer:**
 
----
+Tungsten has an extremely high melting point (about 3422°C).
 
-### 30. Why is a flashlight important in understanding computers?
-
-Because its ON/OFF switch demonstrates binary logic, the same principle used by billions of transistors inside every modern computer.
+It can become white-hot and emit light before reaching its melting temperature.
 
 ---
 
-> **"A computer is not born from complexity. It is born from a simple switch that can only say one of two things: ON or OFF." — Inspired by Charles Petzold**
+# 25. Why is oxygen removed from an incandescent bulb?
+
+**Answer:**
+
+Hot tungsten reacts rapidly with oxygen.
+
+Removing oxygen prevents the filament from burning.
+
+The bulb therefore contains either a vacuum or an inert gas.
+
+---
+
+# 26. What is electrical power?
+
+**Answer:**
+
+Power is the rate at which electrical energy is converted into another form.
+
+Examples:
+
+- Heat
+- Light
+- Mechanical motion
+
+Formula:
+
+```
+P = V × I
+```
+
+---
+
+# 27. Why is high-voltage transmission used instead of low-voltage transmission?
+
+**Answer:**
+
+For the same amount of power,
+
+higher voltage requires lower current.
+
+Lower current greatly reduces transmission losses because
+
+```
+Heat ∝ I²R
+```
+
+---
+
+# 28. Why is the switch considered the most important component in this chapter?
+
+**Answer:**
+
+Because it has only two stable states:
+
+- ON
+- OFF
+
+These two states naturally represent binary values:
+
+```
+1
+
+0
+```
+
+This is exactly how computers store and process information.
+
+---
+
+# 29. How does a flashlight relate to computers?
+
+**Answer:**
+
+A flashlight demonstrates the fundamental concept of a binary electrical switch.
+
+Computers contain billions of microscopic switches called transistors,
+
+each operating using the same ON/OFF principle.
+
+---
+
+# 30. What is the biggest lesson of this chapter?
+
+**Answer:**
+
+Modern computers appear incredibly complex,
+
+but their foundation is remarkably simple.
+
+Everything begins with:
+
+- Electrons
+- Electrical circuits
+- Voltage
+- Current
+- Resistance
+- Switches
+
+A computer is ultimately nothing more than **billions of tiny electrical switches changing between ON and OFF billions of times every second.**
+
+---
+
+# Quick Revision Summary
+
+| Concept | Key Idea |
+|----------|----------|
+| Circuit | Complete path for current |
+| Electron | Carrier of electric charge |
+| Battery | Converts chemical energy into electrical energy |
+| Conductor | Allows electrons to move easily |
+| Insulator | Prevents electron movement |
+| Resistance | Opposes current |
+| Voltage | Electrical pressure (potential difference) |
+| Current | Flow of electrons |
+| Ohm's Law | I = V / R |
+| Power | P = V × I |
+| Open Circuit | No current |
+| Short Circuit | Very high current |
+| Tungsten | High melting point, glows when heated |
+| Switch | Binary ON/OFF device |
+| Computer | Billions of binary electrical switches |
+
+---
+
+# Final Thought
+
+> **"Every modern computer, no matter how powerful, is ultimately built upon the same simple idea demonstrated by a flashlight: control the flow of electricity using a switch. From that single binary principle emerges the entire digital world."**
