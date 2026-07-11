@@ -15,14 +15,6 @@
             "date": "2026-07-07",
             "summary": "This is Part - 1",
             "file": "blogs/linux-1.md"
-        },
-        {
-            "id": "web-security-1",
-            "title": "Web Security Fundamentals",
-            "category": "Web Security",
-            "date": "2026-07-06",
-            "summary": "Learn the Fundamentals",
-            "file": "blogs/web-security-1.md"
         }
     ],
     "categories": [
