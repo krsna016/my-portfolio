@@ -2,7 +2,7 @@ const blogData = {
     "posts": [
         {
             "id": "code-1",
-            "title": "Before Computers, Learn the Language of Information",
+            "title": "1. Before Computers, Learn the Language of Information",
             "category": "CODE",
             "date": "2026-07-11",
             "summary": "A deep dive into Morse Code, Braille, Binary Thinking, and the fundamental ideas behind Charles Petzold’s Code.",
