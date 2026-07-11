@@ -245,7 +245,7 @@
             <p style="margin: 0; line-height: 1.5; font-size: 0.95rem;">
                 Your live website server is not authorized to push files to GitHub. Any changes you make will only exist temporarily in the server's RAM/ephemeral disk and <strong>will be lost</strong> next time the server redeploys or restarts.
                 <br><br>
-                <strong>To resolve this:</strong> Go to the <strong>Settings</strong> tab and enter your GitHub Personal Access Token (PAT) and repository details, or define the <code>GITHUB_TOKEN</code> and <code>GITHUB_REPO</code> environment variables in your hosting dashboard (e.g., Render, Railway).
+                <strong>To resolve this:</strong> Go to the <strong>Settings</strong> tab and enter your GitHub Personal Access Token (PAT) and repository details, or define the <code>GITHUB_TOKEN</code> and <code>GITHUB_REPO</code> environment variables in your hosting dashboard (e.g., Render).
             </p>
         </div>
 
@@ -482,7 +482,7 @@
                     Enter your GitHub Personal Access Token (PAT) and repository details to automatically save changes directly to your live website without downloading files manually.
                 </p>
                 <div style="background: rgba(0, 210, 255, 0.1); border: 1px dashed #00d2ff; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; font-size: 0.85rem; line-height: 1.5; color: #eee; user-select: none;">
-                    <strong>💡 Pro Tip (Multi-Device Sync):</strong> Browser settings are stored locally. To save blogs from <em>any</em> device (mobile, tablet, secondary PC) and keep them permanently, set these variables in your <strong>Render/Railway Dashboard</strong> under Environment Variables:
+                    <strong>💡 Pro Tip (Multi-Device Sync):</strong> Browser settings are stored locally. To save blogs from <em>any</em> device (mobile, tablet, secondary PC) and keep them permanently, set these variables in your <strong>Render Dashboard</strong> under Environment Variables:
                     <br>• <code>GITHUB_TOKEN</code> = your GitHub PAT
                     <br>• <code>GITHUB_REPO</code> = <code>krsna016/my-portfolio</code>
                     <br>• <code>GITHUB_BRANCH</code> = <code>master</code>
@@ -544,7 +544,7 @@
                             To make sure changes appear on your live site, you have two options to authorize the backend server to write to GitHub:
                         </p>
                         <ol>
-                            <li><strong>Option A (Recommended for Multi-Device Sync)</strong>: In your Render/Railway Dashboard, set these Environment Variables:
+                            <li><strong>Option A (Recommended for Multi-Device Sync)</strong>: In your Render Dashboard, set these Environment Variables:
                                 <ul>
                                     <li><code>GITHUB_TOKEN</code> = Your Personal Access Token (PAT).</li>
                                     <li><code>GITHUB_REPO</code> = <code>krsna016/my-portfolio</code>.</li>
