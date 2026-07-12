@@ -516,9 +516,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <h3 class="blog-title">${escapeHTML(post.title || "Untitled Post")}</h3>
                     <p class="blog-summary">${escapeHTML(post.summary || "Read more about this topic...")}</p>
                     <div class="blog-footer">
-                        <span class="read-more">Read Article <i class="fa-solid fa-arrow-right"></i></span>
-                        <button class="blog-share-btn" onclick="event.stopPropagation(); sharePost('${post.id}')" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); color: #888; cursor: pointer; padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; transition: all 0.3s;" title="Share Article" onmouseover="this.style.color='#00d2ff'; this.style.borderColor='rgba(0, 210, 255, 0.3)'; this.style.background='rgba(0, 210, 255, 0.05)';" onmouseout="this.style.color='#888'; this.style.borderColor='rgba(255, 255, 255, 0.08)'; this.style.background='rgba(255, 255, 255, 0.03)';">
-                            <i class="fa-solid fa-share-nodes"></i> Share
+                        <span class="read-more" style="white-space: nowrap;">Read Article <i class="fa-solid fa-arrow-right"></i></span>
+                        <button class="blog-share-btn" onclick="event.stopPropagation(); sharePost('${post.id}')" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); color: #888; cursor: pointer; width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s; flex-shrink: 0;" title="Share Article" onmouseover="this.style.color='#00d2ff'; this.style.borderColor='rgba(0, 210, 255, 0.3)'; this.style.background='rgba(0, 210, 255, 0.05)';" onmouseout="this.style.color='#888'; this.style.borderColor='rgba(255, 255, 255, 0.08)'; this.style.background='rgba(255, 255, 255, 0.03)';">
+                            <i class="fa-solid fa-share-nodes" style="font-size: 0.9rem; margin: 0; padding: 0;"></i>
                         </button>
                     </div>
                 </div>
