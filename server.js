@@ -119,8 +119,72 @@ function loadBlogDataCache() {
         }
     }
 }
-// Load initially
+// --- In-Memory Asset Cache for Minification ---
+const assetCache = {};
+
+// Pre-minify all core static assets during startup to avoid event-loop blocking
+function preMinifyAllAssets() {
+    console.log("⚡ Starting boot-time static asset pre-minification...");
+    const filesToPreMinify = [
+        'index.html',
+        'articles.html',
+        'resume.html',
+        'certificates.html',
+        'contact.html',
+        'games.html',
+        'snake.html',
+        'trex.html',
+        'admin.html',
+        'admin_panel.html',
+        'assets/css/core/style.css',
+        'assets/css/features/intense_pack.css',
+        'assets/css/core/cyber_theme.css',
+        'assets/js/core/script.js',
+        'assets/js/core/particles.js',
+        'assets/js/features/terminal.js',
+        'assets/js/features/sound_haptics.js',
+        'assets/js/pages/resume.js',
+        'assets/js/pages/blog_logic.js',
+        'assets/js/pages/admin.js',
+        'assets/js/ui/cyber_ui.js',
+        'assets/js/ui/evervault_portrait.js'
+    ];
+
+    filesToPreMinify.forEach(relPath => {
+        const filePath = path.join(__dirname, relPath);
+        if (!fs.existsSync(filePath)) return;
+        
+        try {
+            const ext = path.extname(filePath);
+            const content = fs.readFileSync(filePath, 'utf8');
+            let minified = content;
+
+            if (ext === '.html') {
+                minified = minifyHTML(content, {
+                    collapseWhitespace: true,
+                    removeComments: true,
+                    minifyCSS: true,
+                    minifyJS: true
+                });
+            } else if (ext === '.css') {
+                minified = new CleanCSS({}).minify(content).styles;
+            } else if (ext === '.js') {
+                const result = uglifyJS.minify(content);
+                if (!result.error) minified = result.code;
+            }
+
+            const stats = fs.statSync(filePath);
+            assetCache[filePath] = { code: minified, mtime: stats.mtimeMs };
+        } catch (e) {
+            console.error(`Failed to pre-minify ${relPath}:`, e);
+        }
+    });
+    console.log("✅ Boot-time static asset pre-minification completed successfully!");
+}
+
+// Load cache & pre-minify initially on boot
 loadBlogDataCache();
+preMinifyAllAssets();
 
 // Smart Caching Strategy for Maximum Performance (Must be before send)
 app.use((req, res, next) => {
@@ -140,9 +204,6 @@ app.use((req, res, next) => {
     }
     next();
 });
-
-// --- In-Memory Asset Cache for Minification ---
-const assetCache = {};
 
 // On-The-Fly Minification Middleware
 app.use((req, res, next) => {
