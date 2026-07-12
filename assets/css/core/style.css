@@ -104,7 +104,7 @@ textarea {
 }
 
 .logo {
-    font-size: clamp(1.8rem, 5.5vw, 2.5rem);
+    font-size: clamp(1.5rem, 4.5vw, 2rem);
     /* Larger AP */
     font-weight: 700;
     background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
@@ -2461,7 +2461,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .read-more {
     color: var(--primary-color);
     font-weight: 600;
-    font-size: clamp(0.85rem, 2vw, 1rem);
+    font-size: clamp(0.75rem, 1.8vw, 0.85rem);
     display: flex;
     align-items: center;
     gap: 8px;

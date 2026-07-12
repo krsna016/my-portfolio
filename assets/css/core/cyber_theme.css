@@ -1522,6 +1522,7 @@ html body .read-more.read-more.read-more:hover {
     margin: 0 !important;
     border-radius: 0 !important;
     outline: none !important;
+    font-size: 0.85rem !important;
     color: var(--primary-color) !important;
     transition: gap 0.3s ease !important;
 }

@@ -505,15 +505,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             card.innerHTML = `
                 <div class="blog-card-content">
-                    <div class="blog-meta">
+                    <div class="blog-meta" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
                         <span class="blog-category">${escapeHTML(post.category || "Uncategorized")}</span>
-                        <div class="blog-date-group" style="display: flex; align-items: center; gap: 8px; color: #888; font-size: 0.85rem; font-family: 'Fira Code', monospace; white-space: nowrap; flex-wrap: nowrap;">
-                            <span class="blog-date" style="margin: 0; padding: 0;">${escapeHTML(post.date || "")}</span>
-                            <span style="opacity: 0.4;">•</span>
-                            <span class="blog-card-read-time" id="read-time-${post.id}" style="opacity: 0.8; display: flex; align-items: center; gap: 4px;"><i class="fa-regular fa-clock"></i> 5 min</span>
-                        </div>
+                        <span style="opacity: 0.4; color: #888;">•</span>
+                        <span class="blog-date" style="color: #888; font-size: 0.85rem; font-family: 'Fira Code', monospace; margin: 0; padding: 0;">${escapeHTML(post.date || "")}</span>
                     </div>
-                    <h3 class="blog-title">${escapeHTML(post.title || "Untitled Post")}</h3>
+                    <h3 class="blog-title" title="${escapeHTML(post.title || 'Untitled Post')}">${escapeHTML(post.title || "Untitled Post")}</h3>
                     <p class="blog-summary">${escapeHTML(post.summary || "Read more about this topic...")}</p>
                     <div class="blog-footer">
                         <span class="read-more" style="white-space: nowrap;">Read Article <i class="fa-solid fa-arrow-right"></i></span>
