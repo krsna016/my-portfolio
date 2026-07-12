@@ -99,8 +99,8 @@ class Particle {
             if (this.opacity <= 0.1) this.fadingIn = true;
         }
 
-        // Mouse Interaction
-        if (mouse.x != null) {
+        // Mouse Interaction (Skip on mobile to optimize CPU performance)
+        if (mouse.x != null && window.innerWidth >= 768) {
             // Calculate apparent Y position for interaction
             let apparentY = (this.y - scrollY * 0.1) % canvas.height;
             if (apparentY < 0) apparentY += canvas.height;
@@ -167,8 +167,13 @@ function init() {
             particlesArray.push(particle);
         });
     } else {
-        // Density: 1 particle per 4000 pixels roughly
-        const numberOfParticles = (canvas.width * canvas.height) / 4000;
+        // Density: 1 particle per 4000 pixels on desktop, 1 per 12000 pixels on mobile to maintain 60fps
+        const isMobile = window.innerWidth < 768;
+        const divisor = isMobile ? 12000 : 4000;
+        let numberOfParticles = (canvas.width * canvas.height) / divisor;
+        
+        // Enforce safe limits to avoid CPU bottlenecks on high-DPI screens
+        numberOfParticles = Math.min(isMobile ? 35 : 180, numberOfParticles);
 
         for (let i = 0; i < numberOfParticles; i++) {
             particlesArray.push(new Particle());
