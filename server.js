@@ -355,6 +355,12 @@ async function pushToGitHub(filePath, contentStr, commitMessage, isDelete = fals
 
 // --- API Endpoints ---
 
+// Lightweight health/ping endpoint for uptime monitors
+app.get('/api/ping', (req, res) => {
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.status(200).send('pong');
+});
+
 // Login Endpoint
 app.post('/api/login', rateLimitLogin, (req, res) => {
     const { password } = req.body;
