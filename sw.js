@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ap-portfolio-v251-god-mode';
+const CACHE_NAME = 'ap-portfolio-v1365-god-mode';
 
 const PRECACHE_ASSETS = [
     '/',
@@ -106,5 +106,12 @@ self.addEventListener('fetch', event => {
                 });
             })
         );
+    }
+});
+
+// Skip waiting message handler
+self.addEventListener('message', event => {
+    if (event.data && event.data.action === 'skipWaiting') {
+        self.skipWaiting();
     }
 });

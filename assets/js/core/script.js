@@ -13,8 +13,33 @@ if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js').then(registration => {
             console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            
+            // Auto-reload when a new ServiceWorker is installed and waiting
+            registration.addEventListener('updatefound', () => {
+                const newWorker = registration.installing;
+                if (newWorker) {
+                    newWorker.addEventListener('statechange', () => {
+                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                            console.log('New ServiceWorker version found. Activating...');
+                            if (registration.waiting) {
+                                registration.waiting.postMessage({ action: 'skipWaiting' });
+                            }
+                        }
+                    });
+                }
+            });
         }, err => {
             console.log('ServiceWorker registration failed: ', err);
+        });
+
+        // Refresh the page once the new ServiceWorker has taken over
+        let refreshing = false;
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+            if (!refreshing) {
+                refreshing = true;
+                console.log('ServiceWorker controller changed. Reloading page...');
+                window.location.reload();
+            }
         });
     });
 }
