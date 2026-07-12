@@ -546,6 +546,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             loadCardReadTime(post.id, post.file);
 
             card.addEventListener('click', () => loadPost(post));
+            card.addEventListener('mouseenter', () => prefetchPost(post));
             postsList.appendChild(card);
         });
         currentPage++;
@@ -613,30 +614,65 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('modal-title').textContent = "Edit Post";
     }
 
+    // In-memory prefetch cache for blog markdown compile speedups
+    const prefetchedContent = {};
+
+    window.prefetchPost = async function(post) {
+        if (prefetchedContent[post.id]) return;
+        try {
+            const isLocal = window.location.protocol === 'file:';
+            const fetchUrl = isLocal ? post.file : `${post.file}?t=${Date.now()}`;
+            const response = await fetch(fetchUrl);
+            if (response.ok) {
+                const markdownContent = await response.text();
+                const rawHtml = marked.parse(markdownContent);
+                const safeHtml = DOMPurify.sanitize(rawHtml);
+                prefetchedContent[post.id] = {
+                    html: safeHtml,
+                    markdown: markdownContent
+                };
+                console.log(`⚡ Prefetched & pre-compiled post: ${post.id}`);
+            }
+        } catch (e) {
+            console.warn(`Failed to prefetch post ${post.id}`, e);
+        }
+    };
+
     async function loadPost(post) {
         try {
             let markdownContent = null;
-            let useOptimisticContent = false;
-            const optContentRaw = localStorage.getItem(`optimisticBlog_${post.id}`);
-            if (optContentRaw) {
-                try {
-                    const optData = JSON.parse(optContentRaw);
-                    if (Date.now() - optData.timestamp < 3 * 60 * 1000) { // 3 minutes
-                        markdownContent = optData.content;
-                        useOptimisticContent = true;
-                    }
-                } catch(e) {}
+            let safeHtml = null;
+            let usePrefetched = false;
+
+            if (prefetchedContent[post.id]) {
+                markdownContent = prefetchedContent[post.id].markdown;
+                safeHtml = prefetchedContent[post.id].html;
+                usePrefetched = true;
             }
 
-            if (!useOptimisticContent) {
-                const isLocal = window.location.protocol === 'file:';
-                const fetchUrl = isLocal ? post.file : `${post.file}?t=${Date.now()}`;
-                const response = await fetch(fetchUrl);
-                if (!response.ok) throw new Error('Network response was not ok');
-                markdownContent = await response.text();
+            if (!usePrefetched) {
+                let useOptimisticContent = false;
+                const optContentRaw = localStorage.getItem(`optimisticBlog_${post.id}`);
+                if (optContentRaw) {
+                    try {
+                        const optData = JSON.parse(optContentRaw);
+                        if (Date.now() - optData.timestamp < 3 * 60 * 1000) { // 3 minutes
+                            markdownContent = optData.content;
+                            useOptimisticContent = true;
+                        }
+                    } catch(e) {}
+                }
+
+                if (!useOptimisticContent) {
+                    const isLocal = window.location.protocol === 'file:';
+                    const fetchUrl = isLocal ? post.file : `${post.file}?t=${Date.now()}`;
+                    const response = await fetch(fetchUrl);
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    markdownContent = await response.text();
+                }
+                const rawHtml = marked.parse(markdownContent);
+                safeHtml = DOMPurify.sanitize(rawHtml);
             }
-            const rawHtml = marked.parse(markdownContent);
-            const safeHtml = DOMPurify.sanitize(rawHtml);
             
             readerContent.innerHTML = safeHtml;
             showReaderView();
