@@ -507,8 +507,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <div class="blog-card-content">
                     <div class="blog-meta">
                         <span class="blog-category">${escapeHTML(post.category || "Uncategorized")}</span>
-                        <span class="blog-date">${escapeHTML(post.date || "")}</span>
-                        <span class="blog-card-read-time" id="read-time-${post.id}" style="margin-left: 8px; opacity: 0.8;"><i class="fa-regular fa-clock"></i> 5 min</span>
+                        <div class="blog-date-group" style="display: flex; align-items: center; gap: 8px; color: #888; font-size: 0.85rem; font-family: 'Fira Code', monospace; white-space: nowrap; flex-wrap: nowrap;">
+                            <span class="blog-date" style="margin: 0; padding: 0;">${escapeHTML(post.date || "")}</span>
+                            <span style="opacity: 0.4;">•</span>
+                            <span class="blog-card-read-time" id="read-time-${post.id}" style="opacity: 0.8; display: flex; align-items: center; gap: 4px;"><i class="fa-regular fa-clock"></i> 5 min</span>
+                        </div>
                     </div>
                     <h3 class="blog-title">${escapeHTML(post.title || "Untitled Post")}</h3>
                     <p class="blog-summary">${escapeHTML(post.summary || "Read more about this topic...")}</p>
