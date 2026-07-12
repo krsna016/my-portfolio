@@ -76,7 +76,7 @@ h1, h2, h3, h4, h5, h6, .logo, .section-title, .hero-content h1 {
 
 .cta-buttons {
     display: flex !important;
-    flex-wrap: nowrap !important;
+    flex-wrap: wrap !important;
     gap: 12px !important;
     margin-top: 2rem !important;
     margin-left: 4px !important;
