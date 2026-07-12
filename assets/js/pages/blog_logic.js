@@ -645,6 +645,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             showReaderView();
             window.scrollTo(0, 0);
 
+            // Update URL hash without page reload
+            if (window.location.hash !== `#${post.id}`) {
+                history.pushState(null, null, `#${post.id}`);
+            }
+
             // --- INTENSE METADATA & READING HACKS ---
             const words = markdownContent.trim().split(/\s+/).length;
             const readTime = Math.max(1, Math.ceil(words / 225));
@@ -734,6 +739,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     function showListView() {
         postReader.style.setProperty('display', 'none', 'important');
         postsList.style.setProperty('display', 'grid', 'important');
+
+        // Clear hash from address bar when returning to list
+        if (window.location.hash) {
+            history.pushState("", document.title, window.location.pathname + window.location.search);
+        }
         
         const categoryList = document.getElementById('category-list');
         if (categoryList) categoryList.style.removeProperty('display');
@@ -819,7 +829,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Global share function
     window.sharePost = async function(id) {
-        const shareUrl = `${window.location.origin}${window.location.pathname}?post=${id}`;
+        const shareUrl = `${window.location.origin}${window.location.pathname}#${id}`;
         
         try {
             if (navigator.share) {
@@ -847,9 +857,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     };
 
-    // Check for deep link to a specific post
+    // Check for deep link to a specific post (Supports both hash #id and query ?post=id)
     const urlParams = new URLSearchParams(window.location.search);
-    const postId = urlParams.get('post');
+    const postId = window.location.hash ? window.location.hash.substring(1) : urlParams.get('post');
     if (postId) {
         const checkAndLoad = () => {
             if (blogPosts && blogPosts.length > 0) {
