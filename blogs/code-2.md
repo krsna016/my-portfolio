@@ -1,4 +1,4 @@
-# Code Notes #2 — How a Flashlight Explains Electricity, Binary & the Birth of Computers
+# How a Flashlight Explains Electricity, Binary & the Birth of Computers
 
 > **Series:** Reading *Code* by Charles Petzold  
 > **Part:** 2  
