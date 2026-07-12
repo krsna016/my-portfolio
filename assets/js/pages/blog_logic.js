@@ -517,6 +517,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <p class="blog-summary">${escapeHTML(post.summary || "Read more about this topic...")}</p>
                     <div class="blog-footer">
                         <span class="read-more">Read Article <i class="fa-solid fa-arrow-right"></i></span>
+                        <button class="blog-share-btn" onclick="event.stopPropagation(); sharePost('${post.id}')" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); color: #888; cursor: pointer; padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; transition: all 0.3s;" title="Share Article" onmouseover="this.style.color='#00d2ff'; this.style.borderColor='rgba(0, 210, 255, 0.3)'; this.style.background='rgba(0, 210, 255, 0.05)';" onmouseout="this.style.color='#888'; this.style.borderColor='rgba(255, 255, 255, 0.08)'; this.style.background='rgba(255, 255, 255, 0.03)';">
+                            <i class="fa-solid fa-share-nodes"></i> Share
+                        </button>
                     </div>
                 </div>
                 ${adminHTML}
@@ -683,6 +686,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <span class="meta-divider">•</span>
                     <span class="meta-category"><i class="fa-solid fa-tag"></i> ${escapeHTML(post.category || 'Engineering')}</span>
                     ${post.date ? `<span class="meta-divider">•</span><span><i class="fa-regular fa-calendar"></i> ${escapeHTML(post.date)}</span>` : ''}
+                    <span class="meta-divider">•</span>
+                    <span class="meta-share-link" onclick="sharePost('${post.id}')" style="cursor: pointer; color: var(--primary-color); display: inline-flex; align-items: center; gap: 4px; font-weight: 600;" title="Share this article"><i class="fa-solid fa-share-nodes"></i> Share</span>
                 `;
                 metaBadge.style.display = 'flex';
             }
@@ -792,5 +797,71 @@ document.addEventListener('DOMContentLoaded', async () => {
     backButton.addEventListener('click', () => {
         showListView();
     });
+
+    // Helper for lazy toast alerts
+    function triggerToast(message) {
+        let toast = document.getElementById('font-size-toast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'font-size-toast';
+            toast.className = 'font-size-toast';
+            toast.setAttribute('role', 'status');
+            toast.setAttribute('aria-live', 'polite');
+            document.body.appendChild(toast);
+        }
+        toast.innerHTML = message;
+        toast.classList.add('show');
+        if (window.toastTimer) clearTimeout(window.toastTimer);
+        window.toastTimer = setTimeout(() => {
+            toast.classList.remove('show');
+        }, 1800);
+    }
+
+    // Global share function
+    window.sharePost = async function(id) {
+        const shareUrl = `${window.location.origin}${window.location.pathname}?post=${id}`;
+        
+        try {
+            if (navigator.share) {
+                await navigator.share({
+                    title: 'Read this article',
+                    url: shareUrl
+                });
+            } else {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    await navigator.clipboard.writeText(shareUrl);
+                } else {
+                    const textarea = document.createElement('textarea');
+                    textarea.value = shareUrl;
+                    textarea.style.position = 'fixed';
+                    textarea.style.opacity = '0';
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                }
+                triggerToast(`<i class="fa-solid fa-circle-check" style="color: #4cd137; margin-right: 6px;"></i> Link copied to clipboard!`);
+            }
+        } catch (err) {
+            console.error('Failed to share: ', err);
+        }
+    };
+
+    // Check for deep link to a specific post
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get('post');
+    if (postId) {
+        const checkAndLoad = () => {
+            if (blogPosts && blogPosts.length > 0) {
+                const post = blogPosts.find(p => p.id === postId);
+                if (post) {
+                    loadPost(post);
+                }
+            } else {
+                setTimeout(checkAndLoad, 100);
+            }
+        };
+        checkAndLoad();
+    }
 
 });
