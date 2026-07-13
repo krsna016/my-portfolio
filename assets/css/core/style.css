@@ -4864,3 +4864,22 @@ html body.light-mode .secure-contact:hover i {
     color: #ffffff !important;
 }
 
+/* Force timeline icons (like calendar) to turn dark slate in Light Mode */
+body.light-mode .timeline-content i,
+body.light-mode .timeline-item i {
+    color: #0f172a !important;
+}
+
+/* Force IDE Run Code button hover colors in Light Mode */
+body.light-mode .ide-run-btn:hover,
+html body.light-mode .ide-run-btn.ide-run-btn.ide-run-btn:hover {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border-color: #000000 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+body.light-mode .ide-run-btn:hover i,
+html body.light-mode .ide-run-btn.ide-run-btn.ide-run-btn:hover i {
+    color: #ffffff !important;
+}
+

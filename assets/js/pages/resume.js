@@ -220,11 +220,21 @@ function initDrawingControls() {
     const lineWidthSlider = document.getElementById('line-width');
     const clearBtn = document.getElementById('clear-drawing');
 
-    let isResumeDarkMode = true;
+    let isResumeDarkMode = !document.body.classList.contains('light-mode');
+    const ambientCont = document.getElementById('ambient-container');
+    if (ambientCont) {
+        ambientCont.classList.toggle('resume-dark-mode', isResumeDarkMode);
+    }
     if (toggleThemeBtn) {
+        if (isResumeDarkMode) {
+            toggleThemeBtn.innerHTML = '<i class="fa-solid fa-sun"></i> Light Mode';
+            toggleThemeBtn.classList.add('active-tool');
+        } else {
+            toggleThemeBtn.innerHTML = '<i class="fa-solid fa-moon"></i> Dark Mode';
+            toggleThemeBtn.classList.remove('active-tool');
+        }
         toggleThemeBtn.addEventListener('click', () => {
             isResumeDarkMode = !isResumeDarkMode;
-            const ambientCont = document.getElementById('ambient-container');
             if (ambientCont) {
                 ambientCont.classList.toggle('resume-dark-mode', isResumeDarkMode);
             }
