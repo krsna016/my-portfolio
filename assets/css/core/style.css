@@ -4738,3 +4738,14 @@ html body.light-mode .certificates-page .certificate-card:hover .cert-link:hover
     color: #ffffff !important;
 }
 
+/* Light Mode overrides for the 9 floating tech skill bubbles next to the hero profile */
+body.light-mode .idea-bubble i {
+    color: #000000 !important;
+    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.15)) !important;
+}
+
+body.light-mode .idea-bubble:hover i {
+    color: #2563eb !important; /* turns bright blue on hover! */
+    filter: drop-shadow(0 0 10px rgba(37, 99, 235, 0.4)) !important;
+}
+
