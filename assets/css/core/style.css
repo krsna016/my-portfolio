@@ -4299,6 +4299,14 @@ body.light-mode .contact-btn:hover i {
     color: #ffffff !important;
 }
 
+/* Universal hover color for links in Light Mode */
+body.light-mode a:hover,
+body.light-mode .nav-links a:hover,
+body.light-mode .nav-links a.active,
+body.light-mode .project-links a:hover {
+    color: #2563eb !important;
+}
+
 /* Specific button styles (primary and active states) */
 body.light-mode .btn.primary,
 body.light-mode .tab-btn.active,
