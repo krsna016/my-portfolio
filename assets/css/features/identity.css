@@ -39,6 +39,7 @@
 .id-cursor {
     display: inline-block;
     margin-left: 8px;
+    margin-right: 12px; /* push closing bracket further right to avoid overlapping */
     font-weight: 800;
     color: #fff;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
@@ -311,4 +312,29 @@
     .evervault-mask-layer {
         transition: opacity 0.2s ease !important;
     }
+}
+
+/* Light Mode support for the Premium Identity module */
+body.light-mode .identity-name-container {
+    color: #0f172a !important;
+}
+body.light-mode .id-char {
+    color: #0f172a !important;
+}
+body.light-mode .id-cursor {
+    color: #0f172a !important;
+    text-shadow: 0 0 10px rgba(15, 23, 42, 0.2) !important;
+}
+body.light-mode .hero-identity-wrapper.hovering .id-bracket {
+    color: rgba(15, 23, 42, 0.8) !important;
+}
+body.light-mode .id-status-text {
+    color: #0f172a !important;
+}
+body.light-mode .id-status-module {
+    background: rgba(15, 23, 42, 0.05) !important;
+    border-color: rgba(15, 23, 42, 0.1) !important;
+}
+body.light-mode .id-coord-label {
+    color: rgba(15, 23, 42, 0.7) !important;
 }

@@ -4749,3 +4749,15 @@ body.light-mode .idea-bubble:hover i {
     filter: drop-shadow(0 0 10px rgba(37, 99, 235, 0.4)) !important;
 }
 
+/* Specific Light Mode overrides: category pills and tabs hover to solid black with white text */
+body.light-mode .category-list li:hover,
+html body.light-mode .category-list li:hover,
+body.light-mode .tab-btn:hover,
+html body.light-mode .tab-btn:hover {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border-color: #000000 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
