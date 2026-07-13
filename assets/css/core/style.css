@@ -4768,8 +4768,13 @@ html body.light-mode button:not(.theme-toggle-btn):not(.hamburger) i,
 html body.light-mode .contact-btn i,
 html body.light-mode .play-btn i,
 html body.light-mode .read-more i,
+html body.light-mode .btn.active-tool i,
+html body.light-mode .btn.active-tool svg,
+html body.light-mode .active-tool i,
+html body.light-mode .active-tool svg,
 html body.light-mode .cert-link i {
     color: #0f172a !important;
+    fill: #0f172a !important;
 }
 
 html body.light-mode .btn.btn.btn.btn.btn:hover,
