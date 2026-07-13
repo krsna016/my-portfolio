@@ -551,19 +551,101 @@ document.addEventListener('DOMContentLoaded', () => {
     themeBtn.setAttribute('aria-label', 'Toggle light/dark theme');
     
     const savedTheme = localStorage.getItem('theme-preference') || 'dark';
-    themeBtn.innerHTML = savedTheme === 'light' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+    
+    // High-fidelity custom SVG structure that morphs from crescent moon to eclipse to sun
+    themeBtn.innerHTML = `
+        <svg class="theme-toggle-svg" viewBox="0 0 24 24" width="22" height="22">
+            <circle class="sun-corona" cx="12" cy="12" r="5" />
+            <mask id="moon-mask-icon">
+                <rect x="0" y="0" width="24" height="24" fill="white" />
+                <circle class="moon-cutter" cx="17" cy="7" r="6" fill="black" />
+            </mask>
+            <g class="sun-rays">
+                <line x1="12" y1="1" x2="12" y2="3" />
+                <line x1="12" y1="21" x2="12" y2="23" />
+                <line x1="1" y1="12" x2="3" y2="12" />
+                <line x1="21" y1="12" x2="23" y2="12" />
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+            </g>
+            <circle class="sun-body" cx="12" cy="12" r="6" mask="url(#moon-mask-icon)" />
+        </svg>
+    `;
     document.body.appendChild(themeBtn);
 
-    themeBtn.addEventListener('click', () => {
-        const isLight = document.body.classList.toggle('light-mode');
-        localStorage.setItem('theme-preference', isLight ? 'light' : 'dark');
-        themeBtn.innerHTML = isLight ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+    // Apply active class state for initial light load
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-mode');
+    }
+
+    themeBtn.addEventListener('click', (e) => {
+        // 1. Trigger Eclipse Rotation State on Button
+        themeBtn.classList.add('animating');
         
-        // Trigger grid color update if grid exists
-        if (window.updateGridTheme) {
-            window.updateGridTheme();
-        }
+        // Calculate coords and radius for circular wave reveal
+        const rect = themeBtn.getBoundingClientRect();
+        const x = rect.left + rect.width / 2;
+        const y = rect.top + rect.height / 2;
+        const endRadius = Math.hypot(
+            Math.max(x, window.innerWidth - x),
+            Math.max(y, window.innerHeight - y)
+        );
+        document.documentElement.style.setProperty('--click-x', `${x}px`);
+        document.documentElement.style.setProperty('--click-y', `${y}px`);
+        document.documentElement.style.setProperty('--click-radius', `${endRadius}px`);
+
+        // 2. Perform Eclipse Morph & Reveal Sequence
+        setTimeout(() => {
+            const performThemeSwap = () => {
+                const isLight = document.body.classList.toggle('light-mode');
+                localStorage.setItem('theme-preference', isLight ? 'light' : 'dark');
+                
+                if (window.updateGridTheme) {
+                    window.updateGridTheme();
+                }
+            };
+
+            // Support circular view transitions on supported browsers (Chrome, Edge, Safari 18+)
+            if (document.startViewTransition) {
+                document.startViewTransition(performThemeSwap);
+            } else {
+                performThemeSwap();
+            }
+
+            // 3. Complete Morph, add Golden Spark particles, reset classes
+            setTimeout(() => {
+                themeBtn.classList.remove('animating');
+                createShimmerParticles(themeBtn);
+            }, 100);
+        }, 150);
     });
+
+    function createShimmerParticles(parent) {
+        const rect = parent.getBoundingClientRect();
+        const center = {
+            x: rect.left + rect.width / 2,
+            y: rect.top + rect.height / 2
+        };
+        
+        for (let i = 0; i < 10; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'theme-shimmer-particle';
+            const angle = (i / 10) * Math.PI * 2 + (Math.random() * 0.4);
+            const speed = 25 + Math.random() * 25;
+            const tx = Math.cos(angle) * speed;
+            const ty = Math.sin(angle) * speed;
+            
+            particle.style.setProperty('--tx', `${tx}px`);
+            particle.style.setProperty('--ty', `${ty}px`);
+            particle.style.left = `${center.x}px`;
+            particle.style.top = `${center.y}px`;
+            
+            document.body.appendChild(particle);
+            setTimeout(() => particle.remove(), 800);
+        }
+    }
 });
 
 
