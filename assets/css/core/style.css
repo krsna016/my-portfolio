@@ -5040,3 +5040,15 @@ body.light-mode .game-card:hover svg {
     filter: none !important;
 }
 
+/* Eradicate borders from the main floating navbar card globally */
+.navbar,
+html body .navbar,
+body.light-mode .navbar,
+html body.light-mode .navbar {
+    border: none !important;
+    border-bottom: none !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+}
+
