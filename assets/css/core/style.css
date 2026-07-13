@@ -5052,3 +5052,15 @@ html body.light-mode .navbar {
     border-right: none !important;
 }
 
+/* Eradicate borders for all high-specificity button styles in Light Mode */
+html body.light-mode .btn.primary.primary.primary.primary,
+html body.light-mode .btn.secondary.secondary.secondary.secondary,
+html body.light-mode .btn.btn.btn.btn.btn,
+html body.light-mode button:not(.theme-toggle-btn):not(.hamburger) {
+    border: none !important;
+    border-bottom: none !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+}
+
