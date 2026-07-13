@@ -4412,6 +4412,9 @@ body.light-mode .game-card:hover,
 body.light-mode .article-card:hover,
 body.light-mode .modal-content:hover,
 body.light-mode .dsa-container:hover,
+body.light-mode .ide-hero-card:hover,
+body.light-mode .terminal-card:hover,
+body.light-mode .resume-card:hover,
 body.light-mode .contact-container:hover {
     background: rgba(255, 255, 255, 0.95) !important;
     box-shadow: 0 16px 42px rgba(15, 23, 42, 0.12) !important;
