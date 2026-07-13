@@ -4382,6 +4382,16 @@ html body.light-mode .chat-input-bar:focus-within {
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15) !important;
 }
 
+/* Make inner chat textarea borderless and transparent to avoid double box visual */
+html body.light-mode .chat-input-bar textarea,
+html body.light-mode .chat-input-bar #message,
+html body.light-mode .chat-input-bar textarea:focus,
+html body.light-mode .chat-input-bar #message:focus {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
 /* Chat Send Button Plane Icon */
 html body.light-mode .chat-input-bar button i,
 html body.light-mode .chat-input-bar button svg {
