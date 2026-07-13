@@ -4992,3 +4992,12 @@ html body.light-mode .chat-input-bar .chat-send-btn:hover i {
     color: #0f172a !important;
 }
 
+/* Remove logo/icon glow on hover in arcade game cards in Light Mode */
+body.light-mode .game-card:hover .game-icon i,
+body.light-mode .game-card:hover .game-icon svg,
+body.light-mode .game-card:hover i,
+body.light-mode .game-card:hover svg {
+    text-shadow: none !important;
+    filter: none !important;
+}
+
