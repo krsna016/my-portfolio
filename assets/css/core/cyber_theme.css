@@ -1517,7 +1517,9 @@ a.btn:not(.ide-run-btn):not(.chat-send-btn):hover {
 .read-more,
 .read-more:hover,
 html body .read-more.read-more.read-more,
-html body .read-more.read-more.read-more:hover {
+html body .read-more.read-more.read-more:hover,
+html body.light-mode .read-more.read-more.read-more,
+html body.light-mode .read-more.read-more.read-more:hover {
     background: transparent !important;
     background-color: transparent !important;
     border: none !important;
@@ -1534,14 +1536,17 @@ html body .read-more.read-more.read-more:hover {
 }
 
 .read-more:hover,
-html body .read-more.read-more.read-more:hover {
+html body .read-more.read-more.read-more:hover,
+html body.light-mode .read-more.read-more.read-more:hover {
     color: var(--secondary-color) !important;
 }
 
 .read-more i,
 .read-more:hover i,
 html body .read-more.read-more.read-more i,
-html body .read-more.read-more.read-more:hover i {
+html body .read-more.read-more.read-more:hover i,
+html body.light-mode .read-more.read-more.read-more i,
+html body.light-mode .read-more.read-more.read-more:hover i {
     color: inherit !important;
 }
 
