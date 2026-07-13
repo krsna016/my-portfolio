@@ -4461,7 +4461,7 @@ body.light-mode .theme-toggle-btn {
 }
 
 body.light-mode .theme-toggle-svg {
-    color: #fbbf24;
+    color: #000000;
 }
 
 /* Moon crescent body and cutter */
@@ -4472,8 +4472,8 @@ body.light-mode .theme-toggle-svg {
 }
 
 body.light-mode .theme-toggle-svg .sun-body {
-    fill: #fbbf24;
-    stroke: #fbbf24;
+    fill: #000000 !important;
+    stroke: #000000 !important;
 }
 
 .theme-toggle-svg .moon-cutter {
@@ -4502,6 +4502,7 @@ body.light-mode .theme-toggle-svg .moon-cutter {
 body.light-mode .theme-toggle-svg .sun-rays {
     opacity: 1;
     transform: scale(1) rotate(0deg);
+    stroke: #000000 !important;
 }
 
 /* Golden corona for eclipse */
@@ -4623,5 +4624,82 @@ body.light-mode .timeline-item:hover .timeline-dot-connector,
 body.light-mode .timeline-item:hover .timeline-dot {
     background: #2563eb !important; /* turns bright blue on hover! */
     box-shadow: 0 0 10px rgba(37, 99, 235, 0.5) !important;
+}
+
+/* Insane specificity Light Mode button visibility and hover overrides */
+html body.light-mode .btn,
+html body.light-mode button:not(.theme-toggle-btn):not(.hamburger),
+html body.light-mode .btn.btn.btn.btn.btn,
+html body.light-mode .btn.primary.primary.primary.primary,
+html body.light-mode .btn.secondary.secondary.secondary.secondary,
+html body.light-mode button.btn.btn.btn.btn.btn,
+html body.light-mode a.btn.btn.btn.btn.btn,
+html body.light-mode .cta-buttons .btn.btn.btn.btn,
+html body.light-mode .cta-buttons a.btn.btn.btn,
+html body.light-mode .cta-buttons button.btn.btn.btn,
+html body.light-mode .tab-btn.tab-btn.tab-btn,
+html body.light-mode .contact-btn.contact-btn.contact-btn,
+html body.light-mode .submit-btn.submit-btn.submit-btn,
+html body.light-mode .play-btn.play-btn.play-btn,
+html body.light-mode .read-more.read-more.read-more,
+html body.light-mode .cert-link.cert-link.cert-link,
+html body.light-mode #hero-cli-trigger,
+html body.light-mode #back-button {
+    background: rgba(15, 23, 42, 0.08) !important;
+    background-color: rgba(15, 23, 42, 0.08) !important;
+    border: 1px solid rgba(15, 23, 42, 0.15) !important;
+    color: #0f172a !important;
+    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.05) !important;
+    text-shadow: none !important;
+}
+
+html body.light-mode .btn i,
+html body.light-mode button:not(.theme-toggle-btn):not(.hamburger) i,
+html body.light-mode .contact-btn i,
+html body.light-mode .play-btn i,
+html body.light-mode .read-more i,
+html body.light-mode .cert-link i {
+    color: #0f172a !important;
+}
+
+html body.light-mode .btn.btn.btn.btn.btn:hover,
+html body.light-mode .btn.primary.primary.primary.primary:hover,
+html body.light-mode .btn.secondary.secondary.secondary.secondary:hover,
+html body.light-mode button.btn.btn.btn.btn.btn:hover,
+html body.light-mode a.btn.btn.btn.btn.btn:hover,
+html body.light-mode .cta-buttons .btn.btn.btn.btn:hover,
+html body.light-mode .cta-buttons a.btn.btn.btn:hover,
+html body.light-mode .cta-buttons button.btn.btn.btn:hover,
+html body.light-mode .tab-btn.tab-btn.tab-btn.tab-btn:hover,
+html body.light-mode .contact-btn.contact-btn.contact-btn:hover,
+html body.light-mode .submit-btn.submit-btn.submit-btn:hover,
+html body.light-mode .play-btn.play-btn.play-btn:hover,
+html body.light-mode .read-more.read-more.read-more:hover,
+html body.light-mode .cert-link.cert-link.cert-link:hover,
+html body.light-mode #hero-cli-trigger:hover,
+html body.light-mode .category-list li.category-list li:hover,
+html body.light-mode .category-list li:hover,
+html body.light-mode #back-button:hover {
+    background: #2563eb !important;
+    background-color: #2563eb !important;
+    color: #ffffff !important;
+    border-color: #2563eb !important;
+    box-shadow: 0 6px 15px rgba(37, 99, 235, 0.25) !important;
+}
+
+html body.light-mode .btn.btn.btn.btn.btn:hover i,
+html body.light-mode .btn.btn.btn.btn.btn:hover svg,
+html body.light-mode .btn.primary.primary.primary.primary:hover i,
+html body.light-mode .btn.secondary.secondary.secondary.secondary:hover i,
+html body.light-mode button.btn.btn.btn.btn:hover i,
+html body.light-mode button.btn.btn.btn.btn:hover svg,
+html body.light-mode a.btn.btn.btn.btn:hover i,
+html body.light-mode a.btn.btn.btn.btn:hover svg,
+html body.light-mode .cta-buttons .btn.btn.btn:hover i,
+html body.light-mode .contact-btn:hover i,
+html body.light-mode .play-btn:hover i,
+html body.light-mode .read-more:hover i,
+html body.light-mode .cert-link:hover i {
+    color: #ffffff !important;
 }
 
