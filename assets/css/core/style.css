@@ -4253,7 +4253,7 @@ body.light-mode .background-glow {
 }
 
 /* Light Mode overrides for tags, buttons, tab buttons, timeline cards, etc. */
-body.light-mode button,
+body.light-mode button:not(.theme-toggle-btn):not(.hamburger),
 body.light-mode .btn,
 body.light-mode .tab-btn,
 body.light-mode .skill-tag,
@@ -4261,24 +4261,24 @@ body.light-mode .exec-tag,
 body.light-mode .tag,
 body.light-mode .category-list li,
 body.light-mode .cert-link,
-body.light-mode .read-more {
+body.light-mode .read-more,
+body.light-mode .play-btn {
     background: rgba(15, 23, 42, 0.08) !important;
-    border: 1px solid rgba(15, 23, 42, 0.1) !important;
+    border: 1px solid rgba(15, 23, 42, 0.12) !important;
     color: #0f172a !important;
     box-shadow: 0 4px 10px rgba(15, 23, 42, 0.05) !important;
 }
 
-body.light-mode button:hover,
+body.light-mode button:not(.theme-toggle-btn):not(.hamburger):hover,
 body.light-mode .btn:hover,
 body.light-mode .tab-btn:hover,
-body.light-mode .tab-btn.active,
 body.light-mode .skill-tag:hover,
 body.light-mode .exec-tag:hover,
 body.light-mode .tag:hover,
 body.light-mode .category-list li:hover,
-body.light-mode .category-list li.active,
 body.light-mode .cert-link:hover,
-body.light-mode .read-more:hover {
+body.light-mode .read-more:hover,
+body.light-mode .play-btn:hover {
     background: #0f172a !important; /* solid black/slate background on hover */
     color: #ffffff !important; /* white text on hover */
     border-color: #0f172a !important;
@@ -4308,7 +4308,56 @@ body.light-mode .resume-card {
     box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06) !important;
 }
 
-/* Text coloring within cards to make sure they are visible */
+/* Specific hover backdrops for all cards to prevent them turning black */
+body.light-mode .glass:hover,
+body.light-mode .exec-card:hover,
+body.light-mode .project-card:hover,
+body.light-mode .about-card:hover,
+body.light-mode .timeline-content:hover,
+body.light-mode .card:hover,
+body.light-mode .cert-card:hover,
+body.light-mode .game-card:hover,
+body.light-mode .article-card:hover,
+body.light-mode .contact-container:hover {
+    background: rgba(255, 255, 255, 0.95) !important;
+    box-shadow: 0 16px 42px rgba(15, 23, 42, 0.12) !important;
+    border-color: rgba(15, 23, 42, 0.2) !important;
+}
+
+/* Form Input & Fields styling in Light Mode */
+body.light-mode input,
+body.light-mode textarea,
+body.light-mode select,
+body.light-mode .chat-input-bar {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border: 1px solid rgba(15, 23, 42, 0.18) !important;
+    box-shadow: inset 0 2px 4px rgba(15, 23, 42, 0.02) !important;
+}
+
+body.light-mode input::placeholder,
+body.light-mode textarea::placeholder {
+    color: #64748b !important;
+}
+
+body.light-mode input:focus,
+body.light-mode textarea:focus,
+body.light-mode .chat-input-bar:focus-within {
+    border-color: #4f46e5 !important;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15) !important;
+}
+
+/* Force dark text color for all contents and headings inside any card block */
+body.light-mode .game-card h1, body.light-mode .game-card h2, body.light-mode .game-card h3, body.light-mode .game-card h4, body.light-mode .game-card p, body.light-mode .game-card span, body.light-mode .game-card i,
+body.light-mode .certificate-card h1, body.light-mode .certificate-card h2, body.light-mode .certificate-card h3, body.light-mode .certificate-card p, body.light-mode .certificate-card span,
+body.light-mode .project-card h1, body.light-mode .project-card h2, body.light-mode .project-card h3, body.light-mode .project-card p, body.light-mode .project-card span,
+body.light-mode .about-card h1, body.light-mode .about-card h2, body.light-mode .about-card h3, body.light-mode .about-card p, body.light-mode .about-card span,
+body.light-mode .timeline-content h1, body.light-mode .timeline-content h2, body.light-mode .timeline-content h3, body.light-mode .timeline-content h4, body.light-mode .timeline-content p, body.light-mode .timeline-content span,
+body.light-mode .resume-card h1, body.light-mode .resume-card h2, body.light-mode .resume-card h3, body.light-mode .resume-card p, body.light-mode .resume-card span,
+body.light-mode .card h1, body.light-mode .card h2, body.light-mode .card h3, body.light-mode .card p, body.light-mode .card span {
+    color: #0f172a !important;
+}
+
 body.light-mode .timeline-content h3,
 body.light-mode .timeline-content h4,
 body.light-mode .timeline-content p,
