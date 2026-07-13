@@ -4262,11 +4262,18 @@ body.light-mode .tag,
 body.light-mode .category-list li,
 body.light-mode .cert-link,
 body.light-mode .read-more,
-body.light-mode .play-btn {
+body.light-mode .play-btn,
+body.light-mode .contact-btn {
     background: rgba(15, 23, 42, 0.08) !important;
     border: 1px solid rgba(15, 23, 42, 0.12) !important;
     color: #0f172a !important;
     box-shadow: 0 4px 10px rgba(15, 23, 42, 0.05) !important;
+}
+
+body.light-mode button:not(.theme-toggle-btn):not(.hamburger) i,
+body.light-mode .btn i,
+body.light-mode .contact-btn i {
+    color: #0f172a !important;
 }
 
 body.light-mode button:not(.theme-toggle-btn):not(.hamburger):hover,
@@ -4278,11 +4285,18 @@ body.light-mode .tag:hover,
 body.light-mode .category-list li:hover,
 body.light-mode .cert-link:hover,
 body.light-mode .read-more:hover,
-body.light-mode .play-btn:hover {
-    background: #0f172a !important; /* solid black/slate background on hover */
+body.light-mode .play-btn:hover,
+body.light-mode .contact-btn:hover {
+    background: #2563eb !important; /* solid premium blue on hover */
     color: #ffffff !important; /* white text on hover */
-    border-color: #0f172a !important;
-    box-shadow: 0 6px 15px rgba(15, 23, 42, 0.2) !important;
+    border-color: #2563eb !important;
+    box-shadow: 0 6px 15px rgba(37, 99, 235, 0.25) !important;
+}
+
+body.light-mode button:not(.theme-toggle-btn):not(.hamburger):hover i,
+body.light-mode .btn:hover i,
+body.light-mode .contact-btn:hover i {
+    color: #ffffff !important;
 }
 
 /* Specific button styles (primary and active states) */
@@ -4324,27 +4338,40 @@ body.light-mode .contact-container:hover {
     border-color: rgba(15, 23, 42, 0.2) !important;
 }
 
-/* Form Input & Fields styling in Light Mode */
-body.light-mode input,
-body.light-mode textarea,
-body.light-mode select,
-body.light-mode .chat-input-bar {
+/* High-specificity Form Input & Fields styling in Light Mode */
+html body.light-mode input[type="text"],
+html body.light-mode input[type="email"],
+html body.light-mode input[type="password"],
+html body.light-mode input:not([type="submit"]):not([type="button"]),
+html body.light-mode textarea,
+html body.light-mode select,
+html body.light-mode .chat-input-bar {
     background: #ffffff !important;
     color: #0f172a !important;
     border: 1px solid rgba(15, 23, 42, 0.18) !important;
     box-shadow: inset 0 2px 4px rgba(15, 23, 42, 0.02) !important;
 }
 
-body.light-mode input::placeholder,
-body.light-mode textarea::placeholder {
+html body.light-mode input::placeholder,
+html body.light-mode textarea::placeholder {
     color: #64748b !important;
 }
 
-body.light-mode input:focus,
-body.light-mode textarea:focus,
-body.light-mode .chat-input-bar:focus-within {
-    border-color: #4f46e5 !important;
-    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15) !important;
+html body.light-mode input:focus,
+html body.light-mode textarea:focus,
+html body.light-mode .chat-input-bar:focus-within {
+    border-color: #2563eb !important;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15) !important;
+}
+
+/* Chat Send Button Plane Icon */
+html body.light-mode .chat-input-bar button i,
+html body.light-mode .chat-input-bar button svg {
+    color: #0f172a !important;
+}
+html body.light-mode .chat-input-bar button:hover i,
+html body.light-mode .chat-input-bar button:hover svg {
+    color: #ffffff !important;
 }
 
 /* Force dark text color for all contents and headings inside any card block */
