@@ -4847,3 +4847,10 @@ body.light-mode #radar-cursor-container .radar-svg {
     filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.15)) !important;
 }
 
+/* Force contact button logos/icons to turn white on hover in Light Mode */
+html body.light-mode .contact-btn:hover i,
+html body.light-mode .contact-btn.contact-btn.contact-btn:hover i,
+html body.light-mode .secure-contact:hover i {
+    color: #ffffff !important;
+}
+
