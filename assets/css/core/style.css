@@ -4963,8 +4963,7 @@ body.light-mode .radar-hover .radar-sweep path:last-child {
 
 /* Force contact button logos/icons to turn white on hover in Light Mode */
 html body.light-mode .contact-btn:hover i,
-html body.light-mode .contact-btn.contact-btn.contact-btn:hover i,
-html body.light-mode .secure-contact:hover i {
+html body.light-mode .contact-btn.contact-btn.contact-btn:hover i {
     color: #ffffff !important;
 }
 
