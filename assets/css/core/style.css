@@ -4832,19 +4832,8 @@ body.light-mode #radar-cursor-container .radar-dot {
     fill: #000000 !important;
 }
 
-body.light-mode #radar-cursor-container svg path[stroke="#F5F5F5"] {
-    stroke: #000000 !important;
-}
-
-body.light-mode #radar-cursor-container svg circle[stroke="#F5F5F5"] {
-    stroke: #000000 !important;
-}
-
-body.light-mode #radar-cursor-container .radar-ring {
-    stroke: #000000 !important;
-    opacity: 0.6 !important;
-}
-
+body.light-mode #radar-cursor-container .radar-svg > path,
+body.light-mode #radar-cursor-container .radar-ring,
 body.light-mode #radar-cursor-container .radar-sweep path:first-child {
     stroke: #000000 !important;
 }
