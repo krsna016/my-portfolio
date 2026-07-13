@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ap-portfolio-v1423-god-mode';
+const CACHE_NAME = 'ap-portfolio-v1424-god-mode';
 
 const PRECACHE_ASSETS = [
     '/',
@@ -22,94 +22,110 @@ const PRECACHE_ASSETS = [
     '/manifest.json'
 ];
 
+// Install: pre-cache assets individually so one failure doesn't break everything
 self.addEventListener('install', event => {
     self.skipWaiting();
     event.waitUntil(
         caches.open(CACHE_NAME).then(cache => {
             console.log('[ServiceWorker] Pre-caching core assets');
-            return cache.addAll(PRECACHE_ASSETS);
+            // Use individual adds so one failure doesn't break the whole install
+            return Promise.allSettled(
+                PRECACHE_ASSETS.map(url =>
+                    cache.add(url).catch(err => {
+                        console.warn('[ServiceWorker] Failed to cache:', url, err);
+                    })
+                )
+            );
         })
     );
 });
 
+// Activate: clear old caches and immediately claim all clients
 self.addEventListener('activate', event => {
     event.waitUntil(
         caches.keys().then(cacheNames => {
             return Promise.all(
-                cacheNames.filter(name => name !== CACHE_NAME)
-                          .map(name => caches.delete(name))
+                cacheNames
+                    .filter(name => name !== CACHE_NAME)
+                    .map(name => {
+                        console.log('[ServiceWorker] Deleting old cache:', name);
+                        return caches.delete(name);
+                    })
             );
         }).then(() => self.clients.claim())
     );
 });
 
-// Smart Caching Strategy
 self.addEventListener('fetch', event => {
     if (event.request.method !== 'GET') return;
     if (event.request.url.includes('/api/')) return;
-    
-    // Bypass Google Fonts to prevent CORS/opaque response loading conflicts
-    if (event.request.url.includes('fonts.googleapis.com') || event.request.url.includes('fonts.gstatic.com')) return;
 
-    // Bypass Admin page completely to prevent caching out-of-sync panels
-    if (event.request.url.includes('/admin') || event.request.url.includes('/admin.html')) return;
+    // Pass through Google Fonts — CORS/opaque response conflicts
+    if (
+        event.request.url.includes('fonts.googleapis.com') ||
+        event.request.url.includes('fonts.gstatic.com') ||
+        event.request.url.includes('cdnjs.cloudflare.com') ||
+        event.request.url.includes('kit.fontawesome.com')
+    ) return;
+
+    // Pass through admin panel
+    if (event.request.url.includes('/admin')) return;
 
     const url = new URL(event.request.url);
     const pathname = url.pathname;
-    const lastSlash = pathname.lastIndexOf('/');
-    const lastDot = pathname.lastIndexOf('.');
-    const hasExtension = lastDot !== -1 && lastDot > lastSlash;
 
-    // Detect if request is for HTML page (including pretty URLs) or dynamic content
-    const isHtmlOrDynamic = event.request.mode === 'navigate' ||
-                            !hasExtension ||
-                            pathname.endsWith('.html') ||
-                            pathname.endsWith('.json') ||
-                            pathname.endsWith('.md') ||
-                            pathname.includes('/blogs/') ||
-                            pathname.includes('_data');
+    const isNavigation = event.request.mode === 'navigate' ||
+                         pathname.endsWith('.html') ||
+                         pathname === '/';
 
-    if (isHtmlOrDynamic) {
-        // Network-First strategy: Fetch fresh content from network, update cache, fallback to cache if offline
+    if (isNavigation) {
+        // NETWORK-FIRST for HTML pages: always try to get fresh HTML
+        // Fall back to cache only if completely offline
         event.respondWith(
-            fetch(event.request, { cache: 'no-cache' }).then(networkResponse => {
-                if (networkResponse && networkResponse.status === 200) {
-                    const responseClone = networkResponse.clone();
-                    caches.open(CACHE_NAME).then(cache => cache.put(event.request, responseClone));
-                }
-                return networkResponse;
-            }).catch(() => {
-                return caches.match(event.request, { ignoreSearch: true }).then(cachedResponse => {
-                    if (cachedResponse) return cachedResponse;
-                    // Fallback for navigation if offline and cache is empty
-                    if (event.request.mode === 'navigate') {
-                        return caches.match('/index.html', { ignoreSearch: true });
+            fetch(event.request, { cache: 'no-cache' })
+                .then(networkResponse => {
+                    if (networkResponse && networkResponse.status === 200) {
+                        const clone = networkResponse.clone();
+                        caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
                     }
-                    return new Response('Offline content unavailable.', { status: 503, headers: { 'Content-Type': 'text/plain' } });
-                });
-            })
+                    return networkResponse;
+                })
+                .catch(() => {
+                    return caches.match(event.request, { ignoreSearch: true })
+                        .then(cached => cached || caches.match('/index.html'));
+                })
         );
     } else {
-        // Stale-While-Revalidate strategy for static assets (CSS, JS, images, fonts)
+        // NETWORK-FIRST for all static assets (CSS, JS, images):
+        // Try network first to always get fresh styles/scripts.
+        // Fall back to cache (with ignoreSearch:true so ?v=XXXX variants still hit cache).
         event.respondWith(
-            caches.open(CACHE_NAME).then(cache => {
-                return cache.match(event.request).then(cachedResponse => {
-                    const fetchPromise = fetch(event.request).then(networkResponse => {
-                        if (networkResponse && networkResponse.status === 200 && (networkResponse.type === 'basic' || networkResponse.type === 'cors')) {
-                            cache.put(event.request, networkResponse.clone());
-                        }
-                        return networkResponse;
-                    }).catch(() => {
-                        // Suppress background fetch errors when offline
-                    });
-                    return cachedResponse || fetchPromise;
-                });
-            })
+            fetch(event.request)
+                .then(networkResponse => {
+                    if (
+                        networkResponse &&
+                        networkResponse.status === 200 &&
+                        (networkResponse.type === 'basic' || networkResponse.type === 'cors')
+                    ) {
+                        const clone = networkResponse.clone();
+                        caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
+                    }
+                    return networkResponse;
+                })
+                .catch(() => {
+                    // Network failed — serve from cache (ignore ?v= query string)
+                    return caches.match(event.request, { ignoreSearch: true })
+                        .then(cached => {
+                            if (cached) return cached;
+                            // Last resort: empty 200 response to avoid ERR_FAILED
+                            return new Response('', { status: 200 });
+                        });
+                })
         );
     }
 });
 
-// Skip waiting message handler
+// Handle skipWaiting messages from the page
 self.addEventListener('message', event => {
     if (event.data && event.data.action === 'skipWaiting') {
         self.skipWaiting();
