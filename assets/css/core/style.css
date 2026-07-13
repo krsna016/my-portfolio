@@ -4575,3 +4575,25 @@ body.light-mode .theme-toggle-svg .sun-rays {
     }
 }
 
+/* Light Mode hover trace dashed border color overrides */
+body.light-mode .glass::after,
+body.light-mode .card::after,
+body.light-mode .exec-card::after,
+body.light-mode .project-card::after,
+body.light-mode .certificate-card::after,
+body.light-mode .cert-card::after,
+body.light-mode .game-card::after,
+body.light-mode .article-card::after,
+body.light-mode .resume-card::after,
+body.light-mode .about-card::after,
+body.light-mode .terminal-card::after,
+body.light-mode .ide-hero-card::after,
+body.light-mode .contact-container::after,
+body.light-mode .modal-content::after,
+body.light-mode .dsa-container::after,
+body.light-mode #ide-hero-sandbox::after,
+body.light-mode #quake-terminal::after,
+body.light-mode .neon-trace {
+    border-color: #000000 !important;
+}
+
