@@ -4946,3 +4946,18 @@ body.light-mode .drawing-controls button {
     border-right: none !important;
 }
 
+/* Force form input fields to not change background on hover in Light Mode */
+html body.light-mode input:not([type="submit"]):not([type="button"]):hover,
+html body.light-mode #name:hover,
+html body.light-mode #email:hover,
+html body.light-mode #message:hover,
+html body.light-mode textarea:hover {
+    background: #ffffff !important;
+}
+
+/* Except for textarea inside chat bar which is transparent */
+html body.light-mode .chat-input-bar textarea:hover,
+html body.light-mode .chat-input-bar #message:hover {
+    background: transparent !important;
+}
+
