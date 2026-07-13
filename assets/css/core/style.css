@@ -4911,3 +4911,38 @@ body.light-mode .game-card:hover svg {
     color: #0f172a !important;
 }
 
+/* Global Light Mode border removal overrides */
+body.light-mode .navbar,
+body.light-mode .glass,
+body.light-mode button:not(.theme-toggle-btn):not(.hamburger),
+body.light-mode .btn,
+body.light-mode .tab-btn,
+body.light-mode .skill-tag,
+body.light-mode .exec-tag,
+body.light-mode .tag,
+body.light-mode .category-list li,
+body.light-mode .cert-link,
+body.light-mode .read-more,
+body.light-mode .play-btn,
+body.light-mode .contact-btn,
+body.light-mode .game-card,
+body.light-mode .certificate-card,
+body.light-mode .blog-card,
+body.light-mode .project-card,
+body.light-mode .about-card,
+body.light-mode .timeline-content,
+body.light-mode .card,
+body.light-mode .resume-card,
+body.light-mode input:not([type="submit"]):not([type="button"]),
+body.light-mode textarea,
+body.light-mode .chat-input-bar,
+body.light-mode .drawing-controls,
+body.light-mode .drawing-controls .btn,
+body.light-mode .drawing-controls button {
+    border: none !important;
+    border-bottom: none !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+}
+
