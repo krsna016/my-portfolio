@@ -4911,15 +4911,15 @@ body.light-mode .drawing-controls button:hover i {
 
 body.light-mode .drawing-controls .btn.active-tool,
 body.light-mode .drawing-controls button.active-tool {
-    background: #000000 !important;
-    color: #ffffff !important;
-    border-color: #000000 !important;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15) !important;
+    background: rgba(15, 23, 42, 0.08) !important;
+    color: #0f172a !important;
+    border-color: transparent !important;
+    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.05) !important;
 }
 
 body.light-mode .drawing-controls .btn.active-tool i,
 body.light-mode .drawing-controls button.active-tool i {
-    color: #ffffff !important;
+    color: #0f172a !important;
 }
 
 /* Light Mode overrides for Premium Radar Cursor */
