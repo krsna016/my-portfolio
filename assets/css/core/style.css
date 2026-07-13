@@ -4201,7 +4201,7 @@ body.light-mode .nav-links a.active {
 
 body.light-mode .glass {
     background: rgba(255, 255, 255, 0.8) !important;
-    border: 1px solid rgba(15, 23, 42, 0.1) !important;
+    border: none !important;
     color: #0f172a !important;
     box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05) !important;
 }
@@ -4249,7 +4249,7 @@ body.light-mode footer p {
 
 body.light-mode .blog-card {
     background: rgba(255, 255, 255, 0.8) !important;
-    border: 1px solid rgba(15, 23, 42, 0.1) !important;
+    border: none !important;
     box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05) !important;
 }
 
@@ -4334,13 +4334,18 @@ body.light-mode .category-list li.active {
 body.light-mode .game-card,
 body.light-mode .certificate-card,
 body.light-mode .blog-card,
+body.light-mode .article-card,
 body.light-mode .project-card,
 body.light-mode .about-card,
 body.light-mode .timeline-content,
 body.light-mode .card,
 body.light-mode .resume-card {
     background: rgba(255, 255, 255, 0.9) !important;
-    border: 1px solid rgba(15, 23, 42, 0.1) !important;
+    border: none !important;
+    border-bottom: none !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
     box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06) !important;
 }
 
@@ -4601,7 +4606,7 @@ body.light-mode .theme-toggle-svg .sun-rays {
     }
 }
 
-/* Light Mode hover trace dashed border color overrides */
+/* Light Mode: Completely disable neon hacker trace border animation on all cards */
 body.light-mode .glass::after,
 body.light-mode .card::after,
 body.light-mode .exec-card::after,
@@ -4619,8 +4624,25 @@ body.light-mode .modal-content::after,
 body.light-mode .dsa-container::after,
 body.light-mode #ide-hero-sandbox::after,
 body.light-mode #quake-terminal::after,
-body.light-mode .neon-trace {
-    border-color: #000000 !important;
+body.light-mode .neon-trace,
+body.light-mode .glass:hover::after,
+body.light-mode .card:hover::after,
+body.light-mode .exec-card:hover::after,
+body.light-mode .project-card:hover::after,
+body.light-mode .certificate-card:hover::after,
+body.light-mode .cert-card:hover::after,
+body.light-mode .game-card:hover::after,
+body.light-mode .article-card:hover::after,
+body.light-mode .resume-card:hover::after,
+body.light-mode .about-card:hover::after,
+body.light-mode .terminal-card:hover::after,
+body.light-mode .ide-hero-card:hover::after,
+body.light-mode .contact-container:hover::after,
+body.light-mode .modal-content:hover::after,
+body.light-mode .dsa-container:hover::after {
+    opacity: 0 !important;
+    border: none !important;
+    display: none !important;
 }
 
 /* Light Mode overrides for title lines, pinned section borders, and timeline rails */
@@ -4796,7 +4818,7 @@ body.light-mode .drawing-controls {
 body.light-mode .drawing-controls .btn,
 body.light-mode .drawing-controls button {
     background: rgba(15, 23, 42, 0.06) !important;
-    border: 1px solid rgba(15, 23, 42, 0.1) !important;
+    border: none !important;
     color: #0f172a !important;
     box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05) !important;
 }
