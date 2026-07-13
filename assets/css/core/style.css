@@ -4895,3 +4895,18 @@ body.light-mode .cyber-coords {
     text-shadow: 0 0 3px rgba(255, 255, 255, 0.8) !important;
 }
 
+/* Overrides for Certificate Card logos/icons in Light Mode */
+body.light-mode .cert-icon-container i,
+body.light-mode .certificate-card i {
+    color: #000000 !important;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.1)) !important;
+    transition: transform 0.3s ease !important;
+}
+
+body.light-mode .certificate-card:hover .cert-icon-container i,
+body.light-mode .certificate-card:hover i {
+    color: #000000 !important; /* Remain black on hover */
+    transform: scale(1.15) !important; /* Grow a little on hover */
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.15)) !important;
+}
+
