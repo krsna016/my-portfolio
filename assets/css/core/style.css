@@ -1733,6 +1733,7 @@ footer {
     text-decoration: none;
     font-size: clamp(0.85rem, 2vw, 1rem);
     font-weight: 600;
+    white-space: nowrap !important;
     transition: color 0.3s;
 }
 
@@ -4759,5 +4760,90 @@ html body.light-mode .tab-btn:hover {
     color: #ffffff !important;
     border-color: #000000 !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Light Mode overrides for Resume drawing toolbar dock and buttons */
+body.light-mode .drawing-controls {
+    background: rgba(255, 255, 255, 0.85) !important;
+    border: 1px solid rgba(15, 23, 42, 0.15) !important;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08) !important;
+}
+
+body.light-mode .drawing-controls .btn,
+body.light-mode .drawing-controls button {
+    background: rgba(15, 23, 42, 0.06) !important;
+    border: 1px solid rgba(15, 23, 42, 0.1) !important;
+    color: #0f172a !important;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05) !important;
+}
+
+body.light-mode .drawing-controls .btn i,
+body.light-mode .drawing-controls button i {
+    color: #0f172a !important;
+}
+
+body.light-mode .drawing-controls .btn:hover,
+body.light-mode .drawing-controls button:hover {
+    background: #2563eb !important;
+    color: #ffffff !important;
+    border-color: #2563eb !important;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25) !important;
+}
+
+body.light-mode .drawing-controls .btn:hover i,
+body.light-mode .drawing-controls button:hover i {
+    color: #ffffff !important;
+}
+
+body.light-mode .drawing-controls .btn.active-tool,
+body.light-mode .drawing-controls button.active-tool {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border-color: #000000 !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15) !important;
+}
+
+body.light-mode .drawing-controls .btn.active-tool i,
+body.light-mode .drawing-controls button.active-tool i {
+    color: #ffffff !important;
+}
+
+/* Light Mode overrides for Premium Radar Cursor */
+body.light-mode #radar-cursor-container .radar-spotlight {
+    background: radial-gradient(circle, rgba(15, 23, 42, 0.08) 0%, transparent 70%) !important;
+}
+
+body.light-mode #radar-cursor-container .radar-caret {
+    background: #000000 !important;
+    box-shadow: 0 0 6px rgba(15, 23, 42, 0.4) !important;
+}
+
+body.light-mode #radar-cursor-container .radar-dot {
+    fill: #000000 !important;
+}
+
+body.light-mode #radar-cursor-container svg path[stroke="#F5F5F5"] {
+    stroke: #000000 !important;
+}
+
+body.light-mode #radar-cursor-container svg circle[stroke="#F5F5F5"] {
+    stroke: #000000 !important;
+}
+
+body.light-mode #radar-cursor-container .radar-ring {
+    stroke: #000000 !important;
+    opacity: 0.6 !important;
+}
+
+body.light-mode #radar-cursor-container .radar-sweep path:first-child {
+    stroke: #000000 !important;
+}
+
+body.light-mode #radar-cursor-container .radar-sweep path:last-child {
+    fill: rgba(0, 0, 0, 0.15) !important;
+}
+
+body.light-mode #radar-cursor-container .radar-svg {
+    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.15)) !important;
 }
 

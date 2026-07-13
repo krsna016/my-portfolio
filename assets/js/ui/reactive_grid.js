@@ -179,14 +179,16 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.stroke(majorGridPath);
         }
         
-        // Draw Cursor Glow (Green)
+        // Draw Cursor Glow (Black in Light Mode, Green in Dark Mode)
         if (mouseX > -500 && mouseY > -500) {
             const cursorRadius = 250;
+            const isLight = document.body.classList.contains('light-mode');
+            const glowColor = isLight ? '0, 0, 0' : '0, 255, 64';
             
             // Minor grid glow for cursor
             let cursorGrad = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, cursorRadius);
-            cursorGrad.addColorStop(0, `rgba(0, 255, 64, 0.22)`);
-            cursorGrad.addColorStop(1, 'rgba(0, 255, 64, 0)');
+            cursorGrad.addColorStop(0, `rgba(${glowColor}, 0.22)`);
+            cursorGrad.addColorStop(1, `rgba(${glowColor}, 0)`);
             
             ctx.strokeStyle = cursorGrad;
             ctx.lineWidth = 1.5;
@@ -194,8 +196,8 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Major grid glow for cursor
             let cursorGradMajor = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, cursorRadius);
-            cursorGradMajor.addColorStop(0, `rgba(0, 255, 64, 0.45)`);
-            cursorGradMajor.addColorStop(1, 'rgba(0, 255, 64, 0)');
+            cursorGradMajor.addColorStop(0, `rgba(${glowColor}, 0.45)`);
+            cursorGradMajor.addColorStop(1, `rgba(${glowColor}, 0)`);
             
             ctx.strokeStyle = cursorGradMajor;
             ctx.lineWidth = 2;
