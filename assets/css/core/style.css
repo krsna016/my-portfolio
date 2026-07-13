@@ -4252,14 +4252,38 @@ body.light-mode footer p {
 body.light-mode footer a,
 body.light-mode footer i,
 body.light-mode footer svg {
-    color: #475569 !important;
-    fill: #475569 !important;
+    color: #000000 !important;
+    fill: #000000 !important;
 }
 
 body.light-mode footer a:hover,
 body.light-mode footer i:hover {
-    color: #0f172a !important;
+    color: #000000 !important;
 }
+
+/* Remove white square background from footer social icon links in light mode */
+body.light-mode .footer-socials a {
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+body.light-mode .footer-socials a i {
+    color: #000000 !important;
+}
+
+body.light-mode .footer-socials a:hover {
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    color: #000000 !important;
+    transform: translateY(-3px);
+}
+
+body.light-mode .footer-socials a:hover i {
+    color: #000000 !important;
+}
+
 
 body.light-mode .blog-card {
     background: rgba(255, 255, 255, 0.8) !important;
