@@ -4976,12 +4976,19 @@ html body.light-mode #back-button {
     border: none !important;
 }
 
-/* Ensure the paper plane send button has no background box or border in Light Mode */
+/* Ensure the paper plane send button has no background box or border in Light Mode, even on hover */
 html body.light-mode .chat-input-bar button.chat-send-btn,
-html body.light-mode .chat-input-bar .chat-send-btn {
+html body.light-mode .chat-input-bar .chat-send-btn,
+html body.light-mode .chat-input-bar button.chat-send-btn:hover,
+html body.light-mode .chat-input-bar .chat-send-btn:hover {
     background: transparent !important;
     background-color: transparent !important;
     border: none !important;
     box-shadow: none !important;
+}
+
+html body.light-mode .chat-input-bar button.chat-send-btn:hover i,
+html body.light-mode .chat-input-bar .chat-send-btn:hover i {
+    color: #0f172a !important;
 }
 
