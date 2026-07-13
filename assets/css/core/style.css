@@ -4606,7 +4606,7 @@ body.light-mode .theme-toggle-svg .sun-rays {
     }
 }
 
-/* Light Mode: Completely disable neon hacker trace border animation on all cards */
+/* Light Mode: Change neon trace border color to black — keep hidden by default, show on hover */
 body.light-mode .glass::after,
 body.light-mode .card::after,
 body.light-mode .exec-card::after,
@@ -4624,7 +4624,14 @@ body.light-mode .modal-content::after,
 body.light-mode .dsa-container::after,
 body.light-mode #ide-hero-sandbox::after,
 body.light-mode #quake-terminal::after,
-body.light-mode .neon-trace,
+body.light-mode .neon-trace {
+    border-color: #000000 !important;
+    border-style: dashed !important;
+    opacity: 0;
+    display: block !important;
+}
+
+/* Activate black trace on hover in Light Mode */
 body.light-mode .glass:hover::after,
 body.light-mode .card:hover::after,
 body.light-mode .exec-card:hover::after,
@@ -4640,9 +4647,9 @@ body.light-mode .ide-hero-card:hover::after,
 body.light-mode .contact-container:hover::after,
 body.light-mode .modal-content:hover::after,
 body.light-mode .dsa-container:hover::after {
-    opacity: 0 !important;
-    border: none !important;
-    display: none !important;
+    border-color: #000000 !important;
+    border-style: dashed !important;
+    opacity: 1 !important;
 }
 
 /* Light Mode overrides for title lines, pinned section borders, and timeline rails */
