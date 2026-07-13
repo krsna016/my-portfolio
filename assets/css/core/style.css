@@ -5218,13 +5218,30 @@ html body.light-mode .read-more.read-more.read-more:hover i,
 html body.light-mode .cert-link.cert-link.cert-link:hover i,
 html body.light-mode #hero-cli-trigger:hover i,
 html body.light-mode #back-button:hover i,
-html body.light-mode .theme-toggle-btn:hover svg,
-html body.light-mode .theme-toggle-btn:hover .sun-body,
 html body.light-mode button.hud-audio-pill.hud-audio-pill.hud-audio-pill:hover i,
 html body.light-mode button.hud-audio-pill.hud-audio-pill.hud-audio-pill:hover svg {
     color: #ffffff !important;
     fill: #ffffff !important;
     stroke: #ffffff !important;
+}
+
+/* Specifically force all parts of the theme toggle SVG to be white on hover (except moon cutter) */
+html body.light-mode .theme-toggle-btn:hover .theme-toggle-svg,
+html body.light-mode .theme-toggle-btn:hover .sun-body {
+    fill: #ffffff !important;
+    stroke: #ffffff !important;
+    color: #ffffff !important;
+}
+
+html body.light-mode .theme-toggle-btn:hover .sun-corona,
+html body.light-mode .theme-toggle-btn:hover .sun-rays line {
+    stroke: #ffffff !important;
+    color: #ffffff !important;
+    /* Do NOT set fill here, otherwise corona becomes a solid circle */
+}
+
+html body.light-mode .theme-toggle-btn:hover .moon-cutter {
+    fill: #000000 !important; /* Keep mask cutter black to avoid breaking mask */
 }
 
 /* Light Mode: Keep text inside timeline cards black on hover (override cyan/white hover states) */
