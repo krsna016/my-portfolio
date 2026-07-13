@@ -204,12 +204,13 @@ function checkCollision() {
 
 // Draw Game
 function drawGame() {
-    // Clear Canvas to let CSS background show through (transparent black)
-    gameCtx.fillStyle = 'rgba(0, 0, 0, 0.85)';
+    // Clear Canvas to let CSS background show through (transparent black or white depending on theme)
+    const isLightMode = document.body.classList.contains('light-mode');
+    gameCtx.fillStyle = isLightMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.85)';
     gameCtx.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
     
     // Draw Cyber Grid
-    gameCtx.strokeStyle = 'rgba(0, 210, 255, 0.05)';
+    gameCtx.strokeStyle = isLightMode ? 'rgba(15, 23, 42, 0.05)' : 'rgba(0, 210, 255, 0.05)';
     gameCtx.lineWidth = 1;
     for (let i = 0; i <= gameCanvas.width; i += GRID_SIZE) {
         gameCtx.beginPath();
@@ -310,9 +311,21 @@ startBtn.addEventListener('click', initGame);
 restartBtn.addEventListener('click', initGame);
 pauseBtn.addEventListener('click', togglePause);
 
-// Initial Draw
-gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
-gameCtx.fillStyle = '#fff';
-gameCtx.font = '20px Outfit';
-gameCtx.textAlign = 'center';
-gameCtx.fillText('Press Start to Play', gameCanvas.width / 2, gameCanvas.height / 2);
+// Initial Draw Function
+function drawInitialScreen() {
+    gameCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+    gameCtx.fillStyle = document.body.classList.contains('light-mode') ? '#0f172a' : '#fff';
+    gameCtx.font = '20px Outfit';
+    gameCtx.textAlign = 'center';
+    gameCtx.fillText('Press Start to Play', gameCanvas.width / 2, gameCanvas.height / 2);
+}
+
+drawInitialScreen();
+
+// Listen for theme changes to redraw initial screen if game hasn't started
+const themeObserver = new MutationObserver(() => {
+    if (!isGameRunning) {
+        drawInitialScreen();
+    }
+});
+themeObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
