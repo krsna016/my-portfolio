@@ -4175,15 +4175,28 @@ body.light-mode .theme-toggle-btn:hover {
 /* Light Mode overrides for grids & elements */
 body.light-mode .navbar {
     background: rgba(248, 250, 252, 0.9) !important;
-    border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
+    border-bottom: none !important;
 }
 
 body.light-mode .nav-links a {
+    background: rgba(15, 23, 42, 0.05) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
     color: #475569 !important;
+    border: none !important;
+    transition: all 0.25s ease !important;
+}
+
+body.light-mode .nav-links a:hover {
+    background: rgba(0, 0, 0, 0.06) !important;
+    color: #0f172a !important;
+    border: none !important;
 }
 
 body.light-mode .nav-links a.active {
-    color: #4f46e5 !important;
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: none !important;
 }
 
 body.light-mode .glass {
