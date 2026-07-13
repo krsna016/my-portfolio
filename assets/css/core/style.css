@@ -5226,3 +5226,13 @@ html body.light-mode button.hud-audio-pill.hud-audio-pill.hud-audio-pill:hover s
     fill: #ffffff !important;
     stroke: #ffffff !important;
 }
+
+/* Light Mode: Keep text inside timeline cards black on hover (override cyan/white hover states) */
+html body.light-mode .timeline-content:hover h3,
+html body.light-mode .timeline-content:hover .exec-company,
+html body.light-mode .timeline-content:hover p,
+html body.light-mode .timeline-item:hover .exec-company {
+    color: #0f172a !important;
+    text-shadow: none !important;
+}
+
