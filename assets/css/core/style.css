@@ -4343,6 +4343,9 @@ html body.light-mode input[type="text"],
 html body.light-mode input[type="email"],
 html body.light-mode input[type="password"],
 html body.light-mode input:not([type="submit"]):not([type="button"]),
+html body.light-mode #name,
+html body.light-mode #email,
+html body.light-mode #message,
 html body.light-mode textarea,
 html body.light-mode select,
 html body.light-mode .chat-input-bar {
@@ -4353,11 +4356,17 @@ html body.light-mode .chat-input-bar {
 }
 
 html body.light-mode input::placeholder,
+html body.light-mode #name::placeholder,
+html body.light-mode #email::placeholder,
+html body.light-mode #message::placeholder,
 html body.light-mode textarea::placeholder {
     color: #64748b !important;
 }
 
 html body.light-mode input:focus,
+html body.light-mode #name:focus,
+html body.light-mode #email:focus,
+html body.light-mode #message:focus,
 html body.light-mode textarea:focus,
 html body.light-mode .chat-input-bar:focus-within {
     border-color: #2563eb !important;
