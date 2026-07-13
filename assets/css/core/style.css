@@ -4288,10 +4288,10 @@ body.light-mode .cert-link:hover,
 body.light-mode .read-more:hover,
 body.light-mode .play-btn:hover,
 body.light-mode .contact-btn:hover {
-    background: #2563eb !important; /* solid premium blue on hover */
+    background: #000000 !important; /* solid black on hover */
     color: #ffffff !important; /* white text on hover */
-    border-color: #2563eb !important;
-    box-shadow: 0 6px 15px rgba(37, 99, 235, 0.25) !important;
+    border-color: #000000 !important;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15) !important;
 }
 
 body.light-mode button:not(.theme-toggle-btn):not(.hamburger):hover i,
@@ -4305,7 +4305,7 @@ body.light-mode a:hover,
 body.light-mode .nav-links a:hover,
 body.light-mode .nav-links a.active,
 body.light-mode .project-links a:hover {
-    color: #2563eb !important;
+    color: #000000 !important;
 }
 
 /* Specific button styles (primary and active states) */
@@ -4681,11 +4681,11 @@ html body.light-mode #hero-cli-trigger:hover,
 html body.light-mode .category-list li.category-list li:hover,
 html body.light-mode .category-list li:hover,
 html body.light-mode #back-button:hover {
-    background: #2563eb !important;
-    background-color: #2563eb !important;
+    background: #000000 !important;
+    background-color: #000000 !important;
     color: #ffffff !important;
-    border-color: #2563eb !important;
-    box-shadow: 0 6px 15px rgba(37, 99, 235, 0.25) !important;
+    border-color: #000000 !important;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15) !important;
 }
 
 html body.light-mode .btn.btn.btn.btn.btn:hover i,
@@ -4728,10 +4728,10 @@ html body.light-mode .certificates-page .certificate-card .cert-link i {
 
 html body.light-mode .certificates-page .cert-link:hover,
 html body.light-mode .certificates-page .certificate-card:hover .cert-link:hover {
-    background: #2563eb !important;
+    background: #000000 !important;
     color: #ffffff !important;
-    border-color: #2563eb !important;
-    box-shadow: 0 6px 15px rgba(37, 99, 235, 0.25) !important;
+    border-color: #000000 !important;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15) !important;
 }
 
 html body.light-mode .certificates-page .cert-link:hover i,
@@ -4784,10 +4784,10 @@ body.light-mode .drawing-controls button i {
 
 body.light-mode .drawing-controls .btn:hover,
 body.light-mode .drawing-controls button:hover {
-    background: #2563eb !important;
+    background: #000000 !important;
     color: #ffffff !important;
-    border-color: #2563eb !important;
-    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25) !important;
+    border-color: #000000 !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15) !important;
 }
 
 body.light-mode .drawing-controls .btn:hover i,
