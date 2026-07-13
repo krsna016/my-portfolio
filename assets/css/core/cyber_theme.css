@@ -1596,7 +1596,8 @@ html body #post-reader .markdown-body pre code {
 }
 
 /* ── IDE Hero Card: Neon Trace Border Override ────────────── */
-#ide-hero-sandbox.ide-hero-card {
+#ide-hero-sandbox.ide-hero-card,
+.resume-card {
     position: relative !important;
     overflow: visible !important;
 }

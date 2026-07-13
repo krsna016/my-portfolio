@@ -1101,6 +1101,7 @@ button.chat-send-btn:hover svg,
     justify-content: center;
     gap: 1rem;
     padding: 1.5rem 3rem;
+    overflow: visible !important;
 }
 
 .skill-tag {
