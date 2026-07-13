@@ -4905,3 +4905,9 @@ body.light-mode .timeline-item:hover i {
     color: #0f172a !important;
 }
 
+/* Force arcade game card icons to remain dark slate on hover in Light Mode */
+body.light-mode .game-card:hover i,
+body.light-mode .game-card:hover svg {
+    color: #0f172a !important;
+}
+
