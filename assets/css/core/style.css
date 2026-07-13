@@ -4301,10 +4301,10 @@ body.light-mode .cert-link:hover,
 body.light-mode .read-more:hover,
 body.light-mode .play-btn:hover,
 body.light-mode .contact-btn:hover {
-    background: #000000 !important; /* solid black on hover */
-    color: #ffffff !important; /* white text on hover */
-    border-color: #000000 !important;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15) !important;
+    background: rgba(15, 23, 42, 0.18) !important;
+    color: #0f172a !important;
+    border: none !important;
+    box-shadow: 0 6px 15px rgba(15, 23, 42, 0.1) !important;
 }
 
 body.light-mode button:not(.theme-toggle-btn):not(.hamburger):hover i,
@@ -4790,15 +4790,15 @@ html body.light-mode .certificates-page .certificate-card .cert-link i {
 
 html body.light-mode .certificates-page .cert-link:hover,
 html body.light-mode .certificates-page .certificate-card:hover .cert-link:hover {
-    background: #000000 !important;
-    color: #ffffff !important;
-    border-color: #000000 !important;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15) !important;
+    background: rgba(15, 23, 42, 0.18) !important;
+    color: #0f172a !important;
+    border: none !important;
+    box-shadow: 0 6px 15px rgba(15, 23, 42, 0.12) !important;
 }
 
 html body.light-mode .certificates-page .cert-link:hover i,
 html body.light-mode .certificates-page .certificate-card:hover .cert-link:hover i {
-    color: #ffffff !important;
+    color: #0f172a !important;
 }
 
 /* Light Mode overrides for the 9 floating tech skill bubbles next to the hero profile */
@@ -5129,3 +5129,52 @@ html body.light-mode button.btn.secondary:hover {
     border-color: transparent !important;
 }
 
+/* Light Mode: Make range slider thumb dark/visible (not white) */
+body.light-mode input[type="range"]::-webkit-slider-thumb {
+    background: #0f172a !important;
+    box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.15) !important;
+}
+body.light-mode input[type="range"]::-moz-range-thumb {
+    background: #0f172a !important;
+    box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.15) !important;
+}
+body.light-mode input[type="range"] {
+    background: rgba(15, 23, 42, 0.15) !important;
+}
+
+/* Light Mode: Make color-picker circle visibly bordered */
+body.light-mode .color-picker-wrapper {
+    border: 2px solid rgba(15, 23, 42, 0.3) !important;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.1) !important;
+}
+
+/* Light Mode: Fix all remaining button hovers to NOT go solid black */
+html body.light-mode .btn.btn.btn.btn.btn:hover,
+html body.light-mode .btn.primary.primary.primary.primary:hover,
+html body.light-mode .btn.secondary.secondary.secondary.secondary:hover,
+html body.light-mode button.btn.btn.btn.btn.btn:hover,
+html body.light-mode a.btn.btn.btn.btn.btn:hover,
+html body.light-mode .cta-buttons .btn.btn.btn.btn:hover,
+html body.light-mode .cta-buttons a.btn.btn.btn:hover,
+html body.light-mode .cta-buttons button.btn.btn.btn:hover,
+html body.light-mode .play-btn.play-btn.play-btn:hover,
+html body.light-mode .read-more.read-more.read-more:hover,
+html body.light-mode .cert-link.cert-link.cert-link:hover,
+html body.light-mode #hero-cli-trigger:hover,
+html body.light-mode #back-button:hover {
+    background: rgba(15, 23, 42, 0.18) !important;
+    background-color: rgba(15, 23, 42, 0.18) !important;
+    color: #0f172a !important;
+    border: none !important;
+    box-shadow: 0 6px 15px rgba(15, 23, 42, 0.1) !important;
+}
+
+html body.light-mode .btn.btn.btn.btn.btn:hover i,
+html body.light-mode .btn.btn.btn.btn.btn:hover svg,
+html body.light-mode .play-btn.play-btn.play-btn:hover i,
+html body.light-mode .read-more.read-more.read-more:hover i,
+html body.light-mode .cert-link.cert-link.cert-link:hover i,
+html body.light-mode #hero-cli-trigger:hover i,
+html body.light-mode #back-button:hover i {
+    color: #0f172a !important;
+}
