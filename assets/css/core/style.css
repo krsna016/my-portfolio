@@ -5086,3 +5086,30 @@ html body.light-mode button:not(.theme-toggle-btn):not(.hamburger) {
     border-right: none !important;
 }
 
+/* Remove border from audio pill circle in Light Mode — all states including hover and enabled */
+body.light-mode .hud-audio-pill,
+body.light-mode .hud-audio-pill:hover,
+body.light-mode .hud-audio-pill.enabled,
+body.light-mode .hud-audio-pill.enabled:hover,
+html body.light-mode button.hud-audio-pill,
+html body.light-mode button.hud-audio-pill:hover,
+html body.light-mode button.hud-audio-pill.hud-audio-pill.hud-audio-pill,
+html body.light-mode button.hud-audio-pill.hud-audio-pill.hud-audio-pill:hover {
+    border: none !important;
+    border-color: transparent !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Remove border from Get in Touch (.btn.primary) and Save Contact (.btn.secondary) CTA buttons */
+body.light-mode a.btn.primary,
+body.light-mode button.btn.secondary,
+body.light-mode .btn.primary,
+body.light-mode .btn.secondary,
+html body.light-mode a.btn.primary,
+html body.light-mode button.btn.secondary,
+html body.light-mode a.btn.primary:hover,
+html body.light-mode button.btn.secondary:hover {
+    border: none !important;
+    border-color: transparent !important;
+}
+
