@@ -5202,6 +5202,7 @@ html body.light-mode .read-more.read-more.read-more:hover,
 html body.light-mode .cert-link.cert-link.cert-link:hover,
 html body.light-mode #hero-cli-trigger:hover,
 html body.light-mode #back-button:hover,
+html body.light-mode #theme-toggle-btn:hover,
 html body.light-mode .theme-toggle-btn:hover,
 html body.light-mode button.hud-audio-pill.hud-audio-pill.hud-audio-pill:hover {
     background: #000000 !important;
@@ -5209,6 +5210,8 @@ html body.light-mode button.hud-audio-pill.hud-audio-pill.hud-audio-pill:hover {
     color: #ffffff !important;
     border-color: #000000 !important;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
 }
 
 html body.light-mode .btn.btn.btn.btn.btn:hover i,
@@ -5226,6 +5229,8 @@ html body.light-mode button.hud-audio-pill.hud-audio-pill.hud-audio-pill:hover s
 }
 
 /* Specifically force all parts of the theme toggle SVG to be white on hover (except moon cutter) */
+html body.light-mode #theme-toggle-btn:hover .theme-toggle-svg,
+html body.light-mode #theme-toggle-btn:hover .sun-body,
 html body.light-mode .theme-toggle-btn:hover .theme-toggle-svg,
 html body.light-mode .theme-toggle-btn:hover .sun-body {
     fill: #ffffff !important;
@@ -5233,6 +5238,8 @@ html body.light-mode .theme-toggle-btn:hover .sun-body {
     color: #ffffff !important;
 }
 
+html body.light-mode #theme-toggle-btn:hover .sun-corona,
+html body.light-mode #theme-toggle-btn:hover .sun-rays line,
 html body.light-mode .theme-toggle-btn:hover .sun-corona,
 html body.light-mode .theme-toggle-btn:hover .sun-rays line {
     stroke: #ffffff !important;
@@ -5240,6 +5247,7 @@ html body.light-mode .theme-toggle-btn:hover .sun-rays line {
     /* Do NOT set fill here, otherwise corona becomes a solid circle */
 }
 
+html body.light-mode #theme-toggle-btn:hover .moon-cutter,
 html body.light-mode .theme-toggle-btn:hover .moon-cutter {
     fill: #000000 !important; /* Keep mask cutter black to avoid breaking mask */
 }
