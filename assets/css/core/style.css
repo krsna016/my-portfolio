@@ -4899,3 +4899,9 @@ body.light-mode .certificate-card:hover i {
     filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.15)) !important;
 }
 
+/* Force timeline icons to remain dark slate on hover in Light Mode */
+body.light-mode .timeline-content:hover i,
+body.light-mode .timeline-item:hover i {
+    color: #0f172a !important;
+}
+
