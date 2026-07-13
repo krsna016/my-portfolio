@@ -86,6 +86,7 @@ h1, h2, h3, h4, h5, h6, .logo, .section-title, .hero-content h1 {
 .glass, .cert-card, .card, .resume-card, .contact-container, .timeline-content, .game-card {
     background: var(--glass-bg) !important;
     border: none !important;
+    outline: none !important; /* Suppress browser default focus ring on click */
     border-radius: 16px !important; /* Modern rounded corners */
     box-shadow: none !important;
     backdrop-filter: none !important;
@@ -898,9 +899,7 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):hover {
 /* ==========================================================================
    MONOCHROME THEME: CARD TITLES (GREY ON HOVER) & BADGES/TAGS
    ========================================================================== */
-/* On hover, company name / titles become sleek grey instead of cyan */
-.exec-card:hover .exec-company,
-.timeline-item:hover .exec-company,
+/* On hover, card titles become sleek grey (company name stays at original color) */
 .timeline-content:hover h3,
 .project-card:hover h3,
 .cert-card:hover h3,
@@ -909,6 +908,13 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):hover {
 .about-card:hover h3 {
     color: #cccccc !important;
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Company name stays bright white on hover — no dimming */
+.exec-card:hover .exec-company,
+.timeline-item:hover .exec-company {
+    color: #ffffff !important;
+    text-shadow: none !important;
 }
 
 /* Above tags (AI/ML INTERN, DATA SCIENCE INTERN) and skill tags use monochrome theme */
