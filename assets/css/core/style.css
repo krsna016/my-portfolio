@@ -5201,7 +5201,9 @@ html body.light-mode .play-btn.play-btn.play-btn:hover,
 html body.light-mode .read-more.read-more.read-more:hover,
 html body.light-mode .cert-link.cert-link.cert-link:hover,
 html body.light-mode #hero-cli-trigger:hover,
-html body.light-mode #back-button:hover {
+html body.light-mode #back-button:hover,
+html body.light-mode .theme-toggle-btn:hover,
+html body.light-mode button.hud-audio-pill.hud-audio-pill.hud-audio-pill:hover {
     background: #000000 !important;
     background-color: #000000 !important;
     color: #ffffff !important;
@@ -5215,6 +5217,12 @@ html body.light-mode .play-btn.play-btn.play-btn:hover i,
 html body.light-mode .read-more.read-more.read-more:hover i,
 html body.light-mode .cert-link.cert-link.cert-link:hover i,
 html body.light-mode #hero-cli-trigger:hover i,
-html body.light-mode #back-button:hover i {
+html body.light-mode #back-button:hover i,
+html body.light-mode .theme-toggle-btn:hover svg,
+html body.light-mode .theme-toggle-btn:hover .sun-body,
+html body.light-mode button.hud-audio-pill.hud-audio-pill.hud-audio-pill:hover i,
+html body.light-mode button.hud-audio-pill.hud-audio-pill.hud-audio-pill:hover svg {
     color: #ffffff !important;
+    fill: #ffffff !important;
+    stroke: #ffffff !important;
 }
