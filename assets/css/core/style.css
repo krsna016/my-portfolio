@@ -4883,3 +4883,15 @@ html body.light-mode .ide-run-btn.ide-run-btn.ide-run-btn:hover i {
     color: #ffffff !important;
 }
 
+/* Light Mode overrides for the cybernetic crosshairs (green horizontal & vertical lines and text) */
+body.light-mode .cyber-crosshair-x,
+body.light-mode .cyber-crosshair-y {
+    background: rgba(0, 0, 0, 0.25) !important;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+body.light-mode .cyber-coords {
+    color: rgba(0, 0, 0, 0.75) !important;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.8) !important;
+}
+
