@@ -4961,3 +4961,27 @@ html body.light-mode .chat-input-bar #message:hover {
     background: transparent !important;
 }
 
+/* Specific tab button border removal overrides */
+html body.light-mode .cta-buttons .btn.btn.btn.btn,
+html body.light-mode .cta-buttons a.btn.btn.btn,
+html body.light-mode .cta-buttons button.btn.btn.btn,
+html body.light-mode .tab-btn.tab-btn.tab-btn,
+html body.light-mode .contact-btn.contact-btn.contact-btn,
+html body.light-mode .submit-btn.submit-btn.submit-btn,
+html body.light-mode .play-btn.play-btn.play-btn,
+html body.light-mode .read-more.read-more.read-more,
+html body.light-mode .cert-link.cert-link.cert-link,
+html body.light-mode #hero-cli-trigger,
+html body.light-mode #back-button {
+    border: none !important;
+}
+
+/* Ensure the paper plane send button has no background box or border in Light Mode */
+html body.light-mode .chat-input-bar button.chat-send-btn,
+html body.light-mode .chat-input-bar .chat-send-btn {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
