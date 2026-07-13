@@ -533,4 +533,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Immediate theme verification (runs synchronously when script loads to prevent flashing)
+(function() {
+    const savedTheme = localStorage.getItem('theme-preference') || 'dark';
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-mode');
+    } else {
+        document.body.classList.remove('light-mode');
+    }
+})();
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Create button container
+    const themeBtn = document.createElement('button');
+    themeBtn.id = 'theme-toggle-btn';
+    themeBtn.className = 'theme-toggle-btn';
+    themeBtn.setAttribute('aria-label', 'Toggle light/dark theme');
+    
+    const savedTheme = localStorage.getItem('theme-preference') || 'dark';
+    themeBtn.innerHTML = savedTheme === 'light' ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+    document.body.appendChild(themeBtn);
+
+    themeBtn.addEventListener('click', () => {
+        const isLight = document.body.classList.toggle('light-mode');
+        localStorage.setItem('theme-preference', isLight ? 'light' : 'dark');
+        themeBtn.innerHTML = isLight ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+        
+        // Trigger grid color update if grid exists
+        if (window.updateGridTheme) {
+            window.updateGridTheme();
+        }
+    });
+});
+
 

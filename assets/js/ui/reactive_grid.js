@@ -21,11 +21,21 @@ document.addEventListener('DOMContentLoaded', () => {
     let width, height;
     
     // Grid specs
+    // Grid specs
     const isSnake = window.location.pathname.includes('snake');
-    const themeColor = isSnake ? '0, 255, 65' : '34, 211, 238';
+    let themeColor = isSnake ? '0, 255, 65' : (document.body.classList.contains('light-mode') ? '108, 99, 255' : '34, 211, 238');
+    let gridStrokeBase = document.body.classList.contains('light-mode') ? '0, 0, 0' : '255, 255, 255';
+    let compositeOperation = document.body.classList.contains('light-mode') ? 'source-over' : 'lighter';
+
+    window.updateGridTheme = function() {
+        const isLight = document.body.classList.contains('light-mode');
+        themeColor = isSnake ? '0, 255, 65' : (isLight ? '108, 99, 255' : '34, 211, 238');
+        gridStrokeBase = isLight ? '0, 0, 0' : '255, 255, 255';
+        compositeOperation = isLight ? 'source-over' : 'lighter';
+    };
+
     const GRID_MINOR = 20;
     const GRID_MAJOR = 100;
-    
     let minorGridPath, majorGridPath;
     
     function buildGridPaths() {
@@ -122,15 +132,15 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Minor lines (small grids) - subtle visibility
         ctx.lineWidth = 1;
-        ctx.strokeStyle = `rgba(255, 255, 255, ${0.07 + currentScrollIntensity})`;
+        ctx.strokeStyle = `rgba(${gridStrokeBase}, ${0.07 + currentScrollIntensity})`;
         ctx.stroke(minorGridPath);
         
         // Major lines (big grids) - subtle visibility
-        ctx.strokeStyle = `rgba(255, 255, 255, ${0.14 + currentScrollIntensity})`;
+        ctx.strokeStyle = `rgba(${gridStrokeBase}, ${0.14 + currentScrollIntensity})`;
         ctx.stroke(majorGridPath);
         
         // Draw Radial Glows
-        ctx.globalCompositeOperation = 'lighter';
+        ctx.globalCompositeOperation = compositeOperation;
         
         for (let [el, data] of activeTargets.entries()) {
             data.intensity += (data.targetIntensity - data.intensity) * 0.08;
