@@ -4597,3 +4597,31 @@ body.light-mode .neon-trace {
     border-color: #000000 !important;
 }
 
+/* Light Mode overrides for title lines, pinned section borders, and timeline rails */
+body.light-mode .section-title::after,
+body.light-mode .pinned-heading .section-title::after {
+    background: #000000 !important;
+    box-shadow: none !important;
+}
+
+body.light-mode .timeline::before,
+body.light-mode #experience .timeline::before {
+    background: #000000 !important;
+    box-shadow: none !important;
+}
+
+body.light-mode .timeline-dot,
+body.light-mode .timeline-dot-connector,
+body.light-mode #experience .timeline-dot-connector {
+    background: #000000 !important;
+    box-shadow: none !important;
+}
+
+body.light-mode #experience .timeline-item:hover .timeline-dot-connector,
+body.light-mode #experience .timeline-item:hover .timeline-dot,
+body.light-mode .timeline-item:hover .timeline-dot-connector,
+body.light-mode .timeline-item:hover .timeline-dot {
+    background: #2563eb !important; /* turns bright blue on hover! */
+    box-shadow: 0 0 10px rgba(37, 99, 235, 0.5) !important;
+}
+
