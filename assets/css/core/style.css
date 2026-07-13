@@ -4322,12 +4322,21 @@ body.light-mode .project-links a:hover {
 }
 
 /* Specific button styles (primary and active states) */
-body.light-mode .btn.primary,
 body.light-mode .tab-btn.active,
 body.light-mode .category-list li.active {
-    background: #000000 !important; /* solid black active states */
+    background: #000000 !important;
     color: #ffffff !important;
     border-color: #000000 !important;
+}
+
+/* Make .btn.primary match .btn.secondary — same glassmorphic pill in light mode */
+body.light-mode .btn.primary,
+body.light-mode a.btn.primary {
+    background: rgba(15, 23, 42, 0.08) !important;
+    background-color: rgba(15, 23, 42, 0.08) !important;
+    color: #0f172a !important;
+    border: none !important;
+    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.05) !important;
 }
 
 /* Cards backdrops in Light Mode */
