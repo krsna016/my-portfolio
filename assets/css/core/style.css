@@ -4312,9 +4312,9 @@ body.light-mode .project-links a:hover {
 body.light-mode .btn.primary,
 body.light-mode .tab-btn.active,
 body.light-mode .category-list li.active {
-    background: #4f46e5 !important; /* Indigo active states */
+    background: #000000 !important; /* solid black active states */
     color: #ffffff !important;
-    border-color: #4f46e5 !important;
+    border-color: #000000 !important;
 }
 
 /* Cards backdrops in Light Mode */
