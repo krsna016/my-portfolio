@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ap-portfolio-v1384-god-mode';
+const CACHE_NAME = 'ap-portfolio-v1385-god-mode';
 
 const PRECACHE_ASSETS = [
     '/',
@@ -79,11 +79,11 @@ self.addEventListener('fetch', event => {
                 }
                 return networkResponse;
             }).catch(() => {
-                return caches.match(event.request).then(cachedResponse => {
+                return caches.match(event.request, { ignoreSearch: true }).then(cachedResponse => {
                     if (cachedResponse) return cachedResponse;
                     // Fallback for navigation if offline and cache is empty
                     if (event.request.mode === 'navigate') {
-                        return caches.match('/index.html');
+                        return caches.match('/index.html', { ignoreSearch: true });
                     }
                     return new Response('Offline content unavailable.', { status: 503, headers: { 'Content-Type': 'text/plain' } });
                 });

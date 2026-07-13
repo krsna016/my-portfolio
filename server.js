@@ -247,7 +247,7 @@ app.use((req, res, next) => {
 
         // Serve from cache if available and not modified on disk
         if (assetCache[filePath] && assetCache[filePath].mtime === mtime) {
-            res.setHeader('Content-Type', ext === '.css' ? 'text/css' : ext === '.js' ? 'application/javascript' : 'text/html');
+            res.setHeader('Content-Type', ext === '.css' ? 'text/css' : ext === '.js' ? 'application/javascript' : 'text/html; charset=utf-8');
             return res.send(assetCache[filePath].code);
         }
 
@@ -271,7 +271,7 @@ app.use((req, res, next) => {
         // Cache the minified version in RAM with mtime
         assetCache[filePath] = { code: minified, mtime: mtime };
         
-        res.setHeader('Content-Type', ext === '.css' ? 'text/css' : ext === '.js' ? 'application/javascript' : 'text/html');
+        res.setHeader('Content-Type', ext === '.css' ? 'text/css' : ext === '.js' ? 'application/javascript' : 'text/html; charset=utf-8');
         return res.send(minified);
     } catch (e) {
         console.error('Minification error:', e);
