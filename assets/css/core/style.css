@@ -5273,3 +5273,27 @@ html body.light-mode .timeline-item:hover .exec-company {
     text-shadow: none !important;
 }
 
+/* Dark Mode: Theme toggle button hover overrides (White background, Black icon) */
+html body:not(.light-mode) #theme-toggle-btn:hover,
+html body:not(.light-mode) .theme-toggle-btn:hover {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4) !important;
+}
+
+html body:not(.light-mode) #theme-toggle-btn:hover .theme-toggle-svg,
+html body:not(.light-mode) .theme-toggle-btn:hover .theme-toggle-svg,
+html body:not(.light-mode) #theme-toggle-btn:hover .sun-body,
+html body:not(.light-mode) .theme-toggle-btn:hover .sun-body {
+    color: #000000 !important;
+    fill: #000000 !important;
+    stroke: #000000 !important;
+}
+
+html body:not(.light-mode) #theme-toggle-btn:hover .sun-corona,
+html body:not(.light-mode) #theme-toggle-btn:hover .sun-rays line,
+html body:not(.light-mode) .theme-toggle-btn:hover .sun-corona,
+html body:not(.light-mode) .theme-toggle-btn:hover .sun-rays line {
+    stroke: #000000 !important;
+    color: #000000 !important;
+}
