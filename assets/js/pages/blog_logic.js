@@ -486,6 +486,22 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     function renderPosts() {
         try {
+            const skeleton = document.getElementById('posts-skeleton');
+            if (skeleton && skeleton.parentNode === postsList) {
+                skeleton.classList.add('skeleton-fade-out');
+                setTimeout(() => {
+                    executeRenderPosts();
+                }, 300);
+            } else {
+                executeRenderPosts();
+            }
+        } catch (error) {
+            console.error('Error rendering posts:', error);
+        }
+    }
+
+    function executeRenderPosts() {
+        try {
             postsList.innerHTML = '';
             currentPage = 1;
             
@@ -517,7 +533,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (!post) return;
 
             const card = document.createElement('div');
-            card.className = 'blog-card glass fade-in-up';
+            card.className = 'blog-card glass content-fade-in fade-in-up';
             card.style.cursor = 'pointer';
             
             let adminHTML = '';
@@ -674,6 +690,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     async function loadPost(post) {
         try {
+            // Show premium skeleton while fetching
+            readerContent.innerHTML = ;
+            showReaderView();
+            window.scrollTo(0, 0);
+
             let markdownContent = null;
             let safeHtml = null;
             let usePrefetched = false;
@@ -708,11 +729,21 @@ document.addEventListener('DOMContentLoaded', async () => {
                 safeHtml = DOMPurify.sanitize(rawHtml);
             }
             
-            readerContent.innerHTML = safeHtml;
-            showReaderView();
-            window.scrollTo(0, 0);
+            
+            const skeleton = readerContent.querySelector('.skeleton-container');
+            if (skeleton) {
+                skeleton.classList.add('skeleton-fade-out');
+                setTimeout(() => {
+                    readerContent.innerHTML = safeHtml;
+                    readerContent.classList.add('content-fade-in');
+                    setTimeout(() => readerContent.classList.remove('content-fade-in'), 350);
+                }, 300);
+            } else {
+                readerContent.innerHTML = safeHtml;
+            }
 
             // Update URL hash without page reload
+
             if (window.location.hash !== `#${post.id}`) {
                 history.pushState(null, null, `#${post.id}`);
             }
