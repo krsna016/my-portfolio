@@ -3554,7 +3554,7 @@ body.reader-open .cyber-crosshair-y {
 /* Floating Toggle Button for Top Bar */
 #toggle-bar-btn {
     position: fixed !important;
-    top: 1.5rem !important;
+    top: 5.5rem !important; /* Positioned below the theme toggle button */
     right: 1.5rem !important;
     bottom: auto !important;
     width: 45px !important;
