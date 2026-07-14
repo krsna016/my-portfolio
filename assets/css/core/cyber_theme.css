@@ -317,8 +317,9 @@ input[type="range"]::-webkit-slider-thumb {
     align-items: center !important;
     justify-content: center !important;
     font-size: 1.15rem !important;
-    background: rgba(255, 255, 255, 0.03) !important;
+    background: rgba(18, 24, 21, 0.75) !important;
     border: none !important;
+    outline: none !important;
     color: #aaaaaa !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
     cursor: pointer !important;
@@ -352,9 +353,11 @@ input[type="range"]::-webkit-slider-thumb {
 
 /* Turned ON: clean white look */
 .hud-audio-pill.enabled {
-    background: rgba(255, 255, 255, 0.15) !important;
+    background: rgba(18, 24, 21, 0.75) !important;
     color: #ffffff !important;
-    box-shadow: none !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
 }
 
 .hud-audio-pill.enabled i,
