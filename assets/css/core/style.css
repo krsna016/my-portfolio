@@ -3127,18 +3127,38 @@ body.focus-mode-active .interactive-bg {
 /* ── Headings ─────────────────────────────────────────────── */
 
 /* H1 — Article title, pure white, large */
-#reader-content.markdown-body h1 {
-    color: var(--theme-h1-text, #00ff66) !important; /* Dynamically themed H1 text */
-    font-size: calc(2.4rem * var(--blog-scale, 1));
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    margin: 0 0 2rem 0;
-    padding: 1.5rem 2rem !important;
-    background: var(--theme-h1-bg, #161622) !important; /* Dynamically themed H1 background */
-    border: none !important;
-    border-radius: 12px;
-    box-shadow: var(--theme-h1-shadow, 0 10px 25px rgba(0, 0, 0, 0.4)) !important;
-    transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease !important;
+/* ---- Heading rectangle for light themes (Frost/Frosty) ---- */
+/* We use a ::before pseudo‑element to draw a subtle rectangle and then place the heading text beneath it. */
+#post-reader.reader-frost .markdown-body h1,
+#post-reader.reader-frost .markdown-body h2,
+#post-reader.reader-frost .markdown-body h3,
+#post-reader.reader-frosty .markdown-body h1,
+#post-reader.reader-frosty .markdown-body h2,
+#post-reader.reader-frosty .markdown-body h3 {
+    background: transparent !important; /* remove existing background */
+    padding-top: 0.6rem !important;    /* keep some space above text */
+    margin-top: 0.8rem !important;    /* space from previous element */
+}
+
+#post-reader.reader-frost .markdown-body h1::before,
+#post-reader.reader-frost .markdown-body h2::before,
+#post-reader.reader-frost .markdown-body h3::before,
+#post-reader.reader-frosty .markdown-body h1::before,
+#post-reader.reader-frosty .markdown-body h2::before,
+#post-reader.reader-frosty .markdown-body h3::before {
+    content: '';
+    display: block;
+    height: 2.4rem;                     /* rectangle height */
+    background: rgba(255,255,255,0.12); /* subtle light card */
+    border-radius: 10px;
+    margin-bottom: 0.4rem;              /* space between rect and text */
+}
+
+/* Ensure dark themes keep their original styled headings */
+#post-reader.reader-dark .markdown-body h1,
+#post-reader.reader-dark .markdown-body h2,
+#post-reader.reader-dark .markdown-body h3 {
+    /* keep existing dark‑mode background/shadow */
 }
 
 /* H2 — Section titles, white */
@@ -3156,7 +3176,20 @@ body.focus-mode-active .interactive-bg {
 }
 
 /* H3 — Sub-sections, light grey */
-#reader-content.markdown-body h3 {
+#post-reader.reader-frost .markdown-body h1,
+#post-reader.reader-frost .markdown-body h2,
+#post-reader.reader-frost .markdown-body h3,
+#post-reader.reader-frosty .markdown-body h1,
+#post-reader.reader-frosty .markdown-body h2,
+#post-reader.reader-frosty .markdown-body h3 {
+    background: rgba(255,255,255,0.12) !important; /* subtle card */
+    border-radius: 8px !important;
+    padding: 0.6rem 1rem !important;
+    margin-top: 0.8rem !important;
+    margin-bottom: 0.4rem !important;
+    color: var(--theme-h1-text, #2c3e50) !important;
+}
+
     color: var(--theme-h3-text, #b0b8c1) !important; /* Dynamically themed H3 text */
     font-size: calc(1.3rem * var(--blog-scale, 1));
     font-weight: 600;
