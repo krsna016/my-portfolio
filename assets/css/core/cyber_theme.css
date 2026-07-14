@@ -801,7 +801,7 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger) {
 #hero-cli-trigger:hover,
 button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):hover {
     background: rgba(255, 255, 255, 0.25) !important;
-    border: 1px solid transparent !important;
+    border-color: transparent !important;
     outline: none !important;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
     color: #FFFFFF !important;

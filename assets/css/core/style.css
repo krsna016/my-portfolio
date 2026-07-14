@@ -1208,7 +1208,6 @@ button.chat-send-btn:hover svg,
     background: var(--primary-color);
     border-color: var(--primary-color);
     color: #000;
-    transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
 }
 
