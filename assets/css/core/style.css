@@ -924,10 +924,23 @@ button.chat-send-btn:hover svg,
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
     border-radius: 2px;
     z-index: 0;
-    /* Blend the start and ending */
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
-    mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
 }
+
+/* Big circle dot at the bottom of the timeline */
+.timeline::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 16px;
+    background: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    z-index: 1;
+}
+
 
 @keyframes fiber-pulse {
     0% {
@@ -4713,7 +4726,9 @@ body.light-mode .pinned-heading .section-title::after {
 }
 
 body.light-mode .timeline::before,
-body.light-mode #experience .timeline::before {
+body.light-mode #experience .timeline::before,
+body.light-mode .timeline::after,
+body.light-mode #experience .timeline::after {
     background: #000000 !important;
     box-shadow: none !important;
 }
