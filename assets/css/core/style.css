@@ -4479,12 +4479,12 @@ html body.light-mode .chat-input-bar button:hover svg {
 
 /* Force dark text color for all contents and headings inside any card block */
 body.light-mode .game-card h1, body.light-mode .game-card h2, body.light-mode .game-card h3, body.light-mode .game-card h4, body.light-mode .game-card p, body.light-mode .game-card span, body.light-mode .game-card i,
-body.light-mode .certificate-card h1, body.light-mode .certificate-card h2, body.light-mode .certificate-card h3, body.light-mode .certificate-card p, body.light-mode .certificate-card span,
-body.light-mode .project-card h1, body.light-mode .project-card h2, body.light-mode .project-card h3, body.light-mode .project-card p, body.light-mode .project-card span,
-body.light-mode .about-card h1, body.light-mode .about-card h2, body.light-mode .about-card h3, body.light-mode .about-card p, body.light-mode .about-card span,
-body.light-mode .timeline-content h1, body.light-mode .timeline-content h2, body.light-mode .timeline-content h3, body.light-mode .timeline-content h4, body.light-mode .timeline-content p, body.light-mode .timeline-content span,
-body.light-mode .resume-card h1, body.light-mode .resume-card h2, body.light-mode .resume-card h3, body.light-mode .resume-card p, body.light-mode .resume-card span,
-body.light-mode .card h1, body.light-mode .card h2, body.light-mode .card h3, body.light-mode .card p, body.light-mode .card span {
+body.light-mode .certificate-card h1, body.light-mode .certificate-card h2, body.light-mode .certificate-card h3, body.light-mode .certificate-card p, body.light-mode .certificate-card span, body.light-mode .certificate-card i,
+body.light-mode .project-card h1, body.light-mode .project-card h2, body.light-mode .project-card h3, body.light-mode .project-card p, body.light-mode .project-card span, body.light-mode .project-card i,
+body.light-mode .about-card h1, body.light-mode .about-card h2, body.light-mode .about-card h3, body.light-mode .about-card p, body.light-mode .about-card span, body.light-mode .about-card i,
+body.light-mode .timeline-content h1, body.light-mode .timeline-content h2, body.light-mode .timeline-content h3, body.light-mode .timeline-content h4, body.light-mode .timeline-content p, body.light-mode .timeline-content span, body.light-mode .timeline-content i,
+body.light-mode .resume-card h1, body.light-mode .resume-card h2, body.light-mode .resume-card h3, body.light-mode .resume-card p, body.light-mode .resume-card span, body.light-mode .resume-card i,
+body.light-mode .card h1, body.light-mode .card h2, body.light-mode .card h3, body.light-mode .card p, body.light-mode .card span, body.light-mode .card i {
     color: #0f172a !important;
 }
 
@@ -4872,8 +4872,8 @@ body.light-mode .idea-bubble i {
 }
 
 body.light-mode .idea-bubble:hover i {
-    color: #2563eb !important; /* turns bright blue on hover! */
-    filter: drop-shadow(0 0 10px rgba(37, 99, 235, 0.4)) !important;
+    color: #64748b !important; /* turns little grey on hover */
+    filter: drop-shadow(0 0 10px rgba(100, 116, 139, 0.4)) !important;
 }
 
 /* Specific Light Mode overrides: category pills and tabs hover to solid black with white text */
