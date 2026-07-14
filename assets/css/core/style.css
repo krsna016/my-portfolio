@@ -3112,9 +3112,25 @@ body.focus-mode-active .interactive-bg {
 /* ── Headings ─────────────────────────────────────────────── */
 
 /* H1 — Article title, pure white, large */
-/* ---- Heading rectangle for light themes (Frost/Frosty) ----5rem * var(--blog-scale, 1));
+#reader-content.markdown-body h1 {
+    color: var(--theme-h1-text, #ffffff) !important;
+    font-size: calc(2.2rem * var(--blog-scale, 1));
+    font-weight: 700;
+    margin: 1.5rem 0 0 0 !important;
+    padding: 0.8rem 1.2rem !important;
+    background: var(--theme-h1-bg, #1a1a24) !important;
+    border-radius: 8px !important;
+    box-shadow: var(--theme-h1-shadow, 0 4px 15px rgba(0, 0, 0, 0.4)) !important;
+    border: none !important;
+    transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+/* H2 — Section headers, bright blue */
+#reader-content.markdown-body h2 {
+    color: var(--theme-h2-text, #00d4ff) !important;
+    font-size: calc(1.75rem * var(--blog-scale, 1));
     font-weight: 600;
-    margin: 1rem 0 0.2rem 0;
+    margin: 1.5rem 0 0 0 !important;
     padding: 0.8rem 1.2rem !important;
     background: var(--theme-h2-bg, rgba(255,255,255,0.12)) !important; /* Card background */
     border: none !important;
@@ -3124,41 +3140,35 @@ body.focus-mode-active .interactive-bg {
 }
 
 /* H3 — Sub-sections, light grey */
-
-
-    color: var(--theme-h3-text, #b0b8c1) !important; /* Dynamically themed H3 text */
+#reader-content.markdown-body h3 {
+    color: var(--theme-h3-text, #b0b8c1) !important;
     font-size: calc(1.3rem * var(--blog-scale, 1));
     font-weight: 600;
-    margin: 1rem 0 0.2rem 0;
+    margin: 1.2rem 0 0 0 !important;
     letter-spacing: 0.2px;
     padding: 0.8rem 1.2rem !important;
-    background: var(--theme-h3-bg, #181826) !important; /* Dynamically themed H3 background */
+    background: var(--theme-h3-bg, #181826) !important;
     border: none !important;
-    border-radius: 8px;
+    border-radius: 8px !important;
     box-shadow: var(--theme-h3-shadow, 0 4px 10px rgba(0, 0, 0, 0.25)) !important;
     transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease !important;
 }
 
 /* H4 — "Important" markers, red */
 #reader-content.markdown-body h4 {
-    color: var(--theme-h4-text, #ff4757) !important; /* Dynamically themed H4 text */
+    color: var(--theme-h4-text, #ff4757) !important;
     font-size: calc(1.1rem * var(--blog-scale, 1));
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin: 1rem 0 0.2rem 0;
+    margin: 1rem 0 0 0 !important;
     padding: 0.8rem 1.2rem !important;
-}
-
-/* Re-open heading block */
-#reader-content.markdown-body h4 {
-    background: rgba(255, 71, 87, 0.05) !important; /* Subtle red matte background */
+    background: rgba(255, 71, 87, 0.05) !important;
     border: none !important;
     border-left: 4px solid var(--theme-h4-text, #ff4757) !important;
-    border-radius: 0 8px 8px 0;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-    transition: color 0.3s ease, border-color 0.3s ease !important;
+    border-radius: 0 8px 8px 0 !important;
 }
+
 
 /* H5 — Notes, muted grey */
 #reader-content.markdown-body h5 {
