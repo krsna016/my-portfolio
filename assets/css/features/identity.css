@@ -325,6 +325,9 @@ body.light-mode .id-cursor {
     color: #0f172a !important;
     text-shadow: 0 0 10px rgba(15, 23, 42, 0.2) !important;
 }
+body.light-mode .id-bracket {
+    color: transparent !important;
+}
 body.light-mode .hero-identity-wrapper.hovering .id-bracket {
     color: rgba(15, 23, 42, 0.8) !important;
 }
