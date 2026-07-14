@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <h3 class="exec-company">${escapeHTML(exp.company)}</h3>
                             </div>
                         </div>
-                        <span class="exec-year"><i class="fa-regular fa-calendar" style="color:#00d2ff;"></i> ${escapeHTML(exp.year)}</span>
+                        <span class="exec-year"><i class="fa-regular fa-calendar"></i> ${escapeHTML(exp.year)}</span>
                     </div>
                     <p class="exec-desc">${escapeHTML(exp.desc)}</p>
                     <div class="exec-tags">

@@ -4735,7 +4735,9 @@ body.light-mode #experience .timeline::after {
 
 body.light-mode .timeline-dot,
 body.light-mode .timeline-dot-connector,
-body.light-mode #experience .timeline-dot-connector {
+body.light-mode #experience .timeline-dot-connector,
+body.light-mode .timeline-dot-connector::after,
+body.light-mode #experience .timeline-dot-connector::after {
     background: #000000 !important;
     box-shadow: none !important;
 }

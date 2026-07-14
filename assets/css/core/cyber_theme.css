@@ -887,7 +887,7 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):hover {
 
 /* Horizontal trace connecting dot to card in luminous white (never turns red) */
 .timeline-dot-connector::after {
-    background: linear-gradient(90deg, #FFFFFF, rgba(200, 200, 200, 0.15)) !important;
+    background: #FFFFFF !important;
     height: 1.5px !important;
     box-shadow: 0 0 6px rgba(255, 255, 255, 0.4) !important;
     transition: all 0.3s ease !important;
