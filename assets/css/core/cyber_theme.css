@@ -1538,7 +1538,7 @@ html body.light-mode .read-more.read-more.read-more:hover {
 .read-more:hover,
 html body .read-more.read-more.read-more:hover,
 html body.light-mode .read-more.read-more.read-more:hover {
-    color: var(--secondary-color) !important;
+    color: #888888 !important;
 }
 
 .read-more i,
