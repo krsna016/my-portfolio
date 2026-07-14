@@ -3114,7 +3114,7 @@ body.focus-mode-active .interactive-bg {
 /* H1 — Article title, pure white, large */
 /* ---- Heading rectangle for light themes (Frost/Frosty) ----5rem * var(--blog-scale, 1));
     font-weight: 600;
-    margin: 1rem 0 0.4rem 0;
+    margin: 1rem 0 0.2rem 0;
     padding: 0.8rem 1.2rem !important;
     background: var(--theme-h2-bg, rgba(255,255,255,0.12)) !important; /* Card background */
     border: none !important;
@@ -3129,7 +3129,7 @@ body.focus-mode-active .interactive-bg {
     color: var(--theme-h3-text, #b0b8c1) !important; /* Dynamically themed H3 text */
     font-size: calc(1.3rem * var(--blog-scale, 1));
     font-weight: 600;
-    margin: 1rem 0 0.4rem 0;
+    margin: 1rem 0 0.2rem 0;
     letter-spacing: 0.2px;
     padding: 0.8rem 1.2rem !important;
     background: var(--theme-h3-bg, #181826) !important; /* Dynamically themed H3 background */
@@ -3146,7 +3146,7 @@ body.focus-mode-active .interactive-bg {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin: 1rem 0 0.3rem 0;
+    margin: 1rem 0 0.2rem 0;
     padding: 0.8rem 1.2rem !important;
     /* Dotted separator line matching heading width */
     position: relative;
@@ -3159,7 +3159,7 @@ body.focus-mode-active .interactive-bg {
     content: "";
     display: block;
     border-bottom: 2px dotted var(--theme-h1-text, #fff);
-    margin-top: 0.4rem;
+    margin-top: 0.2rem;
     /* Ensure it aligns with heading padding */
     margin-left: 0.8rem;
     margin-right: 0.8rem;
@@ -3536,6 +3536,27 @@ body.reader-open .cyber-crosshair-y {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
     width: 100% !important;
     box-sizing: border-box !important;
+}
+
+/* Hidden state for top bar */
+#post-reader .post-reader-top-bar.hidden {
+    background: transparent !important;
+    box-shadow: none !important;
+    justify-content: flex-end !important;
+    padding: 0 !important;
+    margin-bottom: 0 !important;
+    pointer-events: none !important;
+}
+#post-reader .post-reader-top-bar.hidden > *:not(#toggle-bar-btn) {
+    display: none !important;
+}
+#post-reader .post-reader-top-bar.hidden #toggle-bar-btn {
+    pointer-events: auto !important;
+    background: #121218 !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    padding: 6px 14px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
 }
 
 /* Compact overrides for back button and size controls */
