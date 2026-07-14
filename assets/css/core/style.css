@@ -3139,6 +3139,16 @@ body.focus-mode-active .interactive-bg {
     transition: background 0.3s ease, color 0.3s ease !important;
 }
 
+/* Little dot before important headings (H1, H2) */
+#reader-content.markdown-body h1::before,
+#reader-content.markdown-body h2::before {
+    content: "•";
+    margin-right: 12px;
+    opacity: 0.6;
+    color: inherit;
+    display: inline-block;
+}
+
 /* H3 — Sub-sections, light grey */
 #reader-content.markdown-body h3 {
     color: var(--theme-h3-text, #b0b8c1) !important;
