@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ap-portfolio-v1485-god-mode';
+const CACHE_NAME = 'ap-portfolio-v1484-god-mode';
 
 const PRECACHE_ASSETS = [
     '/',
