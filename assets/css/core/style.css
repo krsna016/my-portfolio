@@ -5165,7 +5165,7 @@ html body.light-mode button:not(.theme-toggle-btn):not(.hamburger) {
     border-right: none !important;
 }
 
-/* Remove border from audio pill circle in Light Mode — all states including hover and enabled */
+/* Standardize audio pill and theme toggle button in Light Mode */
 body.light-mode .hud-audio-pill,
 body.light-mode .hud-audio-pill:hover,
 body.light-mode .hud-audio-pill.enabled,
@@ -5174,9 +5174,10 @@ html body.light-mode button.hud-audio-pill,
 html body.light-mode button.hud-audio-pill:hover,
 html body.light-mode button.hud-audio-pill.hud-audio-pill.hud-audio-pill,
 html body.light-mode button.hud-audio-pill.hud-audio-pill.hud-audio-pill:hover {
-    border: none !important;
-    border-color: transparent !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important;
+    background: rgba(255, 255, 255, 0.7) !important;
+    border: 1px solid rgba(15, 23, 42, 0.15) !important;
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.08) !important;
+    color: #000000 !important;
 }
 
 /* Remove border from Get in Touch (.btn.primary) and Save Contact (.btn.secondary) CTA buttons */
@@ -5309,12 +5310,13 @@ html body:not(.light-mode) .theme-toggle-btn:hover .sun-rays line {
     color: #000000 !important;
 }
 
-/* Use the requested indigo background without glow for enabled audio pill in Light Mode */
+/* Use consistent background for enabled audio pill in Light Mode */
 html body.light-mode button.hud-audio-pill.enabled,
 html body.light-mode button.hud-audio-pill.enabled.hud-audio-pill.hud-audio-pill {
-    background: rgba(78, 71, 221, 0.15) !important;
+    background: rgba(255, 255, 255, 0.7) !important;
     color: #000000 !important;
-    box-shadow: none !important;
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.08) !important;
+    border: 1px solid rgba(46, 213, 115, 0.8) !important; /* Green border to show it is enabled */
 }
 html body.light-mode button.hud-audio-pill.enabled i,
 html body.light-mode button.hud-audio-pill.enabled svg,
@@ -5323,12 +5325,12 @@ html body.light-mode button.hud-audio-pill.enabled.hud-audio-pill.hud-audio-pill
     color: #000000 !important;
 }
 
-/* On hover, make background black and logo white */
+/* On hover, make background black and logo white (consistent with toggle) */
 html body.light-mode button.hud-audio-pill.enabled:hover,
 html body.light-mode button.hud-audio-pill.enabled.hud-audio-pill.hud-audio-pill:hover {
     background: #000000 !important;
     color: #ffffff !important;
-    box-shadow: none !important;
+    border-color: #000000 !important;
 }
 html body.light-mode button.hud-audio-pill.enabled:hover i,
 html body.light-mode button.hud-audio-pill.enabled:hover svg,

@@ -405,7 +405,7 @@
     left: 24px;
     background: rgba(22, 22, 26, 0.5) !important;
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    color: #ffffff;
+    color: #ffffff !important;
     padding: 7px 16px;
     border-radius: 50px;
     font-size: clamp(0.75rem, 1.5vw, 0.85rem);
