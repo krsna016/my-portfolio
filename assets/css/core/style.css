@@ -5302,18 +5302,30 @@ html body:not(.light-mode) .theme-toggle-btn:hover .sun-rays line {
     color: #000000 !important;
 }
 
-/* Use the requested indigo background but black text/icon for enabled audio pill in Light Mode for visibility */
+/* Use the requested indigo background without glow for enabled audio pill in Light Mode */
 html body.light-mode button.hud-audio-pill.enabled,
-html body.light-mode button.hud-audio-pill.enabled.hud-audio-pill.hud-audio-pill,
-html body.light-mode button.hud-audio-pill.enabled:hover,
-html body.light-mode button.hud-audio-pill.enabled.hud-audio-pill.hud-audio-pill:hover {
+html body.light-mode button.hud-audio-pill.enabled.hud-audio-pill.hud-audio-pill {
     background: rgba(78, 71, 221, 0.15) !important;
     color: #000000 !important;
-    box-shadow: 0 0 10px rgba(78, 71, 221, 0.3) !important;
+    box-shadow: none !important;
 }
 html body.light-mode button.hud-audio-pill.enabled i,
 html body.light-mode button.hud-audio-pill.enabled svg,
 html body.light-mode button.hud-audio-pill.enabled.hud-audio-pill.hud-audio-pill i,
 html body.light-mode button.hud-audio-pill.enabled.hud-audio-pill.hud-audio-pill svg {
     color: #000000 !important;
+}
+
+/* On hover, make background black and logo white */
+html body.light-mode button.hud-audio-pill.enabled:hover,
+html body.light-mode button.hud-audio-pill.enabled.hud-audio-pill.hud-audio-pill:hover {
+    background: #000000 !important;
+    color: #ffffff !important;
+    box-shadow: none !important;
+}
+html body.light-mode button.hud-audio-pill.enabled:hover i,
+html body.light-mode button.hud-audio-pill.enabled:hover svg,
+html body.light-mode button.hud-audio-pill.enabled.hud-audio-pill.hud-audio-pill:hover i,
+html body.light-mode button.hud-audio-pill.enabled.hud-audio-pill.hud-audio-pill:hover svg {
+    color: #ffffff !important;
 }
