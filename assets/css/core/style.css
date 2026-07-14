@@ -3172,20 +3172,29 @@ body.focus-mode-active .interactive-bg {
 
 /* H5 — Notes, muted grey */
 #reader-content.markdown-body h5 {
-    color: #888;
+    color: var(--theme-h5-text, #aaaaaa) !important;
     font-size: calc(1rem * var(--blog-scale, 1));
     font-weight: 500;
-    margin: 1.5rem 0 0.5rem 0;
+    margin: 1.2rem 0 0 0 !important;
+    padding: 0.6rem 1rem !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: none !important;
+    border-radius: 6px !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
 }
 
 /* H6 — Caption-level, dimmer grey */
 #reader-content.markdown-body h6 {
-    color: #666;
+    color: var(--theme-h6-text, #888888) !important;
     font-size: calc(0.9rem * var(--blog-scale, 1));
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.8px;
-    margin: 1.2rem 0 0.4rem 0;
+    margin: 1rem 0 0 0 !important;
+    padding: 0.5rem 0.8rem !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: none !important;
+    border-radius: 6px !important;
 }
 
 /* ── Body text elements ───────────────────────────────────── */
