@@ -3561,25 +3561,24 @@ body.reader-open .cyber-crosshair-y {
     top: 5.5rem !important; /* Positioned below the theme toggle button */
     right: 1.5rem !important;
     bottom: auto !important;
-    width: 45px !important;
-    height: 45px !important;
-    border-radius: 50% !important;
-    background: #121218 !important;
-    color: #fff !important;
+    background: transparent !important;
+    color: var(--theme-text, #fff) !important;
     border: none !important;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+    box-shadow: none !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     font-size: 1.5rem !important;
     cursor: pointer !important;
     z-index: 9999 !important;
-    transition: all 0.3s ease !important;
+    transition: transform 0.3s ease, color 0.3s ease !important;
     pointer-events: auto !important;
+    padding: 10px !important; /* Give it some click area */
 }
 #toggle-bar-btn:hover {
-    background: #1a1a24 !important;
-    transform: scale(1.05) !important;
+    background: transparent !important;
+    transform: scale(1.1) !important;
+    color: var(--theme-accent, #ff4757) !important;
 }
 
 /* Compact overrides for back button and size controls */
