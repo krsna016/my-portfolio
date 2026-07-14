@@ -3147,13 +3147,12 @@ body.focus-mode-active .interactive-bg {
     font-size: calc(1.65rem * var(--blog-scale, 1));
     font-weight: 600;
     margin: 2.5rem 0 1rem 0;
-    padding: 0 0 0 0.8rem !important;
-    background: transparent !important; /* No card background */
+    padding: 0.8rem 1.2rem !important;
+    background: var(--theme-h2-bg, rgba(255,255,255,0.12)) !important; /* Card background */
     border: none !important;
-    border-left: 3px solid var(--theme-h2-border, #00ff66) !important; /* Dynamically themed left accent */
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    transition: color 0.3s ease, border-color 0.3s ease !important;
+    border-radius: 8px !important;
+    box-shadow: var(--theme-h2-shadow, 0 2px 8px rgba(0,0,0,0.2)) !important;
+    transition: background 0.3s ease, color 0.3s ease !important;
 }
 
 /* H3 — Sub-sections, light grey */
@@ -3714,7 +3713,10 @@ body.reader-open .cyber-crosshair-y {
     --theme-link-hover-color: #1d4ed8;
 }
 
-#post-reader.reader-frost {
+#post-reader.reader-frost, #post-reader.reader-frosty {
+    --theme-h1-bg: rgba(255,255,255,0.12) !important;
+    --theme-h2-bg: rgba(255,255,255,0.12) !important;
+    --theme-h3-bg: rgba(255,255,255,0.12) !important;
     --theme-bg: #f4f7f6;
     --theme-text: #2c3e50;
     --theme-hdr-bg: #ebf0f2;
@@ -3744,13 +3746,14 @@ body.reader-open .cyber-crosshair-y {
     --theme-hr-line: rgba(44, 62, 80, 0.1);
     --theme-inline-code-bg: transparent;
     --theme-inline-code-text: #2980b9;
-    --theme-h1-bg: transparent;
-    --theme-h1-text: #2c3e50;
-    --theme-h1-shadow: none;
-    --theme-h2-bg: transparent;
-    --theme-h2-text: #2c3e50;
-    --theme-h2-border: #3498db;
-    --theme-h3-bg: transparent;
+    /* The following theme variables were overridden above to provide the heading‑card background */
+    /* --theme-h1-bg: transparent; */
+    /* --theme-h1-text: #2c3e50; */
+    /* --theme-h1-shadow: none; */
+    /* --theme-h2-bg: transparent; */
+    /* --theme-h2-text: #2c3e50; */
+    /* --theme-h2-border: #3498db; */
+    /* --theme-h3-bg: transparent; */
     --theme-h3-text: #576574;
     --theme-h3-shadow: none;
     --theme-h4-text: #9b59b6;
