@@ -1,62 +1,62 @@
 const skillsData = [
     {
         "name": "SQL",
-        "desc": "Managing complex databases."
+        "desc": "Querying and managing complex databases."
     },
     {
         "name": "Python",
-        "desc": "Data analysis & ML modeling."
+        "desc": "Primary language for Data Analysis & ML models."
     },
     {
         "name": "Excel",
-        "desc": "Complex formulas, dashboards & VBA."
+        "desc": "Advanced Excel user with expertise in complex formulas, PivotTables, dashboards, and VBA automation"
     },
     {
         "name": "Power BI",
-        "desc": "DAX, Power Query & dashboards."
+        "desc": "Experienced in Power BI with DAX, Power Query, and interactive dashboard creation"
     },
     {
         "name": "Tableau",
-        "desc": "Interactive data visualization."
+        "desc": "Creating interactive data visualizations."
     },
     {
         "name": "Pandas",
-        "desc": "Data manipulation & analysis."
+        "desc": "Data manipulation and analysis library."
     },
     {
         "name": "NumPy",
-        "desc": "Numerical computing & matrices."
+        "desc": "Numerical computing and matrix operations."
     },
     {
         "name": "Matplotlib",
-        "desc": "Data visualization & plotting."
+        "desc": "Proficient in Matplotlib for data visualization and analytical plotting in Python"
     },
     {
         "name": "C",
-        "desc": "Low-level system programming."
+        "desc": "Low-level system programming & optimization."
     },
     {
         "name": "Java",
-        "desc": "Object-oriented backend dev."
+        "desc": "Object-oriented programming for robust backends."
     },
     {
         "name": "TensorFlow",
-        "desc": "Building deep learning models."
+        "desc": "Building and training deep learning models."
     },
     {
         "name": "Scikit-learn",
-        "desc": "Machine learning algorithms."
+        "desc": "Machine learning algorithms and predictive modeling."
     },
     {
         "name": "Docker",
-        "desc": "Consistent containerization."
+        "desc": "Containerization for consistent deployment."
     },
     {
         "name": "Postman",
-        "desc": "Testing & documenting APIs."
+        "desc": "Testing and documenting APIs."
     },
     {
         "name": "Git/GitHub",
-        "desc": "Version control & teamwork."
+        "desc": "Version control and collaboration."
     }
 ];
