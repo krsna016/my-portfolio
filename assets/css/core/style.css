@@ -5302,18 +5302,18 @@ html body:not(.light-mode) .theme-toggle-btn:hover .sun-rays line {
     color: #000000 !important;
 }
 
-/* Maintain green color for enabled audio pill in Light Mode */
+/* Use strong blue color for enabled audio pill in Light Mode for visibility */
 html body.light-mode button.hud-audio-pill.enabled,
 html body.light-mode button.hud-audio-pill.enabled.hud-audio-pill.hud-audio-pill,
 html body.light-mode button.hud-audio-pill.enabled:hover,
 html body.light-mode button.hud-audio-pill.enabled.hud-audio-pill.hud-audio-pill:hover {
-    background: rgba(0, 255, 102, 0.15) !important;
-    color: #00FF66 !important;
-    box-shadow: 0 0 10px rgba(0, 255, 102, 0.3) !important;
+    background: rgba(0, 102, 255, 0.15) !important;
+    color: #0066ff !important;
+    box-shadow: 0 0 10px rgba(0, 102, 255, 0.3) !important;
 }
 html body.light-mode button.hud-audio-pill.enabled i,
 html body.light-mode button.hud-audio-pill.enabled svg,
 html body.light-mode button.hud-audio-pill.enabled.hud-audio-pill.hud-audio-pill i,
 html body.light-mode button.hud-audio-pill.enabled.hud-audio-pill.hud-audio-pill svg {
-    color: #00FF66 !important;
+    color: #0066ff !important;
 }
