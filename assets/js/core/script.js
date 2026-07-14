@@ -580,6 +580,16 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('light-mode');
     }
 
+    const updateHeroImages = (isLight) => {
+        const heroNormalImg = document.getElementById('hero-normal-img');
+        const evervaultImg = document.querySelector('.evervault-img');
+        if (heroNormalImg) heroNormalImg.src = isLight ? 'assets/images/profile-light.png' : 'assets/images/profile.webp';
+        if (evervaultImg) evervaultImg.src = isLight ? 'assets/images/profile-light.png' : 'assets/images/profile.webp';
+    };
+    
+    // Initial hero image setup
+    updateHeroImages(savedTheme === 'light');
+
     themeBtn.addEventListener('click', (e) => {
         // 1. Trigger Eclipse Rotation State on Button
         themeBtn.classList.add('animating');
@@ -601,6 +611,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const performThemeSwap = () => {
                 const isLight = document.body.classList.toggle('light-mode');
                 localStorage.setItem('theme-preference', isLight ? 'light' : 'dark');
+                
+                updateHeroImages(isLight);
                 
                 if (window.updateGridTheme) {
                     window.updateGridTheme();
