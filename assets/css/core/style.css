@@ -1747,28 +1747,13 @@ footer {
     100% { background-position: 200% 0; }
 }
 
-.skeleton-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding: 1rem;
-}
+.skeleton-container { display:none !important; }
 
 .skeleton-container[aria-busy="true"] {
     pointer-events: none;
 }
 
-.skeleton {
-    background: #e2e8f0;
-    background-image: linear-gradient(90deg, rgba(255,255,255,0) 0, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
-    background-size: 200% 100%;
-    animation: shimmer 1.5s infinite ease-in-out;
-    border-radius: 4px;
-    display: inline-block;
-    opacity: 0.7;
-    will-change: background-position;
-}
+.skeleton { display:none !important; }
 
 body:not(.light-mode) .skeleton {
     background: #1e293b;
@@ -3127,44 +3112,7 @@ body.focus-mode-active .interactive-bg {
 /* ── Headings ─────────────────────────────────────────────── */
 
 /* H1 — Article title, pure white, large */
-/* ---- Heading rectangle for light themes (Frost/Frosty) ---- */
-/* We use a ::before pseudo‑element to draw a subtle rectangle and then place the heading text beneath it. */
-#post-reader.reader-frost .markdown-body h1,
-#post-reader.reader-frost .markdown-body h2,
-#post-reader.reader-frost .markdown-body h3,
-#post-reader.reader-frosty .markdown-body h1,
-#post-reader.reader-frosty .markdown-body h2,
-#post-reader.reader-frosty .markdown-body h3 {
-    background: transparent !important; /* remove existing background */
-    padding-top: 0.6rem !important;    /* keep some space above text */
-    margin-top: 0.8rem !important;    /* space from previous element */
-}
-
-#post-reader.reader-frost .markdown-body h1::before,
-#post-reader.reader-frost .markdown-body h2::before,
-#post-reader.reader-frost .markdown-body h3::before,
-#post-reader.reader-frosty .markdown-body h1::before,
-#post-reader.reader-frosty .markdown-body h2::before,
-#post-reader.reader-frosty .markdown-body h3::before {
-    content: '';
-    display: block;
-    height: 2.4rem;                     /* rectangle height */
-    background: rgba(255,255,255,0.12); /* subtle light card */
-    border-radius: 10px;
-    margin-bottom: 0.4rem;              /* space between rect and text */
-}
-
-/* Ensure dark themes keep their original styled headings */
-#post-reader.reader-dark .markdown-body h1,
-#post-reader.reader-dark .markdown-body h2,
-#post-reader.reader-dark .markdown-body h3 {
-    /* keep existing dark‑mode background/shadow */
-}
-
-/* H2 — Section titles, white */
-#reader-content.markdown-body h2 {
-    color: var(--theme-h2-text, #ffffff) !important; /* Dynamically themed H2 text */
-    font-size: calc(1.65rem * var(--blog-scale, 1));
+/* ---- Heading rectangle for light themes (Frost/Frosty) ----5rem * var(--blog-scale, 1));
     font-weight: 600;
     margin: 2.5rem 0 1rem 0;
     padding: 0.8rem 1.2rem !important;
@@ -3176,19 +3124,7 @@ body.focus-mode-active .interactive-bg {
 }
 
 /* H3 — Sub-sections, light grey */
-#post-reader.reader-frost .markdown-body h1,
-#post-reader.reader-frost .markdown-body h2,
-#post-reader.reader-frost .markdown-body h3,
-#post-reader.reader-frosty .markdown-body h1,
-#post-reader.reader-frosty .markdown-body h2,
-#post-reader.reader-frosty .markdown-body h3 {
-    background: rgba(255,255,255,0.12) !important; /* subtle card */
-    border-radius: 8px !important;
-    padding: 0.6rem 1rem !important;
-    margin-top: 0.8rem !important;
-    margin-bottom: 0.4rem !important;
-    color: var(--theme-h1-text, #2c3e50) !important;
-}
+
 
     color: var(--theme-h3-text, #b0b8c1) !important; /* Dynamically themed H3 text */
     font-size: calc(1.3rem * var(--blog-scale, 1));
@@ -3746,53 +3682,52 @@ body.reader-open .cyber-crosshair-y {
     --theme-link-hover-color: #1d4ed8;
 }
 
-#post-reader.reader-frost, #post-reader.reader-frosty {
+#post-reader.reader-sunlight {
+    --theme-bg: #fff8e1;
+    --theme-text: #2c2c2c;
+    --theme-hdr-bg: #f5e9c3;
+    --theme-hdr-text: #3b2e2e;
+    --theme-btn-bg: rgba(0, 0, 0, 0.08);
+    --theme-btn-border: rgba(0, 0, 0, 0.15);
+    --theme-btn-text: #3b2e2e;
+    --theme-btn-hover-bg: rgba(0, 0, 0, 0.15);
+    --theme-btn-hover-text: #000000;
+    --theme-code-bg: #f5f1e1;
+    --theme-code-text: #c44d58;
+    --theme-heading-color: #2c2c2c;
+    --theme-meta-text: #5a5147;
+    --theme-hr: rgba(0, 0, 0, 0.1);
+    --theme-body-text: #2c2c2c;
+    --theme-list-text: #2c2c2c;
+    --theme-strong-text: #000000;
+    --theme-em-text: #b35900;
+    --theme-bq-border: #c09853;
+    --theme-bq-bg: rgba(255, 222, 173, 0.1);
+    --theme-bq-text: #5a5147;
+    --theme-table-head-bg: #fdf6e3;
+    --theme-table-head-text: #2c2c2c;
+    --theme-table-row-alt: rgba(0, 0, 0, 0.02);
+    --theme-table-border: rgba(0, 0, 0, 0.1);
+    --theme-table-text: #2c2c2c;
+    --theme-hr-line: rgba(0, 0, 0, 0.1);
+    --theme-inline-code-bg: rgba(255, 222, 173, 0.2);
+    --theme-inline-code-text: #c44d58;
     --theme-h1-bg: rgba(255,255,255,0.12) !important;
-    --theme-h2-bg: rgba(255,255,255,0.12) !important;
-    --theme-h3-bg: rgba(255,255,255,0.12) !important;
-    --theme-bg: #f4f7f6;
-    --theme-text: #2c3e50;
-    --theme-hdr-bg: #ebf0f2;
-    --theme-hdr-text: #34495e;
-    --theme-btn-bg: rgba(44, 62, 80, 0.08);
-    --theme-btn-border: rgba(44, 62, 80, 0.2);
-    --theme-btn-text: #34495e;
-    --theme-btn-hover-bg: rgba(44, 62, 80, 0.15);
-    --theme-btn-hover-text: #2c3e50;
-    --theme-code-bg: #e2e8e9;
-    --theme-code-text: #e74c3c;
-    --theme-heading-color: #2c3e50;
-    --theme-meta-text: #7f8c8d;
-    --theme-hr: rgba(44, 62, 80, 0.1);
-    --theme-body-text: #34495e;
-    --theme-list-text: #34495e;
-    --theme-strong-text: #1a252f;
-    --theme-em-text: #2980b9;
-    --theme-bq-border: #3498db;
-    --theme-bq-bg: rgba(44, 62, 80, 0.03);
-    --theme-bq-text: #576574;
-    --theme-table-head-bg: #e0e6ed;
-    --theme-table-head-text: #1a252f;
-    --theme-table-row-alt: rgba(44, 62, 80, 0.03);
-    --theme-table-border: rgba(44, 62, 80, 0.1);
-    --theme-table-text: #34495e;
-    --theme-hr-line: rgba(44, 62, 80, 0.1);
-    --theme-inline-code-bg: transparent;
-    --theme-inline-code-text: #2980b9;
-    /* The following theme variables were overridden above to provide the heading‑card background */
-    /* --theme-h1-bg: transparent; */
-    /* --theme-h1-text: #2c3e50; */
-    /* --theme-h1-shadow: none; */
-    /* --theme-h2-bg: transparent; */
-    /* --theme-h2-text: #2c3e50; */
-    /* --theme-h2-border: #3498db; */
-    /* --theme-h3-bg: transparent; */
-    --theme-h3-text: #576574;
+    --theme-h1-text: #3b2e2e;
+    --theme-h1-shadow: none;
+    --theme-h2-bg: transparent;
+    --theme-h2-text: #3b2e2e;
+    --theme-h2-border: #c09853;
+    --theme-h3-bg: transparent;
+    --theme-h3-text: #5a5147;
     --theme-h3-shadow: none;
-    --theme-h4-text: #9b59b6;
-    --theme-link-color: #2980b9;
-    --theme-link-hover-color: #1a5276;
+    --theme-h4-text: #b35900;
+    --theme-link-color: #b35900;
+    --theme-link-hover-color: #8a4400;
 }
+
+
+
 
 
 #post-reader.reader-slate {
