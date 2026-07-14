@@ -20,7 +20,6 @@ const blogData = {
     "categories": [
         "DSA",
         "Algorithms",
-        "Web Dev",
         "Web Security",
         "Mind",
         "CODE"
