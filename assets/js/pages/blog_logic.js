@@ -53,6 +53,17 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <button id="font-inc-btn" class="font-ctrl-btn" aria-label="Increase font size" title="Increase size (Ctrl/Cmd + +)">A+</button>
                 </div>
             </div>
+            <div class="font-bar-section">
+                <div class="font-bar-left">
+                    <i class="fa-solid fa-font" aria-hidden="true"></i>
+                    <span>Font</span>
+                </div>
+                <div class="font-bar-controls">
+                    <button class="font-ctrl-btn font-family-btn active" data-font="'Space Grotesk', 'Outfit', sans-serif" title="Modern Sans">Aa</button>
+                    <button class="font-ctrl-btn font-family-btn" data-font="'Merriweather', 'Georgia', serif" title="Classic Serif" style="font-family: 'Merriweather', 'Georgia', serif;">Aa</button>
+                    <button class="font-ctrl-btn font-family-btn" data-font="'Fira Code', 'Courier New', monospace" title="Monospace" style="font-family: 'Fira Code', monospace;">Aa</button>
+                </div>
+            </div>
             <div class="theme-bar-section">
                 <div class="font-bar-left">
                     <i class="fa-solid fa-palette" aria-hidden="true"></i>
@@ -147,6 +158,34 @@ document.addEventListener('DOMContentLoaded', async () => {
                 e.preventDefault();
                 updateFontSize(100);
             }
+        });
+
+        // Font Family logic
+        const fontBtns = fontBar.querySelectorAll('.font-family-btn');
+        const savedFont = localStorage.getItem('blogFontFamily');
+
+        function applyFontFamily(fontFamily, btnElement) {
+            readerContent.style.setProperty('--blog-font', fontFamily);
+            localStorage.setItem('blogFontFamily', fontFamily);
+            
+            fontBtns.forEach(b => b.classList.remove('active'));
+            if (btnElement) {
+                btnElement.classList.add('active');
+            } else {
+                fontBtns.forEach(b => {
+                    if (b.dataset.font === fontFamily) b.classList.add('active');
+                });
+            }
+        }
+
+        if (savedFont) {
+            applyFontFamily(savedFont);
+        }
+
+        fontBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                applyFontFamily(btn.dataset.font, btn);
+            });
         });
 
         // Force hover styles dynamically via JS to guarantee white background/black text on hover

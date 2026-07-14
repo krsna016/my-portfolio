@@ -2608,8 +2608,10 @@ input[type="range"]::-webkit-slider-thumb:hover {
 html body #font-dec-btn:hover,
 html body #font-inc-btn:hover,
 html body button.font-ctrl-btn:hover,
+html body button.font-ctrl-btn.active,
 #font-dec-btn:hover,
-#font-inc-btn:hover {
+#font-inc-btn:hover,
+.font-ctrl-btn.active {
     background: #ffffff !important;
     background-color: #ffffff !important;
     color: #000000 !important;
@@ -3097,7 +3099,7 @@ body.focus-mode-active .interactive-bg {
     color: #d8d8d8;
     font-size: calc(1.05rem * var(--blog-scale, 1));
     line-height: 1.85;
-    font-family: 'Space Grotesk', 'Outfit', sans-serif;
+    font-family: var(--blog-font, 'Space Grotesk', 'Outfit', sans-serif) !important;
     padding: 3rem clamp(1.5rem, 5vw, 4rem) !important;
     background: #121218 !important; /* Matte dark background */
     border: none !important;
@@ -3876,7 +3878,8 @@ body.reader-open .cyber-crosshair-y {
     color: var(--theme-btn-text) !important;
 }
 
-#post-reader[class*="reader-"] .blog-font-bar .font-ctrl-btn:hover {
+#post-reader[class*="reader-"] .blog-font-bar .font-ctrl-btn:hover,
+#post-reader[class*="reader-"] .blog-font-bar .font-ctrl-btn.active {
     background: var(--theme-btn-hover-bg) !important;
     color: var(--theme-btn-hover-text) !important;
 }
