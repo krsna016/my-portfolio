@@ -4125,7 +4125,7 @@ body.reader-open .grid-line {
     height: 48px;
     border-radius: 50%;
     background: rgba(18, 24, 21, 0.85); /* Matte carbon */
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: none;
     color: var(--secondary-color, #00d4ff);
     font-size: 1.2rem;
     cursor: pointer;
@@ -4524,7 +4524,7 @@ body.light-mode .card p {
 
 body.light-mode .theme-toggle-btn {
     background: rgba(255, 255, 255, 0.7) !important;
-    border-color: rgba(15, 23, 42, 0.15) !important;
+    border: none !important;
     box-shadow: 0 4px 15px rgba(15, 23, 42, 0.08);
 }
 
@@ -5178,7 +5178,7 @@ html body.light-mode button.hud-audio-pill:hover,
 html body.light-mode button.hud-audio-pill.hud-audio-pill.hud-audio-pill,
 html body.light-mode button.hud-audio-pill.hud-audio-pill.hud-audio-pill:hover {
     background: rgba(255, 255, 255, 0.7) !important;
-    border: 1px solid rgba(15, 23, 42, 0.15) !important;
+    border: none !important;
     box-shadow: 0 4px 15px rgba(15, 23, 42, 0.08) !important;
     color: #000000 !important;
 }
@@ -5319,7 +5319,7 @@ html body.light-mode button.hud-audio-pill.enabled.hud-audio-pill.hud-audio-pill
     background: rgba(255, 255, 255, 0.7) !important;
     color: #000000 !important;
     box-shadow: 0 4px 15px rgba(15, 23, 42, 0.08) !important;
-    border: 1px solid rgba(15, 23, 42, 0.15) !important; /* Match default toggle button border */
+    border: none !important; /* No border in light mode */
 }
 html body.light-mode button.hud-audio-pill.enabled i,
 html body.light-mode button.hud-audio-pill.enabled svg,
