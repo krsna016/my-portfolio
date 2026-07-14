@@ -3887,10 +3887,21 @@ body.light-mode #toggle-bar-btn:hover {
     color: var(--theme-btn-hover-text) !important;
 }
 
-#post-reader[class*="reader-"] .blog-font-bar .font-ctrl-btn {
+#post-reader[class*="reader-"] .blog-font-bar .font-bar-controls {
     background: var(--theme-btn-bg) !important;
-    border: var(--theme-btn-border) !important;
+    border: 1px solid var(--theme-btn-border) !important;
+}
+
+#post-reader[class*="reader-"] .blog-font-bar .font-ctrl-btn {
+    background: transparent !important;
+    border: none !important;
     color: var(--theme-btn-text) !important;
+}
+
+#post-reader[class*="reader-"] .blog-font-bar .font-bar-left,
+#post-reader[class*="reader-"] .blog-font-bar .font-bar-left span,
+#post-reader[class*="reader-"] .blog-font-bar .font-bar-left i {
+    color: var(--theme-hdr-text) !important;
 }
 
 #post-reader[class*="reader-"] .blog-font-bar .font-ctrl-btn:hover,
@@ -3901,6 +3912,12 @@ body.light-mode #toggle-bar-btn:hover {
 
 #post-reader[class*="reader-"] .blog-font-bar .font-size-display {
     color: var(--theme-hdr-text) !important;
+    background: transparent !important;
+}
+
+#post-reader[class*="reader-"] .blog-font-bar .font-size-display:hover {
+    background: var(--theme-btn-hover-bg) !important;
+    color: var(--theme-btn-hover-text) !important;
 }
 
 #post-reader[class*="reader-"] .markdown-body pre {
