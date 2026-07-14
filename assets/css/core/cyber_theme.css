@@ -349,6 +349,7 @@ input[type="range"]::-webkit-slider-thumb {
 .hud-audio-pill:hover svg {
     color: #ffffff !important;
     fill: #ffffff !important;
+    overflow: visible !important;
 }
 
 /* Turned ON: clean white look */

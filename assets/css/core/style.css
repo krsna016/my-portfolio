@@ -4519,13 +4519,13 @@ body.light-mode .card p {
     -webkit-backdrop-filter: blur(12px);
     transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s, border-color 0.3s;
     outline: none;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: none !important;
 }
 
 body.light-mode .theme-toggle-btn {
     background: rgba(255, 255, 255, 0.7) !important;
     border: none !important;
-    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.08);
+    box-shadow: none !important;
 }
 
 .theme-toggle-btn:hover {
@@ -4543,6 +4543,7 @@ body.light-mode .theme-toggle-btn {
     stroke-linecap: round;
     stroke-linejoin: round;
     color: #ffffff;
+    overflow: visible !important;
     transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s;
 }
 
@@ -4736,8 +4737,8 @@ body.light-mode #experience .timeline-item:hover .timeline-dot-connector,
 body.light-mode #experience .timeline-item:hover .timeline-dot,
 body.light-mode .timeline-item:hover .timeline-dot-connector,
 body.light-mode .timeline-item:hover .timeline-dot {
-    background: #2563eb !important; /* turns bright blue on hover! */
-    box-shadow: 0 0 10px rgba(37, 99, 235, 0.5) !important;
+    background: #000000 !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4) !important;
 }
 
 /* Insane specificity Light Mode button visibility and hover overrides */
