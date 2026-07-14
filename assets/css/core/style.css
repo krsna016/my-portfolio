@@ -918,13 +918,10 @@ button.chat-send-btn:hover svg,
     width: 3px;
     /* Slightly thicker core */
     height: 100%;
-    /* Bright core gradient */
-    background: linear-gradient(180deg, #00d4ff, #6c63ff, #ff00ff, #00d4ff);
-    background-size: 100% 300%;
-    /* Combine flow animation with pulse */
-    animation: flow-line 4s linear infinite, fiber-pulse 3s ease-in-out infinite alternate;
+    /* Bright core gradient replaced with solid calligraphic/colored line */
+    background: #00d2ff;
     /* Initial glow */
-    box-shadow: 0 0 10px rgba(0, 212, 255, 0.6), 0 0 20px rgba(108, 99, 255, 0.4);
+    box-shadow: 0 0 10px rgba(0, 210, 255, 0.6);
     border-radius: 2px;
     z-index: 0;
     /* Blend the start and ending */

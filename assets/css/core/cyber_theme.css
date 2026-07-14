@@ -847,11 +847,9 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):hover {
 .timeline::before {
     left: 11px !important;
     width: 4px !important;
-    background: linear-gradient(180deg, #FFFFFF 0%, #888888 50%, #444444 100%) !important;
-    background-size: 100% 100% !important;
-    animation: cyberSilverPulse 4s infinite ease-in-out !important;
+    background: #00d2ff !important; /* Solid colored line */
     border-radius: 4px !important;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4), inset 0 0 3px rgba(255, 255, 255, 0.5) !important;
+    box-shadow: 0 0 10px rgba(0, 210, 255, 0.4) !important;
 }
 
 /* Timeline nodes: solid glowing white nodes (no black inside) */
