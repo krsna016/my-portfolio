@@ -22,7 +22,6 @@ const blogData = {
         "Algorithms",
         "Web Dev",
         "Web Security",
-        "Linux",
         "Mind",
         "CODE"
     ]
