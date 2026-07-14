@@ -1003,17 +1003,7 @@ button.chat-send-btn:hover svg,
 }
 
 .timeline-content::before {
-    content: '';
-    position: absolute;
-    top: 20px;
-    width: 20px;
-    height: 20px;
-    background: var(--primary-color);
-    border-radius: 50%;
-    box-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--secondary-color);
-    animation: pulse-dot 3s infinite alternate;
-    transition: opacity 0.3s ease;
-    z-index: 5;
+    display: none !important;
 }
 
 .timeline-content:hover::before {
