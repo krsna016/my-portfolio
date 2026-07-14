@@ -464,6 +464,12 @@
     transform: none !important;
 }
 
+/* Align the bottom dot with the 1-sided track */
+#experience .timeline::after {
+    left: 13px !important;
+    transform: translateX(-50%) !important;
+}
+
 @keyframes flowDataTrack {
     0% { background-position: 0% 0%; }
     100% { background-position: 0% 200%; }
