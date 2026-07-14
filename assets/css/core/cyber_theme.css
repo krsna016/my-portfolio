@@ -1382,6 +1382,12 @@ button.btn.primary.chat-send-btn,
     transform: none !important;
 }
 
+.hud-audio-pill i,
+.hud-audio-pill svg {
+    font-size: 1.0rem !important;
+    transition: color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
 /* Remove glow/shadow from icon inside send button only */
 button.chat-send-btn i,
 button.chat-send-btn svg,

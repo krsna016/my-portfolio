@@ -554,7 +554,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // High-fidelity custom SVG structure that morphs from crescent moon to eclipse to sun
     themeBtn.innerHTML = `
-        <svg class="theme-toggle-svg" viewBox="0 0 24 24" width="22" height="22">
+        <svg class="theme-toggle-svg" viewBox="-4 -4 32 32" width="22" height="22">
             <circle class="sun-corona" cx="12" cy="12" r="5" />
             <mask id="moon-mask-icon">
                 <rect x="0" y="0" width="24" height="24" fill="white" />
