@@ -952,7 +952,6 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):hover {
 }
 
 .exec-badge:hover,
-.exec-tag:hover,
 .skill-tag:hover,
 .tag:hover {
     background: rgba(255, 255, 255, 0.25) !important;
@@ -961,6 +960,15 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):hover {
     outline: none !important;
     transform: translateY(-2px) scale(1.03) !important;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4) !important;
+}
+
+.exec-tag:hover {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    border: none !important;
+    outline: none !important;
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2) !important;
 }
 
 /* ==========================================================================
@@ -1503,7 +1511,6 @@ a.btn:not(.ide-run-btn):not(.chat-send-btn) {
 .submit-btn:hover,
 #hero-cli-trigger:hover,
 .skill-tag:hover,
-.exec-tag:hover,
 .tag:hover,
 button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):hover,
 a.btn:not(.ide-run-btn):not(.chat-send-btn):hover {
