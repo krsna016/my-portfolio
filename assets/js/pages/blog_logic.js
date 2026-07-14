@@ -59,10 +59,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <span>Theme</span>
                 </div>
                 <div class="theme-controls">
-                    <button class="theme-pill-btn active" data-theme="dark"   title="Cyber Dark"   style="background-color: #000000; border: 2px solid rgba(255,255,255,0.25);"><span class="theme-dot-accent" style="background:#00ff66;"></span></button>
-                    <button class="theme-pill-btn"        data-theme="sepia"  title="Warm Paper"   style="background-color: #c8a87a; border: 2px solid rgba(124,96,52,0.5);"><span class="theme-dot-accent" style="background:#fff8ee;"></span></button>
-                    <button class="theme-pill-btn"        data-theme="slate"  title="Muted Slate"  style="background-color: #1a3a5c; border: 2px solid rgba(0,180,255,0.35);"><span class="theme-dot-accent" style="background:#00d2ff;"></span></button>
-                    <button class="theme-pill-btn"        data-theme="forest" title="Dim Forest"   style="background-color: #1a3a22; border: 2px solid rgba(80,200,120,0.35);"><span class="theme-dot-accent" style="background:#62e9b9;"></span></button>
+                    <!-- Dark Mode Themes -->
+                    <button class="theme-pill-btn dark-theme-option active" data-theme="dark"   title="Cyber Dark"   style="background-color: #000000; border: 2px solid rgba(255,255,255,0.25);"><span class="theme-dot-accent" style="background:#00ff66;"></span></button>
+                    <button class="theme-pill-btn dark-theme-option"        data-theme="slate"  title="Muted Slate"  style="background-color: #1a3a5c; border: 2px solid rgba(0,180,255,0.35);"><span class="theme-dot-accent" style="background:#00d2ff;"></span></button>
+                    <button class="theme-pill-btn dark-theme-option"        data-theme="forest" title="Dim Forest"   style="background-color: #1a3a22; border: 2px solid rgba(80,200,120,0.35);"><span class="theme-dot-accent" style="background:#62e9b9;"></span></button>
+
+                    <!-- Light Mode Themes -->
+                    <button class="theme-pill-btn light-theme-option"       data-theme="light"  title="Crisp White"  style="background-color: #ffffff; border: 2px solid rgba(0,0,0,0.25);"><span class="theme-dot-accent" style="background:#3b82f6;"></span></button>
+                    <button class="theme-pill-btn light-theme-option"       data-theme="sepia"  title="Warm Paper"   style="background-color: #c8a87a; border: 2px solid rgba(124,96,52,0.5);"><span class="theme-dot-accent" style="background:#fff8ee;"></span></button>
+                    <button class="theme-pill-btn light-theme-option"       data-theme="frost"  title="Frosty Cool"  style="background-color: #f4f7f6; border: 2px solid rgba(44,62,80,0.3);"><span class="theme-dot-accent" style="background:#3498db;"></span></button>
                 </div>
             </div>
         `;
@@ -150,7 +155,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 btn.classList.toggle('active', btn.getAttribute('data-theme') === themeName);
             });
             // Clear existing themes
-            postReader.classList.remove('reader-dark', 'reader-sepia', 'reader-slate', 'reader-forest');
+            postReader.classList.remove('reader-dark', 'reader-sepia', 'reader-slate', 'reader-forest', 'reader-light', 'reader-frost');
             // Add selected theme
             postReader.classList.add(`reader-${themeName}`);
             localStorage.setItem('blogReaderTheme', themeName);
@@ -166,8 +171,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Restore saved settings on boot
         updateFontSize(currentSize, false);
-        const savedTheme = localStorage.getItem('blogReaderTheme') || 'dark';
+        
+        const isLightMode = document.body.classList.contains('light-mode');
+        const darkThemes = ['dark', 'slate', 'forest'];
+        const lightThemes = ['light', 'sepia', 'frost'];
+        let savedTheme = localStorage.getItem('blogReaderTheme');
+        
+        if (isLightMode && (!savedTheme || !lightThemes.includes(savedTheme))) savedTheme = 'light';
+        if (!isLightMode && (!savedTheme || !darkThemes.includes(savedTheme))) savedTheme = 'dark';
+        
         applyTheme(savedTheme);
+
 
         window.addEventListener('keydown', (e) => {
             if (postReader.style.display !== 'block') return;
@@ -186,6 +200,26 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
 
         // Scroll listener for reading progress indicators
+        
+        // Listen for mode changes to update the theme if needed
+        const modeObserver = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'class') {
+                    const currentlyLight = document.body.classList.contains('light-mode');
+                    let currTheme = localStorage.getItem('blogReaderTheme');
+                    const lightThemes = ['light', 'sepia', 'frost'];
+                    const darkThemes = ['dark', 'slate', 'forest'];
+                    
+                    if (currentlyLight && (!currTheme || !lightThemes.includes(currTheme))) {
+                        applyTheme('light');
+                    } else if (!currentlyLight && (!currTheme || !darkThemes.includes(currTheme))) {
+                        applyTheme('dark');
+                    }
+                }
+            });
+        });
+        modeObserver.observe(document.body, { attributes: true });
+
         window.addEventListener('scroll', () => {
             const scrollBar = document.getElementById('neon-scroll-progress');
             if (!scrollBar || postReader.style.display !== 'block') return;

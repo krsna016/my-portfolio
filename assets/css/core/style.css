@@ -3580,6 +3580,53 @@ body.reader-open .cyber-crosshair-y {
     --theme-link-hover-color: #3d2314;
 }
 
+#post-reader.reader-light {
+    --theme-bg: #ffffff;
+    --theme-text: #1a1a1a;
+    --theme-hdr-bg: #f8f9fa;
+    --theme-hdr-text: #333333;
+    --theme-btn-bg: rgba(0, 0, 0, 0.05);
+    --theme-btn-border: rgba(0, 0, 0, 0.1);
+    --theme-btn-text: #333333;
+    --theme-btn-hover-bg: rgba(0, 0, 0, 0.1);
+    --theme-btn-hover-text: #000000;
+    --theme-code-bg: #f0f0f0;
+    --theme-code-text: #c7254e;
+    --theme-h2-bg: #f5f5f5;
+    --theme-h2-text: #111111;
+    --theme-h2-border: #3b82f6;
+    --theme-h3-bg: #fafafa;
+    --theme-h3-text: #444444;
+    --theme-h3-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    --theme-h4-text: #d97706;
+    --theme-link-color: #2563eb;
+    --theme-link-hover-color: #1d4ed8;
+}
+
+#post-reader.reader-frost {
+    --theme-bg: #f4f7f6;
+    --theme-text: #2c3e50;
+    --theme-hdr-bg: #ebf0f2;
+    --theme-hdr-text: #34495e;
+    --theme-btn-bg: rgba(44, 62, 80, 0.08);
+    --theme-btn-border: rgba(44, 62, 80, 0.2);
+    --theme-btn-text: #34495e;
+    --theme-btn-hover-bg: rgba(44, 62, 80, 0.15);
+    --theme-btn-hover-text: #2c3e50;
+    --theme-code-bg: #e2e8e9;
+    --theme-code-text: #e74c3c;
+    --theme-h2-bg: #eaeff0;
+    --theme-h2-text: #2c3e50;
+    --theme-h2-border: #3498db;
+    --theme-h3-bg: #eff3f4;
+    --theme-h3-text: #576574;
+    --theme-h3-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    --theme-h4-text: #9b59b6;
+    --theme-link-color: #2980b9;
+    --theme-link-hover-color: #1a5276;
+}
+
+
 #post-reader.reader-slate {
     --theme-bg: #1e2530;
     --theme-text: #cbd5e1;
@@ -3667,102 +3714,66 @@ body.reader-open .cyber-crosshair-y {
 }
 
 /* Theme variable overrides across UI elements */
-#post-reader.reader-dark #reader-content,
-#post-reader.reader-sepia #reader-content,
-#post-reader.reader-slate #reader-content,
-#post-reader.reader-forest #reader-content {
+#post-reader[class*="reader-"] #reader-content {
     background: var(--theme-bg) !important;
     color: var(--theme-text) !important;
     transition: background 0.3s ease, color 0.3s ease !important;
 }
 
-#post-reader.reader-dark .post-reader-top-bar,
-#post-reader.reader-sepia .post-reader-top-bar,
-#post-reader.reader-slate .post-reader-top-bar,
-#post-reader.reader-forest .post-reader-top-bar {
+#post-reader[class*="reader-"] .post-reader-top-bar {
     background: var(--theme-hdr-bg) !important;
     color: var(--theme-hdr-text) !important;
     transition: background 0.3s ease, color 0.3s ease !important;
 }
 
-#post-reader.reader-dark #back-button,
-#post-reader.reader-sepia #back-button,
-#post-reader.reader-slate #back-button,
-#post-reader.reader-forest #back-button {
+#post-reader[class*="reader-"] #back-button {
     background: var(--theme-btn-bg) !important;
     border: var(--theme-btn-border) !important;
     color: var(--theme-btn-text) !important;
 }
 
-#post-reader.reader-dark #back-button:hover,
-#post-reader.reader-sepia #back-button:hover,
-#post-reader.reader-slate #back-button:hover,
-#post-reader.reader-forest #back-button:hover {
+#post-reader[class*="reader-"] #back-button:hover {
     background: var(--theme-btn-hover-bg) !important;
     color: var(--theme-btn-hover-text) !important;
 }
 
-#post-reader.reader-dark .blog-font-bar .font-ctrl-btn,
-#post-reader.reader-sepia .blog-font-bar .font-ctrl-btn,
-#post-reader.reader-slate .blog-font-bar .font-ctrl-btn,
-#post-reader.reader-forest .blog-font-bar .font-ctrl-btn {
+#post-reader[class*="reader-"] .blog-font-bar .font-ctrl-btn {
     background: var(--theme-btn-bg) !important;
     border: var(--theme-btn-border) !important;
     color: var(--theme-btn-text) !important;
 }
 
-#post-reader.reader-dark .blog-font-bar .font-ctrl-btn:hover,
-#post-reader.reader-sepia .blog-font-bar .font-ctrl-btn:hover,
-#post-reader.reader-slate .blog-font-bar .font-ctrl-btn:hover,
-#post-reader.reader-forest .blog-font-bar .font-ctrl-btn:hover {
+#post-reader[class*="reader-"] .blog-font-bar .font-ctrl-btn:hover {
     background: var(--theme-btn-hover-bg) !important;
     color: var(--theme-btn-hover-text) !important;
 }
 
-#post-reader.reader-dark .blog-font-bar .font-size-display,
-#post-reader.reader-sepia .blog-font-bar .font-size-display,
-#post-reader.reader-slate .blog-font-bar .font-size-display,
-#post-reader.reader-forest .blog-font-bar .font-size-display {
+#post-reader[class*="reader-"] .blog-font-bar .font-size-display {
     color: var(--theme-hdr-text) !important;
 }
 
-#post-reader.reader-dark .markdown-body pre,
-#post-reader.reader-sepia .markdown-body pre,
-#post-reader.reader-slate .markdown-body pre,
-#post-reader.reader-forest .markdown-body pre {
+#post-reader[class*="reader-"] .markdown-body pre {
     background: var(--theme-code-bg) !important;
     border: var(--theme-btn-border) !important;
     transition: background 0.3s ease, border-color 0.3s ease !important;
 }
 
-#post-reader.reader-dark .markdown-body pre code,
-#post-reader.reader-sepia .markdown-body pre code,
-#post-reader.reader-slate .markdown-body pre code,
-#post-reader.reader-forest .markdown-body pre code {
+#post-reader[class*="reader-"] .markdown-body pre code {
     color: var(--theme-code-text) !important;
     transition: color 0.3s ease !important;
 }
 
-#post-reader.reader-dark .intense-meta-badge,
-#post-reader.reader-sepia .intense-meta-badge,
-#post-reader.reader-slate .intense-meta-badge,
-#post-reader.reader-forest .intense-meta-badge {
+#post-reader[class*="reader-"] .intense-meta-badge {
     color: var(--theme-meta-text) !important;
 }
 
-#post-reader.reader-dark .intense-meta-badge .meta-category,
-#post-reader.reader-sepia .intense-meta-badge .meta-category,
-#post-reader.reader-slate .intense-meta-badge .meta-category,
-#post-reader.reader-forest .intense-meta-badge .meta-category {
+#post-reader[class*="reader-"] .intense-meta-badge .meta-category {
     color: var(--theme-heading-color) !important;
 }
 
 /* ── Per-theme body text, lists, emphasis, blockquotes, tables ──────────── */
 
-#post-reader.reader-dark .markdown-body p,
-#post-reader.reader-sepia .markdown-body p,
-#post-reader.reader-slate .markdown-body p,
-#post-reader.reader-forest .markdown-body p {
+#post-reader[class*="reader-"] .markdown-body p {
     color: var(--theme-body-text) !important;
     transition: color 0.3s ease !important;
 }
@@ -3771,51 +3782,33 @@ body.reader-open .cyber-crosshair-y {
 #post-reader.reader-sepia .markdown-body ul li,
 #post-reader.reader-slate .markdown-body ul li,
 #post-reader.reader-forest .markdown-body ul li,
-#post-reader.reader-dark .markdown-body ol li,
-#post-reader.reader-sepia .markdown-body ol li,
-#post-reader.reader-slate .markdown-body ol li,
-#post-reader.reader-forest .markdown-body ol li {
+#post-reader[class*="reader-"] .markdown-body ol li {
     color: var(--theme-list-text) !important;
     transition: color 0.3s ease !important;
 }
 
-#post-reader.reader-dark .markdown-body strong,
-#post-reader.reader-sepia .markdown-body strong,
-#post-reader.reader-slate .markdown-body strong,
-#post-reader.reader-forest .markdown-body strong {
+#post-reader[class*="reader-"] .markdown-body strong {
     color: var(--theme-strong-text) !important;
     transition: color 0.3s ease !important;
 }
 
-#post-reader.reader-dark .markdown-body em,
-#post-reader.reader-sepia .markdown-body em,
-#post-reader.reader-slate .markdown-body em,
-#post-reader.reader-forest .markdown-body em {
+#post-reader[class*="reader-"] .markdown-body em {
     color: var(--theme-em-text) !important;
     transition: color 0.3s ease !important;
 }
 
-#post-reader.reader-dark .markdown-body blockquote,
-#post-reader.reader-sepia .markdown-body blockquote,
-#post-reader.reader-slate .markdown-body blockquote,
-#post-reader.reader-forest .markdown-body blockquote {
+#post-reader[class*="reader-"] .markdown-body blockquote {
     border-left-color: var(--theme-bq-border) !important;
     background: var(--theme-bq-bg) !important;
     color: var(--theme-bq-text) !important;
     transition: all 0.3s ease !important;
 }
 
-#post-reader.reader-dark .markdown-body blockquote p,
-#post-reader.reader-sepia .markdown-body blockquote p,
-#post-reader.reader-slate .markdown-body blockquote p,
-#post-reader.reader-forest .markdown-body blockquote p {
+#post-reader[class*="reader-"] .markdown-body blockquote p {
     color: var(--theme-bq-text) !important;
 }
 
-#post-reader.reader-dark .markdown-body code,
-#post-reader.reader-sepia .markdown-body code,
-#post-reader.reader-slate .markdown-body code,
-#post-reader.reader-forest .markdown-body code {
+#post-reader[class*="reader-"] .markdown-body code {
     background: var(--theme-inline-code-bg) !important;
     color: var(--theme-inline-code-text) !important;
     border: none !important;
@@ -3840,49 +3833,31 @@ body.reader-open .cyber-crosshair-y {
 }
 
 /* Table theming */
-#post-reader.reader-dark .markdown-body thead tr,
-#post-reader.reader-sepia .markdown-body thead tr,
-#post-reader.reader-slate .markdown-body thead tr,
-#post-reader.reader-forest .markdown-body thead tr {
+#post-reader[class*="reader-"] .markdown-body thead tr {
     background: var(--theme-table-head-bg) !important;
     color: var(--theme-table-head-text) !important;
     transition: all 0.3s ease !important;
 }
 
-#post-reader.reader-dark .markdown-body thead th,
-#post-reader.reader-sepia .markdown-body thead th,
-#post-reader.reader-slate .markdown-body thead th,
-#post-reader.reader-forest .markdown-body thead th {
+#post-reader[class*="reader-"] .markdown-body thead th {
     color: var(--theme-table-head-text) !important;
     border-bottom-color: var(--theme-table-border) !important;
 }
 
-#post-reader.reader-dark .markdown-body tbody tr,
-#post-reader.reader-sepia .markdown-body tbody tr,
-#post-reader.reader-slate .markdown-body tbody tr,
-#post-reader.reader-forest .markdown-body tbody tr {
+#post-reader[class*="reader-"] .markdown-body tbody tr {
     background: transparent !important;
 }
 
-#post-reader.reader-dark .markdown-body tbody tr:nth-child(even),
-#post-reader.reader-sepia .markdown-body tbody tr:nth-child(even),
-#post-reader.reader-slate .markdown-body tbody tr:nth-child(even),
-#post-reader.reader-forest .markdown-body tbody tr:nth-child(even) {
+#post-reader[class*="reader-"] .markdown-body tbody tr:nth-child(even) {
     background: var(--theme-table-row-alt) !important;
 }
 
-#post-reader.reader-dark .markdown-body td,
-#post-reader.reader-sepia .markdown-body td,
-#post-reader.reader-slate .markdown-body td,
-#post-reader.reader-forest .markdown-body td {
+#post-reader[class*="reader-"] .markdown-body td {
     color: var(--theme-table-text) !important;
     border-bottom-color: var(--theme-table-border) !important;
 }
 
-#post-reader.reader-dark .markdown-body hr,
-#post-reader.reader-sepia .markdown-body hr,
-#post-reader.reader-slate .markdown-body hr,
-#post-reader.reader-forest .markdown-body hr {
+#post-reader[class*="reader-"] .markdown-body hr {
     border-color: var(--theme-hr-line) !important;
     transition: border-color 0.3s ease !important;
 }
@@ -3894,10 +3869,7 @@ body.reader-open .cyber-crosshair-y {
 #post-reader.reader-sepia .markdown-body h5,
 #post-reader.reader-slate .markdown-body h5,
 #post-reader.reader-forest .markdown-body h5,
-#post-reader.reader-dark .markdown-body h6,
-#post-reader.reader-sepia .markdown-body h6,
-#post-reader.reader-slate .markdown-body h6,
-#post-reader.reader-forest .markdown-body h6 {
+#post-reader[class*="reader-"] .markdown-body h6 {
     color: var(--theme-meta-text) !important;
     transition: color 0.3s ease !important;
 }
@@ -5344,3 +5316,7 @@ html body.light-mode button.hud-audio-pill.enabled.hud-audio-pill.hud-audio-pill
 html body.light-mode button.hud-audio-pill.enabled.hud-audio-pill.hud-audio-pill:hover svg {
     color: #ffffff !important;
 }
+
+/* Theme palette filtering based on mode */
+body.light-mode .dark-theme-option { display: none !important; }
+body:not(.light-mode) .light-theme-option { display: none !important; }
