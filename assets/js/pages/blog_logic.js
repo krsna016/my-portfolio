@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <!-- Light Mode Themes -->
                     <button class="theme-pill-btn light-theme-option"       data-theme="light"  title="Crisp White"  style="background-color: #ffffff; border: 2px solid rgba(0,0,0,0.25);"><span class="theme-dot-accent" style="background:#3b82f6;"></span></button>
                     <button class="theme-pill-btn light-theme-option"       data-theme="sepia"  title="Warm Paper"   style="background-color: #c8a87a; border: 2px solid rgba(124,96,52,0.5);"><span class="theme-dot-accent" style="background:#fff8ee;"></span></button>
-                    <button class="theme-pill-btn light-theme-option"       data-theme="frost"  title="Frosty Cool"  style="background-color: #f4f7f6; border: 2px solid rgba(44,62,80,0.3);"><span class="theme-dot-accent" style="background:#3498db;"></span></button>
+
                 </div>
             </div>
         `;
@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 btn.classList.toggle('active', btn.getAttribute('data-theme') === themeName);
             });
             // Clear existing themes
-            postReader.classList.remove('reader-dark', 'reader-sepia', 'reader-slate', 'reader-forest', 'reader-light', 'reader-frost');
+            postReader.classList.remove('reader-dark', 'reader-sepia', 'reader-slate', 'reader-forest', 'reader-light');
             // Add selected theme
             postReader.classList.add(`reader-${themeName}`);
             localStorage.setItem('blogReaderTheme', themeName);
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         const isLightMode = document.body.classList.contains('light-mode');
         const darkThemes = ['dark', 'slate', 'forest'];
-        const lightThemes = ['light', 'sepia', 'frost'];
+        const lightThemes = ['light', 'sepia'];
         let savedTheme = localStorage.getItem('blogReaderTheme');
         
         if (isLightMode && (!savedTheme || !lightThemes.includes(savedTheme))) savedTheme = 'light';
@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 if (mutation.attributeName === 'class') {
                     const currentlyLight = document.body.classList.contains('light-mode');
                     let currTheme = localStorage.getItem('blogReaderTheme');
-                    const lightThemes = ['light', 'sepia', 'frost'];
+                    const lightThemes = ['light', 'sepia'];
                     const darkThemes = ['dark', 'slate', 'forest'];
                     
                     if (currentlyLight && (!currTheme || !lightThemes.includes(currTheme))) {
