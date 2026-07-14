@@ -919,9 +919,9 @@ button.chat-send-btn:hover svg,
     /* Slightly thicker core */
     height: 100%;
     /* Bright core gradient replaced with solid calligraphic/colored line */
-    background: #00d2ff;
+    background: #ffffff;
     /* Initial glow */
-    box-shadow: 0 0 10px rgba(0, 210, 255, 0.6);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
     border-radius: 2px;
     z-index: 0;
     /* Blend the start and ending */

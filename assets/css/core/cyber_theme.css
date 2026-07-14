@@ -847,9 +847,9 @@ button:not(.ide-run-btn):not(.chat-send-btn):not(.hamburger):hover {
 .timeline::before {
     left: 11px !important;
     width: 4px !important;
-    background: #00d2ff !important; /* Solid colored line */
+    background: #ffffff !important; /* Solid colored line */
     border-radius: 4px !important;
-    box-shadow: 0 0 10px rgba(0, 210, 255, 0.4) !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4) !important;
 }
 
 /* Timeline nodes: solid glowing white nodes (no black inside) */
