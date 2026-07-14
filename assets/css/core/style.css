@@ -3116,7 +3116,7 @@ body.focus-mode-active .interactive-bg {
     color: var(--theme-h1-text, #ffffff) !important;
     font-size: calc(2.2rem * var(--blog-scale, 1));
     font-weight: 700;
-    margin: 1.5rem 0 0 0 !important;
+    margin: 1.5rem 0 0.8rem 0 !important;
     padding: 0.8rem 1.2rem !important;
     background: var(--theme-h1-bg, #1a1a24) !important;
     border-radius: 8px !important;
@@ -3130,7 +3130,7 @@ body.focus-mode-active .interactive-bg {
     color: var(--theme-h2-text, #00d4ff) !important;
     font-size: calc(1.75rem * var(--blog-scale, 1));
     font-weight: 600;
-    margin: 1.5rem 0 0 0 !important;
+    margin: 1.5rem 0 0.8rem 0 !important;
     padding: 0.8rem 1.2rem !important;
     background: var(--theme-h2-bg, rgba(255,255,255,0.12)) !important; /* Card background */
     border: none !important;
@@ -3154,7 +3154,7 @@ body.focus-mode-active .interactive-bg {
     color: var(--theme-h3-text, #b0b8c1) !important;
     font-size: calc(1.3rem * var(--blog-scale, 1));
     font-weight: 600;
-    margin: 1.2rem 0 0 0 !important;
+    margin: 1.2rem 0 0.8rem 0 !important;
     letter-spacing: 0.2px;
     padding: 0.8rem 1.2rem !important;
     background: var(--theme-h3-bg, #181826) !important;
@@ -3171,7 +3171,7 @@ body.focus-mode-active .interactive-bg {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin: 1rem 0 0 0 !important;
+    margin: 1rem 0 0.6rem 0 !important;
     padding: 0.8rem 1.2rem !important;
     background: rgba(255, 71, 87, 0.05) !important;
     border: none !important;
