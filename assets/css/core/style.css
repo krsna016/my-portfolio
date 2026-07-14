@@ -3114,7 +3114,7 @@ body.focus-mode-active .interactive-bg {
 /* H1 — Article title, pure white, large */
 /* ---- Heading rectangle for light themes (Frost/Frosty) ----5rem * var(--blog-scale, 1));
     font-weight: 600;
-    margin: 2.5rem 0 1rem 0;
+    margin: 1rem 0 0.4rem 0;
     padding: 0.8rem 1.2rem !important;
     background: var(--theme-h2-bg, rgba(255,255,255,0.12)) !important; /* Card background */
     border: none !important;
@@ -3129,7 +3129,7 @@ body.focus-mode-active .interactive-bg {
     color: var(--theme-h3-text, #b0b8c1) !important; /* Dynamically themed H3 text */
     font-size: calc(1.3rem * var(--blog-scale, 1));
     font-weight: 600;
-    margin: 2.5rem 0 1rem 0;
+    margin: 1rem 0 0.4rem 0;
     letter-spacing: 0.2px;
     padding: 0.8rem 1.2rem !important;
     background: var(--theme-h3-bg, #181826) !important; /* Dynamically themed H3 background */
@@ -3146,7 +3146,7 @@ body.focus-mode-active .interactive-bg {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin: 2.2rem 0 0.8rem 0;
+    margin: 1rem 0 0.3rem 0;
     padding: 0.8rem 1.2rem !important;
     background: rgba(255, 71, 87, 0.05) !important; /* Subtle red matte background */
     border: none !important;
