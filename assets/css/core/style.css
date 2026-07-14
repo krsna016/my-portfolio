@@ -3554,14 +3554,15 @@ body.reader-open .cyber-crosshair-y {
 /* Floating Toggle Button for Top Bar */
 #toggle-bar-btn {
     position: fixed !important;
-    bottom: 2rem !important;
-    right: 2rem !important;
+    top: 1.5rem !important;
+    right: 1.5rem !important;
+    bottom: auto !important;
     width: 45px !important;
     height: 45px !important;
     border-radius: 50% !important;
     background: #121218 !important;
     color: #fff !important;
-    border: 2px solid rgba(255, 255, 255, 0.1) !important;
+    border: none !important;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
     display: flex !important;
     align-items: center !important;
