@@ -5033,7 +5033,9 @@ body.light-mode .certificate-card i {
 }
 
 body.light-mode .certificate-card:hover .cert-icon-container i,
-body.light-mode .certificate-card:hover i {
+body.light-mode .certificate-card:hover i,
+body.light-mode .about-card:hover i,
+body.light-mode .about-card:hover .icon {
     color: #000000 !important; /* Remain black on hover */
     transform: scale(1.15) !important; /* Grow a little on hover */
     filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.15)) !important;
