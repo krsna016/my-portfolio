@@ -3550,12 +3550,26 @@ body.reader-open .cyber-crosshair-y {
 #post-reader .post-reader-top-bar.hidden > *:not(#toggle-bar-btn) {
     display: none !important;
 }
-#post-reader .post-reader-top-bar.hidden #toggle-bar-btn {
+#post-reader .post-reader-top-bar #toggle-bar-btn {
     pointer-events: auto !important;
-    background: #121218 !important;
+    background: rgba(255, 255, 255, 0.1) !important;
     color: #fff !important;
+    border: none !important;
     border-radius: 8px !important;
     padding: 6px 14px !important;
+    cursor: pointer !important;
+    font-size: 1.2rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: background 0.3s ease !important;
+    margin-left: auto;
+}
+#post-reader .post-reader-top-bar #toggle-bar-btn:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+}
+#post-reader .post-reader-top-bar.hidden #toggle-bar-btn {
+    background: #121218 !important;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
 }
 
