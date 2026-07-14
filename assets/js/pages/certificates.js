@@ -4,13 +4,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Use global variable from certificates_data.js
     if (typeof certificatesData !== 'undefined') {
-        certificatesGrid.innerHTML = '';
-        certificatesData.forEach((cert, index) => {
-            createCertificateCard(cert, index);
-        });
+        const skeleton = document.getElementById('certificates-skeleton');
+        if (skeleton) {
+            skeleton.classList.add('skeleton-fade-out');
+            setTimeout(() => {
+                certificatesGrid.innerHTML = '';
+                certificatesData.forEach((cert, index) => {
+                    createCertificateCard(cert, index);
+                });
+                
+                // Add fade in
+                Array.from(certificatesGrid.children).forEach(child => {
+                    child.classList.add('content-fade-in');
+                });
+            }, 300);
+        } else {
+            certificatesGrid.innerHTML = '';
+            certificatesData.forEach((cert, index) => {
+                createCertificateCard(cert, index);
+            });
+        }
     } else {
         console.error('certificatesData is not defined');
-        certificatesGrid.innerHTML = '<div class="loader">Error loading certificates data.</div>';
+        certificatesGrid.innerHTML = '<div>Error loading certificates data.</div>';
     }
 
     // Modal Elements
