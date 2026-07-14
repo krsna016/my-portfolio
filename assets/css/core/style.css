@@ -1382,7 +1382,7 @@ footer {
 
 .form-group label {
     font-weight: 500;
-    color: var(--secondary-color);
+    color: var(--text-color);
     margin-left: 0.5rem;
 }
 
