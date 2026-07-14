@@ -5039,6 +5039,7 @@ body.light-mode .about-card:hover .icon {
     color: #000000 !important; /* Remain black on hover */
     transform: scale(1.15) !important; /* Grow a little on hover */
     filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.15)) !important;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.3) !important;
 }
 
 /* Force timeline icons to remain dark slate on hover in Light Mode */
