@@ -582,7 +582,6 @@ button.chat-send-btn:hover svg,
     font-size: clamp(2rem, 6vw, 3rem);
     /* Increased icon size */
     color: var(--secondary-color);
-    filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5));
     /* Add glow to icons */
     transition: transform 0.3s;
 }
@@ -872,7 +871,6 @@ button.chat-send-btn:hover svg,
 
 .about-card:hover .icon {
     color: var(--primary-color);
-    text-shadow: 0 0 15px var(--primary-color);
     transform: scale(1.1);
 }
 
@@ -4841,12 +4839,10 @@ html body.light-mode .certificates-page .certificate-card:hover .cert-link:hover
 /* Light Mode overrides for the 9 floating tech skill bubbles next to the hero profile */
 body.light-mode .idea-bubble i {
     color: #000000 !important;
-    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.15)) !important;
 }
 
 body.light-mode .idea-bubble:hover i {
     color: #64748b !important; /* turns little grey on hover */
-    filter: drop-shadow(0 0 10px rgba(100, 116, 139, 0.4)) !important;
 }
 
 /* Specific Light Mode overrides: category pills and tabs hover to solid black with white text */
@@ -5011,8 +5007,6 @@ body.light-mode .about-card:hover i,
 body.light-mode .about-card:hover .icon {
     color: #000000 !important; /* Remain black on hover */
     transform: scale(1.15) !important; /* Grow a little on hover */
-    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.15)) !important;
-    text-shadow: 0 0 15px rgba(0, 0, 0, 0.3) !important;
 }
 
 /* Force timeline icons to remain dark slate on hover in Light Mode */

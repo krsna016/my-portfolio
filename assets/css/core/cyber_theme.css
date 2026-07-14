@@ -755,8 +755,8 @@ button.ide-run-btn:hover svg[class*="fa-"] path {
     fill: #FFFFFF !important;
     opacity: 1 !important;
     transform: scale(1.08) !important;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4) !important;
-    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4)) !important;
+    text-shadow: none !important;
+    filter: none !important;
     background: transparent !important;
 }
 
