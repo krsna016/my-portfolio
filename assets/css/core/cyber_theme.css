@@ -309,14 +309,14 @@ input[type="range"]::-webkit-slider-thumb {
     bottom: 24px !important;
     right: 24px !important;
     left: auto !important;
-    width: 44px !important;
-    height: 44px !important;
+    width: 56px !important;
+    height: 56px !important;
     border-radius: 50% !important;
     padding: 0 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    font-size: 1.15rem !important;
+    font-size: 1.5rem !important;
     background: rgba(18, 24, 21, 0.75) !important;
     border: none !important;
     outline: none !important;
