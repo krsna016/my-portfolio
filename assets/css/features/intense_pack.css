@@ -716,12 +716,12 @@ h1, h2, h3, h4, .section-title, .pinned-heading h2 {
     left: 50% !important;
     transform: translateX(-50%) !important;
     z-index: 1000 !important;
-    background: rgba(18, 18, 26, 0.88) !important;
+    background: rgba(18, 18, 26, 0.5) !important;
     backdrop-filter: blur(24px) !important;
     -webkit-backdrop-filter: blur(24px) !important;
     border-radius: 50px !important;
     border: none !important;
-    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.6) !important;
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.5) !important;
 }
 
 .navbar.hidden {

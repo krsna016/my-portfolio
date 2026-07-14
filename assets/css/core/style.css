@@ -2789,9 +2789,9 @@ html body button.font-ctrl-btn:hover,
     /* Navbar & Mobile Menu */
     .navbar {
         padding: 12px 16px !important;
-        background: rgba(10, 10, 10, 0.85) !important;
+        background: rgba(10, 10, 10, 0.5) !important;
         backdrop-filter: blur(3px) saturate(180%) !important;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.015) !important;
+        border: none !important;
     }
 
     .logo {
@@ -4175,8 +4175,8 @@ body.light-mode .theme-toggle-btn:hover {
 
 /* Light Mode overrides for grids & elements */
 body.light-mode .navbar {
-    background: rgba(248, 250, 252, 0.9) !important;
-    border-bottom: none !important;
+    background: rgba(248, 250, 252, 0.5) !important;
+    border: none !important;
 }
 
 body.light-mode .nav-links a {
