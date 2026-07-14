@@ -3698,7 +3698,7 @@ body.reader-open .cyber-crosshair-y {
     --theme-table-border: rgba(0, 0, 0, 0.1);
     --theme-table-text: #333333;
     --theme-hr-line: rgba(0, 0, 0, 0.1);
-    --theme-inline-code-bg: rgba(37, 99, 235, 0.1);
+    --theme-inline-code-bg: transparent;
     --theme-inline-code-text: #2563eb;
     --theme-h1-bg: transparent;
     --theme-h1-text: #111111;
@@ -3742,7 +3742,7 @@ body.reader-open .cyber-crosshair-y {
     --theme-table-border: rgba(44, 62, 80, 0.1);
     --theme-table-text: #34495e;
     --theme-hr-line: rgba(44, 62, 80, 0.1);
-    --theme-inline-code-bg: rgba(41, 128, 185, 0.1);
+    --theme-inline-code-bg: transparent;
     --theme-inline-code-text: #2980b9;
     --theme-h1-bg: transparent;
     --theme-h1-text: #2c3e50;
@@ -3910,10 +3910,7 @@ body.reader-open .cyber-crosshair-y {
     transition: color 0.3s ease !important;
 }
 
-#post-reader.reader-dark .markdown-body ul li,
-#post-reader.reader-sepia .markdown-body ul li,
-#post-reader.reader-slate .markdown-body ul li,
-#post-reader.reader-forest .markdown-body ul li,
+#post-reader[class*="reader-"] .markdown-body ul li,
 #post-reader[class*="reader-"] .markdown-body ol li {
     color: var(--theme-list-text) !important;
     transition: color 0.3s ease !important;
@@ -3949,10 +3946,7 @@ body.reader-open .cyber-crosshair-y {
 
 /* ── Critical: pre code must NEVER get the inline code pill styling ── */
 /* This must come AFTER the inline code rule above to win the specificity race */
-#post-reader.reader-dark .markdown-body pre code,
-#post-reader.reader-sepia .markdown-body pre code,
-#post-reader.reader-slate .markdown-body pre code,
-#post-reader.reader-forest .markdown-body pre code,
+#post-reader[class*="reader-"] .markdown-body pre code,
 #reader-content.markdown-body pre code {
     background: transparent !important;
     background-color: transparent !important;
