@@ -82,12 +82,14 @@ document.addEventListener('DOMContentLoaded', async () => {
                 hideBtn.id = 'toggle-bar-btn';
                 hideBtn.setAttribute('aria-label', 'Toggle top bar visibility');
                 hideBtn.title = 'Hide/Show top bar';
-                hideBtn.textContent = '▾'; // down arrow when visible
+                hideBtn.innerHTML = '<i class="fa-solid fa-eye-slash"></i>'; // icon to hide
                 document.body.appendChild(hideBtn);
                 
                 hideBtn.addEventListener('click', () => {
                     existingTopBar.classList.toggle('hidden');
-                    hideBtn.textContent = existingTopBar.classList.contains('hidden') ? '▴' : '▾'; // up arrow when hidden
+                    hideBtn.innerHTML = existingTopBar.classList.contains('hidden') 
+                        ? '<i class="fa-solid fa-eye"></i>'   // icon to show
+                        : '<i class="fa-solid fa-eye-slash"></i>'; // icon to hide
                 });
             }
         }
