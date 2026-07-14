@@ -3210,9 +3210,14 @@ body.focus-mode-active .interactive-bg {
 }
 
 /* ── Body text elements ───────────────────────────────────── */
+#reader-content.markdown-body > *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
+    margin-left: 1.2rem;
+    margin-right: 1.2rem;
+}
 
 #reader-content.markdown-body p {
-    margin: 0 0 1.2rem 0;
+    margin-bottom: 1.2rem;
+    margin-top: 0;
     color: #d0d0d0;
 }
 
@@ -3577,6 +3582,7 @@ body.reader-open .cyber-crosshair-y {
     color: var(--theme-text, #fff) !important;
     border: none !important;
     box-shadow: none !important;
+    outline: none !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -3586,11 +3592,20 @@ body.reader-open .cyber-crosshair-y {
     transition: transform 0.3s ease, color 0.3s ease !important;
     pointer-events: auto !important;
     padding: 10px !important; /* Give it some click area */
+    -webkit-tap-highlight-color: transparent !important;
 }
-#toggle-bar-btn:hover {
+#toggle-bar-btn:hover, #toggle-bar-btn:focus, #toggle-bar-btn:active {
     background: transparent !important;
     transform: scale(1.1) !important;
     color: var(--theme-accent, #ff4757) !important;
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Force accent color for light mode on hover so it doesn't become white/invisible */
+body.light-mode #toggle-bar-btn:hover {
+    color: #ff4757 !important;
 }
 
 /* Compact overrides for back button and size controls */
