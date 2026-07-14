@@ -1309,10 +1309,11 @@ body .glass:not(.timeline-content):hover::after, body .card:not(.timeline-conten
 .chat-input-bar {
     background: #1e1e24 !important;
     border: none !important;
+    outline: none !important;
     border-radius: 8px !important;
     color: #FFFFFF !important;
     box-shadow: none !important;
-    transition: all 0.3s ease-out !important;
+    transition: background 0.3s ease-out !important;
 }
 
 /* Keep textarea inside chat bar transparent without borders so send btn is inside the msg box */
@@ -1320,6 +1321,7 @@ body .glass:not(.timeline-content):hover::after, body .card:not(.timeline-conten
 #message {
     background: transparent !important;
     border: none !important;
+    outline: none !important;
     box-shadow: none !important;
     padding: clamp(0.5rem, 2vw, 1rem) !important;
 }
@@ -1334,6 +1336,7 @@ body .glass:not(.timeline-content):hover::after, body .card:not(.timeline-conten
 .chat-input-bar:focus-within {
     background: rgba(30, 30, 36, 0.82) !important;
     border: none !important;
+    outline: none !important;
     box-shadow: none !important;
 }
 
