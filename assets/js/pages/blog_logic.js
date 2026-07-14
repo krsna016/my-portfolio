@@ -75,6 +75,21 @@ document.addEventListener('DOMContentLoaded', async () => {
         const existingTopBar = postReader.querySelector('.post-reader-top-bar');
         if (existingTopBar) {
             existingTopBar.appendChild(fontBar);
+            
+            // Add floating hide bar toggle button if it doesn't exist
+            if (!document.getElementById('toggle-bar-btn')) {
+                const hideBtn = document.createElement('button');
+                hideBtn.id = 'toggle-bar-btn';
+                hideBtn.setAttribute('aria-label', 'Toggle top bar visibility');
+                hideBtn.title = 'Hide/Show top bar';
+                hideBtn.textContent = '▾'; // down arrow when visible
+                document.body.appendChild(hideBtn);
+                
+                hideBtn.addEventListener('click', () => {
+                    existingTopBar.classList.toggle('hidden');
+                    hideBtn.textContent = existingTopBar.classList.contains('hidden') ? '▴' : '▾'; // up arrow when hidden
+                });
+            }
         }
 
         let toast = document.getElementById('font-size-toast');

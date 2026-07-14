@@ -3550,27 +3550,31 @@ body.reader-open .cyber-crosshair-y {
 #post-reader .post-reader-top-bar.hidden > *:not(#toggle-bar-btn) {
     display: none !important;
 }
-#post-reader .post-reader-top-bar #toggle-bar-btn {
-    pointer-events: auto !important;
-    background: rgba(255, 255, 255, 0.1) !important;
+
+/* Floating Toggle Button for Top Bar */
+#toggle-bar-btn {
+    position: fixed !important;
+    bottom: 2rem !important;
+    right: 2rem !important;
+    width: 45px !important;
+    height: 45px !important;
+    border-radius: 50% !important;
+    background: #121218 !important;
     color: #fff !important;
-    border: none !important;
-    border-radius: 8px !important;
-    padding: 6px 14px !important;
-    cursor: pointer !important;
-    font-size: 1.2rem !important;
+    border: 2px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    transition: background 0.3s ease !important;
-    margin-left: auto;
+    font-size: 1.5rem !important;
+    cursor: pointer !important;
+    z-index: 9999 !important;
+    transition: all 0.3s ease !important;
+    pointer-events: auto !important;
 }
-#post-reader .post-reader-top-bar #toggle-bar-btn:hover {
-    background: rgba(255, 255, 255, 0.2) !important;
-}
-#post-reader .post-reader-top-bar.hidden #toggle-bar-btn {
-    background: #121218 !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+#toggle-bar-btn:hover {
+    background: #1a1a24 !important;
+    transform: scale(1.05) !important;
 }
 
 /* Compact overrides for back button and size controls */
