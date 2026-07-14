@@ -622,7 +622,6 @@ svg[class*="fa-"] path {
 /* 3. Unified Hover State for ALL Icons globally */
 a:hover > i[class*="fa-"],
 button:hover > i[class*="fa-"],
-.game-card:hover .game-icon i,
 .certificate-card:hover .cert-icon-container i,
 .about-card:hover .icon,
 .project-card:hover .project-links a i,
@@ -1167,8 +1166,8 @@ body .glass:not(.timeline-content):hover::after, body .card:not(.timeline-conten
 }
 
 /* Phosphor Glow for Icons inside Cards on Hover */
-.glass:hover i, .card:hover i, .exec-card:hover i, .project-card:hover i, .certificate-card:hover i, .game-card:hover i, .article-card:hover i, .resume-card:hover i, .about-card:hover i, .contact-container:hover i, .dsa-container:hover i,
-.glass:hover svg, .card:hover svg, .exec-card:hover svg, .project-card:hover svg, .certificate-card:hover svg, .game-card:hover svg, .article-card:hover svg, .resume-card:hover svg, .about-card:hover svg, .contact-container:hover svg, .dsa-container:hover svg {
+.glass:hover i, .card:hover i, .exec-card:hover i, .project-card:hover i, .certificate-card:hover i, .article-card:hover i, .resume-card:hover i, .about-card:hover i, .contact-container:hover i, .dsa-container:hover i,
+.glass:hover svg, .card:hover svg, .exec-card:hover svg, .project-card:hover svg, .certificate-card:hover svg, .article-card:hover svg, .resume-card:hover svg, .about-card:hover svg, .contact-container:hover svg, .dsa-container:hover svg {
     color: var(--primary-color) !important;
     fill: var(--primary-color) !important;
     filter: drop-shadow(0 0 10px rgba(0, 255, 102, 0.6)) !important;
