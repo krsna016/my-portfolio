@@ -4817,12 +4817,20 @@ html body.light-mode .cert-link:hover {
     color: #ffffff !important;
 }
 
-/* Force AP. Logo text and dot to turn black in Light Mode */
+/* Force AP. Logo text to have a black gradient in Light Mode */
 body.light-mode .logo,
+html body.light-mode .logo {
+    background: linear-gradient(to right, #000000, #555555) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
+}
+
 body.light-mode .logo-dot,
-html body.light-mode .logo,
 html body.light-mode .logo-dot {
     color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
 }
 
 /* Highly specific overrides for certificates page buttons in Light Mode */
@@ -5295,4 +5303,20 @@ html body:not(.light-mode) .theme-toggle-btn:hover .sun-corona,
 html body:not(.light-mode) .theme-toggle-btn:hover .sun-rays line {
     stroke: #000000 !important;
     color: #000000 !important;
+}
+
+/* Maintain green color for enabled audio pill in Light Mode */
+html body.light-mode button.hud-audio-pill.enabled,
+html body.light-mode button.hud-audio-pill.enabled.hud-audio-pill.hud-audio-pill,
+html body.light-mode button.hud-audio-pill.enabled:hover,
+html body.light-mode button.hud-audio-pill.enabled.hud-audio-pill.hud-audio-pill:hover {
+    background: rgba(0, 255, 102, 0.15) !important;
+    color: #00FF66 !important;
+    box-shadow: 0 0 10px rgba(0, 255, 102, 0.3) !important;
+}
+html body.light-mode button.hud-audio-pill.enabled i,
+html body.light-mode button.hud-audio-pill.enabled svg,
+html body.light-mode button.hud-audio-pill.enabled.hud-audio-pill.hud-audio-pill i,
+html body.light-mode button.hud-audio-pill.enabled.hud-audio-pill.hud-audio-pill svg {
+    color: #00FF66 !important;
 }
