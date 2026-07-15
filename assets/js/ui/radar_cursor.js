@@ -30,10 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Create wrapper
     
     const isSnake = window.location.pathname.includes('snake');
-    const dotColor = isSnake ? '#00FF41' : '#F5F5F5';
-    const lineColor = isSnake ? '#00FF41' : '#F5F5F5';
-    const sweepColor = isSnake ? '#00FF41' : '#7C3AED';
-    const fillGlow = isSnake ? 'rgba(0, 255, 65, 0.25)' : 'rgba(34, 211, 238, 0.25)';
+    const dotColor = isSnake ? '#00FF41' : '#FFFFFF';
+    const lineColor = isSnake ? '#00FF41' : '#FFFFFF';
+    const sweepColor = isSnake ? '#00FF41' : '#FFFFFF';
+    const fillGlow = isSnake ? 'rgba(0, 255, 65, 0.25)' : 'rgba(255, 255, 255, 0.25)';
     
     const wrapper = document.createElement('div');
 
