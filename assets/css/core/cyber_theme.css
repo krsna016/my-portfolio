@@ -1275,21 +1275,21 @@ body .glass:not(.timeline-content):hover::after, body .card:not(.timeline-conten
     transform: scale(1.12);
 }
 .radar-hover .radar-ring {
-    stroke: #FFFFFF;
+    stroke: #FF3333;
     opacity: 0.8;
 }
 .radar-hover .radar-dot {
-    fill: #FFFFFF;
-    filter: drop-shadow(0 0 4px #FFFFFF);
+    fill: #FF3333;
+    filter: drop-shadow(0 0 4px #FF3333);
 }
 .radar-hover .radar-sweep {
     animation-duration: 1.2s;
 }
 .radar-hover .radar-sweep path:first-child {
-    stroke: #FFFFFF !important;
+    stroke: #FF3333 !important;
 }
 .radar-hover .radar-sweep path:last-child {
-    fill: rgba(255, 255, 255, 0.25) !important;
+    fill: rgba(255, 51, 51, 0.25) !important;
 }
 .radar-disabled {
     opacity: 0.4;

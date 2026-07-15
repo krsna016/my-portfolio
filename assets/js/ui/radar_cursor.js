@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </svg>
         </div>
     `;
-    document.documentElement.appendChild(wrapper);
+    document.body.appendChild(wrapper);
 
     const cursorMain = document.getElementById('radar-cursor-main');
 

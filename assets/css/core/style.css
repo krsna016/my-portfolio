@@ -5143,24 +5143,24 @@ body.light-mode #radar-cursor-container .radar-svg {
     filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.15)) !important;
 }
 
-/* Force hover state of radar cursor to black/dark slate in Light Mode */
+/* Force hover state of radar cursor to red in Light Mode */
 body.light-mode .radar-hover circle.radar-ring,
 body.light-mode .radar-hover .radar-ring {
-    stroke: #000000 !important;
+    stroke: #FF3333 !important;
     opacity: 0.85 !important;
 }
 
 body.light-mode .radar-hover .radar-dot {
-    fill: #000000 !important;
-    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.4)) !important;
+    fill: #FF3333 !important;
+    filter: drop-shadow(0 0 4px rgba(255, 51, 51, 0.4)) !important;
 }
 
 body.light-mode .radar-hover .radar-sweep path:first-child {
-    stroke: #000000 !important;
+    stroke: #FF3333 !important;
 }
 
 body.light-mode .radar-hover .radar-sweep path:last-child {
-    fill: rgba(0, 0, 0, 0.25) !important;
+    fill: rgba(255, 51, 51, 0.25) !important;
 }
 
 /* Force contact button logos/icons to turn white on hover in Light Mode */
