@@ -2590,8 +2590,13 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 
 body.light-mode .font-bar-controls {
-    background: rgba(0, 0, 0, 0.06);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: transparent !important;
+    border: none !important;
+}
+
+body.light-mode .blog-font-bar {
+    background: rgba(0, 0, 0, 0.05) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
 }
 
 .font-ctrl-btn {
@@ -2620,7 +2625,9 @@ html body button.font-ctrl-btn:hover,
 html body button.font-ctrl-btn.active,
 #font-dec-btn:hover,
 #font-inc-btn:hover,
-.font-ctrl-btn.active {
+.font-ctrl-btn.active,
+html body #back-button:hover,
+html body .theme-pill-btn:hover {
     background: #ffffff !important;
     background-color: #ffffff !important;
     color: #000000 !important;
@@ -2630,7 +2637,9 @@ body.light-mode #font-dec-btn:hover,
 body.light-mode #font-inc-btn:hover,
 body.light-mode button.font-ctrl-btn:hover,
 body.light-mode button.font-ctrl-btn.active,
-body.light-mode .font-ctrl-btn.active {
+body.light-mode .font-ctrl-btn.active,
+body.light-mode #back-button:hover,
+body.light-mode .theme-pill-btn:hover {
     background: #000000 !important;
     background-color: #000000 !important;
     color: #ffffff !important;
