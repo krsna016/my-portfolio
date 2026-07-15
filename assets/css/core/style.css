@@ -2602,7 +2602,7 @@ body.light-mode .blog-font-bar {
 
 .font-ctrl-btn {
     background: transparent;
-    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
     color: #e1e1e6;
     font-weight: 600;
     font-size: clamp(0.85rem, 2vw, 1rem);
@@ -2618,6 +2618,7 @@ body.light-mode .blog-font-bar {
 
 body.light-mode .font-ctrl-btn {
     color: #333333;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
 }
 
 html body #font-dec-btn:hover,
