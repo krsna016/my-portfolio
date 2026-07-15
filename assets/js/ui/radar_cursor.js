@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let magneticTargetX = 0;
     let magneticTargetY = 0;
 
-    const interactiveSelectors = 'a, button, .card, .glass, .project-card, .certificate-card, .game-card, .article-card, .timeline-content, .ide-tab, [onclick], .social-link, .dsa-container';
+    const interactiveSelectors = 'a, button, .card, .glass, .project-card, .certificate-card, .game-card, .article-card, .timeline-content, .ide-tab, [onclick], .social-link, .dsa-container, .category-list li';
     const textSelectors = 'input, textarea, [contenteditable], p, h1, h2, h3, h4, h5, h6, span, li, td, th';
 
     // Track Mouse
