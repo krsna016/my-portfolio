@@ -3279,7 +3279,7 @@ body.focus-mode-active .interactive-bg {
 }
 #reader-content.markdown-body ul li {
     position: relative;
-    padding-left: 1.2rem;
+    padding-left: 1.6rem; /* Increased to create gap between triangle and text */
     margin-bottom: 0.45rem;
     color: #d0d0d0;
 }
