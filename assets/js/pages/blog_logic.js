@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 hideBtn.setAttribute('aria-label', 'Toggle top bar visibility');
                 hideBtn.title = 'Hide/Show top bar';
                 hideBtn.innerHTML = '<i class="fa-solid fa-eye-slash"></i>'; // icon to hide
-                document.body.appendChild(hideBtn);
+                postReader.appendChild(hideBtn);
                 
                 hideBtn.addEventListener('click', () => {
                     existingTopBar.classList.toggle('hidden');
