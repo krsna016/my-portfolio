@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline | Anurag Pareek</title>
+    <link rel="stylesheet" href="assets/css/core/style.css">
+    <link rel="stylesheet" href="assets/css/core/cyber_theme.css">
+    <link rel="stylesheet" href="assets/css/features/intense_pack.css">
+    <link rel="manifest" href="manifest.json">
+    <style>
+        body {
+            background-color: #030712 !important;
+            color: #fff !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Space Grotesk', sans-serif;
+            text-align: center;
+        }
+        .offline-container {
+            max-width: 500px;
+            padding: 2rem;
+            background: rgba(18, 18, 24, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            margin-top: 0;
+            font-size: 2rem;
+            color: var(--secondary-color, #00d4ff);
+        }
+        p {
+            color: #aaa;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        .retry-btn {
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .retry-btn:hover {
+            background: #e0e0e0;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <div class="offline-container">
+        <h1>You are offline.</h1>
+        <p>It seems your connection was lost. Please check your network connection and try again.</p>
+        <button class="retry-btn" onclick="window.location.reload()">Retry Connection</button>
+    </div>
+</body>
+</html>

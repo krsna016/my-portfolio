@@ -19,7 +19,8 @@ const PRECACHE_ASSETS = [
     '/assets/css/core/cyber_theme.css',
     '/assets/js/ui/cyber_ui.js',
     '/assets/js/ui/evervault_portrait.js',
-    '/manifest.json'
+    '/manifest.json',
+    '/offline.html'
 ];
 
 // Install: pre-cache assets individually so one failure doesn't break everything
@@ -92,7 +93,7 @@ self.addEventListener('fetch', event => {
                 })
                 .catch(() => {
                     return caches.match(event.request, { ignoreSearch: true })
-                        .then(cached => cached || caches.match('/index.html'));
+                        .then(cached => cached || caches.match('/offline.html'));
                 })
         );
     } else {
