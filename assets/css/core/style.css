@@ -5521,7 +5521,9 @@ body:not(.light-mode) .light-theme-option { display: none !important; }
 html body:not(.light-mode) #post-reader #back-button:hover,
 html body:not(.light-mode) #post-reader .blog-share-btn:hover,
 html body:not(.light-mode) #post-reader .meta-share-link:hover,
-html body:not(.light-mode) #post-reader .theme-pill-btn:hover {
+html body:not(.light-mode) #post-reader .theme-pill-btn:hover,
+html body:not(.light-mode) #post-reader .font-ctrl-btn:hover,
+html body:not(.light-mode) #post-reader .font-ctrl-btn.active {
     background: #ffffff !important;
     background-color: #ffffff !important;
     color: #000000 !important;
@@ -5538,7 +5540,9 @@ html body:not(.light-mode) #post-reader .theme-pill-btn:hover i {
 html body.light-mode #post-reader #back-button:hover,
 html body.light-mode #post-reader .blog-share-btn:hover,
 html body.light-mode #post-reader .meta-share-link:hover,
-html body.light-mode #post-reader .theme-pill-btn:hover {
+html body.light-mode #post-reader .theme-pill-btn:hover,
+html body.light-mode #post-reader .font-ctrl-btn:hover,
+html body.light-mode #post-reader .font-ctrl-btn.active {
     background: #000000 !important;
     background-color: #000000 !important;
     color: #ffffff !important;
