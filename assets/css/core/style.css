@@ -5514,3 +5514,38 @@ html body.light-mode button.hud-audio-pill.enabled.hud-audio-pill.hud-audio-pill
 /* Theme palette filtering based on mode */
 body.light-mode .dark-theme-option { display: none !important; }
 body:not(.light-mode) .light-theme-option { display: none !important; }
+
+/* ====== SUPER SPECIFIC RULES FOR BACK & SHARE BUTTONS ====== */
+/* Dark Mode */
+html body:not(.light-mode) #post-reader #back-button:hover,
+html body:not(.light-mode) #post-reader .blog-share-btn:hover,
+html body:not(.light-mode) #post-reader .meta-share-link:hover,
+html body:not(.light-mode) #post-reader .theme-pill-btn:hover {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border-color: #ffffff !important;
+}
+html body:not(.light-mode) #post-reader #back-button:hover i,
+html body:not(.light-mode) #post-reader .blog-share-btn:hover i,
+html body:not(.light-mode) #post-reader .meta-share-link:hover i,
+html body:not(.light-mode) #post-reader .theme-pill-btn:hover i {
+    color: #000000 !important;
+}
+
+/* Light Mode */
+html body.light-mode #post-reader #back-button:hover,
+html body.light-mode #post-reader .blog-share-btn:hover,
+html body.light-mode #post-reader .meta-share-link:hover,
+html body.light-mode #post-reader .theme-pill-btn:hover {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border-color: #000000 !important;
+}
+html body.light-mode #post-reader #back-button:hover i,
+html body.light-mode #post-reader .blog-share-btn:hover i,
+html body.light-mode #post-reader .meta-share-link:hover i,
+html body.light-mode #post-reader .theme-pill-btn:hover i {
+    color: #ffffff !important;
+}
