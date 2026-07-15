@@ -53,17 +53,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <button id="font-inc-btn" class="font-ctrl-btn" aria-label="Increase font size" title="Increase size (Ctrl/Cmd + +)">A+</button>
                 </div>
             </div>
-            <div class="font-bar-section">
-                <div class="font-bar-left">
-                    <i class="fa-solid fa-font" aria-hidden="true"></i>
-                    <span>Font</span>
-                </div>
-                <div class="font-bar-controls">
-                    <button class="font-ctrl-btn font-family-btn active" data-font="'Space Grotesk', 'Outfit', sans-serif" title="Modern Sans">Aa</button>
-                    <button class="font-ctrl-btn font-family-btn" data-font="'Merriweather', 'Georgia', serif" title="Classic Serif" style="font-family: 'Merriweather', 'Georgia', serif;">Aa</button>
-                    <button class="font-ctrl-btn font-family-btn" data-font="'Fira Code', 'Courier New', monospace" title="Monospace" style="font-family: 'Fira Code', monospace;">Aa</button>
-                </div>
-            </div>
+
             <div class="theme-bar-section">
                 <div class="font-bar-left">
                     <i class="fa-solid fa-palette" aria-hidden="true"></i>
