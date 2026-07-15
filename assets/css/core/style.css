@@ -2586,7 +2586,12 @@ input[type="range"]::-webkit-slider-thumb:hover {
     background: rgba(0, 0, 0, 0.3);
     padding: 3px;
     border-radius: 8px;
-    border: none !important;
+    border: 1px solid transparent;
+}
+
+body.light-mode .font-bar-controls {
+    background: rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .font-ctrl-btn {
@@ -2605,6 +2610,10 @@ input[type="range"]::-webkit-slider-thumb:hover {
     min-width: 32px;
 }
 
+body.light-mode .font-ctrl-btn {
+    color: #333333;
+}
+
 html body #font-dec-btn:hover,
 html body #font-inc-btn:hover,
 html body button.font-ctrl-btn:hover,
@@ -2615,6 +2624,16 @@ html body button.font-ctrl-btn.active,
     background: #ffffff !important;
     background-color: #ffffff !important;
     color: #000000 !important;
+}
+
+body.light-mode #font-dec-btn:hover,
+body.light-mode #font-inc-btn:hover,
+body.light-mode button.font-ctrl-btn:hover,
+body.light-mode button.font-ctrl-btn.active,
+body.light-mode .font-ctrl-btn.active {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    color: #ffffff !important;
 }
 
 .font-ctrl-btn:active:not(:disabled) {
@@ -3593,6 +3612,8 @@ body.reader-open .cyber-crosshair-y {
     pointer-events: auto !important;
     padding: 10px !important; /* Give it some click area */
     -webkit-tap-highlight-color: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
 }
 #toggle-bar-btn:hover, #toggle-bar-btn:focus, #toggle-bar-btn:active {
     background: transparent !important;
@@ -3603,9 +3624,15 @@ body.reader-open .cyber-crosshair-y {
     box-shadow: none !important;
 }
 
-/* Force accent color for light mode on hover so it doesn't become white/invisible */
-body.light-mode #toggle-bar-btn:hover {
-    color: #ff4757 !important;
+/* Keep it black on hover in light mode */
+body.light-mode #toggle-bar-btn:hover,
+body.light-mode #toggle-bar-btn:focus,
+body.light-mode #toggle-bar-btn:active,
+body.light-mode #toggle-bar-btn:hover i,
+body.light-mode #toggle-bar-btn:focus i,
+body.light-mode #toggle-bar-btn:active i {
+    color: #000000 !important;
+    background: transparent !important;
 }
 
 /* Compact overrides for back button and size controls */
