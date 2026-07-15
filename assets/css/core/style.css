@@ -4418,7 +4418,7 @@ body.light-mode .highlight {
 body.light-mode footer {
     background: transparent !important;
     background-color: transparent !important;
-    border-top: 1px solid rgba(15, 23, 42, 0.08) !important;
+    border: none !important;
 }
 
 body.light-mode footer p {
