@@ -1275,12 +1275,12 @@ body .glass:not(.timeline-content):hover::after, body .card:not(.timeline-conten
     transform: scale(1.12);
 }
 .radar-hover .radar-ring {
-    stroke: #FF3333;
-    opacity: 0.8;
+    stroke: #FF3333 !important;
+    opacity: 0.8 !important;
 }
 .radar-hover .radar-dot {
-    fill: #FF3333;
-    filter: drop-shadow(0 0 4px #FF3333);
+    fill: #FF3333 !important;
+    filter: drop-shadow(0 0 4px #FF3333) !important;
 }
 .radar-hover .radar-sweep {
     animation-duration: 1.2s;

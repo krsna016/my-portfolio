@@ -5144,22 +5144,22 @@ body.light-mode #radar-cursor-container .radar-svg {
 }
 
 /* Force hover state of radar cursor to red in Light Mode */
-body.light-mode .radar-hover circle.radar-ring,
-body.light-mode .radar-hover .radar-ring {
+body.light-mode #radar-cursor-container .radar-hover circle.radar-ring,
+body.light-mode #radar-cursor-container .radar-hover .radar-ring {
     stroke: #FF3333 !important;
     opacity: 0.85 !important;
 }
 
-body.light-mode .radar-hover .radar-dot {
+body.light-mode #radar-cursor-container .radar-hover .radar-dot {
     fill: #FF3333 !important;
     filter: drop-shadow(0 0 4px rgba(255, 51, 51, 0.4)) !important;
 }
 
-body.light-mode .radar-hover .radar-sweep path:first-child {
+body.light-mode #radar-cursor-container .radar-hover .radar-sweep path:first-child {
     stroke: #FF3333 !important;
 }
 
-body.light-mode .radar-hover .radar-sweep path:last-child {
+body.light-mode #radar-cursor-container .radar-hover .radar-sweep path:last-child {
     fill: rgba(255, 51, 51, 0.25) !important;
 }
 
