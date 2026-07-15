@@ -3445,6 +3445,12 @@ body.focus-mode-active .interactive-bg {
     vertical-align: unset !important;
 }
 
+#reader-content.markdown-body pre .code-copy-btn i,
+#post-reader .markdown-body pre .code-copy-btn i,
+.code-copy-btn i {
+    color: inherit !important;
+}
+
 /* Show the copy button only when hovering the code block */
 #reader-content.markdown-body pre:hover .code-copy-btn,
 #post-reader .markdown-body pre:hover .code-copy-btn,
