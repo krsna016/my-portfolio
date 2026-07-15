@@ -5519,40 +5519,62 @@ body:not(.light-mode) .light-theme-option { display: none !important; }
 /* ====== SUPER SPECIFIC RULES FOR BACK & SHARE BUTTONS ====== */
 /* Dark Mode */
 html body:not(.light-mode) #post-reader #back-button:hover,
-html body:not(.light-mode) #post-reader .blog-share-btn:hover,
-html body:not(.light-mode) #post-reader .meta-share-link:hover,
 html body:not(.light-mode) #post-reader .theme-pill-btn:hover,
-html body:not(.light-mode) #post-reader .font-ctrl-btn:hover,
-html body:not(.light-mode) #post-reader .font-ctrl-btn.active {
+html body:not(.light-mode) #post-reader #font-dec-btn:hover,
+html body:not(.light-mode) #post-reader #font-inc-btn:hover,
+html body:not(.light-mode) #post-reader .font-bar-controls .font-ctrl-btn:hover,
+html body:not(.light-mode) #post-reader .font-bar-controls .font-ctrl-btn.active {
     background: #ffffff !important;
     background-color: #ffffff !important;
     color: #000000 !important;
     border-color: #ffffff !important;
 }
 html body:not(.light-mode) #post-reader #back-button:hover i,
-html body:not(.light-mode) #post-reader .blog-share-btn:hover i,
-html body:not(.light-mode) #post-reader .meta-share-link:hover i,
-html body:not(.light-mode) #post-reader .theme-pill-btn:hover i {
+html body:not(.light-mode) #post-reader .theme-pill-btn:hover i,
+html body:not(.light-mode) #post-reader #font-dec-btn:hover i,
+html body:not(.light-mode) #post-reader #font-inc-btn:hover i,
+html body:not(.light-mode) #post-reader .font-bar-controls .font-ctrl-btn:hover i {
     color: #000000 !important;
 }
 
 /* Light Mode */
 html body.light-mode #post-reader #back-button:hover,
-html body.light-mode #post-reader .blog-share-btn:hover,
-html body.light-mode #post-reader .meta-share-link:hover,
 html body.light-mode #post-reader .theme-pill-btn:hover,
-html body.light-mode #post-reader .font-ctrl-btn:hover,
-html body.light-mode #post-reader .font-ctrl-btn.active {
+html body.light-mode #post-reader #font-dec-btn:hover,
+html body.light-mode #post-reader #font-inc-btn:hover,
+html body.light-mode #post-reader .font-bar-controls .font-ctrl-btn:hover,
+html body.light-mode #post-reader .font-bar-controls .font-ctrl-btn.active {
     background: #000000 !important;
     background-color: #000000 !important;
     color: #ffffff !important;
     border-color: #000000 !important;
 }
 html body.light-mode #post-reader #back-button:hover i,
-html body.light-mode #post-reader .blog-share-btn:hover i,
-html body.light-mode #post-reader .meta-share-link:hover i,
-html body.light-mode #post-reader .theme-pill-btn:hover i {
+html body.light-mode #post-reader .theme-pill-btn:hover i,
+html body.light-mode #post-reader #font-dec-btn:hover i,
+html body.light-mode #post-reader #font-inc-btn:hover i,
+html body.light-mode #post-reader .font-bar-controls .font-ctrl-btn:hover i {
     color: #ffffff !important;
+}
+
+/* Share Button: Transparent background, just change logo color */
+html body #post-reader .blog-share-btn:hover,
+html body #post-reader .meta-share-link:hover {
+    background: transparent !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+html body:not(.light-mode) #post-reader .blog-share-btn:hover,
+html body:not(.light-mode) #post-reader .meta-share-link:hover,
+html body:not(.light-mode) #post-reader .blog-share-btn:hover i,
+html body:not(.light-mode) #post-reader .meta-share-link:hover i {
+    color: #ffffff !important;
+}
+html body.light-mode #post-reader .blog-share-btn:hover,
+html body.light-mode #post-reader .meta-share-link:hover,
+html body.light-mode #post-reader .blog-share-btn:hover i,
+html body.light-mode #post-reader .meta-share-link:hover i {
+    color: #000000 !important;
 }
 
 /* Light Mode: Make the main top bar look like a card */
