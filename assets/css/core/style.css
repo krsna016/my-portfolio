@@ -5554,3 +5554,11 @@ html body.light-mode #post-reader .meta-share-link:hover i,
 html body.light-mode #post-reader .theme-pill-btn:hover i {
     color: #ffffff !important;
 }
+
+/* Light Mode: Make the main top bar look like a card */
+html body.light-mode #post-reader .post-reader-top-bar,
+html body.light-mode #post-reader[class*="reader-"] .post-reader-top-bar {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: none !important;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06) !important;
+}
