@@ -3925,8 +3925,8 @@ body.light-mode #toggle-bar-btn:active i {
 }
 
 #post-reader[class*="reader-"] .blog-font-bar .font-bar-controls {
-    background: var(--theme-btn-bg) !important;
-    border: 1px solid var(--theme-btn-border) !important;
+    background: transparent !important;
+    border: none !important;
 }
 
 #post-reader[class*="reader-"] .blog-font-bar .font-ctrl-btn {
@@ -4226,8 +4226,8 @@ body.reader-open .grid-line {
 
 /* The dark pill container wrapping A−, size, A+ */
 #post-reader.reader-sepia .font-bar-controls {
-    background: rgba(124, 115, 101, 0.14) !important;
-    border: 1px solid rgba(124, 115, 101, 0.28) !important;
+    background: transparent !important;
+    border: none !important;
     box-shadow: none !important;
 }
 
