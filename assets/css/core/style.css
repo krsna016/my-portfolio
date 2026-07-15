@@ -3606,8 +3606,10 @@ body.reader-open .cyber-crosshair-y {
 #toggle-bar-btn {
     position: fixed !important;
     top: 5.5rem !important; /* Positioned below the theme toggle button */
-    right: 1.5rem !important;
-    bottom: auto !important;
+    right: 24px !important;
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 50% !important;
     background: transparent !important;
     color: var(--theme-text, #fff) !important;
     border: none !important;
@@ -3621,7 +3623,7 @@ body.reader-open .cyber-crosshair-y {
     z-index: 9999 !important;
     transition: transform 0.3s ease, color 0.3s ease !important;
     pointer-events: auto !important;
-    padding: 10px !important; /* Give it some click area */
+    padding: 0 !important; /* Matches theme toggle button */
     -webkit-tap-highlight-color: transparent !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
