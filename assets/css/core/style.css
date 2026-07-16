@@ -3164,23 +3164,30 @@ body.focus-mode-active .interactive-bg {
     font-size: calc(1.75rem * var(--blog-scale, 1));
     font-weight: 600;
     margin: 1.5rem 0 0.8rem 0 !important;
-    padding: 0.8rem 1.2rem !important;
-    background: var(--theme-h2-bg, rgba(255,255,255,0.12)) !important; /* Card background */
-    border: none !important;
-    border-radius: 8px !important;
-    box-shadow: var(--theme-h2-shadow, 0 2px 8px rgba(0,0,0,0.2)) !important;
-    transition: background 0.3s ease, color 0.3s ease !important;
+    transition: color 0.3s ease !important;
 }
 
-/* Little dot before important headings (H1, H2) */
-#reader-content.markdown-body h1::before,
-#reader-content.markdown-body h2::before {
+/* Little dot before important headings (H1) */
+#reader-content.markdown-body h1::before {
     content: "•";
     margin-right: 12px;
     opacity: 0.6;
     color: inherit;
     display: inline-block;
     position: static;
+}
+
+/* Arrow before other headings */
+#reader-content.markdown-body h2::before,
+#reader-content.markdown-body h3::before,
+#reader-content.markdown-body h4::before,
+#reader-content.markdown-body h5::before,
+#reader-content.markdown-body h6::before {
+    content: "➔";
+    margin-right: 12px;
+    opacity: 0.8;
+    color: var(--primary-color, #2ed573);
+    display: inline-block;
 }
 
 /* H3 — Sub-sections, light grey */
@@ -3190,12 +3197,7 @@ body.focus-mode-active .interactive-bg {
     font-weight: 600;
     margin: 1.2rem 0 0.8rem 0 !important;
     letter-spacing: 0.2px;
-    padding: 0.8rem 1.2rem !important;
-    background: var(--theme-h3-bg, #181826) !important;
-    border: none !important;
-    border-radius: 8px !important;
-    box-shadow: var(--theme-h3-shadow, 0 4px 10px rgba(0, 0, 0, 0.25)) !important;
-    transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease !important;
+    transition: color 0.3s ease !important;
 }
 
 /* H4 — "Important" markers, red */
@@ -3206,11 +3208,6 @@ body.focus-mode-active .interactive-bg {
     text-transform: uppercase;
     letter-spacing: 1px;
     margin: 1rem 0 0.6rem 0 !important;
-    padding: 0.8rem 1.2rem !important;
-    background: rgba(255, 71, 87, 0.05) !important;
-    border: none !important;
-    border-left: 4px solid var(--theme-h4-text, #ff4757) !important;
-    border-radius: 0 8px 8px 0 !important;
 }
 
 
@@ -3220,11 +3217,6 @@ body.focus-mode-active .interactive-bg {
     font-size: calc(1rem * var(--blog-scale, 1));
     font-weight: 500;
     margin: 1.2rem 0 0 0 !important;
-    padding: 0.6rem 1rem !important;
-    background: rgba(255, 255, 255, 0.05) !important;
-    border: none !important;
-    border-radius: 6px !important;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
 }
 
 /* H6 — Caption-level, dimmer grey */
@@ -3235,10 +3227,6 @@ body.focus-mode-active .interactive-bg {
     text-transform: uppercase;
     letter-spacing: 0.8px;
     margin: 1rem 0 0 0 !important;
-    padding: 0.5rem 0.8rem !important;
-    background: rgba(255, 255, 255, 0.03) !important;
-    border: none !important;
-    border-radius: 6px !important;
 }
 
 /* ── Body text elements ───────────────────────────────────── */
