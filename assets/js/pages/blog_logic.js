@@ -777,16 +777,19 @@ document.addEventListener('DOMContentLoaded', async () => {
                     const targetEl = document.getElementById(targetId);
                     if (targetEl) {
                         e.preventDefault();
-                        const offset = 80; // Account for top bar
-                        const bodyRect = document.body.getBoundingClientRect().top;
-                        const elementRect = targetEl.getBoundingClientRect().top;
-                        const elementPosition = elementRect - bodyRect;
-                        const offsetPosition = elementPosition - offset;
+                        const offset = 20; // Slight offset
+                        const scrollContainer = document.getElementById('post-reader-overlay');
+                        if (scrollContainer) {
+                            const containerRect = scrollContainer.getBoundingClientRect().top;
+                            const elementRect = targetEl.getBoundingClientRect().top;
+                            const elementPosition = elementRect - containerRect;
+                            const offsetPosition = elementPosition + scrollContainer.scrollTop - offset;
 
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: 'smooth'
-                        });
+                            scrollContainer.scrollTo({
+                                top: offsetPosition,
+                                behavior: 'smooth'
+                            });
+                        }
                         history.pushState(null, null, `#${targetId}`);
                     }
                 });

@@ -3299,35 +3299,39 @@ body.focus-mode-active .interactive-bg {
 }
 
 /* Style the markdown checkboxes so they don't look tiny and dull */
+/* Style the markdown checkboxes so they don't look tiny and dull */
 #reader-content.markdown-body ul li input[type="checkbox"] {
-    appearance: none;
-    -webkit-appearance: none;
-    width: 1.1rem;
-    height: 1.1rem;
-    border: 2px solid var(--primary-color, #2ed573);
-    border-radius: 4px;
-    margin-right: 0.6rem;
-    vertical-align: middle;
-    position: relative;
-    top: -1px;
-    cursor: pointer;
-    background: rgba(255, 255, 255, 0.05);
-    transition: all 0.2s ease;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    width: 1.2rem !important;
+    height: 1.2rem !important;
+    border: 2px solid var(--theme-h1-text, #00ff66) !important;
+    border-radius: 4px !important;
+    margin-right: 0.6rem !important;
+    vertical-align: middle !important;
+    position: relative !important;
+    top: -2px !important;
+    cursor: pointer !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    opacity: 1 !important; /* Force full opacity in case browser sets disabled state to 0.5 */
+    transition: all 0.2s ease !important;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5) !important;
 }
 
 #reader-content.markdown-body ul li input[type="checkbox"]:checked {
-    background: var(--primary-color, #2ed573);
+    background: var(--theme-h1-text, #00ff66) !important;
+    border-color: var(--theme-h1-text, #00ff66) !important;
 }
 
 #reader-content.markdown-body ul li input[type="checkbox"]:checked::after {
-    content: '✔';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #000;
-    font-size: 0.8rem;
-    font-weight: 900;
+    content: '✔' !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    color: #000 !important;
+    font-size: 0.8rem !important;
+    font-weight: 900 !important;
 }
 #reader-content.markdown-body ul ul li::before {
     content: '–';
