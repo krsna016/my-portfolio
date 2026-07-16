@@ -778,7 +778,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     if (targetEl) {
                         e.preventDefault();
                         const offset = 20; // Slight offset
-                        const scrollContainer = document.getElementById('post-reader-overlay');
+                        const scrollContainer = document.getElementById('post-reader');
                         if (scrollContainer) {
                             const containerRect = scrollContainer.getBoundingClientRect().top;
                             const elementRect = targetEl.getBoundingClientRect().top;
