@@ -755,6 +755,43 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
             
             readerContent.innerHTML = safeHtml;
+
+            // Generate IDs for headings so Table of Contents links work
+            const headings = readerContent.querySelectorAll('h1, h2, h3, h4, h5, h6');
+            headings.forEach(heading => {
+                if (!heading.id) {
+                    heading.id = heading.textContent
+                        .toLowerCase()
+                        .trim()
+                        .replace(/[^\w\s-]/g, '')
+                        .replace(/[\s_-]+/g, '-')
+                        .replace(/^-+|-+$/g, '');
+                }
+            });
+
+            // Smooth scroll for internal TOC links
+            const tocLinks = readerContent.querySelectorAll('a[href^="#"]');
+            tocLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const targetId = link.getAttribute('href').substring(1);
+                    const targetEl = document.getElementById(targetId);
+                    if (targetEl) {
+                        e.preventDefault();
+                        const offset = 80; // Account for top bar
+                        const bodyRect = document.body.getBoundingClientRect().top;
+                        const elementRect = targetEl.getBoundingClientRect().top;
+                        const elementPosition = elementRect - bodyRect;
+                        const offsetPosition = elementPosition - offset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                        history.pushState(null, null, `#${targetId}`);
+                    }
+                });
+            });
+
             showReaderView();
             window.scrollTo(0, 0);
 
