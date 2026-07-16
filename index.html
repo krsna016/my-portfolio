@@ -62,6 +62,190 @@
 </head>
 
 <body>
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- MOBILE SPLASH — Only visible on screens < 768px        -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div id="mobile-splash" style="display:none;">
+        <style>
+            #mobile-splash {
+                position: fixed;
+                inset: 0;
+                z-index: 999999;
+                background: #030712;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 2rem;
+                font-family: 'Outfit', 'Space Grotesk', sans-serif;
+                overflow: hidden;
+            }
+            /* Animated background orbs */
+            #mobile-splash::before {
+                content: '';
+                position: absolute;
+                width: 300px; height: 300px;
+                border-radius: 50%;
+                background: radial-gradient(circle, rgba(0,255,102,0.12) 0%, transparent 70%);
+                top: -80px; left: -80px;
+                animation: mob-pulse 4s ease-in-out infinite alternate;
+            }
+            #mobile-splash::after {
+                content: '';
+                position: absolute;
+                width: 250px; height: 250px;
+                border-radius: 50%;
+                background: radial-gradient(circle, rgba(0,210,255,0.1) 0%, transparent 70%);
+                bottom: -60px; right: -60px;
+                animation: mob-pulse 5s ease-in-out infinite alternate-reverse;
+            }
+            @keyframes mob-pulse {
+                from { transform: scale(1); opacity: 0.6; }
+                to   { transform: scale(1.3); opacity: 1; }
+            }
+            .mob-logo {
+                font-size: 2.5rem;
+                font-weight: 800;
+                color: #00ff66;
+                letter-spacing: -1px;
+                margin-bottom: 0.4rem;
+                animation: mob-fadein 0.8s ease both;
+            }
+            .mob-logo span { color: #ffffff; }
+            .mob-badge {
+                display: inline-block;
+                background: rgba(0,255,102,0.1);
+                border: 1px solid rgba(0,255,102,0.3);
+                color: #00ff66;
+                font-size: 0.65rem;
+                font-weight: 600;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                padding: 4px 12px;
+                border-radius: 50px;
+                margin-bottom: 2.5rem;
+                animation: mob-fadein 0.8s 0.1s ease both;
+            }
+            .mob-icon {
+                font-size: 3.5rem;
+                margin-bottom: 1.2rem;
+                animation: mob-bounce 2s ease-in-out infinite;
+            }
+            @keyframes mob-bounce {
+                0%, 100% { transform: translateY(0); }
+                50%       { transform: translateY(-8px); }
+            }
+            .mob-title {
+                font-size: 1.6rem;
+                font-weight: 700;
+                color: #ffffff;
+                margin-bottom: 0.8rem;
+                line-height: 1.3;
+                animation: mob-fadein 0.8s 0.2s ease both;
+            }
+            .mob-title span { color: #00ff66; }
+            .mob-desc {
+                font-size: 0.9rem;
+                color: rgba(255,255,255,0.55);
+                line-height: 1.7;
+                max-width: 300px;
+                margin-bottom: 2.5rem;
+                animation: mob-fadein 0.8s 0.3s ease both;
+            }
+            .mob-btn-primary {
+                background: #00ff66;
+                color: #000;
+                border: none;
+                padding: 14px 32px;
+                border-radius: 50px;
+                font-size: 0.95rem;
+                font-weight: 700;
+                cursor: pointer;
+                margin-bottom: 1rem;
+                width: 100%;
+                max-width: 280px;
+                letter-spacing: 0.3px;
+                animation: mob-fadein 0.8s 0.4s ease both;
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+                box-shadow: 0 0 20px rgba(0,255,102,0.3);
+            }
+            .mob-btn-primary:active {
+                transform: scale(0.97);
+            }
+            .mob-btn-secondary {
+                background: transparent;
+                color: rgba(255,255,255,0.4);
+                border: none;
+                padding: 10px;
+                font-size: 0.78rem;
+                cursor: pointer;
+                animation: mob-fadein 0.8s 0.5s ease both;
+                text-decoration: underline;
+                text-underline-offset: 3px;
+            }
+            .mob-dots {
+                display: flex;
+                gap: 6px;
+                justify-content: center;
+                margin-bottom: 2rem;
+                animation: mob-fadein 0.8s 0.35s ease both;
+            }
+            .mob-dots span {
+                width: 6px; height: 6px;
+                border-radius: 50%;
+                background: rgba(0,255,102,0.3);
+                animation: mob-dot 1.4s ease-in-out infinite;
+            }
+            .mob-dots span:nth-child(2) { animation-delay: 0.2s; }
+            .mob-dots span:nth-child(3) { animation-delay: 0.4s; }
+            @keyframes mob-dot {
+                0%,100% { background: rgba(0,255,102,0.2); transform: scale(1); }
+                50%      { background: #00ff66; transform: scale(1.4); }
+            }
+            @keyframes mob-fadein {
+                from { opacity: 0; transform: translateY(16px); }
+                to   { opacity: 1; transform: translateY(0); }
+            }
+        </style>
+
+        <div class="mob-logo">AP<span>.</span></div>
+        <div class="mob-badge">anuragpareek016.engineer</div>
+
+        <div class="mob-icon">📱</div>
+        <div class="mob-title">Mobile Experience<br><span>Coming Soon</span></div>
+        <div class="mob-desc">
+            This portfolio is crafted for desktop. A fully dedicated mobile experience is currently being built — designed just for you.
+        </div>
+
+        <div class="mob-dots">
+            <span></span><span></span><span></span>
+        </div>
+
+        <button class="mob-btn-primary" onclick="document.getElementById('mobile-splash').style.display='none'">
+            🚀 Continue to Desktop Site
+        </button>
+        <button class="mob-btn-secondary" onclick="document.getElementById('mobile-splash').style.display='none'">
+            Dismiss
+        </button>
+    </div>
+
+    <script>
+        // Show splash only on mobile screens, only once per session
+        (function() {
+            if (window.innerWidth < 768 && !sessionStorage.getItem('mob_dismissed')) {
+                document.getElementById('mobile-splash').style.display = 'flex';
+                // Auto-dismiss after user interacts with buttons
+                document.querySelectorAll('#mobile-splash button').forEach(function(btn) {
+                    btn.addEventListener('click', function() {
+                        sessionStorage.setItem('mob_dismissed', '1');
+                    });
+                });
+            }
+        })();
+    </script>
+    <!-- ═══════════════════════════════════════════════════════ -->
+
     <div class="background-glow"></div>
 
 
