@@ -1,6 +1,14 @@
 const blogData = {
     "posts": [
         {
+            "id": "code-3",
+            "title": "Seeing Around Corners: Telegraphs, Grounding & the Birth of Digital Communication",
+            "category": "CODE",
+            "date": "2026-07-16",
+            "summary": "Learn how telegraphs, shared circuits, grounding, and long-distance communication solved engineering problems that eventually led to the invention of computers.",
+            "file": "blogs/code-3.md"
+        },
+        {
             "id": "code-1",
             "title": "1. Before Computers, Learn the Language of Information",
             "category": "CODE",
