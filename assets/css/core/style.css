@@ -3306,20 +3306,20 @@ body.focus-mode-active .interactive-bg {
 #reader-content.markdown-body ol li {
     counter-increment: list-counter;
     position: relative;
-    padding-left: 0.8rem; /* Increased to prevent numbering overlap */
+    padding-left: 1.5rem; /* Increased further for more gap */
     margin-bottom: 0.45rem;
     color: #d0d0d0;
 }
 #reader-content.markdown-body ol li::before {
     content: counter(list-counter) '.';
     position: absolute;
-    left: -2rem; /* Increased space for numbering */
+    left: -2.5rem; /* Push number further left */
     color: var(--primary-color, #2ed573);
     font-weight: 600;
     font-size: 0.9em;
-    width: 2.2rem; /* Give numbers more space */
+    width: 2.5rem; /* Give numbers more space */
     text-align: right;
-    padding-right: 0.4rem; /* Add some padding on right */
+    padding-right: 0.8rem; /* Add more padding on right */
 }
 
 /* ── Blockquotes — 3 flavours by nesting ─────────────────── */
