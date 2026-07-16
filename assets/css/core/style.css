@@ -3292,6 +3292,43 @@ body.focus-mode-active .interactive-bg {
     font-size: 0.85em;
     top: 0.1em;
 }
+
+/* Hide the triangle if the list item is a task (has a checkbox) */
+#reader-content.markdown-body ul li:has(input[type="checkbox"])::before {
+    display: none;
+}
+
+/* Style the markdown checkboxes so they don't look tiny and dull */
+#reader-content.markdown-body ul li input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 1.1rem;
+    height: 1.1rem;
+    border: 2px solid var(--primary-color, #2ed573);
+    border-radius: 4px;
+    margin-right: 0.6rem;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.2s ease;
+}
+
+#reader-content.markdown-body ul li input[type="checkbox"]:checked {
+    background: var(--primary-color, #2ed573);
+}
+
+#reader-content.markdown-body ul li input[type="checkbox"]:checked::after {
+    content: '✔';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+    font-size: 0.8rem;
+    font-weight: 900;
+}
 #reader-content.markdown-body ul ul li::before {
     content: '–';
     color: #888;
