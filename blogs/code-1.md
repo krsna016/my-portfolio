@@ -1263,12 +1263,6 @@ Representation
 
 # 30 Important Questions & Answers + Concept Revision
 
-> Morse Code • Braille • Binary • Combinatorics • Shift Codes • Representation
-
----
-
-# Section 1 — Fundamental Concepts
-
 ---
 
 ## Q1. What is a code?
@@ -1421,10 +1415,6 @@ Morse reduced this dramatically.
 
 ---
 
-# Section 2 — Morse Code
-
----
-
 ## Q6. What are the two symbols in Morse Code?
 
 ### Answer
@@ -1540,12 +1530,6 @@ Dash
 ```
 
 Decoding becomes much faster.
-
----
-
-# Section 3 — Binary Thinking
-
----
 
 ## Q11. Why is Morse Code considered binary?
 
@@ -1698,10 +1682,6 @@ Fast.
 
 ---
 
-# Section 4 — Louis Braille
-
----
-
 ## Q16. Who was Louis Braille?
 
 ### Answer
@@ -1786,10 +1766,6 @@ Blind people could
 - Study independently
 
 Instead of only listening.
-
----
-
-# Section 5 — Braille Structure
 
 ---
 
@@ -1904,10 +1880,6 @@ Exactly like programming languages.
 
 ---
 
-# Section 6 — Shift & Escape Codes
-
----
-
 ## Q25. What is a Shift Code?
 
 ### Answer
@@ -2003,10 +1975,6 @@ A
 Only one letter changes.
 
 Exactly like Braille Capital Indicator.
-
----
-
-# Section 7 — Computer Science Connection
 
 ---
 
