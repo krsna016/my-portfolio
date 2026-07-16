@@ -1,6 +1,4 @@
-# Let's Dive into how it Starts
-
-## Chapters 1–3: Morse Code, Braille, Binary & The Nature of Codes
+# Morse Code, Braille, Binary & The Nature of Codes
 
 > **Book:** Code: The Hidden Language of Computer Hardware and Software
 > **Author:** Charles Petzold
@@ -1261,11 +1259,10 @@ Representation
 
 > **The first three chapters of _Code_ are not really about Morse code or Braille—they are about teaching you that all information can be represented using simple binary choices, and that the meaning of those binary patterns depends entirely on the rules (the code) and the context in which they are interpreted. This single idea forms the foundation of all modern computing.**
 
-# Code by Charles Petzold — Study Guide (Part 2)
+---
+
 # 30 Important Questions & Answers + Concept Revision
 
-> **Covers Chapters 1–3**
->
 > Morse Code • Braille • Binary • Combinatorics • Shift Codes • Representation
 
 ---
