@@ -167,13 +167,13 @@
             animation: mob-spring 0.7s 0.15s cubic-bezier(0.34, 1.56, 0.64, 1) both;
         }
         .mob-icon-ring {
-            width: 96px; height: 96px;
+            width: 104px; height: 104px;
             border-radius: 50%;
-            border: 1.5px solid rgba(0,255,102,0.2);
+            border: 1.5px solid rgba(0,255,102,0.15);
             display: flex; align-items: center; justify-content: center;
             margin-bottom: 1.8rem;
             position: relative;
-            animation: ring-rotate 8s linear infinite;
+            /* No rotation on the ring itself — keeps SVG icon upright */
         }
         .mob-icon-ring::before {
             content: '';
@@ -194,13 +194,13 @@
             to   { transform: rotate(360deg); }
         }
         .mob-icon-emoji {
-            font-size: 2.6rem; line-height: 1;
             position: relative; z-index: 1;
+            display: flex; align-items: center; justify-content: center;
             animation: icon-breathe 3s ease-in-out infinite;
         }
         @keyframes icon-breathe {
-            0%, 100% { transform: scale(1); }
-            50%       { transform: scale(1.08); }
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50%       { transform: scale(1.06); opacity: 1; }
         }
         .mob-title {
             font-size: 1.7rem; font-weight: 700;
@@ -303,7 +303,20 @@
         <!-- Center: Main message -->
         <div id="mob-center">
             <div class="mob-icon-ring">
-                <div class="mob-icon-emoji">🚧</div>
+                <div class="mob-icon-emoji">
+                    <!-- Desktop + Mobile SVG icon -->
+                    <svg width="44" height="44" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Monitor -->
+                        <rect x="2" y="6" width="36" height="24" rx="3" stroke="#00ff66" stroke-width="2.2" fill="none"/>
+                        <line x1="2" y1="26" x2="38" y2="26" stroke="#00ff66" stroke-width="2.2"/>
+                        <line x1="14" y1="34" x2="26" y2="34" stroke="#00ff66" stroke-width="2.2" stroke-linecap="round"/>
+                        <line x1="20" y1="30" x2="20" y2="34" stroke="#00ff66" stroke-width="2.2" stroke-linecap="round"/>
+                        <!-- Phone -->
+                        <rect x="38" y="22" width="16" height="28" rx="3" stroke="#ffffff" stroke-width="2" fill="rgba(0,255,102,0.08)"/>
+                        <circle cx="46" cy="46" r="1.5" fill="#ffffff" opacity="0.6"/>
+                        <line x1="41" y1="27" x2="51" y2="27" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+                    </svg>
+                </div>
             </div>
             <div class="mob-title">Mobile Experience<br><span>Coming Soon</span></div>
             <div class="mob-desc">A dedicated mobile site is being crafted for you. Best explored on desktop for now.</div>
