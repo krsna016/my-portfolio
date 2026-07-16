@@ -3696,6 +3696,48 @@ body.light-mode #toggle-bar-btn:active i {
     background: transparent !important;
 }
 
+/* ── Go to Top button (above audio pill) ────────────────── */
+#reader-go-top-btn {
+    position: fixed !important;
+    bottom: 80px !important; /* Sits just above the audio pill at bottom: 24px */
+    left: 24px !important;
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 50% !important;
+    background: rgba(22, 22, 26, 0.7) !important;
+    color: var(--theme-h1-text, #00ff66) !important;
+    border: 2px solid var(--theme-h1-text, #00ff66) !important;
+    display: none; /* Hidden by default, shown only when reader is open */
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1.1rem !important;
+    cursor: pointer !important;
+    z-index: 999999 !important;
+    backdrop-filter: blur(6px) !important;
+    -webkit-backdrop-filter: blur(6px) !important;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease !important;
+    box-shadow: 0 0 12px rgba(0, 255, 102, 0.2) !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+body.reader-open #reader-go-top-btn {
+    display: flex !important;
+}
+
+#reader-go-top-btn:hover {
+    transform: translateY(-3px) !important;
+    background: var(--theme-h1-text, #00ff66) !important;
+    color: #000 !important;
+    box-shadow: 0 0 20px rgba(0, 255, 102, 0.5) !important;
+}
+
+body.light-mode #reader-go-top-btn {
+    background: rgba(255, 255, 255, 0.85) !important;
+    color: var(--theme-h1-text, #111) !important;
+    border-color: var(--theme-h1-text, #111) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
 /* Compact overrides for back button and size controls */
 #post-reader #back-button {
     padding: 6px 14px !important;

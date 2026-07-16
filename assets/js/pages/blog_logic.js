@@ -93,6 +93,23 @@ document.addEventListener('DOMContentLoaded', async () => {
                         : '<i class="fa-solid fa-eye-slash"></i>'; // icon to hide
                 });
             }
+
+            // Add Go to Top button just above the audio pill
+            if (!document.getElementById('reader-go-top-btn')) {
+                const goTopBtn = document.createElement('button');
+                goTopBtn.id = 'reader-go-top-btn';
+                goTopBtn.setAttribute('aria-label', 'Go to top');
+                goTopBtn.title = 'Back to top';
+                goTopBtn.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
+                document.body.appendChild(goTopBtn);
+
+                goTopBtn.addEventListener('click', () => {
+                    const scrollContainer = document.getElementById('post-reader');
+                    if (scrollContainer) {
+                        scrollContainer.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                });
+            }
         }
 
         let toast = document.getElementById('font-size-toast');
