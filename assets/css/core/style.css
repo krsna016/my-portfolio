@@ -3696,28 +3696,31 @@ body.light-mode #toggle-bar-btn:active i {
     background: transparent !important;
 }
 
-/* ── Go to Top button (above audio pill) ────────────────── */
+/* ── Go to Top button (right side, above eye button row) ── */
 #reader-go-top-btn {
     position: fixed !important;
-    bottom: 80px !important; /* Sits just above the audio pill at bottom: 24px */
-    left: 24px !important;
+    top: 9rem !important; /* Just below the eye/toggle button at 5.5rem */
+    right: 24px !important;
     width: 48px !important;
     height: 48px !important;
     border-radius: 50% !important;
-    background: rgba(22, 22, 26, 0.7) !important;
-    color: var(--theme-h1-text, #00ff66) !important;
-    border: 2px solid var(--theme-h1-text, #00ff66) !important;
-    display: none; /* Hidden by default, shown only when reader is open */
+    background: #000000 !important; /* Dark mode: black circle */
+    color: #ffffff !important;      /* Dark mode: white icon */
+    border: none !important;
+    display: none;
     align-items: center !important;
     justify-content: center !important;
-    font-size: 1.1rem !important;
+    font-size: 1.2rem !important;
     cursor: pointer !important;
-    z-index: 999999 !important;
-    backdrop-filter: blur(6px) !important;
-    -webkit-backdrop-filter: blur(6px) !important;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease !important;
-    box-shadow: 0 0 12px rgba(0, 255, 102, 0.2) !important;
+    z-index: 9999 !important;
+    transition: transform 0.25s ease, opacity 0.25s ease !important;
+    opacity: 0.75 !important;
     -webkit-tap-highlight-color: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.4) !important;
+    outline: none !important;
+    padding: 0 !important;
 }
 
 body.reader-open #reader-go-top-btn {
@@ -3725,17 +3728,20 @@ body.reader-open #reader-go-top-btn {
 }
 
 #reader-go-top-btn:hover {
-    transform: translateY(-3px) !important;
-    background: var(--theme-h1-text, #00ff66) !important;
-    color: #000 !important;
-    box-shadow: 0 0 20px rgba(0, 255, 102, 0.5) !important;
+    transform: scale(1.1) !important;
+    opacity: 1 !important;
 }
 
+/* Light mode: white circle, black icon */
 body.light-mode #reader-go-top-btn {
-    background: rgba(255, 255, 255, 0.85) !important;
-    color: var(--theme-h1-text, #111) !important;
-    border-color: var(--theme-h1-text, #111) !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15) !important;
+}
+
+body.light-mode #reader-go-top-btn:hover {
+    background: #ffffff !important;
+    color: #000000 !important;
 }
 
 /* Compact overrides for back button and size controls */
