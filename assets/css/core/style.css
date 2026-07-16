@@ -3740,8 +3740,8 @@ body.light-mode #reader-go-top-btn {
 }
 
 body.light-mode #reader-go-top-btn:hover {
-    background: #ffffff !important;
-    color: #000000 !important;
+    background: #000000 !important;
+    color: #ffffff !important;
 }
 
 /* Compact overrides for back button and size controls */
