@@ -1,8 +1,7 @@
 # How a Flashlight Explains Electricity, Binary & the Birth of Computers
 
-> **Series:** Reading *Code* by Charles Petzold  
-> **Part:** 2  
-> **Description:** Learn how a simple flashlight explains electricity, batteries, voltage, current, resistance, power, and the binary foundation of modern computers.
+> **Book:** Code: The Hidden Language of Computer Hardware and Software
+> **Author:** Charles Petzold
 
 ---
 
@@ -599,11 +598,8 @@ the modern computer is born.
 
 > **"The computer is not built upon complexity. It is built upon billions of tiny decisions: ON or OFF."**
 >
-> *— Inspired by Charles Petzold's* **Code**
 
-# Code Notes #2 — 30 Important Questions & Answers
-### *Revision & Interview Guide*
-*Based on Chapter 4 of **Code** by Charles Petzold*
+# 30 Important Questions & Answers
 
 ---
 
