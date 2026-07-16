@@ -2,7 +2,7 @@ const blogData = {
     "posts": [
         {
             "id": "code-3",
-            "title": "Seeing Around Corners: Telegraphs, Grounding & the Birth of Digital Communication",
+            "title": "3. Seeing Around Corners: Telegraphs, Grounding & the Birth of Digital Communication",
             "category": "CODE",
             "date": "2026-07-16",
             "summary": "Learn how telegraphs, shared circuits, grounding, and long-distance communication solved engineering problems that eventually led to the invention of computers.",
