@@ -3696,11 +3696,11 @@ body.light-mode #toggle-bar-btn:active i {
     background: transparent !important;
 }
 
-/* ── Go to Top button (right side, above eye button row) ── */
+/* ── Go to Top button (bottom-left, above audio pill) ───── */
 #reader-go-top-btn {
     position: fixed !important;
-    top: 9rem !important; /* Just below the eye/toggle button at 5.5rem */
-    right: 24px !important;
+    bottom: 80px !important; /* Audio pill is at bottom: 24px, sits just above it */
+    left: 24px !important;
     width: 48px !important;
     height: 48px !important;
     border-radius: 50% !important;
