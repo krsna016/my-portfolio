@@ -2206,7 +2206,7 @@ has multiple meanings.
 
 # 20. Common Mistakes Beginners Make
 
-- [ ] Thinking Binary itself has meaning.
+- Thinking Binary itself has meaning.
   - **Truth:**
     ```text
     Binary
@@ -2215,13 +2215,13 @@ has multiple meanings.
 
     Needs Interpretation
     ```
-- [ ] Thinking Morse invented Binary.
+- Thinking Morse invented Binary.
   - **Truth:** Morse only demonstrates binary thinking.
-- [ ] Thinking Braille is random.
+- Thinking Braille is random.
   - **Truth:** Braille is carefully engineered.
-- [ ] Thinking Code means Secret.
+- Thinking Code means Secret.
   - **Truth:** Code simply means Representation.
-- [ ] Thinking Computers understand English.
+- Thinking Computers understand English.
   - **Truth:** Computers understand electrical states.
 
 ---
