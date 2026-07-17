@@ -34,7 +34,7 @@
 25. [Memory Tricks](#25-memory-tricks)
 26. [Final Revision Cheat Sheet](#26-final-revision-cheat-sheet)
 27. [One Sentence Summary](#27-one-sentence-summary)
-28. [30 Important Questions & Answers](#28-30-important-questions--answers)
+28. [30 Important Questions & Answers](#28-30-important-questions-answers)
 29. [Interview Questions](#29-interview-questions)
 30. [Common Beginner Mistakes](#30-common-beginner-mistakes)
 31. [Memory Palace](#31-memory-palace)
@@ -996,13 +996,18 @@ the modern computer is born.
 
 ---
 
-## One Sentence Summary ✦
+
+# 25. Memory Tricks
+
+# 26. Final Revision Cheat Sheet
+
+# 27. One Sentence Summary
 
 > **Electricity gives computers the ability to move electrons, switches convert that movement into binary decisions, and billions of those tiny binary decisions together create the entire digital world.**
 
 ---
 
-## 30 Important Questions & Answers
+# 28. 30 Important Questions & Answers
 
 ---
 
@@ -2313,7 +2318,7 @@ Understanding this single idea is one of the biggest milestones in learning how 
 
 ---
 
-## Interview Questions
+# 29. Interview Questions
 
 These are conceptual questions designed to test your understanding after studying this chapter.
 
@@ -2359,7 +2364,7 @@ These are conceptual questions designed to test your understanding after studyin
 
 ---
 
-## Common Beginner Mistakes
+# 30. Common Beginner Mistakes
 
 - [ ] Thinking electricity is created by a battery.
   - **Truth:** A battery stores **chemical energy** and creates a voltage difference that causes existing electrons to move.
@@ -2378,7 +2383,7 @@ These are conceptual questions designed to test your understanding after studyin
 
 ---
 
-## Memory Palace
+# 31. Memory Palace
 
 Imagine entering an electrical laboratory with eight connected rooms.
 
@@ -2520,7 +2525,7 @@ Digital World
 
 ---
 
-## Ultimate Summary ✦
+# 32. Ultimate Summary
 
 After studying this chapter, you should no longer think:
 
@@ -2566,6 +2571,6 @@ Every modern computer is built upon these remarkably simple electrical principle
 
 ---
 
-## One-Line Chapter Summary
+# 33. One-Line Chapter Summary
 
 > **A flashlight teaches the complete foundation of computing by showing how electricity flows through a circuit, how a switch converts that flow into binary states, and how billions of tiny switches working together create every modern computer.**
