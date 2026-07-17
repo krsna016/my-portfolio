@@ -2366,19 +2366,19 @@ These are conceptual questions designed to test your understanding after studyin
 
 # 30. Common Beginner Mistakes
 
-- [ ] Thinking electricity is created by a battery.
+- Thinking electricity is created by a battery.
   - **Truth:** A battery stores **chemical energy** and creates a voltage difference that causes existing electrons to move.
 
-- [ ] Thinking voltage and current are the same.
+- Thinking voltage and current are the same.
   - **Truth:** Voltage is the **push (potential difference)**, while current is the **actual flow of electric charge**.
 
-- [ ] Thinking electrons are created inside wires.
+- Thinking electrons are created inside wires.
   - **Truth:** Electrons already exist inside conductors; they simply move when a circuit is completed.
 
-- [ ] Thinking resistance is always undesirable.
+- Thinking resistance is always undesirable.
   - **Truth:** Resistance is essential for devices such as bulbs, heaters, and electronic circuits.
 
-- [ ] Thinking computers understand programming languages directly.
+- Thinking computers understand programming languages directly.
   - **Truth:** Computers ultimately operate using billions of tiny binary electrical switches (transistors).
 
 ---
