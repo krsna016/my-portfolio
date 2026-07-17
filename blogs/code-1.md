@@ -1,7 +1,3 @@
-Viewed untitled:Untitled-1:2329-2358
-Listed directory config
-Used tool: list_permissions
-
 # Morse Code, Braille, Binary & The Nature of Codes
 
 > **Book:** Code: The Hidden Language of Computer Hardware and Software
@@ -12,7 +8,7 @@ Used tool: list_permissions
 ## Table of Contents
 
 1. [Why this book starts with Morse Code instead of Computers](#1-why-doesnt-the-book-start-with-computers)
-2. [The Central Idea of the Book](#2-the-central-idea-of-the-book-✦)
+2. [The Central Idea of the Book](#2-the-central-idea-of-the-book)
 3. [What is a Code?](#3-what-is-a-code)
 4. [Flashlight Communication Story](#4-the-flashlight-story)
 5. [Morse Code](#5-morse-code)
@@ -22,15 +18,22 @@ Used tool: list_permissions
 9. [Louis Braille](#9-louis-braille)
 10. [Braille System](#10-braille)
 11. [Grade 2 Braille](#11-grade-2-braille)
-12. [Shift Codes & Escape Codes](#12-shift-codes--escape-codes)
+12. [Shift Codes & Escape Codes](#12-shift-codes-escape-codes)
 13. [Hidden Computer Science Lessons](#13-biggest-computer-science-lessons)
 14. [Key Takeaways](#14-biggest-hidden-message-of-these-chapters)
 15. [Memory Tricks](#15-memory-tricks)
 16. [Revision Cheat Sheet](#16-final-revision-cheat-sheet)
+17. [One Sentence Summary ✦](#17-one-sentence-summary)
+18. [30 Important Questions & Answers + Concept Revision](#18-30-important-questions-answers-concept-revision)
+19. [Interview Questions](#19-interview-questions)
+20. [Common Mistakes Beginners Make](#20-common-mistakes-beginners-make)
+21. [Memory Palace](#21-memory-palace)
+22. [Ultimate Summary ✦](#22-ultimate-summary)
+23. [One-Line Summary of Chapters 1–3](#23-one-line-summary-of-chapters-13)
 
 ---
 
-## 1. Why doesn't the book start with computers?
+# 1. Why doesn't the book start with computers?
 
 Most computer books begin like this:
 
@@ -61,7 +64,7 @@ The biggest lesson of the book is:
 
 ---
 
-## 2. The Central Idea of the Book ✦
+# 2. The Central Idea of the Book ✦
 
 Everything you've read so far revolves around one sentence:
 
@@ -135,7 +138,7 @@ This is exactly what computers do.
 
 ---
 
-## 3. What is a Code?
+# 3. What is a Code?
 
 A code is simply
 
@@ -167,7 +170,7 @@ Every code converts one form of information into another.
 
 ---
 
-## 4. The Flashlight Story
+# 4. The Flashlight Story
 
 Imagine
 
@@ -194,7 +197,7 @@ Now you need a communication system.
 
 ---
 
-### First Attempt
+## First Attempt
 
 Draw letters in the air.
 
@@ -218,7 +221,7 @@ Lesson:
 
 ---
 
-### Second Attempt
+## Second Attempt
 
 Blink counts.
 
@@ -250,7 +253,7 @@ Too slow.
 
 ---
 
-### Discovery
+## Discovery
 
 Morse Code
 
@@ -270,7 +273,7 @@ Much faster.
 
 ---
 
-### Hidden Lesson
+## Hidden Lesson
 
 Good codes are
 
@@ -280,7 +283,7 @@ Good codes are
 
 ---
 
-## 5. Morse Code
+# 5. Morse Code
 
 Morse Code has only two symbols.
 
@@ -308,7 +311,7 @@ Light ON longer
 
 ---
 
-### Timing Rules
+## Timing Rules
 
 This is extremely important.
 
@@ -346,7 +349,7 @@ Words
 
 ---
 
-### SOS
+## SOS
 
 ```text
 ...
@@ -370,7 +373,7 @@ Easy to recognize during emergencies.
 
 ---
 
-### Why Morse is Efficient
+## Why Morse is Efficient
 
 Your blinking system
 
@@ -398,7 +401,7 @@ This is the same idea modern compression algorithms use.
 
 ---
 
-## 6. Binary Thinking
+# 6. Binary Thinking
 
 The most important sentence so far:
 
@@ -440,7 +443,7 @@ Everything in computers is eventually reduced to
 
 ---
 
-## 7. Combinatorics (Powers of Two)
+# 7. Combinatorics (Powers of Two)
 
 Suppose every position has only
 
@@ -481,7 +484,7 @@ Number of positions
 
 ---
 
-### Example
+## Example
 
 Three switches
 
@@ -515,7 +518,7 @@ Total
 
 ---
 
-### Why This Matters
+## Why This Matters
 
 A computer bit also has
 
@@ -535,7 +538,7 @@ Everything in computing is built on this idea.
 
 ---
 
-## 8. Morse Tree
+# 8. Morse Tree
 
 Instead of memorizing
 
@@ -611,7 +614,7 @@ No memorization needed.
 
 ---
 
-## 9. Louis Braille
+# 9. Louis Braille
 
 Louis Braille
 
@@ -624,7 +627,7 @@ Amazing achievement.
 
 ---
 
-### Before Braille
+## Before Braille
 
 Raised English letters.
 
@@ -648,7 +651,7 @@ Huge difference.
 
 ---
 
-### Charles Barbier
+## Charles Barbier
 
 Invented
 
@@ -676,7 +679,7 @@ Louis Braille improved it.
 
 ---
 
-### Engineering Lesson
+## Engineering Lesson
 
 Great inventions rarely appear from nothing.
 
@@ -700,7 +703,7 @@ World Changes
 
 ---
 
-## 10. Braille
+# 10. Braille
 
 Every character fits inside
 
@@ -744,7 +747,7 @@ possible patterns.
 
 ---
 
-### Pattern in Alphabet
+## Pattern in Alphabet
 
 Row 1
 
@@ -788,7 +791,7 @@ Not random.
 
 ---
 
-## 11. Grade 2 Braille
+# 11. Grade 2 Braille
 
 Books became too large.
 
@@ -826,7 +829,7 @@ in texting.
 
 ---
 
-### Number Indicator
+## Number Indicator
 
 Braille doesn't invent new digits.
 
@@ -864,7 +867,7 @@ Very clever.
 
 ---
 
-### Capital Indicator
+## Capital Indicator
 
 Instead of another alphabet
 
@@ -888,9 +891,9 @@ on a keyboard.
 
 ---
 
-## 12. Shift Codes & Escape Codes
+# 12. Shift Codes & Escape Codes
 
-### Shift Code
+## Shift Code
 
 Changes interpretation until cancelled.
 
@@ -920,7 +923,7 @@ Everything after Number Indicator becomes numbers.
 
 ---
 
-### Escape Code
+## Escape Code
 
 Changes only ONE symbol.
 
@@ -946,7 +949,7 @@ Only first letter changes.
 
 ---
 
-### Computer Equivalent
+## Computer Equivalent
 
 | Braille             | Keyboard      |
 | ------------------- | ------------- |
@@ -956,9 +959,9 @@ Only first letter changes.
 
 ---
 
-## 13. Biggest Computer Science Lessons
+# 13. Biggest Computer Science Lessons
 
-### Lesson 1
+## Lesson 1
 
 Information
 
@@ -968,7 +971,7 @@ Representation
 
 ---
 
-### Lesson 2
+## Lesson 2
 
 Binary systems are everywhere.
 
@@ -986,7 +989,7 @@ Dot/Dash
 
 ---
 
-### Lesson 3
+## Lesson 3
 
 Context matters.
 
@@ -1036,7 +1039,7 @@ Exactly like Braille.
 
 ---
 
-### Lesson 4
+## Lesson 4
 
 Good codes are optimized.
 
@@ -1066,7 +1069,7 @@ Easy for electronics.
 
 ---
 
-## 14. Biggest Hidden Message of These Chapters
+# 14. Biggest Hidden Message of These Chapters
 
 Petzold is NOT teaching
 
@@ -1123,9 +1126,9 @@ This is literally what happens every time you type on a keyboard.
 
 ---
 
-## 15. Memory Tricks
+# 15. Memory Tricks
 
-### Morse
+## Morse
 
 ```text
 E
@@ -1177,7 +1180,7 @@ Words
 
 ---
 
-### Braille
+## Braille
 
 ```text
 6 Dots
@@ -1193,7 +1196,7 @@ Words
 
 ---
 
-### Binary
+## Binary
 
 ```text
 Every extra bit
@@ -1205,7 +1208,7 @@ Double possibilities.
 
 ---
 
-### Shift Code
+## Shift Code
 
 Think
 
@@ -1213,7 +1216,7 @@ Think
 Caps Lock
 ```
 
-### Escape Code
+## Escape Code
 
 Think
 
@@ -1223,7 +1226,7 @@ Shift Key
 
 ---
 
-## 16. Final Revision Cheat Sheet
+# 16. Final Revision Cheat Sheet
 
 - [x] Code = Representation of Information
 - [x] Morse = Dot + Dash
@@ -1240,17 +1243,17 @@ Shift Key
 
 ---
 
-## One Sentence Summary ✦
+# 17. One Sentence Summary ✦
 
 > **The first three chapters of _Code_ are not really about Morse code or Braille—they are about teaching you that all information can be represented using simple binary choices, and that the meaning of those binary patterns depends entirely on the rules (the code) and the context in which they are interpreted. This single idea forms the foundation of all modern computing.**
 
 ---
 
-## 30 Important Questions & Answers + Concept Revision
+# 18. 30 Important Questions & Answers + Concept Revision
 
 ---
 
-### Q1. What is a code?
+### 1. What is a code?
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -1288,7 +1291,7 @@ Only its representation changes.
 
 ---
 
-### Q2. Is every code secret?
+### 2. Is every code secret?
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -1312,7 +1315,7 @@ Only cryptographic codes are designed to hide information.
 
 ---
 
-### Q3. Why does Petzold begin the book with Morse Code instead of computers?
+### 3. Why does Petzold begin the book with Morse Code instead of computers?
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -1342,7 +1345,7 @@ Computers perform exactly the same process.
 
 ---
 
-### Q4. Why did drawing letters with a flashlight fail?
+### 4. Why did drawing letters with a flashlight fail?
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -1378,7 +1381,7 @@ Lesson
 
 ---
 
-### Q5. Why was the counting-blink system inefficient?
+### 5. Why was the counting-blink system inefficient?
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -1410,7 +1413,7 @@ Morse reduced this dramatically.
 
 ---
 
-### Q6. What are the two symbols in Morse Code?
+### 6. What are the two symbols in Morse Code?
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -1434,7 +1437,7 @@ Everything is built using only these two symbols.
 
 ---
 
-### Q7. Why is Morse Code faster?
+### 7. Why is Morse Code faster?
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -1458,7 +1461,7 @@ This minimizes average transmission time.
 
 ---
 
-### Q8. What are the Morse timing rules?
+### 8. What are the Morse timing rules?
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -1488,7 +1491,7 @@ Memory Trick
 
 ---
 
-### Q9. Why is SOS special?
+### 9. Why is SOS special?
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -1510,7 +1513,7 @@ Easy to recognize during emergencies.
 
 ---
 
-### Q10. What is the Morse Tree?
+### 10. What is the Morse Tree?
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -1584,7 +1587,7 @@ No memorization needed.
 
 ---
 
-### Q11. Why is Morse Code considered binary?
+### 11. Why is Morse Code considered binary?
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -1612,7 +1615,7 @@ or
 
 ---
 
-### Q12. What is combinatorics?
+### 12. What is combinatorics?
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -1656,7 +1659,7 @@ Total
 
 ---
 
-### Q13. Why do powers of two appear everywhere?
+### 13. Why do powers of two appear everywhere?
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -1683,7 +1686,7 @@ Examples
 
 ---
 
-### Q14. Why is adding one more bit so powerful?
+### 14. Why is adding one more bit so powerful?
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -1715,7 +1718,7 @@ Double information.
 
 ---
 
-### Q15. Why is Binary ideal for computers?
+### 15. Why is Binary ideal for computers?
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -1745,7 +1748,7 @@ Fast.
 
 ---
 
-### Q16. Who was Louis Braille?
+### 16. Who was Louis Braille?
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -1761,7 +1764,7 @@ Created the world's most successful tactile writing system.
 
 ---
 
-### Q17. Why didn't raised printed letters work well?
+### 17. Why didn't raised printed letters work well?
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -1777,7 +1780,7 @@ Dots are much easier.
 
 ---
 
-### Q18. What did Charles Barbier invent?
+### 18. What did Charles Barbier invent?
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -1797,7 +1800,7 @@ Poor for books.
 
 ---
 
-### Q19. What did Louis Braille improve?
+### 19. What did Louis Braille improve?
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -1825,7 +1828,7 @@ Much simpler.
 
 ---
 
-### Q20. Why was Braille revolutionary?
+### 20. Why was Braille revolutionary?
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -1842,7 +1845,7 @@ Instead of only listening.
 
 ---
 
-### Q21. Why are there exactly 64 Braille patterns?
+### 21. Why are there exactly 64 Braille patterns?
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -1880,7 +1883,7 @@ No less.
 
 ---
 
-### Q22. Why is the Braille alphabet not random?
+### 22. Why is the Braille alphabet not random?
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -1912,7 +1915,7 @@ Elegant design.
 
 ---
 
-### Q23. What is Grade 2 Braille?
+### 23. What is Grade 2 Braille?
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -1939,7 +1942,7 @@ Advantages
 
 ---
 
-### Q24. Why reuse Braille symbols?
+### 24. Why reuse Braille symbols?
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -1961,7 +1964,7 @@ Exactly like programming languages.
 
 ---
 
-### Q25. What is a Shift Code?
+### 25. What is a Shift Code?
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -1997,7 +2000,7 @@ returns to letters.
 
 ---
 
-### Q26. What is an Escape Code?
+### 26. What is an Escape Code?
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -2023,7 +2026,7 @@ The following letters remain unchanged.
 
 ---
 
-### Q27. Give a real-world example of Shift Code.
+### 27. Give a real-world example of Shift Code.
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -2045,7 +2048,7 @@ Exactly like Braille Number Indicator.
 
 ---
 
-### Q28. Give a real-world example of Escape Code.
+### 28. Give a real-world example of Escape Code.
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -2067,7 +2070,7 @@ Exactly like Braille Capital Indicator.
 
 ---
 
-### Q29. What does this binary mean?
+### 29. What does this binary mean?
 
 ```text
 01000001
@@ -2117,7 +2120,7 @@ Bits themselves have no meaning.
 
 ---
 
-### Q30. What is the single most important lesson from Chapters 1–3?
+### 30. What is the single most important lesson from Chapters 1–3?
 
 <details>
 <summary><b>Show Answer</b></summary>
@@ -2149,7 +2152,7 @@ Computers simply perform these translations extremely quickly.
 
 ---
 
-## Interview Questions
+# 19. Interview Questions
 
 These are questions Petzold expects you to answer after reading these chapters.
 
@@ -2201,7 +2204,7 @@ has multiple meanings.
 
 ---
 
-## Common Mistakes Beginners Make
+# 20. Common Mistakes Beginners Make
 
 - [ ] Thinking Binary itself has meaning.
   - **Truth:**
@@ -2223,7 +2226,7 @@ has multiple meanings.
 
 ---
 
-## Memory Palace
+# 21. Memory Palace
 
 Imagine entering a building.
 
@@ -2343,7 +2346,7 @@ Different Meanings
 
 ---
 
-## Ultimate Summary ✦
+# 22. Ultimate Summary ✦
 
 After Chapters 1–3, you should no longer think:
 
@@ -2374,6 +2377,6 @@ Only representation changes.
 
 ---
 
-## One-Line Summary of Chapters 1–3
+# 23. One-Line Summary of Chapters 1–3
 
 > **The foundation of computer science is not programming or hardware—it is understanding how information can be represented, encoded, decoded, and interpreted using simple binary choices.**
