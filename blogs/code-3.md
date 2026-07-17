@@ -1,6 +1,6 @@
-# Seeing Around Corners: How the Telegraph Changed the World
+# 3. Seeing Around Corners: How the Telegraph Changed the World
 
-> **Book:** Code: The Hidden Language of Computer Hardware and Software  
+> **Book:** Code: The Hidden Language of Computer Hardware and Software
 > **Author:** Charles Petzold
 
 ---
