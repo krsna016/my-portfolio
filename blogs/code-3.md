@@ -3753,34 +3753,34 @@ These are questions Charles Petzold expects you to answer after reading this cha
 
 # Common Mistakes Beginners Make
 
-- [ ] **Thinking the telegraph invented Morse Code.**
+- **Thinking the telegraph invented Morse Code.**
   - **Truth:** Morse Code already existed as a communication code. The telegraph simply provided a faster way to transmit it over long distances.
 
-- [ ] **Thinking electricity carries words or letters.**
+- **Thinking electricity carries words or letters.**
   - **Truth:** Electricity carries only electrical signals. The receiver interprets those signals as Morse Code, which is then decoded into letters.
 
-- [ ] **Thinking Common and Ground are the same thing.**
+- **Thinking Common and Ground are the same thing.**
   - **Truth:** A **Common** is a shared electrical reference inside a circuit. A **Ground** is a physical electrical connection to the Earth.
 
-- [ ] **Thinking Earth is an excellent conductor.**
+- **Thinking Earth is an excellent conductor.**
   - **Truth:** Earth is actually a poor conductor compared to copper. It works because it is unimaginably large, providing countless parallel conductive paths.
 
-- [ ] **Thinking electrons know where to go.**
+- **Thinking electrons know where to go.**
   - **Truth:** Electrons have no intelligence or destination. They simply respond to electric fields created by voltage differences.
 
-- [ ] **Thinking higher voltage is always more dangerous because it creates more current.**
+- **Thinking higher voltage is always more dangerous because it creates more current.**
   - **Truth:** Voltage provides the electrical "push." The actual current depends on both voltage and resistance, according to Ohm's Law.
 
-- [ ] **Thinking thicker wires carry electricity faster.**
+- **Thinking thicker wires carry electricity faster.**
   - **Truth:** Thicker wires mainly reduce resistance and energy loss. They allow more current to flow efficiently but do not significantly change the speed at which electrical signals propagate.
 
-- [ ] **Thinking long wires fail because electricity slows down.**
+- **Thinking long wires fail because electricity slows down.**
   - **Truth:** Signals weaken because resistance causes voltage drop and energy loss—not because electricity suddenly moves slowly.
 
-- [ ] **Thinking the relay amplifies electricity.**
+- **Thinking the relay amplifies electricity.**
   - **Truth:** A relay does not amplify a signal. It uses a weak signal to operate a completely new circuit, creating a fresh, strong signal.
 
-- [ ] **Thinking computers were invented directly from calculators.**
+- **Thinking computers were invented directly from calculators.**
   - **Truth:** This chapter shows that computers evolved from solving communication problems. Telegraphs led to relays, relays led to logic, and logic led to computers.
 
 ---
